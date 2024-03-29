@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Team Project
  *
@@ -7,4 +9,20 @@
  * @version 28 March 2024
  */
 public class Method {
+    public boolean isFriend (ArrayList<Profile> friendList, String userName) {
+        for (Profile eachProfile : friendList) {
+            if (eachProfile.getUserName().equals(userName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean inBlockList (ArrayList<Profile> blockList, String userName) {
+        for (Profile eachProfile : blockList) {
+            if (eachProfile.getUserName().equals(userName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
