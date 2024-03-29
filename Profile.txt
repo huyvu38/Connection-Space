@@ -1,0 +1,6 @@
+vuhuy28,12345678,18,Male,VietNam,student,football
+ale34e,123456789,23,Male,USA,student,game
+ae34er,123456AP,23,Female,USA,doctor,piano
+george23
+alvin23
+george333
