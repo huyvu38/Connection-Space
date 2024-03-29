@@ -13,8 +13,8 @@ public class Profile {
     private String nationality;
     private String job;
     private String hobby;
-    public Profile (String useerName, int age, String gender, String nationality, String job, String hobby) {
-        this.userName = useerName;
+    public Profile (String userName, int age, String gender, String nationality, String job, String hobby) {
+        this.userName = userName;
         this.age = age;
         this.gender = gender;
         this.nationality = nationality;
