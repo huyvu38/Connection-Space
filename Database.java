@@ -23,7 +23,9 @@ public class Database {
     }
     public boolean readAllUserAccount(String allUserAccountFile) {}
     public boolean readAllUserProfile(String allUserAccountFile) {}
-    public boolean updateAllUserAccount(){}
+    public boolean userCreateAccount(UserAccount newUserAccount) {}
+    public boolean userDeleteAccount(UserAccount deleteUserAccount) {}
+    public boolean userEditAccount(UserAccount userEditAccount)
     //What if the user create account
     //What if the user delete account
     //What if the user change anything in Profile.java or UserAccount.java

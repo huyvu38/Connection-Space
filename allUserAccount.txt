@@ -1,0 +1,1 @@
+vu28,12345678,18,Male,VietNam,student,football;FriendList: [george23,alvin23,jay89];BlockList: [george333]
