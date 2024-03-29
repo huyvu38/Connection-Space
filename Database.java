@@ -10,15 +10,23 @@ import java.util.ArrayList;
  */
 public class Database {
     private String allUserAccountFile;
+    private String allUserProfileFile;
+    private ArrayList<Profile> allUserProfile;
     private ArrayList<UserAccount> allUserAccount;
     private String databaseOutput;
-    public Database (String allUserAccountFile, String allUserAccount, String databaseOutput) {
+    public Database (String allUserAccountFile, String allUserProfileFile, String databaseOutput) {
         this.allUserAccountFile = allUserAccountFile;
-        this.allUserAccount = new ArrayList<>();
+        this.allUserProfileFile = allUserProfileFile;
         this.databaseOutput = databaseOutput;
+        this.allUserProfile = new ArrayList<Profile>();
+        this.allUserAccount = new ArrayList<UserAccount>();
     }
     public boolean readAllUserAccount(String allUserAccountFile) {}
+    public boolean readAllUserProfile(String allUserAccountFile) {}
     public boolean updateAllUserAccount(){}
+    //What if the user create account
+    //What if the user delete account
+    //What if the user change anything in Profile.java or UserAccount.java
     public boolean output(String databaseOutput)
 
 

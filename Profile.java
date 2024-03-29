@@ -78,8 +78,8 @@ public class Profile implements ProfileInterface{
     public void setHobby(String hobby) {
         this.hobby = hobby;
     }
-
-    /*
-    public String toString
-     */
+    public String toString( {
+        return this.userName + "," + this.password + "," + this.age + "," + this.gender
+                + "," + this.nationality + "," + this.job + "," + this.hobby;
+    }
 }

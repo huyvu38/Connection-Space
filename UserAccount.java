@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class UserAccount {
 
     private Profile userProfile;
-    private ArrayList<Profile> friendList;
-    private ArrayList<Profile> blockList;
+    private ArrayList<String> friendList;
+    private ArrayList<String> blockList;
 
     public UserInformation(Profile userProfile) {
         this.userProfile = userProfile;
@@ -28,11 +28,11 @@ public class UserAccount {
         this.userProfile = userProfile;
     }
 
-    public ArrayList<Profile> getFriendList() {
+    public ArrayList<String> getFriendList() {
         return friendList;
     }
 
-    public void setFriendList(ArrayList<Profile> friendList) {
+    public void setFriendList(ArrayList<String> friendList) {
         this.friendList = friendList;
     }
 
@@ -42,5 +42,8 @@ public class UserAccount {
 
     public void setBlockList(ArrayList<Profile> blockList) {
         this.blockList = blockList;
+    }
+    public String toString() {
+        return this.userProfile + ";" + "FriendList: [" ""
     }
 }
