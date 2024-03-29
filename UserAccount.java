@@ -14,7 +14,7 @@ public class UserAccount {
     private ArrayList<String> friendList;
     private ArrayList<String> blockList;
 
-    public UserInformation(Profile userProfile) {
+    public UserAccount(Profile userProfile) {
         this.userProfile = userProfile;
         this.friendList = new ArrayList<>();
         this.blockList = new ArrayList<>();
@@ -36,14 +36,22 @@ public class UserAccount {
         this.friendList = friendList;
     }
 
-    public ArrayList<Profile> getBlockList() {
+    public ArrayList<String> getBlockList() {
         return blockList;
     }
 
-    public void setBlockList(ArrayList<Profile> blockList) {
+    public void setBlockList(ArrayList<String> blockList) {
         this.blockList = blockList;
     }
     public String toString() {
-        return this.userProfile + ";" + "FriendList: [" ""
+        String friend = "";
+        for (String eachFriendUserName : this.friendList) {
+            friend = friend + eachFriendUserName + ",";
+        }
+        String blockUser = "";
+        for (String eachBlockUserName : this.blockList) {
+            blockUser = blockUser + eachBlockUserName + ",";
+        }
+        return this.userProfile + ";" + "FriendList: ["  + friend + "];BlockList: [" + blockUser + "]";
     }
 }
