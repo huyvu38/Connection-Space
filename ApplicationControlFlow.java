@@ -34,8 +34,8 @@ public class ApplicationControlFlow {
                 String job = scanner.nextLine();
                 System.out.println("Enter your hobby");
                 String hobby = scanner.nextLine();
-                Profile newProfile = new Profile(userName, age, gender, nationality, job, hobby);
-                UserInformation newUserInformation = new UserInformation(password, newProfile);
+                Profile newProfile = new Profile(userName, password, age, gender, nationality, job, hobby);
+                UserAccount newUserAccount = new UserAccount(newProfile);
                 System.out.println("Create account success");
                 System.out.println("You have to log in again");
             } else if (userChoice.equals("2")) {

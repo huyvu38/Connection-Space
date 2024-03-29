@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class UserInformation {
+public class UserAccount {
 
     private Profile userProfile;
     private ArrayList<Profile> friendList;
