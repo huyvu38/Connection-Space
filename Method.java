@@ -25,6 +25,7 @@ public class Method {
         }
         return false;
     }
+
     public boolean addFriend (ArrayList<Profile> friendList, ArrayList<Profile> blockList, String userName) {
         if (inBlockList(blockList, userName)) {
             return false; //Already block user
@@ -43,5 +44,22 @@ public class Method {
         }
         return false;
     }
-    public
+    //User have to type the exactly username
+    public boolean searchUser (ArrayList<Profile> blockList, ArrayList<Profile> allUserList, String word) {
+        int count = 0;
+        for (Profile eachProfile : allUserList) {
+            //Check all username that contain the word
+            if (eachProfile.getUserName().contains(word)) {
+                //Do not display username in block list
+                if (inBlockList(blockList, word) == false) {
+                    count = count + 1;
+                    System.out.println(count + ". " + eachProfile.getUserName());
+                }
+            }
+        }
+        if (count == 0) {
+            return false; //cannot find any user
+        }
+        return true; //Find at least one user
+    }
 }
