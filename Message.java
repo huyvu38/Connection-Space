@@ -7,4 +7,13 @@
  * @version 28 March 2024
  */
 public class Message {
+    private String userNameSender;
+    private String userNameReceiver;
+    private String content;
+
+    public Message(String userNameSender, String userNameReceiver, String content) {
+        this.userNameSender = userNameSender;
+        this.userNameReceiver = userNameReceiver;
+        this.content = content;
+    }
 }
