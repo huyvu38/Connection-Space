@@ -10,21 +10,15 @@ import java.util.ArrayList;
  */
 public class Database {
     private String databaseOutput;
-    private ArrayList<Profile> allUserProfile;
     private ArrayList<UserInformation> allUserInformation;
-    private String allUserProfileFile;
     private String allUserInformationFile;
     public Database (String allUserInformationFile, String allUserProfileFile, String databaseOutput) {
         this.allUserInformationFile = allUserInformationFile;
-        this.allUserProfileFile = allUserProfileFile;
         this.databaseOutput = databaseOutput;
-        this.allUserProfile = new ArrayList<>();
         this.allUserInformation = new ArrayList<>();
     }
     public boolean readAllUserInformation(String allUserInformationFile) {}
-    public boolean readAllUserProfile(String allUserProfileFile) {}
     public boolean updateAllUserInformation(){}
-    public boolean updateAllUserProfile(){}
     public boolean output(String databaseOutput)
 
 
