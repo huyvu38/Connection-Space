@@ -10,25 +10,17 @@ import java.util.ArrayList;
  */
 public class UserInformation {
 
-    private String password;
     private Profile userProfile;
     private ArrayList<Profile> friendList;
     private ArrayList<Profile> blockList;
 
-    public UserInformation(String password, Profile userProfile) {
-        this.password = password;
+    public UserInformation(Profile userProfile) {
         this.userProfile = userProfile;
         this.friendList = new ArrayList<>();
         this.blockList = new ArrayList<>();
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
     public Profile getUserProfile() {
         return userProfile;
     }

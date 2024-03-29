@@ -9,6 +9,8 @@
 public interface ProfileInterface {
     String getUserName();
     void setUserName(String userName);
+    String getPassword();
+    void setPassword(String password);
     int getAge();
     void setAge(int age);
     String getGender();
