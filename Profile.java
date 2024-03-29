@@ -69,4 +69,7 @@ public class Profile {
     public void setHobby(String hobby) {
         this.hobby = hobby;
     }
+    /*
+    public String toString
+     */
 }

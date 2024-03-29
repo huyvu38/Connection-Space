@@ -25,4 +25,23 @@ public class Method {
         }
         return false;
     }
+    public boolean addFriend (ArrayList<Profile> friendList, ArrayList<Profile> blockList, String userName) {
+        if (inBlockList(blockList, userName)) {
+            return false; //Already block user
+        }
+        if (isFriend(friendList, userName)) {
+            return false; // already in the list
+        }
+        return true;
+    }
+    public boolean removeFriend (ArrayList<Profile> friendList, ArrayList<Profile> blockList, String userName) {
+        if (inBlockList(blockList, userName)) {
+            return false;
+        }
+        if (isFriend(friendList, userName)) {
+            return true; //That userName in the list so can remove friend
+        }
+        return false;
+    }
+    public
 }

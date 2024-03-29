@@ -13,14 +13,14 @@ public class UserInformation extends Profile {
     private String password;
     private ArrayList<Profile> friendList;
     private ArrayList<Profile> blockList;
-    private ArrayList<Profile> displayAllUserList;
+    private ArrayList<Profile> allOtherUserList;
 
 
-    public UserInformation(String password, String userName, int age, String gender, String nationality, String job, String hobby) {
+    public UserInformation(String password, String userName, int age, String gender, String nationality, String job, String hobby, ArrayList<Profile> allOtherUserList) {
         super(userName, age, gender, nationality, job, hobby);
         this.friendList = new ArrayList<>();
         this.blockList = new ArrayList<>();
-        //this.displayAllUserList
+        this.allOtherUserList = allOtherUserList;
     }
 
     public String getPassword() {
