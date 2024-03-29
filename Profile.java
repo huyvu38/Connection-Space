@@ -6,7 +6,7 @@
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Profile {
+public class Profile implements ProfileInterface{
     private String userName;
     private int age;
     private String gender;
