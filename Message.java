@@ -7,12 +7,12 @@
  * @version 28 March 2024
  */
 public class Message {
-    private UserInformation sender;
-    private UserInformation receiver;
+    private String userNameSender;
+    private String userNamerRceiver;
     private String content;
-    public Message (UserInformation sender, UserInformation receiver, String content) {
-        this.sender = sender;
-        this.receiver = receiver;
+    public Message (String userNameSender, String userNamerRceiver, String content) {
+        this.userNameSender = userNameSender;
+        this.userNamerRceiver = userNamerRceiver;
         this.content = content;
     }
 }
