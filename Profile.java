@@ -7,17 +7,27 @@
  * @version 28 March 2024
  */
 public class Profile {
+    private String userName;
     private int age;
     private String gender;
     private String nationality;
     private String job;
     private String hobby;
-    public Profile (int age, String gender, String nationality, String job, String hobby) {
+    public Profile (String userName, int age, String gender, String nationality, String job, String hobby) {
+        this.userName = userName;
         this.age = age;
         this.gender = gender;
         this.nationality = nationality;
         this.job = job;
         this.hobby = hobby;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getAge() {
