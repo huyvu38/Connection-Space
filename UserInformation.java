@@ -8,18 +8,21 @@ import java.util.ArrayList;
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class UserInformation extends Profile {
+public class UserInformation {
 
     private String password;
+    private Profile userProfile;
     private ArrayList<Profile> friendList;
     private ArrayList<Profile> blockList;
     private ArrayList<Profile> allUserList;
 
 
-    public UserInformation(String password, String userName, int age, String gender, String nationality, String job, String hobby, ArrayList<Profile> allUserList) {
-        super(userName, age, gender, nationality, job, hobby);
+    public UserInformation(String password, Profile userProfile, ArrayList<Profile> allUserList) {
+        this.password = password;
+        this.userProfile = userProfile;
         this.friendList = new ArrayList<>();
         this.blockList = new ArrayList<>();
+        this.allUserList = allUserList;
     }
 
     public String getPassword() {
@@ -28,6 +31,12 @@ public class UserInformation extends Profile {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public Profile getUserProfile() {
+        return userProfile;
+    }
+    public void setUserProfile(Profile userProfile) {
+        this.userProfile = userProfile;
     }
 
     public ArrayList<Profile> getFriendList() {
@@ -45,13 +54,12 @@ public class UserInformation extends Profile {
     public void setBlockList(ArrayList<Profile> blockList) {
         this.blockList = blockList;
     }
-    /*
-    public ArrayList<Profile> getDisplayAllUserList() {
-        return displayAllUserList;
+    public ArrayList<Profile> getAllUserList() {
+        return allUserList;
     }
 
-    public void setDisplayAllUserList(ArrayList<Profile> displayAllUserList) {
-        this.displayAllUserList = displayAllUserList;
+    public void setAllUserList(ArrayList<Profile> allUserList) {
+        this.allUserList = allUserList;
     }
-     */
+
 }
