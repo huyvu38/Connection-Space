@@ -43,6 +43,22 @@ public class UserAccount {
     public void setBlockList(ArrayList<String> blockList) {
         this.blockList = blockList;
     }
+    public void updateFriendUserName (String oldUserName, String newUserName) {
+        for (String eachUserName : this.friendList) {
+            if (oldUserName.equals(eachUserName)) {
+                this.friendList.remove(oldUserName);
+                this.friendList.add(newUserName);
+            }
+        }
+    }
+    public void updateBlockUserName (String oldUserName, String newUserName) {
+        for (String eachUserName : this.blockList) {
+            if (oldUserName.equals(eachUserName)) {
+                this.blockList.remove(oldUserName);
+                this.blockList.add(newUserName);
+            }
+        }
+    }
     public String toString() {
         String friend = "";
         for (String eachFriendUserName : this.friendList) {
