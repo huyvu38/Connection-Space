@@ -14,15 +14,12 @@ public class UserInformation {
     private Profile userProfile;
     private ArrayList<Profile> friendList;
     private ArrayList<Profile> blockList;
-    private ArrayList<Profile> allUserList;
 
-
-    public UserInformation(String password, Profile userProfile, ArrayList<Profile> allUserList) {
+    public UserInformation(String password, Profile userProfile) {
         this.password = password;
         this.userProfile = userProfile;
         this.friendList = new ArrayList<>();
         this.blockList = new ArrayList<>();
-        this.allUserList = allUserList;
     }
 
     public String getPassword() {
@@ -54,12 +51,4 @@ public class UserInformation {
     public void setBlockList(ArrayList<Profile> blockList) {
         this.blockList = blockList;
     }
-    public ArrayList<Profile> getAllUserList() {
-        return allUserList;
-    }
-
-    public void setAllUserList(ArrayList<Profile> allUserList) {
-        this.allUserList = allUserList;
-    }
-
 }
