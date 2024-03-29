@@ -9,7 +9,18 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public class Method {
-    public boolean isFriend (ArrayList<Profile> friendList, String userName) {
+    public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
+        for (Profile eachProfile : allUserList) {
+            if (eachProfile.getUserName().equals(userName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean createAccount (String userName, String password) {}
+
+    public boolean deleteAccount (String userName, String password) {}
+    public boolean inFriendList (ArrayList<Profile> friendList, String userName) {
         for (Profile eachProfile : friendList) {
             if (eachProfile.getUserName().equals(userName)) {
                 return true;
@@ -25,20 +36,12 @@ public class Method {
         }
         return false;
     }
-    public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
-        for (Profile eachProfile : allUserList) {
-            if (eachProfile.getUserName().equals(userName)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public boolean addFriend (ArrayList<Profile> friendList, ArrayList<Profile> blockList, String userName) {
         if (inBlockList(blockList, userName)) {
             return false; //Already block user
         }
-        if (isFriend(friendList, userName)) {
+        if (inFriendList(friendList, userName)) {
             return false; // already in the list
         }
         return true;
@@ -47,7 +50,7 @@ public class Method {
         if (inBlockList(blockList, userName)) {
             return false;
         }
-        if (isFriend(friendList, userName)) {
+        if (inFriendList(friendList, userName)) {
             return true; //That userName in the list so can remove friend
         }
         return false;
@@ -61,7 +64,6 @@ public class Method {
         }
         return false;
     }
-    //User have to type the exactly username
     public boolean searchUser (ArrayList<Profile> blockList, ArrayList<Profile> allUserList, String word) {
         int count = 0;
         for (Profile eachProfile : allUserList) {
@@ -79,7 +81,7 @@ public class Method {
         }
         return true; //Find at least one user
     }
-    //Method for create account
-    //Method for log in
-    //public
+    public boolean viewUser (ArrayList<Profile> allUserList, ArrayList<Profile> blockList, String otherUserName) {
+
+    }
 }

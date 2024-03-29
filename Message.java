@@ -7,13 +7,18 @@
  * @version 28 March 2024
  */
 public class Message {
-    private String userNameSender;
-    private String userNameReceiver;
-    private String content;
+    public boolean sendMessage (String senderUserName, String receiverUserName, String content) {
 
-    public Message(String userNameSender, String userNameReceiver, String content) {
-        this.userNameSender = userNameSender;
-        this.userNameReceiver = userNameReceiver;
-        this.content = content;
     }
+    public boolean deleteMessage (String senderUserName, String receiverUserName, String content) {
+
+    }
+    public boolean blockMessage (String userName, String otherUserName) {
+
+    }
+    //Only send message to friends
+    public boolean restrictMessage (String userName, String otherUserName) {
+
+    }
+
 }
