@@ -25,6 +25,14 @@ public class Method {
         }
         return false;
     }
+    public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
+        for (Profile eachProfile : allUserList) {
+            if (eachProfile.getUserName().equals(userName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public boolean addFriend (ArrayList<Profile> friendList, ArrayList<Profile> blockList, String userName) {
         if (inBlockList(blockList, userName)) {
@@ -41,6 +49,15 @@ public class Method {
         }
         if (isFriend(friendList, userName)) {
             return true; //That userName in the list so can remove friend
+        }
+        return false;
+    }
+    public boolean blockUser (ArrayList<Profile> blockList, ArrayList<Profile> allUserList, String userName) {
+        if (inBlockList(blockList, userName)) {
+            return false; //Already block
+        }
+        if (isValidUserName(allUserList, userName)) {
+            return true; //Can block that user
         }
         return false;
     }
@@ -62,4 +79,7 @@ public class Method {
         }
         return true; //Find at least one user
     }
+    //Method for create account
+    //Method for log in
+    //public
 }
