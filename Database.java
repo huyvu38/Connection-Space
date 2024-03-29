@@ -9,16 +9,16 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public class Database {
+    private String allUserAccountFile;
+    private ArrayList<UserAccount> allUserAccount;
     private String databaseOutput;
-    private ArrayList<UserInformation> allUserInformation;
-    private String allUserInformationFile;
-    public Database (String allUserInformationFile, String allUserProfileFile, String databaseOutput) {
-        this.allUserInformationFile = allUserInformationFile;
+    public Database (String allUserAccountFile, String allUserAccount, String databaseOutput) {
+        this.allUserAccountFile = allUserAccountFile;
+        this.allUserAccount = new ArrayList<>();
         this.databaseOutput = databaseOutput;
-        this.allUserInformation = new ArrayList<>();
     }
-    public boolean readAllUserInformation(String allUserInformationFile) {}
-    public boolean updateAllUserInformation(){}
+    public boolean readAllUserAccount(String allUserAccountFile) {}
+    public boolean updateAllUserAccount(){}
     public boolean output(String databaseOutput)
 
 

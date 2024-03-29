@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Team Project
  *
@@ -13,11 +15,11 @@ public class Message {
     public boolean deleteMessage (String senderUserName, String receiverUserName, String content) {
 
     }
-    public boolean blockMessage (String userName, String otherUserName) {
+    public boolean blockMessage (String userName, String otherUserName, ArrayList<Profile> blockList) {
 
     }
     //Only send message to friends
-    public boolean restrictMessage (String userName, String otherUserName) {
+    public boolean restrictMessage (String userName, String otherUserName, ArrayList<Profile> friendList) {
 
     }
 
