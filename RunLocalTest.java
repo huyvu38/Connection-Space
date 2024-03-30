@@ -35,15 +35,14 @@ public class RunLocalTest {
         // Set profile for each test with @Before to run before each test
         @Before
         public void setProfile() {
-            profile = new Profile("abaldocc", "whatsup", 20, "Male", "Salvadorian", "Building Manager", "Soccer");
+            profile = new Profile("abaldocc", "whatsup", 20, "Male",
+                    "Salvadorian", "Building Manager", "Soccer");
         } // end of setProfile
 
         /*Testing of constructors and getters*/
         @Test
         public void profileTestGettersAndConstructor() {
-            assertEquals("Username should be abaldocc", "abaldocc", profile.getUserName()); // is username requiered
-            // firt
-            // letter capital? Is it case sensitive?
+            assertEquals("Username should be abaldocc", "abaldocc", profile.getUserName());
             assertEquals("Password should be whatsup", "whatsup", profile.getPassword());
             assertEquals("Age should be 20", 20, profile.getAge());
             assertEquals("Gender should be Male", "Male", profile.getGender());
