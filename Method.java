@@ -12,10 +12,10 @@ public class Method implements MethodInterface{
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
-                return false;
+                return false; //User exist in the database
             }
         }
-        return true;
+        return true; // User doesn't exist in the database
     }
     public boolean inFriendList (ArrayList<Profile> allUserList, ArrayList<String> friendList, String userName) {
         if (isValidUserName(allUserList, userName)) {
@@ -101,4 +101,33 @@ public class Method implements MethodInterface{
         }
         return true; //Find at least one user
     }
+
+    public boolean checkIfPasswordCorrect (Profile profile, String password) {
+        if (profile.getPassword().equals(password)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean deleteAccount (Database database, Profile profile, String enteredPassword) {
+        // parameter String enteredPassword:
+        // is for making sure if is the user itself to request deleting the account
+        if ((!isValidUserName(database.getAllUserProfile(),profile.getUserName()))
+                && (checkIfPasswordCorrect(profile,enteredPassword))) {
+
+            ArrayList<Profile> userList = database.getAllUserProfile();
+            ArrayList<UserAccount> userAccList = database.getAllUserAccount();
+
+            userList.remove(profile);
+            userAccList.remove(new UserAccount(profile));
+
+            database.setAllUserProfile(userList);
+            database.setAllUserAccount(userAccList);
+            return true;
+
+        }
+        return false;
+
+    }
+
+
 }
