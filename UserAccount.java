@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class UserAccount {
+public class UserAccount implements UserAccountInterface {
 
     private Profile userProfile;
     private ArrayList<String> friendList;
@@ -68,6 +68,6 @@ public class UserAccount {
         for (String eachBlockUserName : this.blockList) {
             blockUser = blockUser + eachBlockUserName + ",";
         }
-        return this.userProfile + ";" + "FriendList: ["  + friend + "];BlockList: [" + blockUser + "]";
+        return this.userProfile.toString() + ";" + "FriendList: ["  + friend + "];BlockList: [" + blockUser + "]";
     }
 }

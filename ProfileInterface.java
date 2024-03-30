@@ -21,4 +21,5 @@ public interface ProfileInterface {
     void setJob(String job);
     String getHobby();
     void setHobby(String hobby);
+    String toString();
 }
