@@ -9,6 +9,7 @@ public class LogIn {
 
 
     }
+
     //Check if user name is already exist first
     //Check password is over than 6 character
 
