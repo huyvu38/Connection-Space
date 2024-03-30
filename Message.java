@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 
-/*
 public class Message {
     public boolean sendMessage (String senderUserName, String receiverUserName, String content) {
 
@@ -26,5 +25,3 @@ public class Message {
     }
 
 }
-
- */
