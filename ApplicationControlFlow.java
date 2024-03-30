@@ -62,7 +62,6 @@ public class ApplicationControlFlow {
                 UserAccount newUserAccount = new UserAccount(newProfile);
                 System.out.println("Create account success");
                 System.out.println("You have to log in again");
-                input = true;
             } else if (userInput.equals("2")) {
                 // Assuming Database class is defined
                 Database database = new Database("allUserAccount.txt", "allUserProfile.txt");
@@ -247,7 +246,7 @@ public class ApplicationControlFlow {
                 }
             } else if (userInput.equals("3")) {
                 System.out.println("Exiting the app");
-                input = false;
+                break;
             } else {
                 System.out.println("Please enter the right command");
             }
