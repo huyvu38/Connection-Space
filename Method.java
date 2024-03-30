@@ -17,9 +17,6 @@ public class Method {
         }
         return false;
     }
-    public boolean createAccount (String userName, String password) {}
-
-    public boolean deleteAccount (String userName, String password) {}
     public boolean inFriendList (ArrayList<Profile> friendList, String userName) {
         for (Profile eachProfile : friendList) {
             if (eachProfile.getUserName().equals(userName)) {
