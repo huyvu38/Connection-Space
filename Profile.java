@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Team Project
  *
@@ -14,6 +16,9 @@ public class Profile implements ProfileInterface{
     private String nationality;
     private String job;
     private String hobby;
+    private ArrayList<Profile> friends;
+    private ArrayList<Profile> blockedFriends;
+
     public Profile (String userName, String password, int age, String gender, String nationality, String job, String hobby) {
         this.userName = userName;
         this.password = password;
