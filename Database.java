@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Database {
+public class Database implements DatabaseInterface{
     private String allUserAccountFile;
     private String allUserProfileFile;
     private ArrayList<UserAccount> allUserAccount;

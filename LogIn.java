@@ -3,7 +3,7 @@ public class LogIn {
 
 
     public boolean createAccount (String name, String password) {
-        if (!isValidUserName(.getAllUserAccount(), name)) {
+        if (!isValidUserName(getAllUserAccount(), name)) {
 
         }
 
