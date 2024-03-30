@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -6,9 +5,6 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
-
-import java.lang.reflect.Modifier;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -37,12 +33,6 @@ public class RunLocalTest {
     @RunWith(Enclosed.class)
     public static class TestCase {
         private Profile profile;
-        @Test
-        public void testNull() {
-            // check to see if profile is null
-            assertNull(profile);
-        }
-
         // Set profile for each test with @Before to run before each test
         @Before
         public void setProfile() {
@@ -63,6 +53,7 @@ public class RunLocalTest {
             assertEquals("Hobby should be Soccer", "Soccer", profile.getHobby());
         }
 
+        // testing setters
         @Test
         public void profileSetterTest() {
             profile.setUserName("alexia");
@@ -79,6 +70,13 @@ public class RunLocalTest {
             assertEquals("Job should now be Student", "Student", profile.getJob());
             profile.setHobby("Poker");
             assertEquals("Hobby should now be Poker", "Poker", profile.getHobby());
+        }
+        // testing toString
+        @Test
+        public void toStringTest() {
+            String input = "abaldocc,whatsup,20,Male,Salvadorian,Building Manager,Soccer";
+            assertEquals("toString method should name,password,age,gender,nationality,job,hobby" +
+                            " with a comma and no space after the comma.", input, profile.toString());
         }
     } // end of test case
 } // end of class
