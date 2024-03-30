@@ -23,10 +23,10 @@ public class LogIn {
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     //Check if user name is already exist first
