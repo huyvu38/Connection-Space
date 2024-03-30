@@ -11,11 +11,9 @@ import java.util.ArrayList;
 public class Database {
     private String allUserAccountFile;
     private ArrayList<UserAccount> allUserAccount;
-    private String databaseOutput;
     public Database (String allUserAccountFile, String databaseOutput) {
         this.allUserAccountFile = allUserAccountFile;
         this.allUserAccount = new ArrayList<UserAccount>();
-        this.databaseOutput = databaseOutput;
     }
     public boolean readAllUserAccount(String allUserAccountFile) {}
     public boolean readAllUserProfile(String allUserAccountFile) {}
