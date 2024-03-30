@@ -8,15 +8,15 @@ public class UserInformation {
     private ArrayList<User> blockList;
     private ArrayList<User> allUserInSocialMedia;
 
-    public UserInformation(String username, String password, int age, String gender, String nationality, String job, String hobby, String bio, ArrayList<User> allUserInSocialMedia) {
+    public UserInformation(String username, String password, int age, String nationality, String job, String hobby, String bio, ArrayList<User> allUserInSocialMedia) {
         this.username = username;
         this.password = password;
-        this.profile = new User(age, gender, nationality, job, hobby, username);
+        this.profile = new User(age, bio, nationality, job, hobby, username);
         this.friendList = new ArrayList<>();
         this.blockList = new ArrayList<>();
         this.allUserInSocialMedia = new ArrayList<>(allUserInSocialMedia);
 
     }
 
-    //add  get/set methodss
+    //add  get/set methods
 }

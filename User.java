@@ -1,12 +1,12 @@
 public class User {
     private int age;
-    private String gender;
+    private String bio;
     private String nationality;
     private String job;
     private String hobby;
     private String username;
 
-    public User(int age, String gender, String nationality, String job, String hobby, String username) {
+    public User(int age, String bio, String nationality, String job, String hobby, String username) {
         if(age <= 0) {
             throw new IllegalArgumentException("Age must be a positive number.");
         }
@@ -15,7 +15,7 @@ public class User {
         }
 
         this.age = age;
-        this.gender = gender;
+        this.bio = bio;
         this.nationality = nationality;
         this.job = job;
         this.hobby = hobby;
@@ -25,7 +25,7 @@ public class User {
 
     @Override
     public String toString() {
-        return age + "," + gender + "," + nationality + "," + job + "," + hobby;
+        return age + "," + bio + "," + nationality + "," + job + "," + hobby;
     }
 
 }

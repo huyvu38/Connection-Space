@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public interface UserProfileInterface {
-    void createOrUpdateProfile(int age, String gender, String nationality, String job, String hobby);
+    void createOrUpdateProfile(int age, String bio, String nationality, String job, String hobby);
 
     void addFriend(User friend);
 
