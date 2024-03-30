@@ -16,11 +16,11 @@ public class Message {
     public boolean deleteMessage (String senderUserName, String receiverUserName, String content) {
 
     }
-    public boolean blockMessage (String userName, String otherUserName, ArrayList<Profile> blockList) {
+    public boolean blockMessage (String userName, String otherUserName, ArrayList<String> blockList) {
 
     }
     //Only send message to friends
-    public boolean restrictMessage (String userName, String otherUserName, ArrayList<Profile> friendList) {
+    public boolean restrictMessage (String userName, String otherUserName, ArrayList<String> friendList) {
 
     }
 

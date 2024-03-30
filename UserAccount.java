@@ -16,7 +16,7 @@ public class UserAccount implements UserAccountInterface {
 
     public UserAccount(Profile userProfile) {
         this.userProfile = userProfile;
-        this.friendList = new ArrayList<>();
+        this.friendList = new ArrayList<>(); //where do we fill this
         this.blockList = new ArrayList<>();
     }
 
@@ -43,7 +43,7 @@ public class UserAccount implements UserAccountInterface {
     public void setBlockList(ArrayList<String> blockList) {
         this.blockList = blockList;
     }
-    public void updateFriendUserName (String oldUserName, String newUserName) {
+    public void updateFriendUserName (String oldUserName, String newUserName) { //do we really need this?
         for (String eachUserName : this.friendList) {
             if (oldUserName.equals(eachUserName)) {
                 this.friendList.remove(oldUserName);
@@ -61,13 +61,17 @@ public class UserAccount implements UserAccountInterface {
     }
     public String toString() {
         String friend = "";
-        for (String eachFriendUserName : this.friendList) {
-            friend = friend + eachFriendUserName + ",";
-        }
         String blockUser = "";
-        for (String eachBlockUserName : this.blockList) {
-            blockUser = blockUser + eachBlockUserName + ",";
+        if (this.friendList != null) {
+            for (String eachFriendUserName : this.friendList) {
+                friend = friend + eachFriendUserName + ",";
+            }
         }
-        return this.userProfile.toString() + ";" + "FriendList: ["  + friend + "];BlockList: [" + blockUser + "]";
+        if (this.blockList != null) {
+            for (String eachBlockUserName : this.blockList) {
+                blockUser = blockUser + eachBlockUserName + ",";
+            }
+        }
+        return this.userProfile.toString() + ";FriendList: [" + friend + "];BlockList: [" + blockUser + "]";
     }
 }
