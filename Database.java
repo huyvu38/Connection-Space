@@ -10,21 +10,32 @@ import java.util.ArrayList;
  */
 public class Database {
     private String allUserAccountFile;
+    private String allUserProfileFile;
     private ArrayList<UserAccount> allUserAccount;
-    public Database (String allUserAccountFile, String databaseOutput) {
+    private ArrayList<Profile> allUserProfile;
+    public Database (String allUserAccountFile, String allUserProfileFile) {
         this.allUserAccountFile = allUserAccountFile;
-        this.allUserAccount = new ArrayList<UserAccount>();
+        this.allUserAccount = new ArrayList<>();
+        this.allUserProfileFile = allUserProfileFile;
+        this.allUserProfile = new ArrayList<>();
     }
     public boolean readAllUserAccount(String allUserAccountFile) {}
-    public boolean readAllUserProfile(String allUserAccountFile) {}
-    public boolean userCreateAccount(UserAccount newUserAccount) {}
-    public boolean userDeleteAccount(UserAccount deleteUserAccount) {}
-    //If user edit username ->
-    //(need to use updateFriendUserName & updateBlockUserName) cuz that user may be in another friendlist or blocklist
+    public boolean readAllUserProfile(String allUserProfileFile)
 
+
+    //Update both this.allUserProfile & this.allUserAccount
+    public boolean userCreateAccount(UserAccount newUserAccount) {}
+
+    //Update both this.allUserProfile & this.allUserAccount
+    public boolean userDeleteAccount(UserAccount deleteUserAccount) {}
+
+    //If user edit username -> this.allUserProfile & this.allUserAccount
+    //(need to use updateFriendUserName & updateBlockUserName) cuz that user may be in another friendlist or blocklist
+    public boolean userEditUserName(UserAccount user)
 
     //If the user edit any thing in the profile outside username
-    public boolean userEditInformation(UserAccount userEditAccount)
+    //Update both this.allUserProfile & this.allUserAccount
+    public boolean userEditInformation(UserAccount user)
 
     //Store back to the allUserAccount.txt
     public boolean output(String databaseOutput) {}
