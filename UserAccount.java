@@ -61,13 +61,17 @@ public class UserAccount implements UserAccountInterface {
     }
     public String toString() {
         String friend = "";
-        for (String eachFriendUserName : this.friendList) {
-            friend = friend + eachFriendUserName + ",";
-        }
         String blockUser = "";
-        for (String eachBlockUserName : this.blockList) {
-            blockUser = blockUser + eachBlockUserName + ",";
+        if (this.friendList != null) {
+            for (String eachFriendUserName : this.friendList) {
+                friend = friend + eachFriendUserName + ",";
+            }
         }
-        return this.userProfile.toString() + ";" + "FriendList: ["  + friend + "];BlockList: [" + blockUser + "]";
+        if (this.blockList != null) {
+            for (String eachBlockUserName : this.blockList) {
+                blockUser = blockUser + eachBlockUserName + ",";
+            }
+        }
+        return this.userProfile.toString() + ";FriendList: [" + friend + "];BlockList: [" + blockUser + "]";
     }
 }
