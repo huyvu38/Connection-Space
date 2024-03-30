@@ -22,7 +22,7 @@ public class LogIn {
 
 
     public boolean checkPasswordLength (String password) {
-        if (password.length() == 6) {
+        if (password.length() >= 6) {
             return true;
         }
 
