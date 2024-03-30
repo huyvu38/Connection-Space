@@ -14,8 +14,8 @@ public class ApplicationControlFlow {
         boolean choice = true;
         while (choice) {
             System.out.println("What would you like to do?");
-            System.out.println("1. Log in");
-            System.out.println("2. Create account");
+            System.out.println("1. Create account");
+            System.out.println("2. Log In");
             System.out.println("3. Exit the app");
             String userChoice = scanner.nextLine();
             if (userChoice.equals("1")) {
@@ -23,9 +23,21 @@ public class ApplicationControlFlow {
                 String userName = scanner.nextLine();
                 System.out.println("Enter your password");
                 String password = scanner.nextLine();
-                System.out.println("Enter your age");
-                int age = scanner.nextInt();
-                scanner.nextLine();
+                int newAge = 0;
+                while (choice) {
+                    System.out.println("Enter your age");
+                    String age = scanner.nextLine();
+                    try {
+                        newAge = Integer.parseInt(age);
+                        if (newAge <= 0) {
+                            System.out.println("Please enter a valid number");
+                        } else {
+                            choice = false;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Please enter a valid number");
+                    }
+                }
                 System.out.println("Enter your gender");
                 String gender = scanner.nextLine();
                 System.out.println("Enter your nationality");
@@ -34,31 +46,38 @@ public class ApplicationControlFlow {
                 String job = scanner.nextLine();
                 System.out.println("Enter your hobby");
                 String hobby = scanner.nextLine();
-                Profile newProfile = new Profile(userName, password, age, gender, nationality, job, hobby);
+                Profile newProfile = new Profile(userName, password, newAge, gender, nationality, job, hobby);
                 UserAccount newUserAccount = new UserAccount(newProfile);
                 System.out.println("Create account success");
                 System.out.println("You have to log in again");
+                choice = true;
             } else if (userChoice.equals("2")) {
+                Database database = new Database("allUserAccount.txt", "allUserProfile.txt");
                 System.out.println("Enter your username");
                 String userName = scanner.nextLine();
                 System.out.println("Enter your password");
                 String password = scanner.nextLine();
                 System.out.println("Log in success");
                 System.out.println("What would you like to do?");
-                System.out.println("1. View your own profile");
-                System.out.println("2. Delete account");
-                System.out.println("3. Edit account");
-                System.out.println("4. Search other user");
-                System.out.println("5. Add friend");
-                System.out.println("6. Delete friend");
-                System.out.println("7. Block friend");
-                System.out.println("8. Unblock friend");
-                System.out.println("9. Send message");
-                System.out.println("10. Log out");
+                System.out.println("1. View your profile");
+                System.out.println("2. Edit your profile");
+                System.out.println("3. Delete account");
+                System.out.println("4. Add friend");
+                System.out.println("5. Delete friend");
+                System.out.println("6. Block friend");
+                System.out.println("7. Unblock friend");
+                System.out.println("8. Send message");
+                System.out.println("9. Log out");
                 userChoice = scanner.nextLine();
                 if (userChoice.equals("1")) {
-                    System.out.println(userName);
+                    for (Profile userProfile : database.getAllUserProfile()) {
+                        if (userProfile.getUserName().equals(userChoice)) {
+                            System.out.println(userProfile);
+                        }
+                    }
                 } else if (userChoice.equals("2")) {
+                    System.out.println("Which information do you want to edit");
+                    System.out.println();
 
                 } else if (userChoice.equals("3")) {
                     System.out.println("What information do you want to edit");
@@ -87,7 +106,7 @@ public class ApplicationControlFlow {
                     System.out.println("Invalid input");
                 }
             } else if (userChoice.equals("3")) {
-                System.out.println("You are exit");
+                System.out.println("Exit successfully");
                 choice = false;
             } else {
                 System.out.println("Invalid choice");

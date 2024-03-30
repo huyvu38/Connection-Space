@@ -8,6 +8,8 @@ import java.util.ArrayList;
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
+
+/*
 public class Message {
     public boolean sendMessage (String senderUserName, String receiverUserName, String content) {
 
@@ -24,3 +26,5 @@ public class Message {
     }
 
 }
+
+ */

@@ -78,7 +78,4 @@ public class Method {
         }
         return true; //Find at least one user
     }
-    public boolean viewUser (ArrayList<Profile> allUserList, ArrayList<Profile> blockList, String otherUserName) {
-
-    }
 }
