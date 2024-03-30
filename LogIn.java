@@ -41,13 +41,13 @@ public class LogIn {
         if (isValidUserName(database.getAllUserProfile(),newProfile.getUserName())
                 && (checkPasswordLength(newProfile.getPassword()))) {
             ArrayList<Profile> userList = database.getAllUserProfile();
-            ArrayList<UserAccount> userAccList = database.getAllUserAccount();
+            //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
 
             userList.add(newProfile);
-            userAccList.add(new UserAccount(newProfile));
+            //userAccList.add(new UserAccount(newProfile));
 
             database.setAllUserProfile(userList);
-            database.setAllUserAccount(userAccList);
+            //database.setAllUserAccount(userAccList);
             return true;
 
         }
@@ -60,13 +60,13 @@ public class LogIn {
                 && (checkIfPasswordCorrect(profile,enteredPassword))) {
 
             ArrayList<Profile> userList = database.getAllUserProfile();
-            ArrayList<UserAccount> userAccList = database.getAllUserAccount();
+            //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
 
             userList.remove(profile);
-            userAccList.remove(new UserAccount(profile));
+            //userAccList.remove(new UserAccount(profile));
 
             database.setAllUserProfile(userList);
-            database.setAllUserAccount(userAccList);
+            //database.setAllUserAccount(userAccList);
             return true;
 
         }

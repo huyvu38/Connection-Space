@@ -115,13 +115,13 @@ public class Method implements MethodInterface{
                 && (checkIfPasswordCorrect(profile,enteredPassword))) {
 
             ArrayList<Profile> userList = database.getAllUserProfile();
-            ArrayList<UserAccount> userAccList = database.getAllUserAccount();
+            //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
 
             userList.remove(profile);
-            userAccList.remove(new UserAccount(profile));
+            //userAccList.remove(new UserAccount(profile));
 
             database.setAllUserProfile(userList);
-            database.setAllUserAccount(userAccList);
+            //database.setAllUserAccount(userAccList);
             return true;
 
         }

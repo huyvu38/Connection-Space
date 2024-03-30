@@ -11,16 +11,25 @@ import java.util.ArrayList;
 
 public class Message {
     public boolean sendMessage (String senderUserName, String receiverUserName, String content) {
+        // TODO
+        return false;
 
     }
     public boolean deleteMessage (String senderUserName, String receiverUserName, String content) {
+        //TODO
+        return false;
 
     }
     public boolean blockMessage (String userName, String otherUserName, ArrayList<String> blockList) {
+        //TODO
+        return false;
+
 
     }
     //Only send message to friends
     public boolean restrictMessage (String userName, String otherUserName, ArrayList<String> friendList) {
+        return false;
+        
 
     }
 
