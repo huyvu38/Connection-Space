@@ -51,6 +51,17 @@ public class UserAccount implements UserAccountInterface {
             }
         }
     }
+    //Before
+    //vu28,12345678,18,Male,VietNam,student,football;FriendList: [george23,alvin23,jay89];BlockList: [george333]
+    //george23,123456,20,Female,Brazil,doctor,sing;FriendList: [vu28];BlockList: [jay89]
+
+    //If vu28 change to vu28123
+    //vu28123,12345678,18,Male,VietNam,student,football;FriendList: [george23,alvin23,jay89];BlockList: [george333]
+    //george23,123456,20,Female,Brazil,doctor,sing;FriendList: [vu28];BlockList: [jay89]
+
+    //Expected output
+    //vu28123,12345678,18,Male,VietNam,student,football;FriendList: [george23,alvin23,jay89];BlockList: [george333]
+    //george23,123456,20,Female,Brazil,doctor,sing;FriendList: [vu28123];BlockList: [jay89]
     public void updateBlockUserName (String oldUserName, String newUserName) {
         for (String eachUserName : this.blockList) {
             if (oldUserName.equals(eachUserName)) {
@@ -62,16 +73,25 @@ public class UserAccount implements UserAccountInterface {
     public String toString() {
         String friend = "";
         String blockUser = "";
-        if (this.friendList != null) {
-            for (String eachFriendUserName : this.friendList) {
-                friend = friend + eachFriendUserName + ",";
+        if (this.friendList.size() != 0) {
+            for (int i = 0; i < this.friendList.size(); i++) {
+                if (i < (this.friendList.size() - 1)) {
+                    friend = friend + this.friendList.get(i) + ",";
+                } else {
+                    friend = friend + this.friendList.get(i);
+                }
             }
         }
-        if (this.blockList != null) {
-            for (String eachBlockUserName : this.blockList) {
-                blockUser = blockUser + eachBlockUserName + ",";
+        if (this.friendList.size() != 0) {
+            for (int i = 0; i< this.blockList.size(); i++) {
+                if (i < (this.blockList.size() - 1)) {
+                    blockUser = blockUser + this.blockList.get(i) + ",";
+                } else {
+                    blockUser = blockUser + this.blockList.get(i);
+                }
             }
         }
         return this.userProfile.toString() + ";FriendList: [" + friend + "];BlockList: [" + blockUser + "]";
     }
+
 }
