@@ -74,6 +74,16 @@ public class Method {
         }
         return false;
     }
+    public boolean unblockUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName) {
+        if (isValidUserName(allUserList, userName)) {
+            if (inBlockList(allUserList, blockList, userName)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
     public boolean searchUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String word) {
         int count = 0;
         for (Profile eachProfile : allUserList) {
