@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 /**
@@ -9,6 +10,7 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public class Method {
+
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
