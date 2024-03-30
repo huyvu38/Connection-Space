@@ -1,0 +1,5 @@
+vu28,12345678,18,Male,VietNam,student,football
+george333,123456789,19,Male,China,student,food
+george23,123456,20,Female,Brazil,doctor,sing
+alvin23,123uyr,33,Female,China,teacher,sing
+jay89,abcdef32,32,Female,USA,teacher,volleyball

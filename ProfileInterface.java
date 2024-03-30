@@ -1,25 +1,19 @@
-/**
- * Team Project
- *
- * brief_description_of_the_program
- *
- * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
- * @version 28 March 2024
- */
+import java.util.ArrayList;
+
 public interface ProfileInterface {
-    String getUserName();
-    void setUserName(String userName);
-    String getPassword();
-    void setPassword(String password);
-    int getAge();
-    void setAge(int age);
-    String getGender();
-    void setGender(String gender);
-    String getNationality();
-    void setNationality(String nationality);
-    String getJob();
-    void setJob(String job);
-    String getHobby();
-    void setHobby(String hobby);
-    String toString();
+    public String getUserName();
+    public void setUserName(String userName);
+    public String getPassword();
+    public void setPassword(String password);
+    public int getAge();
+    public void setAge(int age);
+    public String getGender();
+    public void setGender(String gender);
+    public String getNationality();
+    public void setNationality(String nationality);
+    public String getJob();
+    public void setJob(String job);
+    public String getHobby();
+    public void setHobby(String hobby);
+    public String toString();
 }

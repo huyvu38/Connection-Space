@@ -19,6 +19,7 @@ public class ApplicationControlFlow {
             System.out.println("3. Exit the app");
             String userInput = scanner.nextLine();
             if (userInput.equals("1")) {
+
                 System.out.println("Enter your username");
                 String userName = scanner.nextLine();
                 System.out.println("Enter your password");
