@@ -16,7 +16,7 @@ public class UserAccount implements UserAccountInterface {
 
     public UserAccount(Profile userProfile) {
         this.userProfile = userProfile;
-        this.friendList = new ArrayList<>();
+        this.friendList = new ArrayList<>(); //where do we fill this
         this.blockList = new ArrayList<>();
     }
 
@@ -43,7 +43,7 @@ public class UserAccount implements UserAccountInterface {
     public void setBlockList(ArrayList<String> blockList) {
         this.blockList = blockList;
     }
-    public void updateFriendUserName (String oldUserName, String newUserName) {
+    public void updateFriendUserName (String oldUserName, String newUserName) { //do we really need this?
         for (String eachUserName : this.friendList) {
             if (oldUserName.equals(eachUserName)) {
                 this.friendList.remove(oldUserName);

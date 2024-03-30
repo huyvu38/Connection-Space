@@ -12,10 +12,10 @@ public class Method implements MethodInterface{
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
     public boolean inFriendList (ArrayList<Profile> allUserList, ArrayList<String> friendList, String userName) {
         if (isValidUserName(allUserList, userName)) {
