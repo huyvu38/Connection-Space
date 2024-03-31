@@ -15,7 +15,6 @@ public class Database implements DatabaseInterface {
     private ArrayList<Profile> allUserProfile;
     private ArrayList<UserAccount> allUserAccount;
 
-
     public Database (String allUserAccountFile) {
         this.allUserAccountFile = allUserAccountFile;
         this.allUserAccount = new ArrayList<>();
@@ -33,7 +32,7 @@ public class Database implements DatabaseInterface {
                 String[] userInfo = element[0].split(",");
                 Profile profile = new Profile(userInfo[0], userInfo[1], Integer.parseInt(userInfo[2]), userInfo[3], userInfo[4], userInfo[5], userInfo[6]);
                 allUserProfile.add(profile);
-                String friendList = element[1].substring(11, element[1].length() - 1);
+                String friendList = userInfo[1].substring(11, element[1].length() - 1);
                 ArrayList<String> friends = new ArrayList<>();
                 String[] eachFriend = friendList.split(" ");
                 for (String username : eachFriend) {
@@ -74,6 +73,7 @@ public class Database implements DatabaseInterface {
             pw.close();
 
         } catch (FileNotFoundException e) {
+            System.out.println("File to save to not found");
             return false;
         }
         return true;

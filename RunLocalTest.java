@@ -32,7 +32,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class RunLocalTest {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(tempRunLocalTest.TestCase.class);
+        Result result = JUnitCore.runClasses(ProfileTestCase.class);
         if (result.wasSuccessful()) {
             System.out.println("Excellent - Profile test ran successfully");
         } else {
@@ -40,7 +40,7 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result1 = JUnitCore.runClasses(tempRunLocalTest.MessageTest.class);
+        Result result1 = JUnitCore.runClasses(MessageTest.class);
         if (result1.wasSuccessful()) {
             System.out.println("Excellent - Message test ran successfully");
         } else {
@@ -48,11 +48,19 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result2 = JUnitCore.runClasses(tempRunLocalTest.LogInTest.class);
+        Result result2 = JUnitCore.runClasses(LogInTest.class);
         if (result2.wasSuccessful()) {
             System.out.println("Excellent - Log in test ran successfully");
         } else {
             for (Failure failure : result2.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+        Result result3 = JUnitCore.runClasses(UserAccountTest.class);
+        if (result3.wasSuccessful()) {
+            System.out.println("Excellent - User account test ran successfully");
+        } else {
+            for (Failure failure : result3.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
@@ -148,7 +156,7 @@ public class RunLocalTest {
         }
         @Test
         public void toStringTest() {
-            String a = String.format(";FriendList:[%s];BlockList:[%s]", userAccount.getFriendList(),
+            String a = String.format(";FriendList:%s;BlockList:%s", userAccount.getFriendList(),
                     userAccount.getBlockList());
             String formatToString = profile.toString() + a;
             assertEquals("Make sure the toString method matches correctly outputs the data.", formatToString,
