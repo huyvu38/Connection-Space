@@ -17,6 +17,8 @@ public class Profile implements ProfileInterface{
     private String job;
     private String hobby;
 
+
+
     public Profile (String userName, String password, int age, String gender, String nationality, String job, String hobby) {
         this.userName = userName;
         this.password = password;
@@ -78,6 +80,8 @@ public class Profile implements ProfileInterface{
     public void setHobby(String hobby) {
         this.hobby = hobby;
     }
+
+
     public String toString() {
         return this.userName + "," + this.password + "," + this.age + "," + this.gender
                 + "," + this.nationality + "," + this.job + "," + this.hobby;

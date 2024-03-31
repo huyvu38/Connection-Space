@@ -296,14 +296,21 @@ public class SocialMedia {
                         userInput = scanner.nextLine();
                         System.out.println("Unblock user successfully");
                     } else if (userInput.equals("8")) {
+                        //get sender name and receiver name
                         System.out.println("Who you want to send message to?");
                         String receiverName = scanner.nextLine();
                         System.out.println("what is your Username?");
                         String senderName = scanner.nextLine();
+
+                        //extract the profiles
                         Method method = new Method();
                         Profile senderProfile = method.searchProfile(senderName);
                         Profile receiverProfile = method.searchProfile(receiverName);
                         Database database = new Database("AllUserAccount.txt");
+
+                        //Check if sender is blocked by receiver
+                        boolean isInBlockList = receiverProfile.;
+
 
                         if (!method.isValidUserName(database.getAllUserProfile(), receiverName) && senderProfile != null) {
                             System.out.println("Please enter the message");
