@@ -5,14 +5,23 @@ import java.io.File;
 /**
  * Team Project
  *
- * brief_description_of_the_program
+ * Database.java
  *
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Database {
+public class Database implements DatabaseInterface {
+    //Maybe we should store every data in allUserAccount.txt
+    //jay89,abcdef32,32,Female,USA,teacher,volleyball;FriendList:[vu28 abaldocc];BlockList:[george333 george23 alvin333]
+    //Split by ;
+    //Profile is jay89,abcdef32,32,Female,USA,teacher,volleyball
+    //FriendList is FriendList:[vu28 abaldocc]
+    //BlockList is BlockList:[george333 george23 alvin333]
+    //FriendList and BlockList then split by the space between users
     private String allUserProfileFile; // file name of save file
     private ArrayList<Profile> allUserProfile;
+    private ArrayList<UserAccount> allUserAccount;
+
     private String[] userInfo = {null,null,null,null,null,null,null};
 
     public Database (String allUserProfileFile) {
@@ -52,10 +61,10 @@ public class Database {
 
         } catch (FileNotFoundException e) {
             System.out.println("allUserProfileFile not found");
-            e.printStackTrace();
+            //e.printStackTrace(); printStack will crash the program
         } catch (IOException e) {
             System.out.println("IOException");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }
@@ -102,12 +111,12 @@ public class Database {
     //public boolean readAllUserAccount(String allUserAccountFile) {}
     //public boolean readAllUserProfile(String allUserProfileFile)
 
+    //Store back to the allUserAccount.txt
+    //public boolean outputAllUserAccount() {}
 
-    //Update both this.allUserProfile & this.allUserAccount
-    //public boolean userCreateAccount(UserAccount newUserAccount) {}
+    //Store back to the allUserProfile.txt
+    //public boolean outputAllUserProfile() {}
 
-    //Update both this.allUserProfile & this.allUserAccount
-    //public boolean userDeleteAccount(UserAccount deleteUserAccount) {}
 
     //If user edit username -> this.allUserProfile & this.allUserAccount
     //(need to use updateFriendUserName & updateBlockUserName) cuz that user may be in another friendlist or blocklist
@@ -117,11 +126,6 @@ public class Database {
     //Update both this.allUserProfile & this.allUserAccount
     //public boolean userEditInformation(UserAccount user)
 
-    //Store back to the allUserAccount.txt
-    //public boolean outputAllUserAccount() {}
-
-    //Store back to the allUserProfile.txt
-    //public boolean outputAllUserProfile() {}
 
 
 }

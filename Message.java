@@ -11,11 +11,12 @@ import java.nio.file.*;
 /**
  * Team Project
  *
- * brief_description_of_the_program
+ * Message.java
  *
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
+
 
 public class Message {
     // Create a message row including timeStamp, save to Message.txt at the bottom of the file
@@ -125,6 +126,11 @@ public class Message {
         } catch (IOException e) {
             e.printStackTrace();
         }
+=======
+public class Message implements MessageInterface{
+    public boolean sendMessage (String senderUserName, String receiverUserName, String content) {
+        // TODO
+
         return false;
 
     }

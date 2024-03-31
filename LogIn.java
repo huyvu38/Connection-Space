@@ -4,13 +4,16 @@ import java.util.ArrayList;
 /**
  * Team Project
  *
- * brief_description_of_the_program
+ * LogIn.java
  *
  * @author Yanxin Yu, L22
  * @version 30 March 2024
  */
 
-public class LogIn {
+public class LogIn implements LogInInterface{
+
+    //Maybe we can check the username should be atleast 4 characters and do not contains any space
+    //Maybe use contains(" ") to check
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
