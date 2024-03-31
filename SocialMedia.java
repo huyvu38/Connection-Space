@@ -71,6 +71,8 @@ public class SocialMedia {
                     UserAccount newUserAccount = new UserAccount(newProfile);
                     LogIn newCreateAccount = new LogIn(databaseSocialMedia, newProfile, userName, password);
                     if (newCreateAccount.createAccount(databaseSocialMedia, newProfile)) {
+                        databaseSocialMedia.getAllUserAccount().add(newUserAccount);
+                        databaseSocialMedia.getAllUserProfile().add(newProfile);
                         databaseSocialMedia.saveAllUserAccount();
                         System.out.println("Create account success");
                         System.out.println("You have to log in again");
