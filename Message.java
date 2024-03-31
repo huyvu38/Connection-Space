@@ -29,7 +29,7 @@ public class Message {
     //Only send message to friends
     public boolean restrictMessage (String userName, String otherUserName, ArrayList<String> friendList) {
         return false;
-        
+
 
     }
 
