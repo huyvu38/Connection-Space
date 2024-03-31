@@ -16,17 +16,17 @@ public class LogIn implements LogInInterface {
     private String userName;
     private String password;
 
-    public LogIn(Database database, Profile logInUserProfile, String userName, String password) {
+    public LogIn(Database database, Profile loginUserProfile, String usersName, String userPassword) {
         this.database = database;
-        this.logInUserProfile = logInUserProfile;
-        this.userName = userName;
-        this.password = password;
+        this.logInUserProfile = loginUserProfile;
+        this.userName = usersName;
+        this.password = userPassword;
     }
 
-    public boolean isValidUserName(ArrayList<Profile> allUserList, String userName) {
+    public boolean isValidUserName(ArrayList<Profile> allUserList, String usersName) {
 
         for (Profile eachProfile : allUserList) {
-            if (eachProfile.getUserName().equals(userName)) {
+            if (eachProfile.getUserName().equals(usersName)) {
                 return false;
             }
         }
@@ -34,36 +34,36 @@ public class LogIn implements LogInInterface {
     }
 
 
-    public boolean checkPasswordLength(String password) {
-        if (password.length() >= 6) {
+    public boolean checkPasswordLength(String userPassword) {
+        if (userPassword.length() >= 6) {
             return true;
         }
 
         return false;
     }
 
-    public boolean checkIfPasswordCorrect(Profile profile, String password) {
-        if (profile.getPassword().equals(password)) {
+    public boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
+        if (profile.getPassword().equals(userPassword)) {
             return true;
         }
         return false;
     }
 
 
-    public boolean createAccount(Database database, Profile newProfile) {
+    public boolean createAccount(Database data, Profile newProfile) {
         boolean userNameFormateCorrect = true;
         if (newProfile.getUserName().length() < 4 || newProfile.getUserName().contains(" ")) {
             userNameFormateCorrect = false;
         }
-        if (isValidUserName(database.getAllUserProfile(), newProfile.getUserName())
+        if (isValidUserName(data.getAllUserProfile(), newProfile.getUserName())
                 && (checkPasswordLength(newProfile.getPassword())) && userNameFormateCorrect) {
-            ArrayList<Profile> userList = database.getAllUserProfile();
+            ArrayList<Profile> userList = data.getAllUserProfile();
             //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
 
             userList.add(newProfile);
             //userAccList.add(new UserAccount(newProfile));
 
-            database.setAllUserProfile(userList);
+            data.setAllUserProfile(userList);
             //database.setAllUserAccount(userAccList);
             return true;
 
@@ -72,17 +72,17 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public boolean deleteAccount(Database database, Profile profile, String enteredPassword) {
-        if ((!isValidUserName(database.getAllUserProfile(), profile.getUserName()))
+    public boolean deleteAccount(Database data, Profile profile, String enteredPassword) {
+        if ((!isValidUserName(data.getAllUserProfile(), profile.getUserName()))
                 && (checkIfPasswordCorrect(profile, enteredPassword))) {
 
-            ArrayList<Profile> userList = database.getAllUserProfile();
+            ArrayList<Profile> userList = data.getAllUserProfile();
             //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
 
             userList.remove(profile);
             //userAccList.remove(new UserAccount(profile));
 
-            database.setAllUserProfile(userList);
+            data.setAllUserProfile(userList);
             //database.setAllUserAccount(userAccList);
             return true;
 
@@ -91,11 +91,10 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public boolean loginAccount(Database database,Profile profile, String userName, String password) {
+    public boolean loginAccount(Database data, Profile profile, String userName, String userPassword) {
 
-       return (!isValidUserName(database.getAllUserProfile(), userName))
-               && checkIfPasswordCorrect(profile, password);
-
+       return (!isValidUserName(data.getAllUserProfile(), userName))
+               && checkIfPasswordCorrect(profile, userPassword);
     }
 }
 
