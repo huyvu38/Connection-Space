@@ -309,6 +309,7 @@ public class SocialMedia {
                         do {
                             System.out.println("1. Send Group Message");
                             System.out.println("2. Send message to specific friend");
+                            System.out.println("3. Exit");
                             int input = scanner.nextInt();
                             scanner.nextLine();
                             if (input == 1) {
@@ -320,9 +321,16 @@ public class SocialMedia {
                                     System.out.println("Who you want to send message to?");
                                     groupMemberList.add(scanner.nextLine());
                                 }
-                                String receiverName = scanner.nextLine();
                                 System.out.println("what is your Username?");
                                 String senderName = scanner.nextLine();
+
+                                System.out.println("Ready to send message?");
+                                System.out.println("1. Yes");
+                                System.out.println("2. No");
+                                String ans = scanner.nextLine();
+                                if (ans.equals(1)) {
+
+                                } else if 
 
 
                             } else if (input == 2) {
@@ -332,6 +340,8 @@ public class SocialMedia {
                                 String senderName = scanner.nextLine();
 
 
+                            } else if (input == 3) {
+                                keepgoing = false;
                             } else {
                                 System.out.println("Invalid Input! Try Again");
                             }
