@@ -223,10 +223,13 @@ public class tempRunLocalTest {
 
     public static class DatabaseTest {
         private Database database;
+        private ArrayList<Profile> TestUserProfiles = null;
+
+        private ArrayList<UserAccount> allUserAccount = null;
 
         @BeforeClass
         public void setupDatabase() {
-            ArrayList<UserAccount> allUserAccount = null;
+
             allUserAccount.add(new UserAccount(new Profile ("vu28" , "12345678", 18,  "Male",  "VietNam",  "student",  "football")));
             allUserAccount.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
             allUserAccount.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
@@ -236,7 +239,7 @@ public class tempRunLocalTest {
             TestUserAccounts.add(new UserAccount(new Profile ("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf")));
             TestUserAccounts.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
 
-            ArrayList<Profile> TestUserProfiles = null;
+
             TestUserProfiles.add(new Profile("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing"));
             TestUserProfiles.add(new Profile("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf"));
             TestUserProfiles.add(new Profile("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing"));
