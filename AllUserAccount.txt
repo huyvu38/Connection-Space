@@ -4,4 +4,3 @@ george23,123456,20,Female,Brazil,doctor,sing;FriendList:[vu28 alvin23];BlockList
 alvin23,123uyr,33,Female,China,teacher,sing;FriendList:[vu28 george23 abaldocc];BlockList:[]
 jay89,abcdef32,32,Female,USA,teacher,volleyball;FriendList:[vu28 abaldocc];BlockList:[]
 abaldocc,whatsup,20,Male,Salvadorian,Building Manager,Soccer;FriendList:[jay89 alvin23];BlockList:[]
-rretre,2344344,32,Other,rtregtegrt,retgrtr,rgetrtgr;FriendList:[];BlockList:[]
