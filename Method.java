@@ -39,16 +39,20 @@ public class Method implements MethodInterface {
         }
         return false;
     }
-    public boolean inBlockList (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName) {
-        if (isValidUserName(allUserList, userName)) {
+
+    //
+    public boolean inBlockList (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userNameWantBlock) {
+        if (isValidUserName(allUserList, userNameWantBlock)) {
             for (String eachBlockUser : blockList) {
-                if (eachBlockUser.equals(userName)) {
+                if (eachBlockUser.equals(userNameWantBlock)) {
                     return true;
                 }
             }
         }
         return false;
     }
+
+
 
     public boolean addFriend (ArrayList<Profile> allUserList, ArrayList<String> friendList, ArrayList<String> blockList, String userName) {
         if (isValidUserName(allUserList, userName)) {
