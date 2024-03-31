@@ -216,24 +216,11 @@ public class SocialMedia {
                                         }
                                     }
                                 } else if (userInput.equals("3")) {
-                                    System.out.println("Enter your username");
-                                    userInput = scanner.nextLine();
-                        /*
-                        for (Profile userProfile : database.getAllUserProfile()) {
-                            if (userProfile.getUserName().equals(userName)) {
-                                database.getAllUserProfile().remove(userProfile);
-                            }
-                        }
-                        for (UserAccount userAccount : database.getAllUserAccount()) {
-                            if (userAccount.getUserProfile().getUserName().equals(userName)) {
-                                database.getAllUserAccount().remove(userAccount);
-                            }
-                        }
-                         */
-                        System.out.println("Delete account successfully");
-                        System.out.println("Log out from the app");
-                        break;
-                    } else if (userInput.equals("4")) {
+                                    newLogInAccount.deleteAccount(databaseSocialMedia, userName, password);
+                                    System.out.println("Delete account successfully");
+                                    System.out.println("Log out from the app");
+                                    break;
+                                } else if (userInput.equals("4")) {
                         System.out.println("Search for the username");
                         userInput = scanner.nextLine();
                         System.out.println("Add friend successfully");
