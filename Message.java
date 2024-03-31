@@ -135,10 +135,10 @@ public class Message implements MessageInterface {
     // Only send message to all friends in friendList
     // Only send message when otherUserName is in friendList
     // return empty string if all success, otherwirse indicate which one failed.
-    public String restrictMessage(String userName, ArrayList<String> friendList, String content) {
+    public static String restrictMessage(String userName, ArrayList<String> friendList, String content) {
         List<String> failedUser = new ArrayList<>();
         for (String friend: friendList) {
-            if(!this.sendMessage(userName, friend, content, false)) {
+            if(!sendMessage(userName, friend, content, false)) {
                 failedUser.add(friend);
             }
         }
