@@ -159,6 +159,7 @@ public class ApplicationControlFlow {
                                     System.out.println("Male");
                                     System.out.println("Other");
                                     userInput = scanner.nextLine();
+                                    break;
                                     /*
                                     if (userInput.equals("Female")) {
                                         for (Profile userProfile : database.getAllUserProfile()) {
