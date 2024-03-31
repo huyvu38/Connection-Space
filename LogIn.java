@@ -11,6 +11,9 @@ import java.util.ArrayList;
  */
 
 public class LogIn {
+
+    //Maybe we can check the username should be atleast 4 characters and do not contains any space
+    //Maybe use contains(" ") to check
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
