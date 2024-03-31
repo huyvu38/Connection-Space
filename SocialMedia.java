@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -24,8 +25,11 @@ public class SocialMedia {
                     Database databaseSocialMedia = new Database("AllUserAccount.txt");
                     databaseSocialMedia.readAllUserAccount();
                     ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
-                    System.out.println("Enter your username and once you create an account, you can not change your username");
+                    System.out.println("Once you create an account, you can not change your username");
+                    System.out.println("User name should be at least 4 characters and do not contain any spaces");
+                    System.out.println("Enter your username");
                     String userName = scanner.nextLine();
+                    System.out.println("Password should be at least 6 characters");
                     System.out.println("Enter your password");
                     String password = scanner.nextLine();
                     int newAge = 0;
@@ -50,7 +54,7 @@ public class SocialMedia {
                         System.out.println("Male");
                         System.out.println("Other");
                         gender = scanner.nextLine();
-                        if (gender.equals("Female") || gender.equals("Male") || gender.equals("Female")) {
+                        if (gender.equals("Female") || gender.equals("Male") || gender.equals("Other")) {
                             break;
                         } else {
                             System.out.println("Please enter the right command");
