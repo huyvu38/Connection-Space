@@ -11,7 +11,7 @@ Then the program goes back to the main menu to let the user create account or lo
 
 2. User wants to log in
 
-Hit the Run button and write 1 to the program.
+Hit the Run button and write 2 to the program.
 
 Then the user is prompted to enter username and password for log in. 
 
