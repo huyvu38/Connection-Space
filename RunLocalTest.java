@@ -6,7 +6,6 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
-<<<<<<< HEAD
 import org.junit.runners.JUnit4;
 
 import java.nio.file.Files;
@@ -15,13 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-=======
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
->>>>>>> 53c39f3a4d2954e20198ee914befb22d1ed7cd0b
 
 /**
  * Team Project
