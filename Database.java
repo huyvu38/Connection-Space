@@ -11,62 +11,50 @@ import java.io.File;
  * @version 28 March 2024
  */
 public class Database implements DatabaseInterface {
-    //Maybe we should store every data in allUserAccount.txt
-    //jay89,abcdef32,32,Female,USA,teacher,volleyball;FriendList:[vu28 abaldocc];BlockList:[george333 george23 alvin333]
-    //Split by ;
-    //Profile is jay89,abcdef32,32,Female,USA,teacher,volleyball
-    //FriendList is FriendList:[vu28 abaldocc]
-    //BlockList is BlockList:[george333 george23 alvin333]
-    //FriendList and BlockList then split by the space between users
-    private String allUserProfileFile; // file name of save file
+    private String allUserAccountFile; // file name of save file
     private ArrayList<Profile> allUserProfile;
     private ArrayList<UserAccount> allUserAccount;
 
-    private String[] userInfo = {null,null,null,null,null,null,null};
-
-    public Database (String allUserProfileFile) {
-        this.allUserProfileFile = allUserProfileFile;
-        //this.allUserProfile = new ArrayList<>();
+    public Database (String allUserAccountFile) {
+        this.allUserAccountFile = allUserAccountFile;
+        this.allUserAccount = new ArrayList<>();
+        this.allUserProfile = new ArrayList<>();
 
         // read from file and make array of profile objects
         try {
-            File f = new File(allUserProfileFile);
+            File f = new File(allUserAccountFile);
             FileReader fr = new FileReader(f);
             BufferedReader bfr = new BufferedReader(fr);
-
             String line = bfr.readLine();
-
             while(line != null) {
-
-                if (line.equals("----- END OF SAVE -----")) {
-                        line = bfr.readLine();
-                    if (line != null) {
-                        allUserProfile.clear();
-                    } else {
-                        break;
-                    }
-                }
-            }
-
-
-                // create user from line
-                //name,password,age,gender,nationality,job,hobby
-                userInfo = line.split(",", 7);
-                Profile profile = new Profile(userInfo[0],userInfo[1],Integer.parseInt(userInfo[2]),userInfo[3],userInfo[4],userInfo[5],userInfo[6]);
+                String[] element = line.split(";");
+                String[] userInfo = element[0].split(",");
+                Profile profile = new Profile(userInfo[0], userInfo[1], Integer.parseInt(userInfo[2]), userInfo[3], userInfo[4], userInfo[5], userInfo[6]);
                 allUserProfile.add(profile);
+                String friendList = userInfo[1].substring(11, element[1].length() - 1);
+                ArrayList<String> friends = new ArrayList<>();
+                String[] eachFriend = friendList.split(" ");
+                for (String username : eachFriend) {
+                    friends.add(username);
+                }
+                String blockList = element[2].substring(10, element[2].length() - 1);
+                ArrayList<String> blockusers = new ArrayList<>();
+                String[] eachBlockUser = blockList.split(" ");
+                for (String username : blockusers) {
+                    blockusers.add(username);
+                }
+                UserAccount userAccount = new UserAccount(profile);
+                userAccount.setFriendList(friends);
+                userAccount.setBlockList(blockusers);
+                allUserAccount.add(userAccount);
                 line = bfr.readLine();
-
+            }
             bfr.close();
-
-
         } catch (FileNotFoundException e) {
-            System.out.println("allUserProfileFile not found");
-            //e.printStackTrace(); printStack will crash the program
+            System.out.println("AllUserAccountFile not found");
         } catch (IOException e) {
             System.out.println("IOException");
-            //e.printStackTrace();
         }
-
     }
 
     public ArrayList<Profile> getAllUserProfile() {
@@ -77,45 +65,27 @@ public class Database implements DatabaseInterface {
         this.allUserProfile = allUserProfile;
     }
 
-    // take a profile name as an inout and returns that profile obejct or null if the object does not exist
-    public Profile searchProfile(String profileName) {
-        for(int i = 0; i < allUserProfile.size(); i++) {
-            if (allUserProfile.get(i).getUserName().equals(profileName)) {
-                return allUserProfile.get(i);
-            }
-
-        }
-        return null;
-
-    }
-
     public boolean saveAllUserProfile() {
         try {
-            FileOutputStream fos = new FileOutputStream(allUserProfileFile, true);
+            FileOutputStream fos = new FileOutputStream(allUserAccountFile);
             PrintWriter pw = new PrintWriter(fos);
 
-            for (int i = 0; i < allUserProfile.size(); i++) {
-                pw.println(allUserProfile.get(i).toString());
+            for (int i = 0; i < allUserAccount.size(); i++) {
+                pw.println(allUserAccount.get(i).toString());
             }
-            pw.println("----- END OF SAVE -----");
             pw.flush();
             pw.close();
 
         } catch (FileNotFoundException e) {
-            System.out.println("file to save to not found");
+            System.out.println("File to save to not found");
             return false;
         }
         return true;
-
     }
     //public boolean readAllUserAccount(String allUserAccountFile) {}
-    //public boolean readAllUserProfile(String allUserProfileFile)
 
     //Store back to the allUserAccount.txt
     //public boolean outputAllUserAccount() {}
-
-    //Store back to the allUserProfile.txt
-    //public boolean outputAllUserProfile() {}
 
 
     //If user edit username -> this.allUserProfile & this.allUserAccount
