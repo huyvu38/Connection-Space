@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -20,52 +21,66 @@ public class SocialMedia {
             System.out.println("3. Exit the app.");
             String userInput = scanner.nextLine();
             if (userInput.equals("1")) {
-                Database databaseSocialMedia = new Database("AllUserAccount.txt");
-                databaseSocialMedia.readAllUserAccount();
-                ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
-                System.out.println("Enter your username and once you create an account, you can not change your username");
-                String userName = scanner.nextLine();
-                System.out.println("Enter your password");
-                String password = scanner.nextLine();
-                int newAge = 0;
                 while (true) {
-                    System.out.println("Enter your age");
-                    String age = scanner.nextLine();
-                    try {
-                        newAge = Integer.parseInt(age);
-                        if (newAge <= 0) {
+                    Database databaseSocialMedia = new Database("AllUserAccount.txt");
+                    databaseSocialMedia.readAllUserAccount();
+                    ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
+                    System.out.println("Once you create an account, you can not change your username");
+                    System.out.println("User name should be at least 4 characters and do not contain any spaces");
+                    System.out.println("Enter your username");
+                    String userName = scanner.nextLine();
+                    System.out.println("Password should be at least 6 characters");
+                    System.out.println("Enter your password");
+                    String password = scanner.nextLine();
+                    int newAge = 0;
+                    while (true) {
+                        System.out.println("Enter your age");
+                        String age = scanner.nextLine();
+                        try {
+                            newAge = Integer.parseInt(age);
+                            if (newAge <= 0) {
+                                System.out.println("Please enter a valid number");
+                            } else {
+                                break;
+                            }
+                        } catch (NumberFormatException e) {
                             System.out.println("Please enter a valid number");
-                        } else {
-                            break;
                         }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Please enter a valid number");
                     }
-                }
-                String gender = "";
-                while (true) {
-                    System.out.println("Enter your gender from these options");
-                    System.out.println("Female");
-                    System.out.println("Male");
-                    System.out.println("Other");
-                    gender = scanner.nextLine();
-                    if (gender.equals("Female") || gender.equals("Male") || gender.equals("Female")) {
+                    String gender = "";
+                    while (true) {
+                        System.out.println("Enter your gender from these options");
+                        System.out.println("Female");
+                        System.out.println("Male");
+                        System.out.println("Other");
+                        gender = scanner.nextLine();
+                        if (gender.equals("Female") || gender.equals("Male") || gender.equals("Other")) {
+                            break;
+                        } else {
+                            System.out.println("Please enter the right command");
+                        }
+                    }
+                    System.out.println("Enter your nationality");
+                    String nationality = scanner.nextLine();
+                    System.out.println("Enter your job");
+                    String job = scanner.nextLine();
+                    System.out.println("Enter your hobby");
+                    String hobby = scanner.nextLine();
+                    // Assuming Profile and UserAccount classes are defined
+                    Profile newProfile = new Profile(userName, password, newAge, gender, nationality, job, hobby);
+                    UserAccount newUserAccount = new UserAccount(newProfile);
+                    LogIn newCreateAccount = new LogIn(databaseSocialMedia, newProfile, userName, password);
+                    if (newCreateAccount.createAccount(databaseSocialMedia, newProfile)) {
+                        databaseSocialMedia.getAllUserAccount().add(newUserAccount);
+                        databaseSocialMedia.getAllUserProfile().add(newProfile);
+                        databaseSocialMedia.saveAllUserAccount();
+                        System.out.println("Create account success");
+                        System.out.println("You have to log in again");
                         break;
                     } else {
-                        System.out.println("Please enter the right command");
+                        System.out.println("Fail to create account");
                     }
                 }
-                System.out.println("Enter your nationality");
-                String nationality = scanner.nextLine();
-                System.out.println("Enter your job");
-                String job = scanner.nextLine();
-                System.out.println("Enter your hobby");
-                String hobby = scanner.nextLine();
-                // Assuming Profile and UserAccount classes are defined
-                Profile newProfile = new Profile(userName, password, newAge, gender, nationality, job, hobby);
-                UserAccount newUserAccount = new UserAccount(newProfile);
-                System.out.println("Create account success");
-                System.out.println("You have to log in again");
             } else if (userInput.equals("2")) {
                 // Assuming Database class is defined
 
@@ -287,8 +302,22 @@ public class SocialMedia {
                         userInput = scanner.nextLine();
                         System.out.println("Unblock user successfully");
                     } else if (userInput.equals("8")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
+                        System.out.println("Who you want to send message to?");
+                        String receiverName = scanner.nextLine();
+                        System.out.println("what is your Username?");
+                        String senderName = scanner.nextLine();
+                        Method method = new Method();
+                        Profile senderProfile = method.searchProfile(senderName);
+                        Profile receiverProfile = method.searchProfile(receiverName);
+                        Database database = new Database("AllUserAccount.txt");
+
+                        if (!method.isValidUserName(database.getAllUserProfile(), receiverName) && senderProfile != null) {
+                            System.out.println("Please enter the message");
+                            String message = scanner.nextLine();
+                            Message messages = new Message();
+                            //messages.sendMessage(senderName,receiverName,message,)
+
+                        }
                         String content = scanner.nextLine();
                         System.out.println("Send message successfully");
                     } else if (userInput.equals("9")) {

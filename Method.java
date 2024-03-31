@@ -14,11 +14,27 @@ public class Method implements MethodInterface {
     private ArrayList<String> blockList;
     private Profile userProfile;
 
-    public Method(ArrayList<Profile> allUserList, ArrayList<String> friendList, ArrayList<String> blockList, Profile userProfile) {
+    public Method(ArrayList<Profile> allUserList, Profile userProfile) {
         this.allUserList = allUserList;
-        this.friendList = friendList;
-        this.blockList = blockList;
+        this.friendList = null;
+        this.blockList = null;
         this.userProfile = userProfile;
+    }
+
+    public Method() {
+    }
+
+
+    // Extract User profile from database given username
+    public Profile searchProfile(String userName) {
+        Database database = new Database("AllUserAccount.txt");
+        Profile profile = null;
+        for (Profile curProfile: database.getAllUserProfile()) {
+            if (curProfile.getUserName().equals(userName)) {
+                profile = curProfile;
+            }
+        }
+        return profile;
     }
 
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
