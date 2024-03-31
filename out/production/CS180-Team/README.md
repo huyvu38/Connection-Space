@@ -69,7 +69,6 @@ The framework for the database system. Creates new database objects using all kn
 
 ### Message.java <br/>
 <br/>
-Framework for users to send and delete messages. Utilizes buffered reader to write timestamped messages to .txt file. Includes message blocking: if user "A" attempts to send message to user "B", while B has user A blocked the message will not send.  Awaiting phase 2 where network integration will allow message files to be sent amongst users.
 <br/>
 
 ### LogIn.java <br/>
