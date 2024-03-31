@@ -141,21 +141,12 @@ public class SocialMedia {
                                             System.out.println(eachProfile.getJob());
                                             break;
                                         } else if (userInput.equals("7")) {
-                                            System.out.println();
                                             System.out.println(eachProfile.getHobby());
                                             break;
                                         } else {
                                             System.out.println("Please enter the right command.");
                                         }
                                     }
-                        /*
-                        for (Profile userProfile : database.getAllUserProfile()) {
-                            if (userProfile.getUserName().equals(userName)) {
-                                System.out.println(userProfile);
-                            }
-                        }
-                         */
-                                    //Maybe return every information of user
                                 } else if (userInput.equals("2")) {
                                     while (true) {
                                         System.out.println("Which information do you want to edit");
@@ -169,15 +160,7 @@ public class SocialMedia {
                                         if (userInput.equals("1")) {
                                             System.out.println("Enter new password");
                                             userInput = scanner.nextLine();
-                                /*
-                                for (Profile userProfile : database.getAllUserProfile()) {
-                                    if (userProfile.getUserName().equals(userInput)) {
-                                        userProfile.setUserName(userInput);
-                                    }
-                                }
-                                System.out.println("Edit password successfully");
-                                 */
-                                            break;
+                                            eachProfile.setPassword(userInput);
                                         } else if (userInput.equals("2")) {
                                             int newAge = 0;
                                             while (true) {
@@ -194,51 +177,22 @@ public class SocialMedia {
                                                     System.out.println("Please enter a valid number");
                                                 }
                                             }
-                                            break;
-                                /*
-                                for (Profile userProfile : database.getAllUserProfile()) {
-                                    if (userProfile.getUserName().equals(userName)) {
-                                        userProfile.setAge(newAge);
-                                    }
-                                }
-
-                                 */
-                                        } else if (userInput.equals("4")) {
+                                            eachProfile.setAge(userInput);
+                                        } else if (userInput.equals("3")) {
+                                            String gender = "";
                                             while (true) {
-                                                System.out.println("Enter your gender");
+                                                System.out.println("Enter your gender from these options:");
                                                 System.out.println("Female");
                                                 System.out.println("Male");
                                                 System.out.println("Other");
-                                                userInput = scanner.nextLine();
-                                                break;
-                                    /*
-                                    if (userInput.equals("Female")) {
-                                        for (Profile userProfile : database.getAllUserProfile()) {
-                                            if (userProfile.getUserName().equals(userName)) {
-                                                userProfile.setGender(userInput);
+                                                gender = scanner.nextLine();
+                                                if (gender.equals("Female") || gender.equals("Male") || gender.equals("Other")) {
+                                                    break;
+                                                } else {
+                                                    System.out.println("Please enter the right command.");
+                                                }
                                             }
-                                        }
-                                        break;
-                                    } else if (userInput.equals("Male")) {
-                                        for (Profile userProfile : database.getAllUserProfile()) {
-                                            if (userProfile.getUserName().equals(userName)) {
-                                                userProfile.setGender(userInput);
-                                            }
-                                        }
-                                        break;
-                                    } else if (userInput.equals("Other")) {
-                                        for (Profile userProfile : database.getAllUserProfile()) {
-                                            if (userProfile.getUserName().equals(userName)) {
-                                                userProfile.setGender(userInput);
-                                            }
-                                        }
-                                        break;
-                                    } else {
-                                        System.out.println("Please enter the right command");
-                                    }
-                                     */
-                                            }
-                                            break;
+                                            eachProfile.setGender(gender);
                                         } else if (userInput.equals("5")) {
                                             System.out.println("Enter your nationality");
                                             userInput = scanner.nextLine();
