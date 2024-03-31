@@ -315,7 +315,7 @@ public class SocialMedia {
                                         if (messages.sendMessage(senderName,receiverName,message,isInBlockList)) {
                                             System.out.println("Send message successfully");
                                         } else {
-                                            System.out.println("Your account does not exist.");
+                                            System.out.println("The account does not exist.");
                                         }
                                     }
                                 } else if (userInput.equals("3")) {
