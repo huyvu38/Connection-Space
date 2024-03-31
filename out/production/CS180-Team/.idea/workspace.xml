@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91a71d3d-553c-4d0e-baff-575972578bef" name="Changes" comment="11">
-      <change beforePath="$PROJECT_DIR$/LogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Message.java" afterDir="false" />
+    <list default="true" id="3687eabd-3c7e-4c09-b869-6489c4b70c10" name="Changes" comment="testing">
+      <change beforePath="$PROJECT_DIR$/RunLocalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RunLocalTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +15,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -26,80 +26,160 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
-  <component name="ProjectId" id="2eF51xAqYbzfTKgvPEMOiVc6omW" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2eKcKhW045I8DNgqO3CK2xtzvnU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.ApplicationControlFlow.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Message.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="Message" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Message" />
-      <module name="CS180-Team" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Message" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-11.0.22-corretto-11.0.22-3183f394aec4-fdae186d" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
-      </set>
-    </attachedChunks>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="91a71d3d-553c-4d0e-baff-575972578bef" name="Changes" comment="" />
-      <created>1711487273416</created>
+      <changelist id="3687eabd-3c7e-4c09-b869-6489c4b70c10" name="Changes" comment="" />
+      <created>1711656647807</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1711487273416</updated>
+      <updated>1711656647807</updated>
+      <workItem from="1711656649184" duration="17997000" />
     </task>
-    <task id="LOCAL-00001" summary="11">
+    <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
-      <created>1711816252216</created>
+      <created>1711656684120</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1711816252216</updated>
+      <updated>1711656684120</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711656708046</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711656708046</updated>
+    </task>
+    <task id="LOCAL-00003" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711656847814</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711656847814</updated>
+    </task>
+    <task id="LOCAL-00004" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711810133973</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711810133973</updated>
+    </task>
+    <task id="LOCAL-00005" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711811432566</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711811432566</updated>
+    </task>
+    <task id="LOCAL-00006" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711812339155</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711812339155</updated>
+    </task>
+    <task id="LOCAL-00007" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711817776028</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711817776028</updated>
+    </task>
+    <task id="LOCAL-00008" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711818092140</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711818092140</updated>
+    </task>
+    <task id="LOCAL-00009" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711818275287</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711818275287</updated>
+    </task>
+    <task id="LOCAL-00010" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711898586734</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711898586734</updated>
+    </task>
+    <task id="LOCAL-00011" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711902042358</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711902042358</updated>
+    </task>
+    <task id="LOCAL-00012" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711904074246</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711904074246</updated>
+    </task>
+    <task id="LOCAL-00013" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711905421676</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711905421676</updated>
+    </task>
+    <task id="LOCAL-00014" summary="testing">
+      <option name="closed" value="true" />
+      <created>1711906220671</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1711906220671</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="1" />
-    <MESSAGE value="11" />
-    <option name="LAST_COMMIT_MESSAGE" value="11" />
+    <MESSAGE value="testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing" />
   </component>
 </project>

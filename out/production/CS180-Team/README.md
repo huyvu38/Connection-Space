@@ -5,7 +5,11 @@
 
 Hit the Run button and write 1 to the program.
 
-Then the user is prompted to enter username, password, age, gender, nationality, job, and hobby to create a new account object (related to UserAccount.java).
+Then the user is prompted to enter username, password. 
+
+Once the user create account succeesfully, they can not edit their username.
+
+After that, the user is prompted to enter age, gender, nationality, job, and hobby.
 
 Then the program goes back to the main menu to let the user create account or log in or exit the app.
 
@@ -65,15 +69,16 @@ The framework for the database system. Creates new database objects using all kn
 
 ### Message.java <br/>
 <br/>
-//Fill Information
+Framework for users to send and delete messages. Utilizes buffered reader to write timestamped messages to .txt file. Includes message blocking: if user "A" attempts to send message to user "B", while B has user A blocked the message will not send.  Awaiting phase 2 where network integration will allow message files to be sent amongst users.
 <br/>
 
 ### LogIn.java <br/>
 <br/>
-//Fill Information
+Class facilitating account creation, deleting and logging in. 
+Dependent on Database>UserAccount>Profile. Checks if passwords are valid before allowing login, modifies server database including master list of usernames and passwords to create and delete accounts upon user request.  
 <br/>
 
 ### SocialMedia.java <br/>
 <br/>
-//Fill Information
+Drives functionality of supported classes before GUI integration in phase 3. Includes text based menu system allowing users to create, login, delete, and modify accounts utilizing earlier documented classes.  
 <br/>
