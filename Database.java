@@ -55,10 +55,10 @@ public class Database implements DatabaseInterface {
 
         } catch (FileNotFoundException e) {
             System.out.println("allUserProfileFile not found");
-            e.printStackTrace();
+            //e.printStackTrace(); printStack will crash the program
         } catch (IOException e) {
             System.out.println("IOException");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }
