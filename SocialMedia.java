@@ -91,169 +91,127 @@ public class SocialMedia {
                 String userName = scanner.nextLine();
                 System.out.println("Enter your password");
                 String password = scanner.nextLine();
-                //If the username exists
-                for (Profile eachProfile : allUserProfile) {
-                    if (eachProfile.getUserName().equals(userName)) {
+                //If the username exists, loop through all userAccount
+                for (UserAccount eachUserAccount : allUserAccount) {
+                    if (eachUserAccount.getUserProfile().getUserName().equals(userName)) {
+                        Profile eachProfile = eachUserAccount.getUserProfile();
                         LogIn newLogInAccount = new LogIn(databaseSocialMedia, eachProfile, userName, password);
                         if (newLogInAccount.loginAccount(databaseSocialMedia, eachProfile, userName, password)) {
                             System.out.println("Log In successfully.");
-                            for (UserAccount eachUserAccount : allUserAccount) {
-                                if (eachUserAccount.getUserProfile().equals(userName)) {
-                                    Method actions = new Method(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), eachProfile);
-                                    //After user log in
+                            Method actions = new Method(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), eachProfile);
+                            //After user log in
+                            while (true) {
+                                System.out.println("What would you like to do?");
+                                System.out.println("1. View your profile");
+                                System.out.println("2. Edit your profile");
+                                System.out.println("3. Delete account");
+                                System.out.println("4. Add friend");
+                                System.out.println("5. Delete friend");
+                                System.out.println("6. Block friend");
+                                System.out.println("7. Unblock friend");
+                                System.out.println("8. Send message");
+                                System.out.println("9. Log out");
+                                userInput = scanner.nextLine();
+                                if (userInput.equals("1")) {
+                                    System.out.println("Which information do you want to see");
+                                    System.out.println("1. Username");
+                                    System.out.println("2. Password");
+                                    System.out.println("3. Age");
+                                    System.out.println("4. Gender");
+                                    System.out.println("5. Nationality");
+                                    System.out.println("6. Job");
+                                    System.out.println("7. Hobby");
                                     while (true) {
-                                        System.out.println("What would you like to do?");
-                                        System.out.println("1. View your profile");
-                                        System.out.println("2. Edit your profile");
-                                        System.out.println("3. Delete account");
-                                        System.out.println("4. Add friend");
-                                        System.out.println("5. Delete friend");
-                                        System.out.println("6. Block friend");
-                                        System.out.println("7. Unblock friend");
-                                        System.out.println("8. Send message");
-                                        System.out.println("9. Log out");
                                         userInput = scanner.nextLine();
                                         if (userInput.equals("1")) {
-                                            System.out.println("Which information do you want to see");
-                                            System.out.println("1. Username");
-                                            System.out.println("2. Password");
-                                            System.out.println("3. Age");
-                                            System.out.println("4. Gender");
-                                            System.out.println("5. Nationality");
-                                            System.out.println("6. Job");
-                                            System.out.println("7. Hobby");
+                                            System.out.println(eachProfile.getUserName());
+                                            break;
+                                        } else if (userInput.equals("2")) {
+                                            System.out.println(eachProfile.getPassword());
+                                            break;
+                                        } else if (userInput.equals("3")) {
+                                            System.out.println(eachProfile.getAge());
+                                            break;
+                                        } else if (userInput.equals("4")) {
+                                            System.out.println(eachProfile.getGender());
+                                            break;
+                                        } else if (userInput.equals("5")) {
+                                            System.out.println();
+                                            System.out.println(eachProfile.getNationality());
+                                            break;
+                                        } else if (userInput.equals("6")) {
+                                            System.out.println(eachProfile.getJob());
+                                            break;
+                                        } else if (userInput.equals("7")) {
+                                            System.out.println(eachProfile.getHobby());
+                                            break;
+                                        } else {
+                                            System.out.println("Please enter the right command.");
+                                        }
+                                    }
+                                } else if (userInput.equals("2")) {
+                                    while (true) {
+                                        System.out.println("Which information do you want to edit");
+                                        System.out.println("1. Password");
+                                        System.out.println("2. Age");
+                                        System.out.println("3. Gender");
+                                        System.out.println("4. Nationality");
+                                        System.out.println("5. Job");
+                                        System.out.println("6. Hobby");
+                                        userInput = scanner.nextLine();
+                                        if (userInput.equals("1")) {
+                                            System.out.println("Enter new password");
+                                            userInput = scanner.nextLine();
+                                            eachProfile.setPassword(userInput);
+                                            break;
+                                        } else if (userInput.equals("2")) {
+                                            int newAge = 0;
                                             while (true) {
-                                                userInput = scanner.nextLine();
-                                                if (userInput.equals("1")) {
-                                                    System.out.println(eachProfile.getUserName());
-                                                    break;
-                                                } else if (userInput.equals("2")) {
-                                                    System.out.println(eachProfile.getPassword());
-                                                    break;
-                                                } else if (userInput.equals("3")) {
-                                                    System.out.println(eachProfile.getAge());
-                                                    break;
-                                                } else if (userInput.equals("4")) {
-                                                    System.out.println(eachProfile.getGender());
-                                                    break;
-                                                } else if (userInput.equals("5")) {
-                                                    System.out.println();
-                                                    System.out.println(eachProfile.getNationality());
-                                                    break;
-                                                } else if (userInput.equals("6")) {
-                                                    System.out.println(eachProfile.getJob());
-                                                    break;
-                                                } else if (userInput.equals("7")) {
-                                                    System.out.println(eachProfile.getHobby());
+                                                System.out.println("Enter your age");
+                                                String age = scanner.nextLine();
+                                                try {
+                                                    newAge = Integer.parseInt(age);
+                                                    if (newAge <= 0) {
+                                                        System.out.println("Please enter a valid number");
+                                                    } else {
+                                                        break;
+                                                    }
+                                                } catch (NumberFormatException e) {
+                                                    System.out.println("Please enter a valid number");
+                                                }
+                                            }
+                                            eachProfile.setAge(newAge);
+                                            break;
+                                        } else if (userInput.equals("3")) {
+                                            String gender = "";
+                                            while (true) {
+                                                System.out.println("Enter your gender from these options:");
+                                                System.out.println("Female");
+                                                System.out.println("Male");
+                                                System.out.println("Other");
+                                                gender = scanner.nextLine();
+                                                if (gender.equals("Female") || gender.equals("Male") || gender.equals("Other")) {
                                                     break;
                                                 } else {
                                                     System.out.println("Please enter the right command.");
                                                 }
                                             }
-                                        } else if (userInput.equals("2")) {
-                                            while (true) {
-                                                System.out.println("Which information do you want to edit");
-                                                System.out.println("1. Password");
-                                                System.out.println("2. Age");
-                                                System.out.println("3. Gender");
-                                                System.out.println("4. Nationality");
-                                                System.out.println("5. Job");
-                                                System.out.println("6. Hobby");
-                                                userInput = scanner.nextLine();
-                                                if (userInput.equals("1")) {
-                                                    System.out.println("Enter new password");
-                                                    userInput = scanner.nextLine();
-                                                    eachProfile.setPassword(userInput);
-                                                    break;
-                                                } else if (userInput.equals("2")) {
-                                                    int newAge = 0;
-                                                    while (true) {
-                                                        System.out.println("Enter your age");
-                                                        String age = scanner.nextLine();
-                                                        try {
-                                                            newAge = Integer.parseInt(age);
-                                                            if (newAge <= 0) {
-                                                                System.out.println("Please enter a valid number");
-                                                            } else {
-                                                                break;
-                                                            }
-                                                        } catch (NumberFormatException e) {
-                                                            System.out.println("Please enter a valid number");
-                                                        }
-                                                    }
-                                                    eachProfile.setAge(newAge);
-                                                    break;
-                                                } else if (userInput.equals("3")) {
-                                                    String gender = "";
-                                                    while (true) {
-                                                        System.out.println("Enter your gender from these options:");
-                                                        System.out.println("Female");
-                                                        System.out.println("Male");
-                                                        System.out.println("Other");
-                                                        gender = scanner.nextLine();
-                                                        if (gender.equals("Female") || gender.equals("Male") || gender.equals("Other")) {
-                                                            break;
-                                                        } else {
-                                                            System.out.println("Please enter the right command.");
-                                                        }
-                                                    }
-                                                    eachProfile.setGender(gender);
-                                                    break;
-                                                } else if (userInput.equals("4")) {
-                                                    System.out.println("Enter your nationality");
-                                                    userInput = scanner.nextLine();
-                                                    eachProfile.setNationality(userInput);
-                                                    break;
-                                                } else if (userInput.equals("5")) {
-                                                    System.out.println("Enter your job");
-                                                    userInput = scanner.nextLine();
-                                                    eachProfile.setJob(userInput);
-                                                    break;
-                                                } else if (userInput.equals("6")) {
-                                                    System.out.println("Enter your hobby");
-                                                    userInput = scanner.nextLine();
-                                                    eachProfile.setHobby(userInput);
-                                                    break;
-                                                } else {
-                                                    System.out.println("Please enter the right command");
-                                                }
-                                            }
-                                        } else if (userInput.equals("3")) {
-                                            newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, password);
-                                            System.out.println("Delete account successfully");
-                                            System.out.println("Log out from the app");
+                                            eachProfile.setGender(gender);
                                             break;
                                         } else if (userInput.equals("4")) {
-                                            System.out.println("Search for the username that you want to add friend");
+                                            System.out.println("Enter your nationality");
                                             userInput = scanner.nextLine();
-                                            if (actions.addFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userName)) {
-                                                eachUserAccount.getFriendList().add(userName);
-                                                for (UserAccount friendUserAccount : allUserAccount) {
-                                                    if (friendUserAccount.getUserProfile().equals(userName)) {
-                                                        friendUserAccount.getFriendList().add(eachProfile.getUserName());
-                                                    }
-                                                }
-                                                System.out.println("Add friend successfully");
-                                            } else {
-                                                System.out.println("You can not add friend");
-                                            }
+                                            eachProfile.setNationality(userInput);
+                                            break;
                                         } else if (userInput.equals("5")) {
-                                            System.out.println("Search for the username that you want to delete friend");
+                                            System.out.println("Enter your job");
                                             userInput = scanner.nextLine();
-                                            if (actions.removeFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userName)) {
-                                                eachUserAccount.getFriendList().remove(userName);
-                                                for (UserAccount friendUserAccount : allUserAccount) {
-                                                    if (friendUserAccount.getUserProfile().equals(userName)) {
-                                                        friendUserAccount.getFriendList().remove(eachProfile.getUserName());
-                                                    }
-                                                }
-                                                System.out.println("Delete friend successfully");
-                                            } else {
-                                                System.out.println("You can not delete friend");
-                                            }
+                                            eachProfile.setJob(userInput);
+                                            break;
                                         } else if (userInput.equals("6")) {
-                                            System.out.println("Search for the username that you want to block");
+                                            System.out.println("Enter your hobby");
                                             userInput = scanner.nextLine();
+                                            eachProfile.setHobby(userInput);
                                             if (actions.blockUser(allUserProfile, eachUserAccount.getBlockList(), userName)) {
                                                 eachUserAccount.getBlockList().add(userName);
                                                 System.out.println("Block friend successfully");
@@ -284,7 +242,7 @@ public class SocialMedia {
                                                     int input = scanner.nextInt();
                                                     scanner.nextLine();
 
-                                                    if (input == 1 ) {
+                                                    if (input == 1) {
                                                         UserAccount userAccount = method.searchAccount(userName);
                                                         boolean hasMoreThanOneFriends = userAccount.getFriendList().size() > 1;
                                                         if (hasMoreThanOneFriends) {
@@ -339,7 +297,7 @@ public class SocialMedia {
                                                                 System.out.println("What message do you want to send?");
                                                                 String message = scanner.nextLine();
                                                                 Message message1 = new Message();
-                                                                if (message1.sendMessage(userName,receiverName,message, isBlocked)) {
+                                                                if (message1.sendMessage(userName, receiverName, message, isBlocked)) {
                                                                     System.out.println("Message sent successfully");
                                                                 } else {
                                                                     System.out.println("Message sent failed");
@@ -371,7 +329,7 @@ public class SocialMedia {
                                                         System.out.println("Who do you want to print the conversation with?");
                                                         String name = scanner.nextLine();
                                                         Message message = new Message();
-                                                        message.printHistoryMessage(userName,name);
+                                                        message.printHistoryMessage(userName, name);
 
                                                         boolean keepDeleting = false;
                                                         do {
@@ -421,14 +379,66 @@ public class SocialMedia {
                                                 System.out.println("Please add friend first");
                                             }
                                         }
-
-
-                                    } else if (userInput.equals("9")) {
-                                            break;
-                                        } else {
-                                            System.out.println("Please enter the right command");
-                                        }
                                     }
+                                } else if (userInput.equals("3")) {
+                                    newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, password);
+                                    System.out.println("Delete account successfully");
+                                    System.out.println("Log out from the app");
+                                    break;
+                                } else if (userInput.equals("4")) {
+                                    System.out.println("Search for the username that you want to add friend");
+                                    userInput = scanner.nextLine();
+                                    if (actions.addFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userInput)) {
+                                        eachUserAccount.getFriendList().add(userInput);
+                                        for (UserAccount friendUserAccount : allUserAccount) {
+                                            if (friendUserAccount.getUserProfile().equals(userInput)) {
+                                                friendUserAccount.getFriendList().add(userName);
+                                            }
+                                        }
+                                        System.out.println("Add friend successfully");
+                                    } else {
+                                        System.out.println("You can not add friend");
+                                    }
+                                } else if (userInput.equals("5")) {
+                                    System.out.println("Search for the username that you want to delete friend");
+                                    userInput = scanner.nextLine();
+                                    if (actions.removeFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userInput)) {
+                                        eachUserAccount.getFriendList().remove(userInput);
+                                        for (UserAccount friendUserAccount : allUserAccount) {
+                                            if (friendUserAccount.getUserProfile().equals(userInput)) {
+                                                friendUserAccount.getFriendList().remove(eachProfile.getUserName());
+                                            }
+                                        }
+                                        System.out.println("Delete friend successfully");
+                                    } else {
+                                        System.out.println("You can not delete friend");
+                                    }
+                                } else if (userInput.equals("6")) {
+                                    System.out.println("Search for the username that you want to block");
+                                    userInput = scanner.nextLine();
+                                    if (actions.blockUser(allUserProfile, eachUserAccount.getBlockList(), userInput)) {
+                                        eachUserAccount.getBlockList().add(userName);
+                                        System.out.println("Block friend successfully");
+                                    } else {
+                                        System.out.println("You can not block that user");
+                                    }
+                                } else if (userInput.equals("7")) {
+                                    System.out.println("Search for the username that you want to unblock");
+                                    userInput = scanner.nextLine();
+                                    if (actions.unblockUser(allUserProfile, eachUserAccount.getBlockList(), userInput)) {
+                                        eachUserAccount.getBlockList().remove(userInput);
+                                        System.out.println("Unblock friend successfully");
+                                    } else {
+                                        System.out.println("You can not unblock that user");
+                                    }
+                                } else if (userInput.equals("8")) {
+
+                                } else if (userInput.equals("9")) {
+                                    databaseSocialMedia.saveAllUserAccount();
+                                    break;
+                                    //Log out
+                                } else {
+                                    System.out.println("Please enter the right command");
                                 }
                             }
                         }
