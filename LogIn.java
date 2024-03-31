@@ -35,18 +35,12 @@ public class LogIn implements LogInInterface {
 
 
     public boolean checkPasswordLength(String userPassword) {
-        if (userPassword.length() >= 6) {
-            return true;
-        }
-
-        return false;
+        return userPassword.length() >= 6;
     }
 
     public boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
-        if (profile.getPassword().equals(userPassword)) {
-            return true;
-        }
-        return false;
+        return profile.getPassword().equals(userPassword);
+
     }
 
 
@@ -91,9 +85,8 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public boolean loginAccount(Database data, Profile profile, String userName, String userPassword) {
-
-       return (!isValidUserName(data.getAllUserProfile(), userName))
+    public boolean loginAccount(Database data, Profile profile, String username, String userPassword) {
+        return (!isValidUserName(data.getAllUserProfile(), username))
                && checkIfPasswordCorrect(profile, userPassword);
     }
 }
