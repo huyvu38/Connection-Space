@@ -18,7 +18,7 @@ import java.nio.file.*;
  */
 
 
-public class Message {
+public class Message implements MessageInterface {
     // Create a message row including timeStamp, save to Message.txt at the bottom of the file
     public boolean sendMessage (String sendUserName, String receiverUserName, String content, boolean isBlocked) {
         // Get the current date and time
@@ -126,21 +126,6 @@ public class Message {
         } catch (IOException e) {
             e.printStackTrace();
         }
-=======
-public class Message implements MessageInterface{
-    public boolean sendMessage (String senderUserName, String receiverUserName, String content) {
-        // TODO
-
-        return false;
-
-    }
-//    public boolean blockMessage (String userName, String otherUserName, ArrayList<String> blockList) {
-//        //TODO
-//        return false;
-//
-//
-//    }
-
 
 
     // Only send message to all friends in friendList
