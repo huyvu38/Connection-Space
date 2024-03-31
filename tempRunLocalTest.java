@@ -227,6 +227,8 @@ public class tempRunLocalTest {
 
         private ArrayList<UserAccount> allUserAccount = null;
 
+        private ArrayList<UserAccount> TestUserAccounts = null;
+
         @BeforeClass
         public void setupDatabase() {
 
@@ -234,7 +236,7 @@ public class tempRunLocalTest {
             allUserAccount.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
             allUserAccount.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
 
-            ArrayList<UserAccount> TestUserAccounts = null;
+
             TestUserAccounts.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
             TestUserAccounts.add(new UserAccount(new Profile ("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf")));
             TestUserAccounts.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
