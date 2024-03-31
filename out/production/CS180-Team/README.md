@@ -69,6 +69,7 @@ The framework for the database system. Creates new database objects using all kn
 
 ### Message.java <br/>
 <br/>
+Framework for users to send, delete and print history messages . Utilizes buffered reader to write timestamped messages to Messages.txt file. Includes message blocking: if user "A" attempts to send message to user "B", while B has user A blocked the message still send and storage in the message history but can not be seen by user "B". Includes gourp message: if use "A" has a selected group members {"B", "C" , "D"} and all members should in "A's" friend lists, {"B", "C" , "D"} can see the message from "A" at same time.
 <br/>
 
 ### LogIn.java <br/>
