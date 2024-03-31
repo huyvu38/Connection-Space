@@ -223,11 +223,11 @@ public class tempRunLocalTest {
 
     public static class DatabaseTest {
         private Database database;
-        private ArrayList<Profile> TestUserProfiles = null;
+        private static ArrayList<Profile> TestUserProfiles = null;
 
-        private ArrayList<UserAccount> allUserAccount = null;
+        private static ArrayList<UserAccount> allUserAccount = null;
 
-        private ArrayList<UserAccount> TestUserAccounts = null;
+        private static ArrayList<UserAccount> TestUserAccounts = null;
 
         @BeforeClass
         public static void setupDatabase() {
