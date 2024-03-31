@@ -73,7 +73,6 @@ public class Database implements DatabaseInterface {
             pw.close();
 
         } catch (FileNotFoundException e) {
-            System.out.println("File to save to not found");
             return false;
         }
         return true;
