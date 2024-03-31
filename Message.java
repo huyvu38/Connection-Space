@@ -115,7 +115,7 @@ public class Message implements MessageInterface {
                 if (line.startsWith(messageID + ",1,")) {
                     String[] row = line.split(",");
                     row[1] = String.valueOf(0);
-                    line = String.join(",",row);
+                    line = String.join(",", row);
                 }
                 replaced.add(line);
             }
@@ -126,6 +126,8 @@ public class Message implements MessageInterface {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
+    }
 
 
     // Only send message to all friends in friendList
@@ -148,13 +150,13 @@ public class Message implements MessageInterface {
 
     }
 
-    public static void main(String[] args) {
-        Message text = new Message();
-       //text.sendMessage("Eliza", "Lingling", "What is for dinner?");
-        //text.sendMessage("Lingling", "Eliza", "Dumplings");
-        text.deleteMessage(1 );
-
-
-    }
+//    public static void main(String[] args) {
+//        Message text = new Message();
+//       //text.sendMessage("Eliza", "Lingling", "What is for dinner?");
+//        //text.sendMessage("Lingling", "Eliza", "Dumplings");
+//        text.deleteMessage(1 );
+//
+//
+//    }
 
 }
