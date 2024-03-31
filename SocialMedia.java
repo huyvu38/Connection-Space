@@ -242,7 +242,7 @@ public class SocialMedia {
                                                     int input = scanner.nextInt();
                                                     scanner.nextLine();
 
-                                                    if (input == 1) {
+                                                    if (input == 1 ) {
                                                         UserAccount userAccount = method.searchAccount(userName);
                                                         boolean hasMoreThanOneFriends = userAccount.getFriendList().size() > 1;
                                                         if (hasMoreThanOneFriends) {
@@ -297,7 +297,7 @@ public class SocialMedia {
                                                                 System.out.println("What message do you want to send?");
                                                                 String message = scanner.nextLine();
                                                                 Message message1 = new Message();
-                                                                if (message1.sendMessage(userName, receiverName, message, isBlocked)) {
+                                                                if (message1.sendMessage(userName,receiverName,message, isBlocked)) {
                                                                     System.out.println("Message sent successfully");
                                                                 } else {
                                                                     System.out.println("Message sent failed");
@@ -329,7 +329,7 @@ public class SocialMedia {
                                                         System.out.println("Who do you want to print the conversation with?");
                                                         String name = scanner.nextLine();
                                                         Message message = new Message();
-                                                        message.printHistoryMessage(userName, name);
+                                                        message.printHistoryMessage(userName,name);
 
                                                         boolean keepDeleting = false;
                                                         do {
@@ -379,6 +379,7 @@ public class SocialMedia {
                                                 System.out.println("Please add friend first");
                                             }
                                         }
+                                        
                                     }
                                 } else if (userInput.equals("3")) {
                                     newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, password);
