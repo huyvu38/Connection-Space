@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
 import java.nio.file.*;
 
 import static jdk.internal.org.jline.utils.InfoCmp.Capability.columns;
@@ -21,8 +20,10 @@ import static jdk.internal.org.jline.utils.InfoCmp.Capability.columns;
 
 
 public class Message implements MessageInterface {
+    //Message message = new Message();
+
     // Create a message row including timeStamp, save to Message.txt at the bottom of the file
-    public static boolean sendMessage (String sendUserName, String receiverUserName, String content, boolean isBlocked) {
+    public boolean sendMessage (String sendUserName, String receiverUserName, String content, boolean isBlocked) {
         // Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -103,7 +104,7 @@ public class Message implements MessageInterface {
     }
 
 
-    public static boolean deleteMessage (int messageID) {
+    public boolean deleteMessage (int messageID) {
         Path path = Paths.get("Messages.txt");
 
 
@@ -135,10 +136,10 @@ public class Message implements MessageInterface {
     // Only send message to all friends in friendList
     // Only send message when otherUserName is in friendList
     // return empty string if all success, otherwirse indicate which one failed.
-    public static String restrictMessage(String userName, ArrayList<String> friendList, String content) {
+    public  String restrictMessage(String userName, ArrayList<String> friendList, String content) {
         List<String> failedUser = new ArrayList<>();
         for (String friend: friendList) {
-            if(!sendMessage(userName, friend, content, false)) {
+            if(!this.sendMessage(userName, friend, content, false)) {
                 failedUser.add(friend);
             }
         }
@@ -158,7 +159,7 @@ public class Message implements MessageInterface {
     // The message that already deleted will not be printed in this method, but it still exist in the database
     // For the blocked message, the sender still can see it, but on the receiver side, it won't be shown
 
-    public static boolean printHistoryMessage(String senderName, String receiverName) {
+    public boolean printHistoryMessage(String senderName, String receiverName) {
         String filePath = "Messages.txt";
         BufferedReader br = null;
         boolean isSuccessful = true;

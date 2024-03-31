@@ -94,15 +94,4 @@ public class Database implements DatabaseInterface {
     public void setAllUserAccount(ArrayList<UserAccount> allUserAccount) {
         this.allUserAccount = allUserAccount;
     }
-
-    //If user edit username -> this.allUserProfile & this.allUserAccount
-    //(need to use updateFriendUserName & updateBlockUserName) cuz that user may be in another friendlist or blocklist
-    //public boolean userEditUserName(UserAccount user)
-
-    //If the user edit any thing in the profile outside username
-    //Update both this.allUserProfile & this.allUserAccount
-    //public boolean userEditInformation(UserAccount user)
-
-
-
 }

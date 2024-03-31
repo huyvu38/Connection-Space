@@ -11,10 +11,19 @@ import java.util.ArrayList;
 
 
 public class LogIn implements LogInInterface {
+    private Database database; // Our current database that contain all users' profile
+    private Profile logInUserProfile;
+    private String userName;
+    private String password;
 
-    //Maybe we can check the username should be atleast 4 characters and do not contains any space
-    //Maybe use contains(" ") to check
-    public static boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
+    public LogIn(Database database, Profile logInUserProfile, String userName, String password) {
+        this.database = database;
+        this.logInUserProfile = logInUserProfile;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
 
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
@@ -25,7 +34,7 @@ public class LogIn implements LogInInterface {
     }
 
 
-    public static boolean checkPasswordLength (String password) {
+    public boolean checkPasswordLength (String password) {
         if (password.length() >= 6) {
             return true;
         }
@@ -33,7 +42,7 @@ public class LogIn implements LogInInterface {
         return false;
     }
 
-    public static boolean checkIfPasswordCorrect (Profile profile, String password) {
+    public boolean checkIfPasswordCorrect (Profile profile, String password) {
         if (profile.getPassword().equals(password)) {
             return true;
         }
@@ -41,7 +50,7 @@ public class LogIn implements LogInInterface {
     }
 
 
-    public static boolean createAccount (Database database, Profile newProfile) {
+    public boolean createAccount (Database database, Profile newProfile) {
         boolean userNameFormateCorrect = true;
         if (newProfile.getUserName().length() < 4 || newProfile.getUserName().contains(" ")) {
             userNameFormateCorrect = false;
@@ -63,7 +72,7 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public static boolean deleteAccount (Database database, Profile profile, String enteredPassword) {
+    public boolean deleteAccount (Database database, Profile profile, String enteredPassword) {
         if ((!isValidUserName(database.getAllUserProfile(),profile.getUserName()))
                 && (checkIfPasswordCorrect(profile,enteredPassword))) {
 
@@ -82,7 +91,7 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public static boolean loginAccount (Database database,Profile profile,String userName, String password) {
+    public boolean loginAccount (Database database,Profile profile,String userName, String password) {
 
        return (!isValidUserName(database.getAllUserProfile(), userName))
                && checkIfPasswordCorrect(profile,password);

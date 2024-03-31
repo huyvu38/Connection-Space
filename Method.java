@@ -1,6 +1,3 @@
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +9,18 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public class Method implements MethodInterface {
+    private ArrayList<Profile> allUserList;
+    private ArrayList<String> friendList;
+    private ArrayList<String> blockList;
+    private Profile userProfile;
+
+    public Method(ArrayList<Profile> allUserList, ArrayList<String> friendList, ArrayList<String> blockList, Profile userProfile) {
+        this.allUserList = allUserList;
+        this.friendList = friendList;
+        this.blockList = blockList;
+        this.userProfile = userProfile;
+    }
+
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
@@ -106,19 +115,19 @@ public class Method implements MethodInterface {
         }
         return false;
     }
-    public boolean deleteAccount (Database database, Profile profile, String enteredPassword) {
+    public boolean deleteAccount (ArrayList<Profile> allUserList, Profile profile, String enteredPassword) {
         // parameter String enteredPassword:
         // is for making sure if is the user itself to request deleting the account
-        if ((!isValidUserName(database.getAllUserProfile(),profile.getUserName()))
+        if ((!isValidUserName(allUserList ,profile.getUserName()))
                 && (checkIfPasswordCorrect(profile,enteredPassword))) {
 
-            ArrayList<Profile> userList = database.getAllUserProfile();
+            ArrayList<Profile> userList = allUserList;
             //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
 
             userList.remove(profile);
             //userAccList.remove(new UserAccount(profile));
+            this.allUserList = userList;
 
-            database.setAllUserProfile(userList);
             //database.setAllUserAccount(userAccList);
             return true;
 
