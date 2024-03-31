@@ -10,9 +10,12 @@ import java.io.File;
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Database {
+public class Database implements DatabaseInterface {
+    //Maybe we should store every data in allUserAccount.txt
     private String allUserProfileFile; // file name of save file
     private ArrayList<Profile> allUserProfile;
+    private ArrayList<UserAccount> allUserAccount;
+
     private String[] userInfo = {null,null,null,null,null,null,null};
 
     public Database (String allUserProfileFile) {

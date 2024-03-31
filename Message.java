@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 
-public class Message {
+public class Message implements MessageInterface{
     public boolean sendMessage (String senderUserName, String receiverUserName, String content) {
         // TODO
         return false;
