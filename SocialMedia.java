@@ -97,6 +97,7 @@ public class SocialMedia {
                         LogIn newLogInAccount = new LogIn(databaseSocialMedia, eachProfile, userName, password);
                         if (newLogInAccount.loginAccount(databaseSocialMedia, eachProfile, userName, password)) {
                             System.out.println("Log In successfully.");
+                            Method actions = new Method(allUserProfile, eachP)
                             //After user log in
                             while (true) {
                                 System.out.println("What would you like to do?");
@@ -221,8 +222,10 @@ public class SocialMedia {
                                     System.out.println("Log out from the app");
                                     break;
                                 } else if (userInput.equals("4")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
+                                    System.out.println("Search for the username that you want to add friend");
+                                    userInput = scanner.nextLine();
+                                    if
+                                }
                         System.out.println("Add friend successfully");
                     } else if (userInput.equals("5")) {
                         System.out.println("Search for the username");
