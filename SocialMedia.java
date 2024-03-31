@@ -122,25 +122,27 @@ public class SocialMedia {
                                     while (true) {
                                         userInput = scanner.nextLine();
                                         if (userInput.equals("1")) {
-                                            System.out.println();
+                                            System.out.println(eachProfile.getUserName());
                                             break;
                                         } else if (userInput.equals("2")) {
-                                            System.out.println();
+                                            System.out.println(eachProfile.getPassword());
                                             break;
                                         } else if (userInput.equals("3")) {
-                                            System.out.println();
+                                            System.out.println(eachProfile.getAge());
                                             break;
                                         } else if (userInput.equals("4")) {
-                                            System.out.println();
+                                            System.out.println(eachProfile.getGender());
                                             break;
                                         } else if (userInput.equals("5")) {
                                             System.out.println();
+                                            System.out.println(eachProfile.getNationality());
                                             break;
                                         } else if (userInput.equals("6")) {
-                                            System.out.println();
+                                            System.out.println(eachProfile.getJob());
                                             break;
                                         } else if (userInput.equals("7")) {
                                             System.out.println();
+                                            System.out.println(eachProfile.getHobby());
                                             break;
                                         } else {
                                             System.out.println("Please enter the right command.");
