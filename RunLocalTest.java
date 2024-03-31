@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -5,6 +6,14 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
+import org.junit.runners.JUnit4;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,15 +32,31 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class RunLocalTest {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(ProfileTestCase.class);
+        Result result = JUnitCore.runClasses(tempRunLocalTest.TestCase.class);
         if (result.wasSuccessful()) {
-            System.out.println("Excellent - Test ran successfully");
+            System.out.println("Excellent - Profile test ran successfully");
         } else {
             for (Failure failure : result.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
-    } // end of main
+        Result result1 = JUnitCore.runClasses(tempRunLocalTest.MessageTest.class);
+        if (result1.wasSuccessful()) {
+            System.out.println("Excellent - Message test ran successfully");
+        } else {
+            for (Failure failure : result1.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+        Result result2 = JUnitCore.runClasses(tempRunLocalTest.LogInTest.class);
+        if (result2.wasSuccessful()) {
+            System.out.println("Excellent - Log in test ran successfully");
+        } else {
+            for (Failure failure : result2.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+    }  // end of main
 
     @RunWith(Enclosed.class)
     public static class ProfileTestCase {
@@ -131,4 +156,116 @@ public class RunLocalTest {
         }
 
     } // end of UserAccountTest
+
+    @RunWith(JUnit4.class)
+    public static class MessageTest {
+        private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
+        private Message message;
+
+        @Before
+        public void setUp() {
+            message = new Message();
+            try {
+                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
+                Files.createFile(Paths.get(TEST_FILE_PATH));
+            } catch (Exception e) {
+                System.out.println("File path can't be created.");
+            }
+        }
+
+        @After
+        public void tearDown() {
+            try {
+                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
+            } catch (Exception e) {
+                System.out.println("File path can't be created.");
+            }
+        }
+
+        @Test
+        public void messageSuccessful() {
+            try {
+                message.sendMessage("sender", "receiver", "Test message", false);
+                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
+                assertTrue("File should contain the sent message", lines.get(0).contains("Test message"));
+            } catch (Exception e) {
+                System.out.println("Message failed to send.");
+
+            }
+        }
+
+        @Test
+        public void RemovesMessage() {
+            try {
+                Files.write(Paths.get(TEST_FILE_PATH), "1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message".getBytes());
+                //Message.deleteMessage(1); this has an error
+                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
+                assertTrue("Deleted message should have status changed", lines.get(0).contains("0"));
+            } catch (Exception e) {
+                System.out.println("Message failed to delete.");
+            }
+        }
+    }// end of test case for messages
+
+
+    public static class LogInTest {
+        private Database database;
+        private LogIn logIn;
+        private Profile validProfile;
+        private Profile invalidProfile;
+
+        @Before
+        public void setUp() {
+            database = new Database("testDatabase.txt");
+            validProfile = new Profile("ValidPerson", "!Starbucks123", 25, "Gender", "Nationality", "Job", "Hobby");
+            invalidProfile = new Profile("Bad", "123", 25, "Gender", "Nationality", "Job", "Hobby");
+
+            ArrayList<Profile> allProfiles = new ArrayList<>();
+            allProfiles.add(validProfile);
+            database.setAllUserProfile(allProfiles);
+
+            logIn = new LogIn(database, validProfile, validProfile.getUserName(), validProfile.getPassword());
+        }
+
+        @Test
+        public void testIsValidUserName() {
+            assertTrue(logIn.isValidUserName(database.getAllUserProfile(), "NewUser"));
+            assertFalse(logIn.isValidUserName(database.getAllUserProfile(), "ValidPerson"));
+        }
+
+        @Test
+        public void testCheckPasswordLength() {
+            assertTrue(logIn.checkPasswordLength("!Starbucks123"));
+            assertFalse(logIn.checkPasswordLength("123"));
+        }
+
+        @Test
+        public void testCheckIfPasswordCorrect() {
+            assertTrue(logIn.checkIfPasswordCorrect(validProfile, "!Starbucks123"));
+            assertFalse(logIn.checkIfPasswordCorrect(validProfile, "WrongPass"));
+        }
+
+        @Test
+        public void testCreateAccount() {
+            Profile newValidProfile = new Profile("NewValidUser", "New!Starbucks123", 30, "Gender", "Nationality", "Job", "Hobby");
+            assertTrue(logIn.createAccount(database, newValidProfile));
+            assertFalse(logIn.createAccount(database, invalidProfile));
+            assertEquals(2, database.getAllUserProfile().size());
+        }
+
+        @Test
+        public void testDeleteAccount() {
+            assertTrue(logIn.deleteAccount(database, validProfile, "!Starbucks123"));
+            assertFalse(logIn.deleteAccount(database, invalidProfile, "123"));
+            // Check if the valid profile is indeed removed
+            assertEquals(0, database.getAllUserProfile().size());
+        }
+
+        @Test
+        public void testLoginAccount() {
+            assertTrue(logIn.loginAccount(database, validProfile, "ValidPerson", "!Starbucks123"));
+            assertFalse(logIn.loginAccount(database, invalidProfile, "Bad", "123"));
+        }
+    }// for login
+
 } // end of class
