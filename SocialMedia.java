@@ -302,14 +302,14 @@ public class SocialMedia {
                         String senderName = scanner.nextLine();
                         Method method = new Method();
                         Profile senderProfile = method.searchProfile(senderName);
-                        Profile receiverPrlfile = method.searchProfile(receiverName)；
+                        Profile receiverProfile = method.searchProfile(receiverName);
                         Database database = new Database("AllUserAccount.txt");
 
                         if (!method.isValidUserName(database.getAllUserProfile(), receiverName) && senderProfile != null) {
                             System.out.println("Please enter the message");
                             String message = scanner.nextLine();
                             Message messages = new Message();
-                            messages.sendMessage(senderName,receiverName,message,)
+                            //messages.sendMessage(senderName,receiverName,message,)
 
                         }
                         String content = scanner.nextLine();
