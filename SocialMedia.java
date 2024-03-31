@@ -287,8 +287,22 @@ public class SocialMedia {
                         userInput = scanner.nextLine();
                         System.out.println("Unblock user successfully");
                     } else if (userInput.equals("8")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
+                        System.out.println("Who you want to send message to?");
+                        String receiverName = scanner.nextLine();
+                        System.out.println("what is your Username?");
+                        String senderName = scanner.nextLine();
+                        Method method = new Method();
+                        Profile senderProfile = method.searchProfile(senderName);
+                        Profile receiverPrlfile = method.searchProfile(receiverName)；
+                        Database database = new Database("AllUserAccount.txt");
+
+                        if (!method.isValidUserName(database.getAllUserProfile(), receiverName) && senderProfile != null) {
+                            System.out.println("Please enter the message");
+                            String message = scanner.nextLine();
+                            Message messages = new Message();
+                            messages.sendMessage(senderName,receiverName,message,)
+
+                        }
                         String content = scanner.nextLine();
                         System.out.println("Send message successfully");
                     } else if (userInput.equals("9")) {
