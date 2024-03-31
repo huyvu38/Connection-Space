@@ -2,13 +2,13 @@ import java.util.Scanner;
 /**
  * Team Project
  *
- * ApplicationControlFlow.java
+ * SocialMedia.java
  *
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
 
-public class ApplicationControlFlow {
+public class SocialMedia {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hi, welcome to the social media platform");
