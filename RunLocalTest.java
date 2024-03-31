@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class RunLocalTest {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(TestCase.class);
+        Result result = JUnitCore.runClasses(ProfileTestCase.class);
         if (result.wasSuccessful()) {
             System.out.println("Excellent - Test ran successfully");
         } else {
@@ -30,7 +30,7 @@ public class RunLocalTest {
     } // end of main
 
     @RunWith(Enclosed.class)
-    public static class TestCase {
+    public static class ProfileTestCase {
         private Profile profile;
         // Set profile for each test with @Before to run before each test
         @Before
@@ -76,5 +76,21 @@ public class RunLocalTest {
             assertEquals("toString method should name,password,age,gender,nationality,job,hobby" +
                             " with a comma and no space after the comma.", input, profile.toString());
         }
+
     } // end of test case
+    public static class UserAccountTest {
+        private Profile profile;
+        private UserAccount userAccount;
+
+        // Set profile and userAcount for each test with @Before to run before each test
+        @Before
+        public void setUserPandU() {
+            profile = new Profile("abaldocc", "whatsup", 20, "Male",
+                    "Salvadorian", "Building Manager", "Soccer");
+            userAccount = new UserAccount(profile);
+        }
+
+
+
+    } // end of UserAccountTest
 } // end of class
