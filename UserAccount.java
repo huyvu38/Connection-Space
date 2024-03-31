@@ -24,9 +24,6 @@ public class UserAccount implements UserAccountInterface {
     public Profile getUserProfile() {
         return userProfile;
     }
-    public void setUserProfile(Profile userProfile) {
-        this.userProfile = userProfile;
-    }
 
     public ArrayList<String> getFriendList() {
         return friendList;
