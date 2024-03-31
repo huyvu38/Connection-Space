@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 /**
@@ -6,7 +5,7 @@ import java.util.ArrayList;
  *
  * LogIn.java
  *
- * @author Yanxin Yu, L22
+ * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 30 March 2024
  */
 

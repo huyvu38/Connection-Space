@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 /**
  * Team Project
  *
@@ -6,7 +7,6 @@
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-import java.util.ArrayList;
 public interface LogInInterface {
     boolean isValidUserName(ArrayList<Profile> allUserList, String userName);
     boolean checkPasswordLength(String password);
