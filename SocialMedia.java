@@ -82,15 +82,29 @@ public class SocialMedia {
                     }
                 }
             } else if (userInput.equals("2")) {
-                // Assuming Database class is defined
-                Database databaseSocialMedia = new Database("AllUserAccount.txt");
-                databaseSocialMedia.readAllUserAccount();
-                ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
-                ArrayList<UserAccount> allUserAccount = databaseSocialMedia.getAllUserAccount();
-                System.out.println("Enter your username");
-                String userName = scanner.nextLine();
-                System.out.println("Enter your password");
-                String password = scanner.nextLine();
+                while (true) {
+                    // Assuming Database class is defined
+                    Database databaseSocialMedia = new Database("AllUserAccount.txt");
+                    databaseSocialMedia.readAllUserAccount();
+                    ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
+                    ArrayList<UserAccount> allUserAccount = databaseSocialMedia.getAllUserAccount();
+                    System.out.println("Enter your username");
+                    String userName = scanner.nextLine();
+                    System.out.println("Enter your password");
+                    String password = scanner.nextLine();
+                    //If the username exists
+                    for (Profile eachProfile : allUserProfile) {
+                        if (eachProfile.getUserName().equals(userName)) {
+                            LogIn newLogInAccount = new LogIn(databaseSocialMedia, eachProfile, userName, password);
+                            if (newLogInAccount.loginAccount(databaseSocialMedia, eachProfile, userName, password)) {
+                                System.out.println("Log In successfully.");
+                                break;
+                            } else {
+                                System.out.println("Your account does not exist.");
+                            }
+                        }
+                    }
+                }
                 while (true) {
                     System.out.println("What would you like to do?");
                     System.out.println("1. View your profile");
