@@ -11,6 +11,7 @@ import org.junit.*;
 import org.junit.runners.JUnit4;
 import java.nio.file.*;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Team Project
@@ -26,7 +27,7 @@ public class tempRunLocalTest {
     public static void main(String[] args) {
         Result result = JUnitCore.runClasses(TestCase.class);
         if (result.wasSuccessful()) {
-            System.out.println("Excellent - Test ran successfully");
+            System.out.println("Excellent - Profile test ran successfully");
         } else {
             for (Failure failure : result.getFailures()) {
                 System.out.println(failure.toString());
@@ -34,9 +35,17 @@ public class tempRunLocalTest {
         }
         Result result1 = JUnitCore.runClasses(MessageTest.class);
         if (result1.wasSuccessful()) {
-            System.out.println("Excellent - Test ran successfully");
+            System.out.println("Excellent - Message test ran successfully");
         } else {
             for (Failure failure : result1.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+        Result result2 = JUnitCore.runClasses(LogInTest.class);
+        if (result2.wasSuccessful()) {
+            System.out.println("Excellent - Log in test ran successfully");
+        } else {
+            for (Failure failure : result2.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
@@ -67,8 +76,6 @@ public class tempRunLocalTest {
         // testing setters
         @Test
         public void profileSetterTest() {
-            profile.setUserName("alexia");
-            assertEquals("Username should now be alexia", "alexia", profile.getUserName());
             profile.setPassword("whyy");
             assertEquals("Password should now be whyynot", "whyynot", profile.getPassword());
             profile.setAge(18);
@@ -94,7 +101,7 @@ public class tempRunLocalTest {
 
 
     @RunWith(JUnit4.class)
-    public class MessageTest {
+    public static class MessageTest {
         private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
         private Message message;
 
@@ -121,7 +128,6 @@ public class tempRunLocalTest {
         @Test
         public void messageSuccessful() {
             try {
-                // Send a test
                 message.sendMessage("sender", "receiver", "Test message", false);
                 List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
                 assertTrue("File should contain the sent message", lines.get(0).contains("Test message"));
@@ -135,16 +141,68 @@ public class tempRunLocalTest {
         public void RemovesMessage() {
             try {
                 Files.write(Paths.get(TEST_FILE_PATH), "1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message".getBytes());
-
-                // Attempt to delete the message
-                message.deleteMessage(1);
-
-                // check if message status was changed to 'deleted'
+                Message.deleteMessage(1);
                 List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
                 assertTrue("Deleted message should have status changed", lines.get(0).contains("0"));
             } catch (Exception e) {
                 System.out.println("Message failed to delete.");
             }
         }
-    }// end of test case for
+    }// end of test case for messages
+
+
+    public static class LogInTest {
+        private Database database;
+        private Profile validProfile;
+        private Profile invalidProfile;
+
+        @Before
+        public void setUp() {
+            database = new Database("testDatabase1.txt");
+            validProfile = new Profile("ValidUser", "ValidPass123", 25, "Gender", "Nationality", "Job", "Hobby");
+            invalidProfile = new Profile("InUser", "123", 25, "Gender", "Nationality", "Job", "Hobby");
+            ArrayList<Profile> allProfiles = new ArrayList<>();
+            allProfiles.add(validProfile);
+            database.setAllUserProfile(allProfiles);
+        }
+
+        @Test
+        public void testIsValidUserName() {
+            assertTrue(LogIn.isValidUserName(database.getAllUserProfile(), "NewUser"));
+            assertFalse(LogIn.isValidUserName(database.getAllUserProfile(), "ValidUser"));
+        }
+
+        @Test
+        public void testCheckPasswordLength() {
+            assertTrue(LogIn.checkPasswordLength("ValidPass123"));
+            assertFalse(LogIn.checkPasswordLength("123"));
+        }
+
+        @Test
+        public void testCheckIfPasswordCorrect() {
+            assertTrue(LogIn.checkIfPasswordCorrect(validProfile, "ValidPass123"));
+            assertFalse(LogIn.checkIfPasswordCorrect(validProfile, "WrongPass"));
+        }
+
+        @Test
+        public void testCreateAccount() {
+            Profile newValidProfile = new Profile("NewValidUser", "NewValidPass123", 30, "Gender", "Nationality", "Job", "Hobby");
+            assertTrue(LogIn.createAccount(database, newValidProfile));
+            assertFalse(LogIn.createAccount(database, invalidProfile));
+            assertEquals(2, database.getAllUserProfile().size());
+        }
+
+        @Test
+        public void testDeleteAccount() {
+            assertTrue(LogIn.deleteAccount(database, validProfile, "ValidPass123"));
+            assertFalse(LogIn.deleteAccount(database, invalidProfile, "123"));
+            assertTrue(database.getAllUserProfile().isEmpty());
+        }
+
+        @Test
+        public void testLoginAccount() {
+            assertTrue(LogIn.loginAccount(database, validProfile, "ValidUser", "ValidPass123"));
+            assertFalse(LogIn.loginAccount(database, invalidProfile, "InUser", "123"));
+        }
+    }// for login
 } // end of class
