@@ -157,7 +157,7 @@ public class Message implements MessageInterface {
     // that should be print out
     // The message that already deleted will not be printed in this method, but it still exist in the database
     // For the blocked message, the sender still can see it, but on the receiver side, it won't be shown
-    
+
     public static boolean printHistoryMessage(String senderName, String receiverName) {
         String filePath = "Messages.txt";
         BufferedReader br = null;
