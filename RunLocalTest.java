@@ -32,12 +32,6 @@ public class RunLocalTest {
     @RunWith(Enclosed.class)
     public static class ProfileTestCase {
         private Profile profile;
-        // Set profile for each test with @Before to run before each test
-        @Before
-        public void setProfile() {
-            profile = new Profile("abaldocc", "whatsup", 20, "Male",
-                    "Salvadorian", "Building Manager", "Soccer");
-        } // end of setProfile
 
         /*Testing of constructors and getters*/
         @Test
@@ -54,9 +48,7 @@ public class RunLocalTest {
         // testing setters
         @Test
         public void profileSetterTest() {
-            profile.setUserName("alexia");
-            assertEquals("Username should now be alexia", "alexia", profile.getUserName());
-            profile.setPassword("whyy");
+            profile.setPassword("whyynot");
             assertEquals("Password should now be whyynot", "whyynot", profile.getPassword());
             profile.setAge(18);
             assertEquals("Age should now be 18", 18, profile.getAge());

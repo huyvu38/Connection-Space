@@ -30,9 +30,6 @@ public class Profile implements ProfileInterface{
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
     public String getPassword() {
         return password;
     }

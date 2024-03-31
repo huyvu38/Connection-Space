@@ -9,12 +9,10 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public interface DatabaseInterface {
-
-    //public ArrayList<UserAccount> getAllUserAccount();
-
-    //public void setAllUserAccount(ArrayList<UserAccount> allUserAccount);
-
-    public ArrayList<Profile> getAllUserProfile();
-
-    public void setAllUserProfile(ArrayList<Profile> allUserProfile);
+    boolean readAllUserAccount();
+    boolean saveAllUserAccount();
+    ArrayList<Profile> getAllUserProfile();
+    void setAllUserProfile(ArrayList<Profile> allUserProfile);
+    ArrayList<UserAccount> getAllUserAccount();
+    void setAllUserAccount(ArrayList<UserAccount> allUserAccount);
 }

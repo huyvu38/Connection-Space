@@ -16,16 +16,13 @@ public class UserAccount implements UserAccountInterface {
 
     public UserAccount(Profile userProfile) {
         this.userProfile = userProfile;
-        this.friendList = new ArrayList<>(); //where do we fill this
+        this.friendList = new ArrayList<>();
         this.blockList = new ArrayList<>();
     }
 
 
     public Profile getUserProfile() {
         return userProfile;
-    }
-    public void setUserProfile(Profile userProfile) {
-        this.userProfile = userProfile;
     }
 
     public ArrayList<String> getFriendList() {
@@ -42,26 +39,6 @@ public class UserAccount implements UserAccountInterface {
 
     public void setBlockList(ArrayList<String> blockList) {
         this.blockList = blockList;
-    }
-
-    //Before
-    //vu28,12345678,18,Male,VietNam,student,football;FriendList: [george23,alvin23,jay89];BlockList: [george333]
-    //george23,123456,20,Female,Brazil,doctor,sing;FriendList: [vu28];BlockList: [jay89]
-
-    //If vu28 change to vu28123
-    //vu28123,12345678,18,Male,VietNam,student,football;FriendList: [george23,alvin23,jay89];BlockList: [george333]
-    //george23,123456,20,Female,Brazil,doctor,sing;FriendList: [vu28];BlockList: [jay89]
-
-    //Expected output
-    //vu28123,12345678,18,Male,VietNam,student,football;FriendList: [george23,alvin23,jay89];BlockList: [george333]
-    //george23,123456,20,Female,Brazil,doctor,sing;FriendList: [vu28123];BlockList: [jay89]
-    public void updateBlockUserName (String oldUserName, String newUserName) {
-        for (String eachUserName : this.blockList) {
-            if (oldUserName.equals(eachUserName)) {
-                this.blockList.remove(oldUserName);
-                this.blockList.add(newUserName);
-            }
-        }
     }
     public String toString() {
         String friend = "";
