@@ -161,6 +161,7 @@ public class SocialMedia {
                                             System.out.println("Enter new password");
                                             userInput = scanner.nextLine();
                                             eachProfile.setPassword(userInput);
+                                            break;
                                         } else if (userInput.equals("2")) {
                                             int newAge = 0;
                                             while (true) {
@@ -178,6 +179,7 @@ public class SocialMedia {
                                                 }
                                             }
                                             eachProfile.setAge(userInput);
+                                            break;
                                         } else if (userInput.equals("3")) {
                                             String gender = "";
                                             while (true) {
@@ -193,39 +195,21 @@ public class SocialMedia {
                                                 }
                                             }
                                             eachProfile.setGender(gender);
-                                        } else if (userInput.equals("5")) {
+                                            break;
+                                        } else if (userInput.equals("4")) {
                                             System.out.println("Enter your nationality");
                                             userInput = scanner.nextLine();
-                                /*
-                                for (Profile userProfile : database.getAllUserProfile()) {
-                                    if (userProfile.getUserName().equals(userName)) {
-                                        userProfile.setNationality(userInput);
-                                    }
-                                }
-                                */
+                                            eachProfile.setNationality(userInput);
                                             break;
-                                        } else if (userInput.equals("6")) {
+                                        } else if (userInput.equals("5")) {
                                             System.out.println("Enter your job");
                                             userInput = scanner.nextLine();
-                                /*
-                                for (Profile userProfile : database.getAllUserProfile()) {
-                                    if (userProfile.getUserName().equals(userName)) {
-                                        userProfile.setJob(userInput);
-                                    }
-                                }
-                                */
+                                            eachProfile.setJob(userInput);
                                             break;
-                                        } else if (userInput.equals("7")) {
+                                        } else if (userInput.equals("6")) {
                                             System.out.println("Enter your hobby");
                                             userInput = scanner.nextLine();
-                                /*
-                                for (Profile userProfile : database.getAllUserProfile()) {
-                                    if (userProfile.getUserName().equals(userName)) {
-                                        userProfile.setHobby(userInput);
-                                    }
-                                }
-
-                                 */
+                                            eachProfile.setHobby(userInput);
                                             break;
                                         } else {
                                             System.out.println("Please enter the right command");
