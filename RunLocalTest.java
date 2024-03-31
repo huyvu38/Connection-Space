@@ -1,4 +1,3 @@
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -6,12 +5,13 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import org.junit.*;
 import org.junit.runners.JUnit4;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.nio.file.*;
 import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
