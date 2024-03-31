@@ -9,12 +9,14 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public interface MethodInterface {
-    boolean isValidUserName (ArrayList<Profile> allUserList, String userName);
-    boolean inFriendList (ArrayList<Profile> allUserList, ArrayList<String> friendList, String userName);
-    boolean inBlockList (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
-    boolean addFriend (ArrayList<Profile> allUserList, ArrayList<String> friendList, ArrayList<String> blockList, String userName);
-    boolean removeFriend (ArrayList<Profile> allUserList, ArrayList<String> friendList, ArrayList<String> blockList, String userName);
-    boolean blockUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
-    boolean unblockUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
-    boolean searchUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String word);
+    boolean isValidUserName(ArrayList<Profile> allUserList, String userName);
+    boolean inFriendList(ArrayList<Profile> allUserList, ArrayList<String> friendList, String userName);
+    boolean inBlockList(ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
+    boolean addFriend(ArrayList<Profile> allUserList, ArrayList<String> friendList,
+                      ArrayList<String> blockList, String userName);
+    boolean removeFriend(ArrayList<Profile> allUserList, ArrayList<String> friendList,
+                         ArrayList<String> blockList, String userName);
+    boolean blockUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
+    boolean unblockUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
+    boolean searchUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String word);
 }

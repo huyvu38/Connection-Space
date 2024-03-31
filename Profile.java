@@ -19,7 +19,8 @@ public class Profile implements ProfileInterface {
 
 
 
-    public Profile (String userName, String password, int age, String gender, String nationality, String job, String hobby) {
+    public Profile(String userName, String password, int age,
+                    String gender, String nationality, String job, String hobby) {
         this.userName = userName;
         this.password = password;
         this.age = age;

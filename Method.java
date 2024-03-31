@@ -14,7 +14,8 @@ public class Method implements MethodInterface {
     private ArrayList<String> blockList;
     private Profile userProfile;
 
-    public Method(ArrayList<Profile> allUserList, ArrayList<String> friendList, ArrayList<String> blockList, Profile userProfile) {
+    public Method(ArrayList<Profile> allUserList, ArrayList<String> friendList,
+                  ArrayList<String> blockList, Profile userProfile) {
         this.allUserList = allUserList;
         this.friendList = friendList;
         this.blockList = blockList;
@@ -38,17 +39,17 @@ public class Method implements MethodInterface {
         return account;
     }
 
-    public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
-        for (Profile eachProfile : allUserList) {
+    public boolean isValidUserName(ArrayList<Profile> allUsersList, String userName) {
+        for (Profile eachProfile : allUsersList) {
             if (eachProfile.getUserName().equals(userName)) {
                 return false; //User exist in the database
             }
         }
         return true; // User doesn't exist in the database
     }
-    public boolean inFriendList (ArrayList<Profile> allUserList, ArrayList<String> friendList, String userName) {
-        if (isValidUserName(allUserList, userName)) {
-            for (String eachFriend : friendList) {
+    public boolean inFriendList(ArrayList<Profile> allUsersList, ArrayList<String> friendsList, String userName) {
+        if (isValidUserName(allUsersList, userName)) {
+            for (String eachFriend : friendsList) {
                 if (eachFriend.equals(userName)) {
                     return true;
                 }
@@ -58,9 +59,10 @@ public class Method implements MethodInterface {
     }
 
     //
-    public boolean inBlockList (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userNameWantBlock) {
-        if (isValidUserName(allUserList, userNameWantBlock)) {
-            for (String eachBlockUser : blockList) {
+    public boolean inBlockList(ArrayList<Profile> allUsersList, ArrayList<String> blocksList,
+                               String userNameWantBlock) {
+        if (isValidUserName(allUsersList, userNameWantBlock)) {
+            for (String eachBlockUser : blocksList) {
                 if (eachBlockUser.equals(userNameWantBlock)) {
                     return true;
                 }
@@ -71,58 +73,53 @@ public class Method implements MethodInterface {
 
 
 
-    public boolean addFriend (ArrayList<Profile> allUserList, ArrayList<String> friendList, ArrayList<String> blockList, String userName) {
-        if (isValidUserName(allUserList, userName)) {
-            if (inBlockList(allUserList, blockList, userName)) {
+    public boolean addFriend(ArrayList<Profile> allUsersList, ArrayList<String> friendsList,
+                             ArrayList<String> blocksList, String userName) {
+        if (isValidUserName(allUsersList, userName)) {
+            if (inBlockList(allUsersList, blocksList, userName)) {
                 return false; //Already block user
             }
-            if (inFriendList(allUserList, friendList, userName)) {
+            if (inFriendList(allUsersList, friendsList, userName)) {
                 return false; // already in the friend list
-            } else {
-                return true;
             }
+            return true;
         }
         return false;
     }
-    public boolean removeFriend (ArrayList<Profile> allUserList, ArrayList<String> friendList, ArrayList<String> blockList, String userName) {
-        if (isValidUserName(allUserList, userName)) {
-            if (inBlockList(allUserList, blockList, userName)) {
+    public boolean removeFriend(ArrayList<Profile> allUsersList, ArrayList<String> friendsList,
+                                ArrayList<String> blocksList, String userName) {
+        if (isValidUserName(allUsersList, userName)) {
+            if (inBlockList(allUsersList, blocksList, userName)) {
                 return false; //Already in block list
             }
-            if (inFriendList(allUserList, friendList, userName)) {
+            if (inFriendList(allUsersList, friendsList, userName)) {
                 return true; //That userName in the list so can remove friend
-            } else {
-                return false;
             }
         }
         return false;
     }
-    public boolean blockUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName) {
-        if (isValidUserName(allUserList, userName)) {
-            if (inBlockList(allUserList, blockList, userName)) {
-                return false; //Already block
-            } else {
+    public boolean blockUser(ArrayList<Profile> allUsersList, ArrayList<String> blocksList, String userName) {
+        if (isValidUserName(allUsersList, userName)) {
+            if (!inBlockList(allUsersList, blocksList, userName)) {
+                return true; //Already block
+            }
+        }
+        return false;
+    }
+    public boolean unblockUser(ArrayList<Profile> allUsersList, ArrayList<String> blocksList, String userName) {
+        if (isValidUserName(allUsersList, userName)) {
+            if (inBlockList(allUsersList, blocksList, userName)) {
                 return true;
             }
         }
         return false;
     }
-    public boolean unblockUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName) {
-        if (isValidUserName(allUserList, userName)) {
-            if (inBlockList(allUserList, blockList, userName)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
-    public boolean searchUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String username) {
-        for (Profile eachProfile : allUserList) {
+    public boolean searchUser(ArrayList<Profile> allUsersList, ArrayList<String> blocksList, String username) {
+        for (Profile eachProfile : allUsersList) {
             //Check all username that contain the word
             if (eachProfile.getUserName().equals(username)) {
                 //Do not display username in block list
-                if (inBlockList(allUserList, blockList, username) == false) {
+                if (inBlockList(allUsersList, blocksList, username) == false) {
                     return true;
                 }
             }
@@ -130,19 +127,16 @@ public class Method implements MethodInterface {
         return false;
     }
 
-    public boolean checkIfPasswordCorrect (Profile profile, String password) {
-        if (profile.getPassword().equals(password)) {
-            return true;
-        }
-        return false;
+    public boolean checkIfPasswordCorrect(Profile profile, String password) {
+        return profile.getPassword().equals(password);
     }
-    public boolean deleteAccount (ArrayList<Profile> allUserList, Profile profile, String enteredPassword) {
+    public boolean deleteAccount(ArrayList<Profile> allUsersList, Profile profile, String enteredPassword) {
         // parameter String enteredPassword:
         // is for making sure if is the user itself to request deleting the account
-        if ((!isValidUserName(allUserList ,profile.getUserName()))
-                && (checkIfPasswordCorrect(profile,enteredPassword))) {
+        if ((!isValidUserName(allUsersList , profile.getUserName()))
+                && (checkIfPasswordCorrect(profile, enteredPassword))) {
 
-            ArrayList<Profile> userList = allUserList;
+            ArrayList<Profile> userList = allUsersList;
             //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
 
             userList.remove(profile);
