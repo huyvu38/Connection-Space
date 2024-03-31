@@ -346,40 +346,7 @@ public class SocialMedia {
                                             System.out.println("The account does not exist.");
                                         }
                                     }
-                                } else if (userInput.equals("3")) {
-                                    System.out.println("Enter your username");
-                                    userInput = scanner.nextLine();
-                        /*
-                        for (Profile userProfile : database.getAllUserProfile()) {
-                            if (userProfile.getUserName().equals(userName)) {
-                                database.getAllUserProfile().remove(userProfile);
-                            }
-                        }
-                        for (UserAccount userAccount : database.getAllUserAccount()) {
-                            if (userAccount.getUserProfile().getUserName().equals(userName)) {
-                                database.getAllUserAccount().remove(userAccount);
-                            }
-                        }
-                         */
-                        System.out.println("Delete account successfully");
-                        System.out.println("Log out from the app");
-                        break;
-                    } else if (userInput.equals("4")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
-                        System.out.println("Add friend successfully");
-                    } else if (userInput.equals("5")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
-                        System.out.println("Delete friend successfully");
-                    } else if (userInput.equals("6")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
-                        System.out.println("Block user successfully");
-                    } else if (userInput.equals("7")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
-                        System.out.println("Unblock user successfully");
+
                     } else if (userInput.equals("8")) {
                         //get sender name and receiver name
                         //System.out.println("Who you want to send message to?");
