@@ -41,7 +41,7 @@ public class Database implements DatabaseInterface {
                 String blockList = element[2].substring(11, element[2].length() - 1);
                 ArrayList<String> blockusers = new ArrayList<>();
                 String[] eachBlockUser = blockList.split(" ");
-                for (String username : blockusers) {
+                for (String username : eachBlockUser) {
                     blockusers.add(username);
                 }
                 UserAccount userAccount = new UserAccount(profile);

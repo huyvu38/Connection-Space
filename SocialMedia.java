@@ -99,7 +99,7 @@ public class SocialMedia {
                             System.out.println("Log In successfully.");
                             for (UserAccount eachUserAccount : allUserAccount) {
                                 if (eachUserAccount.getUserProfile().equals(userName)) {
-                                    Method actions = new Method(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList());
+                                    Method actions = new Method(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), eachProfile);
                                     //After user log in
                                     while (true) {
                                         System.out.println("What would you like to do?");
@@ -181,7 +181,7 @@ public class SocialMedia {
                                                             System.out.println("Please enter a valid number");
                                                         }
                                                     }
-                                                    eachProfile.setAge(userInput);
+                                                    eachProfile.setAge(newAge);
                                                     break;
                                                 } else if (userInput.equals("3")) {
                                                     String gender = "";
@@ -219,7 +219,7 @@ public class SocialMedia {
                                                 }
                                             }
                                         } else if (userInput.equals("3")) {
-                                            newLogInAccount.deleteAccount(databaseSocialMedia, userName, password);
+                                            newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, password);
                                             System.out.println("Delete account successfully");
                                             System.out.println("Log out from the app");
                                             break;
@@ -263,174 +263,21 @@ public class SocialMedia {
                                         } else if (userInput.equals("7")) {
                                             System.out.println("Search for the username that you want to unblock");
                                             userInput = scanner.nextLine();
-                                            if (actions.unblockUser(allUserProfile, eachUserAccount.getBlockList(), userName)) {
+                                            if (actions.unblockUser(allUserProfile, eachUserAccount.getBlockList(), userInput)) {
                                                 eachUserAccount.getBlockList().remove(userName);
                                                 System.out.println("Unblock friend successfully");
                                             } else {
                                                 System.out.println("You can not unblock that user");
                                             }
                                         } else if (userInput.equals("8")) {
-                                        //get sender name and receiver name
-                                        //System.out.println("Who you want to send message to?");
-                                        boolean keepgoing = true;
-                                        do {
-                                            System.out.println("1. Send Group Message");
-                                            System.out.println("2. Send message to specific friend");
-                                            System.out.println("3. Exit");
-                                            int input = scanner.nextInt();
-                                            scanner.nextLine();
-                                            if (input == 1) {
-                                                System.out.println("How many members in the group?");
-                                                int num = scanner.nextInt();
-                                                scanner.nextLine();
-                                                ArrayList<String> groupMemberList = new ArrayList<String>();
-                                                for (int i = 0; i < num; i++) {
-                                                    System.out.println("Who you want to send message to?");
-                                                    groupMemberList.add(scanner.nextLine());
-                                                }
-                                                System.out.println("what is your Username?");
-                                                String senderName = scanner.nextLine();
 
-                                                System.out.println("Ready to send message?");
-                                                System.out.println("1. Yes");
-                                                System.out.println("2. No");
-                                                String ans = scanner.nextLine();
-                                                if (ans.equals(1)) {
-
-                                                } else if
-
-
-                                            } else if (input == 2) {
-                                                System.out.println("Who you want to send message to?");
-                                                String receiverName = scanner.nextLine();
-                                                System.out.println("what is your Username?");
-                                                String senderName = scanner.nextLine();
-
-
-                                            } else if (input == 3) {
-                                                keepgoing = false;
-                                            } else {
-                                                System.out.println("Invalid Input! Try Again");
-                                            }
-                                        } while (keepgoing);
-
-
-
-                                        //extract the profiles
-                                        Method method = new Method();
-                                        Profile senderProfile = method.searchProfile(senderName);
-                                        Profile receiverProfile = method.searchProfile(receiverName);
-                                        Database database = new Database("AllUserAccount.txt");
-
-                                        //Check if sender is blocked by receiver
-                                        boolean isInBlockList = receiverProfile.;
-                                        ArrayList<String> blockList = new ArrayList<String>();
-                                        for (UserAccount userAccount: database.getAllUserAccount()) {
-                                            if (userAccount.getUserProfile().getUserName().equals(receiverName) {
-                                                blockList = userAccount.getBlockList();
-                                            }
-                                        }
-                                        for (String string: blockList) {
-                                            if (string.equals(senderName)) {
-                                                isInBlockList = true;
-                                            }
-                                        }
-
-                                        //SendMessage
-                                        System.out.println("Please enter the message");
-                                        String message = scanner.nextLine();
-                                        Message messages = new Message();
-                                        if (messages.sendMessage(senderName,receiverName,message,isInBlockList)) {
-                                            System.out.println("Send message successfully");
+                                        } else if (userInput.equals("9")) {
+                                            break;
                                         } else {
-                                            System.out.println("The account does not exist.");
+                                            System.out.println("Please enter the right command");
                                         }
                                     }
-
-                    } else if (userInput.equals("8")) {
-                        //get sender name and receiver name
-                        //System.out.println("Who you want to send message to?");
-                        boolean keepgoing = true;
-                        boolean hasFriend =
-                        do {
-                            System.out.println("1. Send Group Message");
-                            System.out.println("2. Send message to specific friend");
-                            System.out.println("3. Print history message");
-                            System.out.println("4. Exit");
-                            int input = scanner.nextInt();
-                            scanner.nextLine();
-
-                            if (input == 1) {
-                                boolean groupMessageKeepGoing;
-                                do {
-                                    System.out.println("How many members in the group?");
-                                    int num = scanner.nextInt();
-                                    scanner.nextLine();
-                                    ArrayList<String> groupMemberList = new ArrayList<String>();
-                                    for (int i = 0; i < num; i++) {
-                                        System.out.println("Who you want to send message to?");
-                                        groupMemberList.add(scanner.nextLine());
-                                    }
-                                    System.out.println("what is your Username?");
-                                    String senderName = scanner.nextLine();
-
-
-                                    System.out.println("Type in message:");
-                                    String message = scanner.nextLine();
-                                    Message message1 = new Message();
-                                    message1.restrictMessage(senderName, groupMemberList, message);
-                                    for (String member : groupMemberList) {
-                                        message1.printHistoryMessage(senderName, member);
-                                    }
-
-                                    System.out.println("Keep sending message?");
-                                    System.out.println("1. Yes");
-                                    System.out.println("2. No");
-                                    String ans = scanner.nextLine();
-                                    if (ans.equals(1)) {
-                                        groupMessageKeepGoing = true;
-                                    } else {
-                                        groupMessageKeepGoing = false;
-                                    }
-                                } while (groupMessageKeepGoing);
-
-                            } else if (input == 2) {
-                                boolean friendMessageKeepGoing;
-                                do {
-                                    System.out.println("Who you want to send message to?");
-                                    String receiverName = scanner.nextLine();
-                                    System.out.println("what is your Username?");
-                                    String senderName = scanner.nextLine();
-
-                                    System.out.println("Keep sending message?");
-                                    System.out.println("1. Yes");
-                                    System.out.println("2. No");
-                                    String ans = scanner.nextLine();
-                                    if (ans.equals(1)) {
-                                        friendMessageKeepGoing = true;
-                                    } else {
-                                        friendMessageKeepGoing = false;
-                                    }
-                                } while (friendMessageKeepGoing);
-
-                            } else if (input == 3) {
-                                boolean printKeepGoing;
-                                do {
-                                    System.out.println("Keep printing message?");
-                                    System.out.println("1. Yes");
-                                    System.out.println("2. No");
-                                    String ans = scanner.nextLine();
-                                    if (ans.equals(1)) {
-                                        printKeepGoing = true;
-                                    } else {
-                                        printKeepGoing = false;
-                                    }
-                                } while (printKeepGoing);
-                            } else if (input == 4) {
-                                keepgoing = false;
-                            } else {
-                                System.out.println("Invalid Input! Try Again");
-
+                                }
                             }
                         }
                     }
