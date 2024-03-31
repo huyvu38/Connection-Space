@@ -6,6 +6,7 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
+<<<<<<< HEAD
 import org.junit.runners.JUnit4;
 
 import java.nio.file.Files;
@@ -14,6 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+=======
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.junit.Assert.assertEquals;
+>>>>>>> 53c39f3a4d2954e20198ee914befb22d1ed7cd0b
 
 /**
  * Team Project
@@ -56,6 +64,12 @@ public class RunLocalTest {
     @RunWith(Enclosed.class)
     public static class ProfileTestCase {
         private Profile profile;
+        // Set profile for each test with @Before to run before each test
+        @Before
+        public void setProfile() {
+            profile = new Profile("abaldocc", "whatsup", 20, "Male",
+                    "Salvadorian", "Building Manager", "Soccer");
+        } // end of setProfile
 
         /*Testing of constructors and getters*/
         @Test
@@ -97,6 +111,8 @@ public class RunLocalTest {
     public static class UserAccountTest {
         private Profile profile;
         private UserAccount userAccount;
+        private ArrayList<String> friendList;
+        private ArrayList<String> blockList;
 
         // Set profile and userAcount for each test with @Before to run before each test
         @Before
@@ -104,9 +120,43 @@ public class RunLocalTest {
             profile = new Profile("abaldocc", "whatsup", 20, "Male",
                     "Salvadorian", "Building Manager", "Soccer");
             userAccount = new UserAccount(profile);
+            friendList = new ArrayList<>();
+            blockList = new ArrayList<>();
+            friendList.add("archie");
+            blockList.add("Frigolet");
+            userAccount.setFriendList(friendList);
+            userAccount.setBlockList(blockList);
+        }
+        @Test
+        public void getUserAccountTest() {
+            assertEquals("Make sure UserAccount properly gets the profile information.",
+                    profile, userAccount.getUserProfile());
+            assertEquals("Make sure blockList is implemented correctly.",
+                    blockList, userAccount.getBlockList());
+            assertEquals("Make sure friendList is implemented correctly.",
+                    friendList, userAccount.getFriendList());
         }
 
+        @Test
+        public void UserSetterTest() {
+            friendList.add("Matt");
+            userAccount.setFriendList(friendList);
+            ArrayList<String> newFriendList = new ArrayList<>(Arrays.asList("archie", "Matt"));
+            assertEquals("Friend list should now be [archie, Matt]", newFriendList, userAccount.getFriendList());
+            blockList.add("Pablo");
 
+            userAccount.setBlockList(blockList);
+            ArrayList<String> newBlockList = new ArrayList<>(Arrays.asList("Frigolet", "Pablo"));
+            assertEquals("Block list should now be [Frigolet, Pablo]", newBlockList, userAccount.getBlockList());
+        }
+        @Test
+        public void toStringTest() {
+            String a = String.format(";FriendList:[%s];BlockList:[%s]", userAccount.getFriendList(),
+                    userAccount.getBlockList());
+            String formatToString = profile.toString() + a;
+            assertEquals("Make sure the toString method matches correctly outputs the data.", formatToString,
+                    userAccount.toString());
+        }
 
     } // end of UserAccountTest
 

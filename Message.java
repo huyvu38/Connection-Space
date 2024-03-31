@@ -133,12 +133,9 @@ public class Message implements MessageInterface {
     }
 
 
-    // Only send message to all friends in friendList
     // Only send message when otherUserName is in friendList
     // return empty string if all success, otherwirse indicate which one failed.
-    public  String restrictMessage(String userName, ArrayList<String> friendList, String content) {
         List<String> failedUser = new ArrayList<>();
-        for (String friend: friendList) {
             if(!this.sendMessage(userName, friend, content, false)) {
                 failedUser.add(friend);
             }
@@ -197,7 +194,6 @@ public class Message implements MessageInterface {
                 if (array[1].equals(0)
                         && array[3].equals(senderName)
                         && array[4].equals(receiverName)) {
-                    System.out.printf("%s %s %s-%s %s", array[0],array[2],array[3],array[6],array[5]);
                 }
             }
             //return true;
