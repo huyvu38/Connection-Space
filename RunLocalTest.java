@@ -57,7 +57,7 @@ public class RunLocalTest {
             profile.setUserName("alexia");
             assertEquals("Username should now be alexia", "alexia", profile.getUserName());
             profile.setPassword("whyy");
-            assertEquals("Password should now be whyy", "whyy", profile.getPassword());
+            assertEquals("Password should now be whyynot", "whyynot", profile.getPassword());
             profile.setAge(18);
             assertEquals("Age should now be 18", 18, profile.getAge());
             profile.setGender("Female");
