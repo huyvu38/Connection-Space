@@ -43,14 +43,7 @@ public class UserAccount implements UserAccountInterface {
     public void setBlockList(ArrayList<String> blockList) {
         this.blockList = blockList;
     }
-    public void updateFriendUserName (String oldUserName, String newUserName) { //do we really need this?
-        for (String eachUserName : this.friendList) {
-            if (oldUserName.equals(eachUserName)) {
-                this.friendList.remove(oldUserName);
-                this.friendList.add(newUserName);
-            }
-        }
-    }
+
     //Before
     //vu28,12345678,18,Male,VietNam,student,football;FriendList: [george23,alvin23,jay89];BlockList: [george333]
     //george23,123456,20,Female,Brazil,doctor,sing;FriendList: [vu28];BlockList: [jay89]
