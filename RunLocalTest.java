@@ -56,7 +56,7 @@ public class RunLocalTest {
         public void profileSetterTest() {
             profile.setUserName("alexia");
             assertEquals("Username should now be alexia", "alexia", profile.getUserName());
-            profile.setPassword("whyy");
+            profile.setPassword("whyynot");
             assertEquals("Password should now be whyynot", "whyynot", profile.getPassword());
             profile.setAge(18);
             assertEquals("Age should now be 18", 18, profile.getAge());
