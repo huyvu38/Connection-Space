@@ -23,7 +23,9 @@ public class SocialMedia {
                 Database databaseSocialMedia = new Database("AllUserAccount.txt");
                 databaseSocialMedia.readAllUserAccount();
                 ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
-                System.out.println("Enter your username and once you create an account, you can not change your username");
+                System.out.println("Once you create an account, you can not change your username");
+                System.out.println("Username should be at least 4 characters and do not contain any space");
+                System.out.println("Enter your username");
                 String userName = scanner.nextLine();
                 System.out.println("Enter your password");
                 String password = scanner.nextLine();
