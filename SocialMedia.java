@@ -379,7 +379,7 @@ public class SocialMedia {
                                                 System.out.println("Please add friend first");
                                             }
                                         }
-                                        
+
                                     }
                                 } else if (userInput.equals("3")) {
                                     newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, password);
