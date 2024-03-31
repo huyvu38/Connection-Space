@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Profile implements ProfileInterface{
+public class Profile implements ProfileInterface {
     private String userName;
     private String password;
     private int age;
@@ -19,7 +19,8 @@ public class Profile implements ProfileInterface{
 
 
 
-    public Profile (String userName, String password, int age, String gender, String nationality, String job, String hobby) {
+    public Profile(String userName, String password, int age,
+                    String gender, String nationality, String job, String hobby) {
         this.userName = userName;
         this.password = password;
         this.age = age;

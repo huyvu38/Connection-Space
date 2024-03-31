@@ -23,7 +23,7 @@ public class LogIn implements LogInInterface {
         this.password = password;
     }
 
-    public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
+    public boolean isValidUserName(ArrayList<Profile> allUserList, String userName) {
 
         for (Profile eachProfile : allUserList) {
             if (eachProfile.getUserName().equals(userName)) {
@@ -34,7 +34,7 @@ public class LogIn implements LogInInterface {
     }
 
 
-    public boolean checkPasswordLength (String password) {
+    public boolean checkPasswordLength(String password) {
         if (password.length() >= 6) {
             return true;
         }
@@ -42,7 +42,7 @@ public class LogIn implements LogInInterface {
         return false;
     }
 
-    public boolean checkIfPasswordCorrect (Profile profile, String password) {
+    public boolean checkIfPasswordCorrect(Profile profile, String password) {
         if (profile.getPassword().equals(password)) {
             return true;
         }
@@ -50,12 +50,12 @@ public class LogIn implements LogInInterface {
     }
 
 
-    public boolean createAccount (Database database, Profile newProfile) {
+    public boolean createAccount(Database database, Profile newProfile) {
         boolean userNameFormateCorrect = true;
         if (newProfile.getUserName().length() < 4 || newProfile.getUserName().contains(" ")) {
             userNameFormateCorrect = false;
         }
-        if (isValidUserName(database.getAllUserProfile(),newProfile.getUserName())
+        if (isValidUserName(database.getAllUserProfile(), newProfile.getUserName())
                 && (checkPasswordLength(newProfile.getPassword())) && userNameFormateCorrect) {
             ArrayList<Profile> userList = database.getAllUserProfile();
             //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
@@ -72,9 +72,9 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public boolean deleteAccount (Database database, Profile profile, String enteredPassword) {
-        if ((!isValidUserName(database.getAllUserProfile(),profile.getUserName()))
-                && (checkIfPasswordCorrect(profile,enteredPassword))) {
+    public boolean deleteAccount(Database database, Profile profile, String enteredPassword) {
+        if ((!isValidUserName(database.getAllUserProfile(), profile.getUserName()))
+                && (checkIfPasswordCorrect(profile, enteredPassword))) {
 
             ArrayList<Profile> userList = database.getAllUserProfile();
             //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
@@ -91,10 +91,10 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public boolean loginAccount (Database database,Profile profile,String userName, String password) {
+    public boolean loginAccount(Database database,Profile profile, String userName, String password) {
 
        return (!isValidUserName(database.getAllUserProfile(), userName))
-               && checkIfPasswordCorrect(profile,password);
+               && checkIfPasswordCorrect(profile, password);
 
     }
 }

@@ -53,7 +53,7 @@ public class UserAccount implements UserAccountInterface {
             }
         }
         if (this.friendList.size() != 0) {
-            for (int i = 0; i< this.blockList.size(); i++) {
+            for (int i = 0; i < this.blockList.size(); i++) {
                 if (i < (this.blockList.size() - 1)) {
                     blockUser = blockUser + this.blockList.get(i) + " ";
                 } else {
