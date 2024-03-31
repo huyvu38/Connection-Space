@@ -49,7 +49,7 @@ public class SocialMedia {
                     System.out.println("Male");
                     System.out.println("Other");
                     gender = scanner.nextLine();
-                    if (gender.equals("Female") || gender.equals("Male") || gender.equals("Female")) {
+                    if (gender.equals("Female") || gender.equals("Male") || gender.equals("Other")) {
                         break;
                     } else {
                         System.out.println("Please enter the right command");
