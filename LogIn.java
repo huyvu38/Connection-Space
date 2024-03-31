@@ -41,8 +41,12 @@ public class LogIn implements LogInInterface{
 
 
     public boolean createAccount (Database database, Profile newProfile) {
+        boolean userNameFormateCorrect = true;
+        if (newProfile.getUserName().length() < 4 || newProfile.getUserName().contains(" ")) {
+            userNameFormateCorrect = false;
+        }
         if (isValidUserName(database.getAllUserProfile(),newProfile.getUserName())
-                && (checkPasswordLength(newProfile.getPassword()))) {
+                && (checkPasswordLength(newProfile.getPassword())) && userNameFormateCorrect) {
             ArrayList<Profile> userList = database.getAllUserProfile();
             //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
 
