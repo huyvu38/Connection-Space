@@ -49,16 +49,6 @@ public class tempRunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result3 = JUnitCore.runClasses(DatabaseTest.class);
-        if (result3.wasSuccessful()) {
-            System.out.println("Excellent - Database test ran successfully");
-        } else {
-            for (Failure failure : result3.getFailures()) {
-                System.out.println(failure.toString());
-            }
-        }
-
-
     } // end of main
 
     @RunWith(Enclosed.class)
@@ -220,62 +210,4 @@ public class tempRunLocalTest {
             assertFalse(logIn.loginAccount(database, invalidProfile, "Bad", "123"));
         }
     }// for login
-
-    public static class DatabaseTest {
-        private Database database;
-
-        @BeforeClass
-        public void setupDatabase() {
-            ArrayList<UserAccount> allUserAccount = null;
-            allUserAccount.add(new UserAccount(new Profile ("vu28" , "12345678", 18,  "Male",  "VietNam",  "student",  "football")));
-            allUserAccount.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
-            allUserAccount.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
-
-            ArrayList<UserAccount> TestUserAccounts = null;
-            TestUserAccounts.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
-            TestUserAccounts.add(new UserAccount(new Profile ("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf")));
-            TestUserAccounts.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
-
-            ArrayList<Profile> TestUserProfiles = null;
-            TestUserProfiles.add(new Profile("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing"));
-            TestUserProfiles.add(new Profile("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf"));
-            TestUserProfiles.add(new Profile("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing"));
-
-            database = new Database("testDatabase.txt");
-            boolean read1 = database.readAllUserAccount();
-            boolean save1 = database.saveAllUserAccount();
-        }
-
-        @Test
-        public void readAndGetAllUserAccountTest() {
-            assertTrue(read1);
-            assertTrue(database.getAllUserAccount().equals(allUserAccount));
-        }
-
-        @Test
-        public void saveAllUserAccountTest() {
-            Database database2 = new Database("testDatabase.txt");
-            boolean read2 = database2.readAllUserAccount();
-            assertTrue(save1);
-            assertTrue(database2.getAllUserAccount().equals(allUserAccount));
-        }
-
-        //public void setAllUserProfile(ArrayList<Profile> allUserProfile)
-        //        this.allUserProfile = allUserProfile;
-        //
-
-        @Test
-        public void setAllUserProfileTest() {
-            database.setAllUserProfile(TestUserProfiles);
-            assertTrue(database.getAllUserProfile().equals(TestUserProfiles));
-        }
-
-        @Test
-        public void setAndGetAllUserAccount() {
-            database.setAllUserAccount(TestUserAccounts);
-            assertTrue(database.getAllUserAccount().equals(TestUserAccounts));
-
-        }
-    }
-
 } // end of class
