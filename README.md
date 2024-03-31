@@ -1,4 +1,4 @@
-# CS180-Team
+# CS180-L22-Team 3
 
 ### Instruction on how to compile and run the program
 1. User wants to create an account
