@@ -10,7 +10,6 @@ import java.util.ArrayList;
  */
 public interface UserAccountInterface {
     Profile getUserProfile();
-    void setUserProfile(Profile userProfile);
     ArrayList<String> getFriendList();
     void setFriendList(ArrayList<String> friendList);
     ArrayList<String> getBlockList();
