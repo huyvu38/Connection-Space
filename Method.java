@@ -1,3 +1,6 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -84,22 +87,17 @@ public class Method implements MethodInterface {
         }
         return false;
     }
-    public boolean searchUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String word) {
-        int count = 0;
+    public boolean searchUser (ArrayList<Profile> allUserList, ArrayList<String> blockList, String username) {
         for (Profile eachProfile : allUserList) {
             //Check all username that contain the word
-            if (eachProfile.getUserName().contains(word)) {
+            if (eachProfile.getUserName().equals(username)) {
                 //Do not display username in block list
-                if (inBlockList(allUserList, blockList, word) == false) {
-                    count = count + 1;
-                    System.out.println(count + ". " + eachProfile.getUserName());
+                if (inBlockList(allUserList, blockList, username) == false) {
+                    return true;
                 }
             }
         }
-        if (count == 0) {
-            return false; //cannot find any user
-        }
-        return true; //Find at least one user
+        return false;
     }
 
     public boolean checkIfPasswordCorrect (Profile profile, String password) {

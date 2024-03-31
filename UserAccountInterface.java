@@ -15,7 +15,5 @@ public interface UserAccountInterface {
     void setFriendList(ArrayList<String> friendList);
     ArrayList<String> getBlockList();
     void setBlockList(ArrayList<String> blockList);
-    void updateFriendUserName (String oldUserName, String newUserName);
-    void updateBlockUserName (String oldUserName, String newUserName);
     String toString();
 }

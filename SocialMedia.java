@@ -84,6 +84,41 @@ public class SocialMedia {
                     System.out.println("9. Log out");
                     userInput = scanner.nextLine();
                     if (userInput.equals("1")) {
+                        System.out.println("Which information do you want to see");
+                        System.out.println("1. Username");
+                        System.out.println("2. Password");
+                        System.out.println("3. Age");
+                        System.out.println("4. Gender");
+                        System.out.println("5. Nationality");
+                        System.out.println("6. Job");
+                        System.out.println("7. Hobby");
+                        while (true) {
+                            userInput = scanner.nextLine();
+                            if (userInput.equals("1")) {
+                                System.out.println();
+                                break;
+                            } else if (userInput.equals("2")) {
+                                System.out.println();
+                                break;
+                            } else if (userInput.equals("3")) {
+                                System.out.println();
+                                break;
+                            } else if (userInput.equals("4")) {
+                                System.out.println();
+                                break;
+                            } else if (userInput.equals("5")) {
+                                System.out.println();
+                                break;
+                            } else if (userInput.equals("6")) {
+                                System.out.println();
+                                break;
+                            } else if (userInput.equals("7")) {
+                                System.out.println();
+                                break;
+                            } else {
+                                System.out.println("Please enter the right command.");
+                            }
+                        }
                         /*
                         for (Profile userProfile : database.getAllUserProfile()) {
                             if (userProfile.getUserName().equals(userName)) {
