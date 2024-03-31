@@ -22,7 +22,18 @@ public class Method implements MethodInterface {
     }
 
     public Method() {
-        
+
+    }
+
+    public Profile searchProfile(String userName) {
+        Profile profile = null;
+        Database database = new Database("AllUserAccount.txt");
+        for (Profile userProfile: database.getAllUserProfile()) {
+            if (userProfile.getUserName().equals(userName)) {
+                profile = userProfile;
+            }
+        }
+        return profile;
     }
 
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {

@@ -20,6 +20,9 @@ public class UserAccount implements UserAccountInterface {
         this.blockList = new ArrayList<>();
     }
 
+    public void setUserProfile(Profile userProfile) {
+        this.userProfile = userProfile;
+    }
 
     public Profile getUserProfile() {
         return userProfile;
