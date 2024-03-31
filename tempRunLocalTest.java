@@ -230,7 +230,7 @@ public class tempRunLocalTest {
         private ArrayList<UserAccount> TestUserAccounts = null;
 
         @BeforeClass
-        public void setupDatabase() {
+        public static void setupDatabase() {
 
             allUserAccount.add(new UserAccount(new Profile ("vu28" , "12345678", 18,  "Male",  "VietNam",  "student",  "football")));
             allUserAccount.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
