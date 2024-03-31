@@ -43,6 +43,7 @@ If the user writes down 9, the program will exit from the Option Menu and goes t
 
 
 3. User wants to exit the app
+
 Hit the Run button and write 3 to the program. The program will stop.
 
 For any time that the user enters any wrong input or wrong command, the program will ask them until the user do the valid input or right command.
