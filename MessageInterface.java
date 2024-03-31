@@ -7,5 +7,6 @@
  * @version 28 March 2024
  */
 public interface MessageInterface {
+
 }
 
