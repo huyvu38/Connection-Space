@@ -7,9 +7,24 @@ The foundation of the database.
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependant on Profile.java. Getter and setter methods to modify and return account attributes such as blocked users and friends.
 <br/>
 ### Method.java <br/>
-Contains boolean methods crucial to the function of the database system such as block user and add friend. Depends on profile.java, future classes more integral to the database system will depend on this class.
+Contains boolean methods crucial to the function of the database system such as block user and add friend. Depends on Profile.java, future classes more integral to the database system will depend on this class.
 <br/>
 ### Database.java <br/>
 <br/>
 The framework for the database system. Creates new database objects using all known accounts. Dependant on Profile and UserAccount. Methods include means to modify accounts on a large scale, including wiping all accounts and returning all accounts.
+<br/>
+
+### Message.java <br/>
+<br/>
+//Fill Information
+<br/>
+
+### LogIn.java <br/>
+<br/>
+//Fill Information
+<br/>
+
+### SocialMedia.java <br/>
+<br/>
+//Fill Information
 <br/>
