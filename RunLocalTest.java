@@ -56,9 +56,9 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result3 = JUnitCore.runClasses(UserAccount.class);
+        Result result3 = JUnitCore.runClasses(UserAccountTest.class);
         if (result3.wasSuccessful()) {
-            System.out.println("Excellent - Log in test ran successfully");
+            System.out.println("Excellent - User account test ran successfully");
         } else {
             for (Failure failure : result3.getFailures()) {
                 System.out.println(failure.toString());
