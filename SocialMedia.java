@@ -83,13 +83,14 @@ public class SocialMedia {
                 }
             } else if (userInput.equals("2")) {
                 // Assuming Database class is defined
-
-                //Database database = new Database("allUserAccount.txt", "allUserProfile.txt");
+                Database databaseSocialMedia = new Database("AllUserAccount.txt");
+                databaseSocialMedia.readAllUserAccount();
+                ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
+                ArrayList<UserAccount> allUserAccount = databaseSocialMedia.getAllUserAccount();
                 System.out.println("Enter your username");
                 String userName = scanner.nextLine();
                 System.out.println("Enter your password");
                 String password = scanner.nextLine();
-                System.out.println("Log in success");
                 while (true) {
                     System.out.println("What would you like to do?");
                     System.out.println("1. View your profile");
