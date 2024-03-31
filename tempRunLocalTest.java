@@ -222,7 +222,7 @@ public class tempRunLocalTest {
     }// for login
 
     public static class DatabaseTest {
-        private Database database;
+        private static Database database;
         private static ArrayList<Profile> TestUserProfiles = null;
 
         private static ArrayList<UserAccount> allUserAccount = null;
