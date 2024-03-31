@@ -15,6 +15,7 @@ public class Database implements DatabaseInterface {
     private ArrayList<Profile> allUserProfile;
     private ArrayList<UserAccount> allUserAccount;
 
+
     public Database (String allUserAccountFile) {
         this.allUserAccountFile = allUserAccountFile;
         this.allUserAccount = new ArrayList<>();
