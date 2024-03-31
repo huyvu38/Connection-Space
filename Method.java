@@ -25,6 +25,8 @@ public class Method implements MethodInterface {
 
     }
 
+
+    //a method to extract the userProfile given the userName
     public Profile searchProfile(String userName) {
         Profile profile = null;
         Database database = new Database("AllUserAccount.txt");
