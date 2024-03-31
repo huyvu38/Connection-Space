@@ -27,15 +27,15 @@ public class Method implements MethodInterface {
 
 
     //a method to extract the userProfile given the userName
-    public Profile searchProfile(String userName) {
-        Profile profile = null;
+    public UserAccount searchAccount(String userName) {
+        UserAccount account = null;
         Database database = new Database("AllUserAccount.txt");
-        for (Profile userProfile: database.getAllUserProfile()) {
-            if (userProfile.getUserName().equals(userName)) {
-                profile = userProfile;
+        for (UserAccount userAccount: database.getAllUserAccount()) {
+            if (userAccount.getUserProfile().getUserName().equals(userName)) {
+                account = userAccount;
             }
         }
-        return profile;
+        return account;
     }
 
     public boolean isValidUserName (ArrayList<Profile> allUserList, String userName) {
