@@ -19,8 +19,9 @@ public class Database implements DatabaseInterface {
         this.allUserAccountFile = allUserAccountFile;
         this.allUserAccount = new ArrayList<>();
         this.allUserProfile = new ArrayList<>();
-
-        // read from file and make array of profile objects
+    }
+    public boolean readAllUserAccount() {
+        // read from file and make array of account objects
         try {
             File f = new File(allUserAccountFile);
             FileReader fr = new FileReader(f);
@@ -52,20 +53,15 @@ public class Database implements DatabaseInterface {
             bfr.close();
         } catch (FileNotFoundException e) {
             System.out.println("AllUserAccountFile not found");
+            return false;
         } catch (IOException e) {
             System.out.println("IOException");
+            return false;
         }
+        return true;
     }
 
-    public ArrayList<Profile> getAllUserProfile() {
-        return allUserProfile;
-    }
-
-    public void setAllUserProfile(ArrayList<Profile> allUserProfile) {
-        this.allUserProfile = allUserProfile;
-    }
-
-    public boolean saveAllUserProfile() {
+    public boolean saveAllUserAccount() {
         try {
             FileOutputStream fos = new FileOutputStream(allUserAccountFile);
             PrintWriter pw = new PrintWriter(fos);
@@ -82,11 +78,22 @@ public class Database implements DatabaseInterface {
         }
         return true;
     }
-    //public boolean readAllUserAccount(String allUserAccountFile) {}
 
-    //Store back to the allUserAccount.txt
-    //public boolean outputAllUserAccount() {}
+    public ArrayList<Profile> getAllUserProfile() {
+        return allUserProfile;
+    }
 
+    public void setAllUserProfile(ArrayList<Profile> allUserProfile) {
+        this.allUserProfile = allUserProfile;
+    }
+
+    public ArrayList<UserAccount> getAllUserAccount() {
+        return allUserAccount;
+    }
+
+    public void setAllUserAccount(ArrayList<UserAccount> allUserAccount) {
+        this.allUserAccount = allUserAccount;
+    }
 
     //If user edit username -> this.allUserProfile & this.allUserAccount
     //(need to use updateFriendUserName & updateBlockUserName) cuz that user may be in another friendlist or blocklist
