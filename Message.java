@@ -13,8 +13,8 @@ import java.nio.file.*;
  *
  * Message.java
  *
- * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
- * @version 28 March 2024
+ * @author Yanxin Yu, L22
+ * @version 31 March 2024
  */
 
 
@@ -131,7 +131,7 @@ public class Message implements MessageInterface {
     // Only send message to all friends in friendList
     // Only send message when otherUserName is in friendList
     // return empty string if all success, otherwirse indicate which one failed.
-    public String restrictMessage (String userName, ArrayList<String> friendList, String content) {
+    public String restrictMessage(String userName, ArrayList<String> friendList, String content) {
         List<String> failedUser = new ArrayList<>();
         for (String friend: friendList) {
             if(!this.sendMessage(userName, friend, content, false)) {
