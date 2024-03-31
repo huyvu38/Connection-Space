@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * Team Project
  *
- * brief_description_of_the_program
+ * Database.java
  *
  * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
