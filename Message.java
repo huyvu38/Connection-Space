@@ -198,6 +198,8 @@ public class Message implements MessageInterface {
                         && array[3].equals(senderName)
                         && array[4].equals(receiverName)) {
                     System.out.printf("%s %s %s: %s %s", array[0],array[2],array[3],array[6],array[5]);
+                } else {
+                    System.out.println("No message yet");
                 }
             }
             //return true;
