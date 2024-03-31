@@ -76,7 +76,7 @@ public class UserAccount implements UserAccountInterface {
         if (this.friendList.size() != 0) {
             for (int i = 0; i < this.friendList.size(); i++) {
                 if (i < (this.friendList.size() - 1)) {
-                    friend = friend + this.friendList.get(i) + ",";
+                    friend = friend + this.friendList.get(i) + " ";
                 } else {
                     friend = friend + this.friendList.get(i);
                 }
@@ -85,13 +85,13 @@ public class UserAccount implements UserAccountInterface {
         if (this.friendList.size() != 0) {
             for (int i = 0; i< this.blockList.size(); i++) {
                 if (i < (this.blockList.size() - 1)) {
-                    blockUser = blockUser + this.blockList.get(i) + ",";
+                    blockUser = blockUser + this.blockList.get(i) + " ";
                 } else {
                     blockUser = blockUser + this.blockList.get(i);
                 }
             }
         }
-        return this.userProfile.toString() + ";FriendList: [" + friend + "];BlockList: [" + blockUser + "]";
+        return this.userProfile.toString() + ";FriendList:[" + friend + "];BlockList:[" + blockUser + "]";
     }
 
 }
