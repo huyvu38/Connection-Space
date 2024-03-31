@@ -226,22 +226,50 @@ public class SocialMedia {
                                         } else if (userInput.equals("4")) {
                                             System.out.println("Search for the username that you want to add friend");
                                             userInput = scanner.nextLine();
-                                            if
-                                        }
-                                        System.out.println("Add friend successfully");
-                                    } else if (userInput.equals("5")) {
-                                        System.out.println("Search for the username");
-                                        userInput = scanner.nextLine();
-                                        System.out.println("Delete friend successfully");
-                                    } else if (userInput.equals("6")) {
-                                        System.out.println("Search for the username");
-                                        userInput = scanner.nextLine();
-                                        System.out.println("Block user successfully");
-                                    } else if (userInput.equals("7")) {
-                                        System.out.println("Search for the username");
-                                        userInput = scanner.nextLine();
-                                        System.out.println("Unblock user successfully");
-                                    } else if (userInput.equals("8")) {
+                                            if (actions.addFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userName)) {
+                                                eachUserAccount.getFriendList().add(userName);
+                                                for (UserAccount friendUserAccount : allUserAccount) {
+                                                    if (friendUserAccount.getUserProfile().equals(userName)) {
+                                                        friendUserAccount.getFriendList().add(eachProfile.getUserName());
+                                                    }
+                                                }
+                                                System.out.println("Add friend successfully");
+                                            } else {
+                                                System.out.println("You can not add friend");
+                                            }
+                                        } else if (userInput.equals("5")) {
+                                            System.out.println("Search for the username that you want to delete friend");
+                                            userInput = scanner.nextLine();
+                                            if (actions.removeFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userName)) {
+                                                eachUserAccount.getFriendList().remove(userName);
+                                                for (UserAccount friendUserAccount : allUserAccount) {
+                                                    if (friendUserAccount.getUserProfile().equals(userName)) {
+                                                        friendUserAccount.getFriendList().remove(eachProfile.getUserName());
+                                                    }
+                                                }
+                                                System.out.println("Delete friend successfully");
+                                            } else {
+                                                System.out.println("You can not delete friend");
+                                            }
+                                        } else if (userInput.equals("6")) {
+                                            System.out.println("Search for the username that you want to block");
+                                            userInput = scanner.nextLine();
+                                            if (actions.blockUser(allUserProfile, eachUserAccount.getBlockList(), userName)) {
+                                                eachUserAccount.getBlockList().add(userName);
+                                                System.out.println("Block friend successfully");
+                                            } else {
+                                                System.out.println("You can not block that user");
+                                            }
+                                        } else if (userInput.equals("7")) {
+                                            System.out.println("Search for the username that you want to unblock");
+                                            userInput = scanner.nextLine();
+                                            if (actions.unblockUser(allUserProfile, eachUserAccount.getBlockList(), userName)) {
+                                                eachUserAccount.getBlockList().remove(userName);
+                                                System.out.println("Unblock friend successfully");
+                                            } else {
+                                                System.out.println("You can not unblock that user");
+                                            }
+                                        } else if (userInput.equals("8")) {
                                         //get sender name and receiver name
                                         //System.out.println("Who you want to send message to?");
                                         boolean keepgoing = true;
