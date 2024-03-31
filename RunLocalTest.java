@@ -148,7 +148,7 @@ public class RunLocalTest {
         }
         @Test
         public void toStringTest() {
-            String a = String.format(";FriendList:[%s];BlockList:[%s]", userAccount.getFriendList(),
+            String a = String.format(";FriendList:%s;BlockList:%s", userAccount.getFriendList(),
                     userAccount.getBlockList());
             String formatToString = profile.toString() + a;
             assertEquals("Make sure the toString method matches correctly outputs the data.", formatToString,
