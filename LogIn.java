@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 
 
-public class LogIn implements LogInInterface{
+public class LogIn implements LogInInterface {
 
     //Maybe we can check the username should be atleast 4 characters and do not contains any space
     //Maybe use contains(" ") to check
