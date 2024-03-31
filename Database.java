@@ -11,7 +11,7 @@ import java.io.File;
  * @version 28 March 2024
  */
 public class Database implements DatabaseInterface {
-    //Maybe we should store every data in AllUserAccount.txt
+    //Maybe we should store every data in allUserAccount.txt
     //jay89,abcdef32,32,Female,USA,teacher,volleyball;FriendList:[vu28 abaldocc];BlockList:[george333 george23 alvin333]
     //Split by ;
     //Profile is jay89,abcdef32,32,Female,USA,teacher,volleyball
