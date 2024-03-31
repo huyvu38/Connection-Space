@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * Team Project
@@ -11,15 +12,18 @@ import java.util.Scanner;
 public class SocialMedia {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Hi, welcome to the social media platform");
+        System.out.println("Hi, welcome to the social media platform.");
         while (true) {
             System.out.println("What would you like to do?");
-            System.out.println("1. Create account");
-            System.out.println("2. Log In");
-            System.out.println("3. Exit the app");
+            System.out.println("1. Create account.");
+            System.out.println("2. Log In.");
+            System.out.println("3. Exit the app.");
             String userInput = scanner.nextLine();
             if (userInput.equals("1")) {
-                System.out.println("Enter your username");
+                Database databaseSocialMedia = new Database("AllUserAccount.txt");
+                databaseSocialMedia.readAllUserAccount();
+                ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
+                System.out.println("Enter your username and once you create an account, you can not change your username");
                 String userName = scanner.nextLine();
                 System.out.println("Enter your password");
                 String password = scanner.nextLine();
@@ -130,39 +134,26 @@ public class SocialMedia {
                     } else if (userInput.equals("2")) {
                         while (true) {
                             System.out.println("Which information do you want to edit");
-                            System.out.println("1. Username");
-                            System.out.println("2. Password");
-                            System.out.println("3. Age");
-                            System.out.println("4. Gender");
-                            System.out.println("5. Nationality");
-                            System.out.println("6. Job");
-                            System.out.println("7. Hobby");
+                            System.out.println("1. Password");
+                            System.out.println("2. Age");
+                            System.out.println("3. Gender");
+                            System.out.println("4. Nationality");
+                            System.out.println("5. Job");
+                            System.out.println("6. Hobby");
                             userInput = scanner.nextLine();
                             if (userInput.equals("1")) {
-                                System.out.println("Enter new username");
-                                userInput = scanner.nextLine();
-                                /*
-                                for (Profile userProfile : database.getAllUserProfile()) {
-                                    if (userProfile.getUserName().equals(userName)) {
-                                        userProfile.setUserName(userInput);
-                                    }
-                                }
-                                System.out.println("Edit name successfully");
-                                 */
-                                break;
-                            } else if (userInput.equals("2")) {
                                 System.out.println("Enter new password");
                                 userInput = scanner.nextLine();
                                 /*
                                 for (Profile userProfile : database.getAllUserProfile()) {
-                                    if (userProfile.getUserName().equals(userName)) {
-                                        userProfile.setPassword(userInput);
+                                    if (userProfile.getUserName().equals(userInput)) {
+                                        userProfile.setUserName(userInput);
                                     }
                                 }
                                 System.out.println("Edit password successfully");
                                  */
                                 break;
-                            } else if (userInput.equals("3")) {
+                            } else if (userInput.equals("2")) {
                                 int newAge = 0;
                                 while (true) {
                                     System.out.println("Enter your age");

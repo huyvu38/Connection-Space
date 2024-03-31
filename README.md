@@ -5,7 +5,11 @@
 
 Hit the Run button and write 1 to the program.
 
-Then the user is prompted to enter username, password, age, gender, nationality, job, and hobby to create a new account object (related to UserAccount.java).
+Then the user is prompted to enter username, password. 
+
+Once the user create account succeesfully, they can not edit their username.
+
+After that, the user is prompted to enter age, gender, nationality, job, and hobby.
 
 Then the program goes back to the main menu to let the user create account or log in or exit the app.
 
