@@ -82,77 +82,70 @@ public class SocialMedia {
                     }
                 }
             } else if (userInput.equals("2")) {
-                while (true) {
-                    // Assuming Database class is defined
-                    Database databaseSocialMedia = new Database("AllUserAccount.txt");
-                    databaseSocialMedia.readAllUserAccount();
-                    ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
-                    ArrayList<UserAccount> allUserAccount = databaseSocialMedia.getAllUserAccount();
-                    System.out.println("Enter your username");
-                    String userName = scanner.nextLine();
-                    System.out.println("Enter your password");
-                    String password = scanner.nextLine();
-                    //If the username exists
-                    for (Profile eachProfile : allUserProfile) {
-                        if (eachProfile.getUserName().equals(userName)) {
-                            LogIn newLogInAccount = new LogIn(databaseSocialMedia, eachProfile, userName, password);
-                            if (newLogInAccount.loginAccount(databaseSocialMedia, eachProfile, userName, password)) {
-                                System.out.println("Log In successfully.");
-                                break;
-                            } else {
-                                System.out.println("Your account does not exist.");
-                            }
-                        }
-                    }
-                }
-                while (true) {
-                    System.out.println("What would you like to do?");
-                    System.out.println("1. View your profile");
-                    System.out.println("2. Edit your profile");
-                    System.out.println("3. Delete account");
-                    System.out.println("4. Add friend");
-                    System.out.println("5. Delete friend");
-                    System.out.println("6. Block friend");
-                    System.out.println("7. Unblock friend");
-                    System.out.println("8. Send message");
-                    System.out.println("9. Log out");
-                    userInput = scanner.nextLine();
-                    if (userInput.equals("1")) {
-                        System.out.println("Which information do you want to see");
-                        System.out.println("1. Username");
-                        System.out.println("2. Password");
-                        System.out.println("3. Age");
-                        System.out.println("4. Gender");
-                        System.out.println("5. Nationality");
-                        System.out.println("6. Job");
-                        System.out.println("7. Hobby");
-                        while (true) {
-                            userInput = scanner.nextLine();
-                            if (userInput.equals("1")) {
-                                System.out.println();
-                                break;
-                            } else if (userInput.equals("2")) {
-                                System.out.println();
-                                break;
-                            } else if (userInput.equals("3")) {
-                                System.out.println();
-                                break;
-                            } else if (userInput.equals("4")) {
-                                System.out.println();
-                                break;
-                            } else if (userInput.equals("5")) {
-                                System.out.println();
-                                break;
-                            } else if (userInput.equals("6")) {
-                                System.out.println();
-                                break;
-                            } else if (userInput.equals("7")) {
-                                System.out.println();
-                                break;
-                            } else {
-                                System.out.println("Please enter the right command.");
-                            }
-                        }
+                // Assuming Database class is defined
+                Database databaseSocialMedia = new Database("AllUserAccount.txt");
+                databaseSocialMedia.readAllUserAccount();
+                ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
+                ArrayList<UserAccount> allUserAccount = databaseSocialMedia.getAllUserAccount();
+                System.out.println("Enter your username");
+                String userName = scanner.nextLine();
+                System.out.println("Enter your password");
+                String password = scanner.nextLine();
+                //If the username exists
+                for (Profile eachProfile : allUserProfile) {
+                    if (eachProfile.getUserName().equals(userName)) {
+                        LogIn newLogInAccount = new LogIn(databaseSocialMedia, eachProfile, userName, password);
+                        if (newLogInAccount.loginAccount(databaseSocialMedia, eachProfile, userName, password)) {
+                            System.out.println("Log In successfully.");
+                            //After user log in
+                            while (true) {
+                                System.out.println("What would you like to do?");
+                                System.out.println("1. View your profile");
+                                System.out.println("2. Edit your profile");
+                                System.out.println("3. Delete account");
+                                System.out.println("4. Add friend");
+                                System.out.println("5. Delete friend");
+                                System.out.println("6. Block friend");
+                                System.out.println("7. Unblock friend");
+                                System.out.println("8. Send message");
+                                System.out.println("9. Log out");
+                                userInput = scanner.nextLine();
+                                if (userInput.equals("1")) {
+                                    System.out.println("Which information do you want to see");
+                                    System.out.println("1. Username");
+                                    System.out.println("2. Password");
+                                    System.out.println("3. Age");
+                                    System.out.println("4. Gender");
+                                    System.out.println("5. Nationality");
+                                    System.out.println("6. Job");
+                                    System.out.println("7. Hobby");
+                                    while (true) {
+                                        userInput = scanner.nextLine();
+                                        if (userInput.equals("1")) {
+                                            System.out.println();
+                                            break;
+                                        } else if (userInput.equals("2")) {
+                                            System.out.println();
+                                            break;
+                                        } else if (userInput.equals("3")) {
+                                            System.out.println();
+                                            break;
+                                        } else if (userInput.equals("4")) {
+                                            System.out.println();
+                                            break;
+                                        } else if (userInput.equals("5")) {
+                                            System.out.println();
+                                            break;
+                                        } else if (userInput.equals("6")) {
+                                            System.out.println();
+                                            break;
+                                        } else if (userInput.equals("7")) {
+                                            System.out.println();
+                                            break;
+                                        } else {
+                                            System.out.println("Please enter the right command.");
+                                        }
+                                    }
                         /*
                         for (Profile userProfile : database.getAllUserProfile()) {
                             if (userProfile.getUserName().equals(userName)) {
@@ -160,20 +153,20 @@ public class SocialMedia {
                             }
                         }
                          */
-                        //Maybe return every information of user
-                    } else if (userInput.equals("2")) {
-                        while (true) {
-                            System.out.println("Which information do you want to edit");
-                            System.out.println("1. Password");
-                            System.out.println("2. Age");
-                            System.out.println("3. Gender");
-                            System.out.println("4. Nationality");
-                            System.out.println("5. Job");
-                            System.out.println("6. Hobby");
-                            userInput = scanner.nextLine();
-                            if (userInput.equals("1")) {
-                                System.out.println("Enter new password");
-                                userInput = scanner.nextLine();
+                                    //Maybe return every information of user
+                                } else if (userInput.equals("2")) {
+                                    while (true) {
+                                        System.out.println("Which information do you want to edit");
+                                        System.out.println("1. Password");
+                                        System.out.println("2. Age");
+                                        System.out.println("3. Gender");
+                                        System.out.println("4. Nationality");
+                                        System.out.println("5. Job");
+                                        System.out.println("6. Hobby");
+                                        userInput = scanner.nextLine();
+                                        if (userInput.equals("1")) {
+                                            System.out.println("Enter new password");
+                                            userInput = scanner.nextLine();
                                 /*
                                 for (Profile userProfile : database.getAllUserProfile()) {
                                     if (userProfile.getUserName().equals(userInput)) {
@@ -182,24 +175,24 @@ public class SocialMedia {
                                 }
                                 System.out.println("Edit password successfully");
                                  */
-                                break;
-                            } else if (userInput.equals("2")) {
-                                int newAge = 0;
-                                while (true) {
-                                    System.out.println("Enter your age");
-                                    String age = scanner.nextLine();
-                                    try {
-                                        newAge = Integer.parseInt(age);
-                                        if (newAge <= 0) {
-                                            System.out.println("Please enter a valid number");
-                                        } else {
                                             break;
-                                        }
-                                    } catch (NumberFormatException e) {
-                                        System.out.println("Please enter a valid number");
-                                    }
-                                }
-                                break;
+                                        } else if (userInput.equals("2")) {
+                                            int newAge = 0;
+                                            while (true) {
+                                                System.out.println("Enter your age");
+                                                String age = scanner.nextLine();
+                                                try {
+                                                    newAge = Integer.parseInt(age);
+                                                    if (newAge <= 0) {
+                                                        System.out.println("Please enter a valid number");
+                                                    } else {
+                                                        break;
+                                                    }
+                                                } catch (NumberFormatException e) {
+                                                    System.out.println("Please enter a valid number");
+                                                }
+                                            }
+                                            break;
                                 /*
                                 for (Profile userProfile : database.getAllUserProfile()) {
                                     if (userProfile.getUserName().equals(userName)) {
@@ -208,14 +201,14 @@ public class SocialMedia {
                                 }
 
                                  */
-                            } else if (userInput.equals("4")) {
-                                while (true) {
-                                    System.out.println("Enter your gender");
-                                    System.out.println("Female");
-                                    System.out.println("Male");
-                                    System.out.println("Other");
-                                    userInput = scanner.nextLine();
-                                    break;
+                                        } else if (userInput.equals("4")) {
+                                            while (true) {
+                                                System.out.println("Enter your gender");
+                                                System.out.println("Female");
+                                                System.out.println("Male");
+                                                System.out.println("Other");
+                                                userInput = scanner.nextLine();
+                                                break;
                                     /*
                                     if (userInput.equals("Female")) {
                                         for (Profile userProfile : database.getAllUserProfile()) {
@@ -242,11 +235,11 @@ public class SocialMedia {
                                         System.out.println("Please enter the right command");
                                     }
                                      */
-                                }
-                                break;
-                            } else if (userInput.equals("5")) {
-                                System.out.println("Enter your nationality");
-                                userInput = scanner.nextLine();
+                                            }
+                                            break;
+                                        } else if (userInput.equals("5")) {
+                                            System.out.println("Enter your nationality");
+                                            userInput = scanner.nextLine();
                                 /*
                                 for (Profile userProfile : database.getAllUserProfile()) {
                                     if (userProfile.getUserName().equals(userName)) {
@@ -254,10 +247,10 @@ public class SocialMedia {
                                     }
                                 }
                                 */
-                                break;
-                            } else if (userInput.equals("6")) {
-                                System.out.println("Enter your job");
-                                userInput = scanner.nextLine();
+                                            break;
+                                        } else if (userInput.equals("6")) {
+                                            System.out.println("Enter your job");
+                                            userInput = scanner.nextLine();
                                 /*
                                 for (Profile userProfile : database.getAllUserProfile()) {
                                     if (userProfile.getUserName().equals(userName)) {
@@ -265,10 +258,10 @@ public class SocialMedia {
                                     }
                                 }
                                 */
-                                break;
-                            } else if (userInput.equals("7")) {
-                                System.out.println("Enter your hobby");
-                                userInput = scanner.nextLine();
+                                            break;
+                                        } else if (userInput.equals("7")) {
+                                            System.out.println("Enter your hobby");
+                                            userInput = scanner.nextLine();
                                 /*
                                 for (Profile userProfile : database.getAllUserProfile()) {
                                     if (userProfile.getUserName().equals(userName)) {
@@ -277,14 +270,14 @@ public class SocialMedia {
                                 }
 
                                  */
-                                break;
-                            } else {
-                                System.out.println("Please enter the right command");
-                            }
-                        }
-                    } else if (userInput.equals("3")) {
-                        System.out.println("Enter your username");
-                        userInput = scanner.nextLine();
+                                            break;
+                                        } else {
+                                            System.out.println("Please enter the right command");
+                                        }
+                                    }
+                                } else if (userInput.equals("3")) {
+                                    System.out.println("Enter your username");
+                                    userInput = scanner.nextLine();
                         /*
                         for (Profile userProfile : database.getAllUserProfile()) {
                             if (userProfile.getUserName().equals(userName)) {
@@ -297,96 +290,100 @@ public class SocialMedia {
                             }
                         }
                          */
-                        System.out.println("Delete account successfully");
-                        System.out.println("Log out from the app");
-                        break;
-                    } else if (userInput.equals("4")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
-                        System.out.println("Add friend successfully");
-                    } else if (userInput.equals("5")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
-                        System.out.println("Delete friend successfully");
-                    } else if (userInput.equals("6")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
-                        System.out.println("Block user successfully");
-                    } else if (userInput.equals("7")) {
-                        System.out.println("Search for the username");
-                        userInput = scanner.nextLine();
-                        System.out.println("Unblock user successfully");
-                    } else if (userInput.equals("8")) {
-                        //get sender name and receiver name
-                        //System.out.println("Who you want to send message to?");
-                        boolean keepgoing = true;
-                        do {
-                            System.out.println("1. Send Group Message");
-                            System.out.println("2. Send message to specific friend");
-                            int input = scanner.nextInt();
-                            scanner.nextLine();
-                            if (input == 1) {
-                                System.out.println("How many members in the group?");
-                                int num = scanner.nextInt();
-                                scanner.nextLine();
-                                ArrayList<String> groupMemberList = new ArrayList<String>();
-                                for (int i = 0; i < num; i++) {
-                                    System.out.println("Who you want to send message to?");
-                                    groupMemberList.add(scanner.nextLine());
+                                    System.out.println("Delete account successfully");
+                                    System.out.println("Log out from the app");
+                                    break;
+                                } else if (userInput.equals("4")) {
+                                    System.out.println("Search for the username");
+                                    userInput = scanner.nextLine();
+                                    System.out.println("Add friend successfully");
+                                } else if (userInput.equals("5")) {
+                                    System.out.println("Search for the username");
+                                    userInput = scanner.nextLine();
+                                    System.out.println("Delete friend successfully");
+                                } else if (userInput.equals("6")) {
+                                    System.out.println("Search for the username");
+                                    userInput = scanner.nextLine();
+                                    System.out.println("Block user successfully");
+                                } else if (userInput.equals("7")) {
+                                    System.out.println("Search for the username");
+                                    userInput = scanner.nextLine();
+                                    System.out.println("Unblock user successfully");
+                                } else if (userInput.equals("8")) {
+                                    //get sender name and receiver name
+                                    //System.out.println("Who you want to send message to?");
+                                    boolean keepgoing = true;
+                                    do {
+                                        System.out.println("1. Send Group Message");
+                                        System.out.println("2. Send message to specific friend");
+                                        int input = scanner.nextInt();
+                                        scanner.nextLine();
+                                        if (input == 1) {
+                                            System.out.println("How many members in the group?");
+                                            int num = scanner.nextInt();
+                                            scanner.nextLine();
+                                            ArrayList<String> groupMemberList = new ArrayList<String>();
+                                            for (int i = 0; i < num; i++) {
+                                                System.out.println("Who you want to send message to?");
+                                                groupMemberList.add(scanner.nextLine());
+                                            }
+                                            String receiverName = scanner.nextLine();
+                                            System.out.println("what is your Username?");
+                                            String senderName = scanner.nextLine();
+
+
+                                        } else if (input == 2) {
+                                            System.out.println("Who you want to send message to?");
+                                            String receiverName = scanner.nextLine();
+                                            System.out.println("what is your Username?");
+                                            String senderName = scanner.nextLine();
+
+
+                                        } else {
+                                            System.out.println("Invalid Input! Try Again");
+                                        }
+                                    } while (keepgoing);
+
+
+
+                                    //extract the profiles
+                                    Method method = new Method();
+                                    Profile senderProfile = method.searchProfile(senderName);
+                                    Profile receiverProfile = method.searchProfile(receiverName);
+                                    Database database = new Database("AllUserAccount.txt");
+
+                                    //Check if sender is blocked by receiver
+                                    boolean isInBlockList = receiverProfile.;
+                                    ArrayList<String> blockList = new ArrayList<String>();
+                                    for (UserAccount userAccount: database.getAllUserAccount()) {
+                                        if (userAccount.getUserProfile().getUserName().equals(receiverName) {
+                                            blockList = userAccount.getBlockList();
+                                        }
+                                    }
+                                    for (String string: blockList) {
+                                        if (string.equals(senderName)) {
+                                            isInBlockList = true;
+                                        }
+                                    }
+
+                                    //SendMessage
+                                    System.out.println("Please enter the message");
+                                    String message = scanner.nextLine();
+                                    Message messages = new Message();
+                                    if (messages.sendMessage(senderName,receiverName,message,isInBlockList)) {
+                                        System.out.println("Send message successfully");
+                                    } else {
+                                        System.out.println("Send message Failed");
+                                    }
+                                } else if (userInput.equals("9")) {
+                                    System.out.println("Log out successfully");
+                                    break;
+                                } else {
+                                    System.out.println("Please enter the right command");
                                 }
-                                String receiverName = scanner.nextLine();
-                                System.out.println("what is your Username?");
-                                String senderName = scanner.nextLine();
-
-
-                            } else if (input == 2) {
-                                System.out.println("Who you want to send message to?");
-                                String receiverName = scanner.nextLine();
-                                System.out.println("what is your Username?");
-                                String senderName = scanner.nextLine();
-
-
-                            } else {
-                                System.out.println("Invalid Input! Try Again");
-                            }
-                        } while (keepgoing);
-
-
-
-                        //extract the profiles
-                        Method method = new Method();
-                        Profile senderProfile = method.searchProfile(senderName);
-                        Profile receiverProfile = method.searchProfile(receiverName);
-                        Database database = new Database("AllUserAccount.txt");
-
-                        //Check if sender is blocked by receiver
-                        boolean isInBlockList = receiverProfile.;
-                        ArrayList<String> blockList = new ArrayList<String>();
-                        for (UserAccount userAccount: database.getAllUserAccount()) {
-                            if (userAccount.getUserProfile().getUserName().equals(receiverName) {
-                                blockList = userAccount.getBlockList();
-                            }
-                        }
-                        for (String string: blockList) {
-                            if (string.equals(senderName)) {
-                                isInBlockList = true;
-                            }
-                        }
-
-                        //SendMessage
-                        System.out.println("Please enter the message");
-                        String message = scanner.nextLine();
-                        Message messages = new Message();
-                        if (messages.sendMessage(senderName,receiverName,message,isInBlockList)) {
-                            System.out.println("Send message successfully");
                         } else {
-                            System.out.println("Send message Failed");
+                            System.out.println("Your account does not exist.");
                         }
-                    } else if (userInput.equals("9")) {
-                        System.out.println("Log out successfully");
-                        break;
-                    } else {
-                        System.out.println("Please enter the right command");
                     }
                 }
             } else if (userInput.equals("3")) {
