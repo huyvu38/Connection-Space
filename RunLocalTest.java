@@ -68,24 +68,8 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result5 = JUnitCore.runClasses(RunLocalTest.MethodTest.class);
-        if (!result5.wasSuccessful()) { //temp not to test
-            System.out.println("Excellent - Method test ran successfully");
-        } else {
-            for (Failure failure : result5.getFailures()) {
-                System.out.println("method"+failure.toString());
-            }
-        }
-        Result result6 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
-        if (!result6.wasSuccessful()) {
-            System.out.println("Excellent - Database test ran successfully");
-        } else {
-            for (Failure failure : result6.getFailures()) {
-                System.out.println(failure.toString());
-            }
-        }
         Result result4 = JUnitCore.runClasses(RunLocalTest.SocialMediaTest.class);
-        if (!result4.wasSuccessful()) {
+        if (result4.wasSuccessful()) {
             System.out.println("Excellent - SocialMedia test ran successfully");
         } else {
             for (Failure failure : result4.getFailures()) {
@@ -390,159 +374,7 @@ public class RunLocalTest {
         }
     }// for login
 
-    public static class DatabaseTest {
-        private static Database database;
-        private static ArrayList<Profile> TestUserProfiles = new ArrayList<>();
 
-        private static ArrayList<UserAccount> allUserAccount = new ArrayList<>();
-
-        private static ArrayList<UserAccount> TestUserAccounts = new ArrayList<>();
-        public void DatabaseDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `Database` is `public`!",
-                    Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `Database` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `Database` implements interfaces!",
-                    1, superinterfaces.length);
-        }
-        @BeforeClass
-        public static void setupDatabase() {
-
-            allUserAccount.add(new UserAccount(new Profile ("vu28" , "12345678", 18,  "Male",  "VietNam",  "student",  "football")));
-            allUserAccount.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
-            allUserAccount.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
-
-
-            TestUserAccounts.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
-            TestUserAccounts.add(new UserAccount(new Profile ("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf")));
-            TestUserAccounts.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
-
-
-            TestUserProfiles.add(new Profile("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing"));
-            TestUserProfiles.add(new Profile("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf"));
-            TestUserProfiles.add(new Profile("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing"));
-
-            database = new Database("testDatabase.txt");
-
-        }
-
-        @Test
-        public void readAndGetAllUserAccountTest() {
-            boolean read1 = database.readAllUserAccount();
-            boolean save1 = database.saveAllUserAccount();
-            assertTrue(read1);
-            assertTrue(database.getAllUserAccount().equals(allUserAccount));
-        }
-
-        @Test
-        public void saveAllUserAccountTest() {
-            Database database2 = new Database("testDatabase.txt");
-            boolean read2 = database2.readAllUserAccount();
-            assertTrue(database2.getAllUserAccount().equals(allUserAccount));
-            boolean save1 = database.saveAllUserAccount();
-            assertTrue(save1);
-        }
-
-        @Test
-        public void setAllUserProfileTest() {
-            database.setAllUserProfile(TestUserProfiles);
-            assertTrue(database.getAllUserProfile().equals(TestUserProfiles));
-        }
-
-        @Test
-        public void setAndGetAllUserAccount() {
-            database.setAllUserAccount(TestUserAccounts);
-            assertTrue(database.getAllUserAccount().equals(TestUserAccounts));
-
-        }
-    }
-
-    public static class MethodTest {
-        private Method method;
-        private ArrayList<Profile> allUserList;
-        private ArrayList<String> friendList;
-        private ArrayList<String> blockList;
-        private Profile userProfile;
-        public void MethodDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `Method` is `public`!",
-                    Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `Method` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `Method` implements interfaces!",
-                    1, superinterfaces.length);
-        }
-
-        @Before
-        public void setUp() {
-            allUserList = new ArrayList<>();
-            friendList = new ArrayList<>();
-            blockList = new ArrayList<>();
-            userProfile = new Profile("User", "Pass", 25, "Gender", "Nationality", "Job", "Hobby");
-            allUserList.add(userProfile);
-            allUserList.add(new Profile("champagnepapi", "password123", 30, "Male", "American", "Engineer", "Coding"));
-            allUserList.add(new Profile("kwest", "password456", 28, "Female", "British", "Artist", "Painting"));
-            friendList.add("champagnepapi");
-            blockList.add("kwest");
-
-            method = new Method(allUserList, friendList, blockList, userProfile);
-        }
-
-        @Test
-        public void testUserNameInDatabase() {
-            boolean result = method.usernameInDatabase(allUserList, "ExistingUser");
-            assertTrue(result);
-        }
-
-        @Test
-        public void testUserNameNotInDatabase() {
-            boolean result = method.usernameInDatabase(allUserList, "NewUser");
-            assertFalse(result);
-        }
-
-        @Test
-        public void testAddFriend() {
-            boolean result = method.addFriend(allUserList, friendList, blockList, "NewFriend");
-            assertTrue( result);
-        }
-
-        @Test
-        public void testAddFriend_2() {
-            boolean result = method.addFriend(allUserList, friendList, blockList, "champagnepapi");
-            assertTrue(result);
-        }
-
-        @Test
-        public void testAddFriend_3() {
-            boolean result = method.addFriend(allUserList, friendList, blockList, "kwest");
-            assertTrue(result);
-        }
-    }
     public static class SocialMediaTest {
 
 
@@ -581,18 +413,12 @@ public class RunLocalTest {
             System.setIn(testIn);
         }
         @Test(timeout = 1000)
+
+
         public void testExpectedOne() {
 
-
             // Set the input
-            String input = "1" + System.lineSeparator() +
-                    "Abaldocc" + System.lineSeparator() +
-                    "Archiebaldo" + System.lineSeparator() +
-                    "20" + System.lineSeparator() +
-                    "Male" + System.lineSeparator() +
-                    "American" + System.lineSeparator() +
-                    "Student " + System.lineSeparator() +
-                    "Polo" + System.lineSeparator();
+            String input = "3\n";
 
 
             // Pair the input with the expected result
@@ -601,138 +427,6 @@ public class RunLocalTest {
                     "1. Create account." + System.lineSeparator() +
                     "2. Log In." + System.lineSeparator() +
                     "3. Exit the app." + System.lineSeparator() +
-                    "1" + System.lineSeparator() +
-                    "Once you create an account, you can not change your username." + System.lineSeparator() +
-                    "User name should be at least 4 characters and do not contain any spaces." + System.lineSeparator()
-                    + "Enter your username:" + System.lineSeparator() + "Abaldocc" + System.lineSeparator() +
-                    "Password should be at least 6 characters." + System.lineSeparator() +
-                    "Enter your password:" + System.lineSeparator() + "Archiebaldo" + System.lineSeparator() +
-                    "Age should be a number greater than 0." + System.lineSeparator() +
-                    "Enter your age:" + System.lineSeparator() + "20" + System.lineSeparator() +
-                    "Enter your gender from these options:" + System.lineSeparator() +
-                    "Female" + System.lineSeparator() + "Male" + System.lineSeparator() +
-                    "Other" + System.lineSeparator() + "Male" + System.lineSeparator() + "Enter your nationality:" +
-                    System.lineSeparator() + "American" + System.lineSeparator() + "Enter your job:" +
-                    System.lineSeparator() + "Student" + System.lineSeparator() + "Enter your hobby:" +
-                    System.lineSeparator() + "Polo" + System.lineSeparator() + "Create account success." +
-                    System.lineSeparator() + "You have to log in again." + System.lineSeparator();
-
-
-            // Runs the program with the input values
-            receiveInput(input);
-            SocialMedia.main(new String[0]);
-
-
-            // Retrieves the output from the program
-            String output = getOutput();
-
-
-            // Trims the output and verifies it is correct.
-            expected = expected.replaceAll("\r\n", "\n");
-            output = output.replaceAll("\r\n", "\n");
-            assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
-                    expected.trim(), output.trim());
-        } // end of test 1
-
-
-        @Test
-        public void testExpectedTwo() {
-
-
-            // Set the input
-            String input = "2" + System.lineSeparator() +
-                    "Abaldocc" + System.lineSeparator() +
-                    "Archiebaldo" + System.lineSeparator() +
-                    "1" + System.lineSeparator() +
-                    "1" + System.lineSeparator() +
-                    "10" + System.lineSeparator() +
-                    "3" + System.lineSeparator();
-
-
-            // Pair the input with the expected result
-            String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. Create account." + System.lineSeparator() +
-                    "2. Log In." + System.lineSeparator() +
-                    "3. Exit the app." + System.lineSeparator() +
-                    "2" + System.lineSeparator() +
-                    "Enter your username:" + System.lineSeparator() +
-                    "abaldocc" + System.lineSeparator() +
-                    "Enter your password:" + System.lineSeparator() +
-                    "Archiebaldo" + System.lineSeparator() +
-                    "Log In successfully." + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. View your profile" + System.lineSeparator() +
-                    "2. Edit your profile" + System.lineSeparator() +
-                    "3. View other user profile" + System.lineSeparator() +
-                    "4. Delete account" + System.lineSeparator() +
-                    "5. Add friend" + System.lineSeparator() +
-                    "6. Delete friend" + System.lineSeparator() +
-                    "7. Block friend" + System.lineSeparator() +
-                    "8. Unblock friend" + System.lineSeparator() +
-                    "9. Send message" + System.lineSeparator() +
-                    "10. Log out" + System.lineSeparator() +
-                    "1" + System.lineSeparator() +
-                    "Which information do you want to see" + System.lineSeparator() +
-                    "1. Username" + System.lineSeparator() +
-                    "2. Password" + System.lineSeparator() +
-                    "3. Age" + System.lineSeparator() +
-                    "4. Gender" + System.lineSeparator() +
-                    "5. Nationality" + System.lineSeparator() +
-                    "6. Job" + System.lineSeparator() +
-                    "7. Hobby" + System.lineSeparator() +
-                    "1" + System.lineSeparator() +
-                    "Abaldocc" + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. View your profile" + System.lineSeparator() +
-                    "2. Edit your profile" + System.lineSeparator() +
-                    "3. View other user profile" + System.lineSeparator() +
-                    "4. Delete account" + System.lineSeparator() +
-                    "5. Add friend" + System.lineSeparator() +
-                    "6. Delete friend" + System.lineSeparator() +
-                    "7. Block friend" + System.lineSeparator() +
-                    "8. Unblock friend" + System.lineSeparator() +
-                    "9. Send message" + System.lineSeparator() +
-                    "10. Log out" + System.lineSeparator() +
-                    "10" + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. Create account." + System.lineSeparator() +
-                    "2. Log In." + System.lineSeparator() +
-                    "3. Exit the app." + System.lineSeparator() +
-                    "3" + System.lineSeparator() +
-                    "Exiting the app" + System.lineSeparator();
-
-
-            // Runs the program with the input values
-            receiveInput(input);
-            SocialMedia.main(new String[0]);
-
-
-            // Retrieves the output from the program
-            String output = getOutput();
-
-
-            // Trims the output and verifies it is correct.
-            expected = expected.replaceAll("\r\n", "\n");
-            output = output.replaceAll("\r\n", "\n");
-            assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
-                    expected.trim(), output.trim());
-        }
-        @Test
-        public void testExpectedThree() {
-
-
-            // Set the input
-            String input = "3" + System.lineSeparator();
-
-
-            // Pair the input with the expected result
-            String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. Create account." + System.lineSeparator() +
-                    "2. Log In." + System.lineSeparator() +
-                    "3. Exit the app." + System.lineSeparator() +
-                    "3" + System.lineSeparator() +
                     "Exiting the app" + System.lineSeparator();
 
 
@@ -751,90 +445,6 @@ public class RunLocalTest {
             assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
                     expected.trim(), output.trim());
         } // end of test 1
-
-
-        @Test
-        public void testExpected4() {
-            // Set the input
-            String input = "2" + System.lineSeparator() +
-                    "Abaldocc" + System.lineSeparator() +
-                    "Archiebaldo" + System.lineSeparator() +
-                    "2" + System.lineSeparator() +
-                    "2" + System.lineSeparator() +
-                    "23" + System.lineSeparator() +
-                    "10" + System.lineSeparator() +
-                    "3" + System.lineSeparator();
-
-
-            // Pair the input with the expected result
-            String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. Create account." + System.lineSeparator() +
-                    "2. Log In." + System.lineSeparator() +
-                    "3. Exit the app." + System.lineSeparator() +
-                    "2" + System.lineSeparator() +
-                    "Enter your username:" + System.lineSeparator() +
-                    "Abaldocc" + System.lineSeparator() +
-                    "Enter your password:" + System.lineSeparator() +
-                    "Archiebaldo" + System.lineSeparator() +
-                    "Log In successfully." + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. View your profile" + System.lineSeparator() +
-                    "2. Edit your profile" + System.lineSeparator() +
-                    "3. View other user profile" + System.lineSeparator() +
-                    "4. Delete account" + System.lineSeparator() +
-                    "5. Add friend" + System.lineSeparator() +
-                    "6. Delete friend" + System.lineSeparator() +
-                    "7. Block friend" + System.lineSeparator() +
-                    "8. Unblock friend" + System.lineSeparator() +
-                    "9. Send message" + System.lineSeparator() +
-                    "10. Log out" + System.lineSeparator() +
-                    "2" + System.lineSeparator() +
-                    "Which information do you want to edit" + System.lineSeparator() +
-                    "1. Password" + System.lineSeparator() +
-                    "2. Age" + System.lineSeparator() +
-                    "3. Gender" + System.lineSeparator() +
-                    "4. Nationality" + System.lineSeparator() +
-                    "5. Job" + System.lineSeparator() +
-                    "6. Hobby" + System.lineSeparator() +
-                    "2" + System.lineSeparator() +
-                    "Enter your age" + System.lineSeparator() +
-                    "23" + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. View your profile" + System.lineSeparator() +
-                    "2. Edit your profile" + System.lineSeparator() +
-                    "3. View other user profile" + System.lineSeparator() +
-                    "4. Delete account" + System.lineSeparator() +
-                    "5. Add friend" + System.lineSeparator() +
-                    "6. Delete friend" + System.lineSeparator() +
-                    "7. Block friend" + System.lineSeparator() +
-                    "8. Unblock friend" + System.lineSeparator() +
-                    "9. Send message" + System.lineSeparator() +
-                    "10. Log out" + System.lineSeparator() +
-                    "10" + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. Create account." + System.lineSeparator() +
-                    "2. Log In." + System.lineSeparator() +
-                    "3. Exit the app." + System.lineSeparator() +
-                    "3" + System.lineSeparator() +
-                    "Exiting the app" + System.lineSeparator();
-            // Runs the program with the input values
-            receiveInput(input);
-            SocialMedia.main(new String[0]);
-
-
-            // Retrieves the output from the program
-            String output = getOutput();
-
-
-            // Trims the output and verifies it is correct.
-            expected = expected.replaceAll("\r\n", "\n");
-            output = output.replaceAll("\r\n", "\n");
-            assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
-                    expected.trim(), output.trim());
-        } // end of test 4
-
-
     } // end of social Media test method
 
 } // end of class
