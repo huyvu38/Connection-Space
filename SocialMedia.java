@@ -18,11 +18,11 @@ public class SocialMedia {
             System.out.println("1. Create account.");
             System.out.println("2. Log In.");
             System.out.println("3. Exit the app.");
+            Database databaseSocialMedia = new Database("AllUserAccount.txt");
+            databaseSocialMedia.readAllUserAccount();
             String userInput = scanner.nextLine();
             if (userInput.equals("1")) {
                 while (true) {
-                    Database databaseSocialMedia = new Database("AllUserAccount.txt");
-                    databaseSocialMedia.readAllUserAccount();
                     ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
                     System.out.println("Once you create an account, you can not change your username.");
                     System.out.println("User name should be at least 4 characters and do not contain any spaces.");
@@ -72,10 +72,8 @@ public class SocialMedia {
                     LogIn newCreateAccount = new LogIn(databaseSocialMedia, newProfile, userName, password);
                     if (newCreateAccount.createAccount(databaseSocialMedia, newProfile)) {
                         databaseSocialMedia.getAllUserAccount().add(newUserAccount);
-                        databaseSocialMedia.getAllUserProfile().add(newProfile);
                         databaseSocialMedia.saveAllUserAccount();
                         System.out.println("Create account success.");
-                        //System.out.println("Returning back to the main menu and");
                         System.out.println("You have to log in again.");
                         break;
                     } else {
@@ -84,8 +82,6 @@ public class SocialMedia {
                 }
             } else if (userInput.equals("2")) {
                 // Assuming Database class is defined
-                Database databaseSocialMedia = new Database("AllUserAccount.txt");
-                databaseSocialMedia.readAllUserAccount();
                 ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
                 ArrayList<UserAccount> allUserAccount = databaseSocialMedia.getAllUserAccount();
                 System.out.println("Enter your username");
@@ -262,13 +258,8 @@ public class SocialMedia {
                                     System.out.println("Enter again your password to confirm");
                                     userInput = scanner.nextLine();
                                     if (newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, userInput)) {
-                                        for (UserAccount userDeleteAccount : allUserAccount) {
-                                            if (userDeleteAccount.getUserProfile().getPassword().equals(userInput)) {
-                                                System.out.println("Delete account successfully");
-                                                System.out.println("Log out from the app");
-                                                databaseSocialMedia.saveAllUserAccount();
-                                            }
-                                        }
+                                        System.out.println("Delete account successfully");
+                                        System.out.println("Log out from the app");
                                         break;
                                     } else {
                                         System.out.println("Can not delete the account");
@@ -486,6 +477,7 @@ public class SocialMedia {
                 }
             } else if (userInput.equals("3")) {
                 System.out.println("Exiting the app");
+                databaseSocialMedia.saveAllUserAccount();
                 break;
             } else {
                 System.out.println("Please enter the right command");
