@@ -1,5 +1,7 @@
 # CS180-L22-Team 3
 
+Huy Vu <Submitted Vocareum Work Phase 1>
+
 ### Instruction on how to compile and run the program
 
 The user clicks the Run button in SocialMedia.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
