@@ -169,6 +169,7 @@ public class Message implements MessageInterface {
             br = new BufferedReader(new FileReader(filePath));
             String line;
             System.out.println("[conversationID] [ConversationTime] [Sender-Message] [if message blocked]");
+            int counter = 0;
             while ((line = br.readLine()) != null) {
                 String[] array = line.split(",");
 
@@ -194,18 +195,29 @@ public class Message implements MessageInterface {
                 //    3. sender and receiver matched
                 // All message should follow the format:
                 // [conversationID] [ConversationTime] [SenderName-MessageContent] [if message blocked]
-                if (array[1].equals(0)
+                if ((array[1].equals("1")
                         && array[3].equals(senderName)
-                        && array[4].equals(receiverName)) {
+                        && array[4].equals(receiverName)) || (array[1].equals("1")
+                        && array[3].equals(receiverName)
+                        && array[4].equals(senderName))) {
+                    counter++;
                     System.out.printf("%s %s %s: %s %s", array[0],array[2],array[3],array[6],array[5]);
-                } else {
-                    System.out.println("No message yet");
+                    System.out.println();
                 }
+            }
+            if (senderName.equals(receiverName)) {
+                System.out.println("Don't message yourself");
+            }
+
+            if (counter == 0) {
+
+                System.out.println("No message yet");
+
             }
             //return true;
         } catch (IOException e) {
             isSuccessful = false;
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             try {
                 if (br != null) {
@@ -213,7 +225,7 @@ public class Message implements MessageInterface {
                 }
             } catch (IOException e) {
                 isSuccessful = false;
-                e.printStackTrace();
+                //e.printStackTrace();
 
             }
         }

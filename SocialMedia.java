@@ -313,8 +313,21 @@ public class SocialMedia {
                                 } else if (userInput.equals("9")) {
                                     //get sender name and receiver name
                                     //System.out.println("Who you want to send message to?");
-                                    Method method = new Method();
-                                    boolean hasFriends = method.searchAccount(userName) != null;
+                                    boolean hasFriends = false;
+                                    boolean hasMoreThanOneFriends = false;
+                                    //Get the account for the current user
+                                    UserAccount currentUserAcc = null;
+                                    for (UserAccount userAccount: allUserAccount) {
+                                        if (userAccount.getUserProfile().getUserName().equals(userName)) {
+                                            currentUserAcc = userAccount;
+                                            if (!userAccount.getFriendList().isEmpty()) {
+                                                hasFriends = true;
+                                                if (userAccount.getFriendList().size() > 1) {
+                                                    hasMoreThanOneFriends = true;
+                                                }
+                                            }
+                                        }
+                                    }
                                     if (hasFriends) {
                                         boolean keepgoing = true;
                                         do {
@@ -326,10 +339,10 @@ public class SocialMedia {
                                             scanner.nextLine();
 
                                             if (input == 1) {
-                                                UserAccount userAccount = method.searchAccount(userName);
-                                                boolean hasMoreThanOneFriends = userAccount.getFriendList().size() > 1;
+                                                //UserAccount userAccount = actions.searchAccount(userName);
+                                                //boolean hasMoreThanOneFriends = userAccount.getFriendList().size() > 1;
                                                 if (hasMoreThanOneFriends) {
-                                                    boolean groupMessageKeepGoing = false;
+                                                    boolean groupMessageKeepGoing = true;
                                                     do {
                                                         System.out.println("How many members do you want in this group?");
                                                         int num = scanner.nextInt();
@@ -346,112 +359,138 @@ public class SocialMedia {
                                                         message1.restrictMessage(userName, groupMemberList, message);
 
 
-                                                        boolean sendMessagekeepgoing = false;
-                                                        do {
+                                                        if (groupMessageKeepGoing) {
+
                                                             System.out.println("Keep sending message?");
                                                             System.out.println("1. Yes");
                                                             System.out.println("2. No");
                                                             String ans = scanner.nextLine();
                                                             if (ans.equals(1)) {
                                                                 groupMessageKeepGoing = true;
-                                                                sendMessagekeepgoing = false;
                                                             } else if (ans.equals(2)) {
                                                                 groupMessageKeepGoing = false;
-                                                                sendMessagekeepgoing = false;
                                                             } else {
-                                                                System.out.println("Invalid Input! Try Again");
-                                                                sendMessagekeepgoing = true;
+                                                                System.out.println("Invalid Input! Assuming NO");
+                                                                groupMessageKeepGoing = false;
                                                             }
-                                                        } while (sendMessagekeepgoing);
+
+                                                        }
                                                     } while (groupMessageKeepGoing);
                                                 } else {
                                                     System.out.println("Please add more friends");
                                                 }
                                             } else if (input == 2) {
-                                                boolean friendMessageKeepGoing = false;
+                                                boolean friendMessageKeepGoing = true;
                                                 do {
                                                     System.out.println("Who you want to send message to?");
                                                     String receiverName = scanner.nextLine();
-                                                    // check if the receiver in the friendList
-                                                    UserAccount userAccount = method.searchAccount(userName);
-                                                    if (userAccount.getFriendList().contains(receiverName)) {
-                                                        //check if the user is blocked by receiver
-                                                        boolean isBlocked = method.searchAccount(receiverName).getBlockList().contains(userName);
-                                                        System.out.println("What message do you want to send?");
-                                                        String message = scanner.nextLine();
-                                                        Message message1 = new Message();
-                                                        if (message1.sendMessage(userName, receiverName, message, isBlocked)) {
-                                                            System.out.println("Message sent successfully");
-                                                        } else {
-                                                            System.out.println("Message sent failed");
-                                                        }
-                                                        boolean sendMessagekeepgoing = false;
-                                                        do {
-                                                            System.out.println("Keep sending message?");
-                                                            System.out.println("1. Yes");
-                                                            System.out.println("2. No");
-                                                            String ans = scanner.nextLine();
-                                                            if (ans.equals(1)) {
-                                                                friendMessageKeepGoing = true;
-                                                                sendMessagekeepgoing = false;
-                                                            } else if (ans.equals(2)) {
-                                                                friendMessageKeepGoing = false;
-                                                                sendMessagekeepgoing = false;
-                                                            } else {
-                                                                System.out.println("Invalid Input! Try Again");
-                                                                sendMessagekeepgoing = true;
+                                                    // check if the receiver is in the friendList
+                                                    if (currentUserAcc.getFriendList().contains(receiverName)) {
+                                                        // Variable for checking if the user is blocked by the receiver
+                                                        boolean isBlocked = false;
+                                                        UserAccount receiverAcc = null;
+                                                        for (UserAccount account : allUserAccount) { // Assuming allUserAccounts holds all user accounts
+                                                            if (account.getUserProfile().getUserName().equals(receiverName)) {
+                                                                receiverAcc = account;
+                                                                if (account.getBlockList().contains(currentUserAcc.getUserProfile().getUserName())) {
+                                                                    isBlocked = true;
+                                                                    break; // Stop searching once the receiver account is found and block status is determined
+                                                                }
                                                             }
-                                                        } while (sendMessagekeepgoing);
+                                                        }
+
+                                                        // Proceed if receiver account is found and user is not blocked
+                                                        if (receiverAcc != null && !isBlocked) {
+                                                            System.out.println("What message do you want to send?");
+                                                            String message = scanner.nextLine();
+                                                            Message messageObj = new Message(); // Assuming this is how you create a message
+                                                            if (messageObj.sendMessage(userName, receiverName, message, isBlocked)) {
+                                                                System.out.println("Message sent successfully.");
+                                                            } else {
+                                                                System.out.println("Failed to send message.");
+                                                            }
+                                                        } else if (isBlocked) {
+                                                            System.out.println("You are blocked by this user.");
+                                                            friendMessageKeepGoing = false; // Assuming you want to exit the loop if blocked
+                                                        } else {
+                                                            System.out.println("Receiver not found.");
+                                                        }
                                                     } else {
                                                         System.out.println("Friend Not Exist! Try Again");
                                                         friendMessageKeepGoing = false;
                                                     }
+
+                                                    // Asking user if they want to continue sending messages
+                                                    if (friendMessageKeepGoing) { // Only prompt if still eligible to send messages
+                                                        System.out.println("Do you want to keep sending messages? (1 for Yes, 2 for No)");
+                                                        String ans = scanner.nextLine();
+                                                        if (ans.equals("1")) {
+                                                            friendMessageKeepGoing = true;
+                                                        } else if (ans.equals("2")) {
+                                                            friendMessageKeepGoing = false;
+                                                        } else {
+                                                            System.out.println("Invalid input! Assuming No.");
+                                                            friendMessageKeepGoing = false;
+                                                        }
+                                                    }
                                                 } while (friendMessageKeepGoing);
 
                                             } else if (input == 3) {
-                                                System.out.println("Who do you want to print the conversation with?");
-                                                String name = scanner.nextLine();
-                                                Message message = new Message();
-                                                message.printHistoryMessage(userName, name);
+                                                boolean keepPrintMess = true;
+                                                while (keepPrintMess) {
+                                                    System.out.println("Who do you want to print the conversation with?");
+                                                    String name = scanner.nextLine();
+                                                    Message message = new Message();
+                                                    message.printHistoryMessage(userName, name);
 
-                                                boolean keepDeleting = false;
-                                                do {
-                                                    System.out.println("Do you want to delete any message");
-                                                    System.out.println("1. Yes");
-                                                    System.out.println("2. No");
-                                                    String ans = scanner.nextLine();
-                                                    if (ans.equals(1)) {
-                                                        System.out.println("Please enter conversation ID");
-                                                        String ID = scanner.nextLine();
-                                                        if (message.deleteMessage(Integer.parseInt(ID))) {
-                                                            System.out.println("Message delete successfully");
+                                                    boolean keepDeleting = true;
+                                                    while (keepDeleting) {
+                                                        System.out.println("Do you want to delete any message?");
+                                                        System.out.println("1. Yes");
+                                                        System.out.println("2. No");
+                                                        String ans = scanner.nextLine();
+
+                                                        // Correct the comparison to use string values
+                                                        if (ans.equals("1")) { // Change from ans.equals(1) to ans.equals("1")
+                                                            System.out.println("Please enter the conversation ID:");
+                                                            String ID = scanner.nextLine();
+                                                            try {
+                                                                if (message.deleteMessage(Integer.parseInt(ID))) {
+                                                                    System.out.println("Message deleted successfully.");
+                                                                } else {
+                                                                    System.out.println("Message deletion failed. Try another ID.");
+                                                                }
+                                                                // No need to set keepDeleting = true here, as it's already true by default
+                                                            } catch (NumberFormatException e) {
+                                                                System.out.println("Invalid ID format. Please enter a valid number.");
+                                                            }
+                                                        } else if (ans.equals("2")) {
+                                                            keepDeleting = false; // Will exit the loop
                                                         } else {
-                                                            System.out.println("Message delete failed");
-                                                            System.out.println("Try an other ID");
-
+                                                            System.out.println("Invalid input! Try again.");
+                                                            // keepDeleting remains true, so the loop continues
                                                         }
-                                                        keepDeleting = true;
-                                                    } else if (ans.equals(2)) {
-                                                        keepDeleting = false;
-                                                    } else {
-                                                        System.out.println("Invalid Input! Try Again");
-                                                        keepDeleting = true;
                                                     }
 
-                                                } while (keepDeleting);
 
-                                                boolean printKeepGoing;
-                                                do {
-                                                    System.out.println("Keep printing message?");
-                                                    System.out.println("1. Yes");
-                                                    System.out.println("2. No");
-                                                    String ans = scanner.nextLine();
-                                                    if (ans.equals(1)) {
-                                                        printKeepGoing = true;
-                                                    } else {
-                                                        printKeepGoing = false;
-                                                    }
-                                                } while (printKeepGoing);
+                                                    boolean printKeepGoing = true;
+                                                    do {
+                                                        System.out.println("Keep printing message?");
+                                                        System.out.println("1. Yes");
+                                                        System.out.println("2. No");
+                                                        String ans = scanner.nextLine();
+                                                        if (ans.equals("1")) {
+                                                            keepPrintMess = true;
+                                                            printKeepGoing = false;
+                                                        } else if (ans.equals("2")) {
+                                                            keepPrintMess = false;
+                                                            printKeepGoing = false;
+                                                        } else {
+                                                            System.out.println("Invalid input! Try again.");
+                                                            printKeepGoing = true;
+                                                        }
+                                                    } while (printKeepGoing);
+                                                }
                                             } else if (input == 4) {
                                                 keepgoing = false;
                                             } else {
