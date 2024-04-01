@@ -5,11 +5,11 @@
 
 Hit the Run button and write 1 to the program.
 
-Then the user is prompted to enter username, password. 
+Then the user is prompted to enter username, password.
 
-Once the user create account succeesfully, they can not edit their username.
+Once the user create account successfully, they cannot edit their username.
 
-After that, the user is prompted to enter age, gender, nationality, job, and hobby.
+After that, the user is prompted to enter their age, gender, nationality, job, and hobby.
 
 Then the program goes back to the main menu to let the user create account or log in or exit the app.
 
@@ -19,7 +19,7 @@ Hit the Run button and write 2 to the program.
 
 Then the user is prompted to enter username and password for log in. 
 
-If login successfully, the program will show the Option Menu with 9 options:
+If user login successfully, the program will show the Option Menu with 10 options:
 
 1. View that user profile
   
