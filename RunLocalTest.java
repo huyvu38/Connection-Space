@@ -288,11 +288,11 @@ public class RunLocalTest {
 
     public static class DatabaseTest {
         private static Database database;
-        private static ArrayList<Profile> TestUserProfiles = null;
+        private static ArrayList<Profile> TestUserProfiles = new ArrayList<>();
 
-        private static ArrayList<UserAccount> allUserAccount = null;
+        private static ArrayList<UserAccount> allUserAccount = new ArrayList<>();
 
-        private static ArrayList<UserAccount> TestUserAccounts = null;
+        private static ArrayList<UserAccount> TestUserAccounts = new ArrayList<>();
 
         @BeforeClass
         public static void setupDatabase() {
