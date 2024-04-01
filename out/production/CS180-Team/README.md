@@ -1,7 +1,5 @@
 # CS180-L22-Team 3
 
-Huy Vu <Submitted Vocareum Work Phase 1>
-
 ### Instruction on how to compile and run the program
 
 The user clicks the Run button in SocialMedia.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
@@ -125,7 +123,3 @@ Password Checks: Verifies password length for security and matches passwords for
 Account Management: Supports creating and deleting user accounts based on validation of credentials and username uniqueness.<br/>
 Login Verification: Authenticates user logins by matching usernames and passwords with database records.
 <br/>
-
-### SocialMedia.java <br/>
-The main program to allow user interact with the app. User can create account, search user, add friend, etc. More details on instruction how to compile and run the program.
-
