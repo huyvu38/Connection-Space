@@ -4,9 +4,11 @@
 
 The user clicks the Run button in SocialMedia.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
 
+For any time that the user enters any wrong input or wrong command, the program will ask them until the user enter the valid input or right command.
+
 1. User wants to create an account
 
-Hit the Run button and write 1 to the program.
+Write 1 to the program.
 
 Then the user is prompted to enter username, password.
 
@@ -18,7 +20,7 @@ Then the program goes back to the main menu to let the user create account or lo
 
 2. User wants to log in
 
-Hit the Run button and write 2 to the program.
+Write 2 to the program.
 
 Then the user is prompted to enter username and password for log in. 
 
@@ -55,9 +57,7 @@ If the user writes down 10, the program will exit from the Option Menu and goes 
 
 3. User wants to exit the app
 
-Hit the Run button and write 3 to the program. The program will stop.
-
-For any time that the user enters any wrong input or wrong command, the program will ask them until the user do the valid input or right command.
+Write 3 to the program. The program will stop.
 
 ### Profile.java <br/>
 Creates a new profile object with username, password, age, gender, nationality, job and hobby. Includes get/set methods to modify or return given attributes.
