@@ -106,13 +106,14 @@ public class SocialMedia {
                                 System.out.println("What would you like to do?");
                                 System.out.println("1. View your profile");
                                 System.out.println("2. Edit your profile");
-                                System.out.println("3. Delete account");
-                                System.out.println("4. Add friend");
-                                System.out.println("5. Delete friend");
-                                System.out.println("6. Block friend");
-                                System.out.println("7. Unblock friend");
-                                System.out.println("8. Send message");
-                                System.out.println("9. Log out");
+                                System.out.println("3. View other user profile");
+                                System.out.println("4. Delete account");
+                                System.out.println("5. Add friend");
+                                System.out.println("6. Delete friend");
+                                System.out.println("7. Block friend");
+                                System.out.println("8. Unblock friend");
+                                System.out.println("9. Send message");
+                                System.out.println("10. Log out");
                                 userInput = scanner.nextLine();
                                 if (userInput.equals("1")) {
                                     System.out.println("Which information do you want to see");
@@ -218,7 +219,50 @@ public class SocialMedia {
                                             System.out.println("Please enter the right command");
                                         }
                                     }
+                                } else if (userInput.equals("3")) {
+                                } else if (userInput.equals("4")) {
+                                    newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, password);
+                                    System.out.println("Delete account successfully");
+                                    System.out.println("Log out from the app");
+                                    break;
+                                } else if (userInput.equals("5")) {
+                                    System.out.println("Search for the username that you want to add friend");
+                                    userInput = scanner.nextLine();
+                                    if (actions.addFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userInput)) {
+                                        eachUserAccount.getFriendList().add(userInput);
+                                        for (UserAccount friendUserAccount : allUserAccount) {
+                                            if (friendUserAccount.getUserProfile().equals(userInput)) {
+                                                friendUserAccount.getFriendList().add(userName);
+                                            }
+                                        }
+                                        System.out.println("Add friend successfully");
+                                    } else {
+                                        System.out.println("You can not add friend");
+                                    }
+                                } else if (userInput.equals("6")) {
+                                    System.out.println("Search for the username that you want to delete friend");
+                                    userInput = scanner.nextLine();
+                                    if (actions.removeFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userInput)) {
+                                        eachUserAccount.getFriendList().remove(userInput);
+                                        for (UserAccount friendUserAccount : allUserAccount) {
+                                            if (friendUserAccount.getUserProfile().equals(userInput)) {
+                                                friendUserAccount.getFriendList().remove(eachProfile.getUserName());
+                                            }
+                                        }
+                                        System.out.println("Delete friend successfully");
+                                    } else {
+                                        System.out.println("You can not delete friend");
+                                    }
                                 } else if (userInput.equals("7")) {
+                                    System.out.println("Search for the username that you want to block");
+                                    userInput = scanner.nextLine();
+                                    if (actions.blockUser(allUserProfile, eachUserAccount.getBlockList(), userInput)) {
+                                        eachUserAccount.getBlockList().add(userName);
+                                        System.out.println("Block friend successfully");
+                                    } else {
+                                        System.out.println("You can not block that user");
+                                    }
+                                } else if (userInput.equals("8")) {
                                     System.out.println("Search for the username that you want to unblock");
                                     userInput = scanner.nextLine();
                                     if (actions.unblockUser(allUserProfile, eachUserAccount.getBlockList(), userInput)) {
@@ -227,7 +271,7 @@ public class SocialMedia {
                                     } else {
                                         System.out.println("You can not unblock that user");
                                     }
-                                } else if (userInput.equals("8")) {
+                                } else if (userInput.equals("9")) {
                                     //get sender name and receiver name
                                     //System.out.println("Who you want to send message to?");
                                     Method method = new Method();
@@ -378,7 +422,7 @@ public class SocialMedia {
                                     } else {
                                         System.out.println("Please add friend first");
                                     }
-                                } else if (userInput.equals("9")) {
+                                } else if (userInput.equals("10")) {
                                     databaseSocialMedia.saveAllUserAccount();
                                     break;
                                     //Log out
