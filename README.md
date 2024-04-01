@@ -111,3 +111,15 @@ Persistent Logging: Use a buffered reader to timestamp and store messages, ensur
 
 This streamlined framework is built to facilitate effective and private communication among users, balancing functionality with user control.
 <br/>
+
+### Login.java <br/>
+
+LogIn.java is a core component for managing user authentication in an application. It interacts with a Database to handle user logins, account creation, and deletion, utilizing user credentials for secure access.
+
+#### Methods
+Initial Setup: Constructs with database and user profile for authentication tasks.<br/>
+Username Validation: Ensures usernames are unique and meet formatting standards.<br/>
+Password Checks: Verifies password length for security and matches passwords for login.<br/>
+Account Management: Supports creating and deleting user accounts based on validation of credentials and username uniqueness.<br/>
+Login Verification: Authenticates user logins by matching usernames and passwords with database records.
+<br/>
