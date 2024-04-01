@@ -545,20 +545,25 @@ public class RunLocalTest {
     }
     public static class SocialMediaTest {
 
+
         private final PrintStream originalOutput = System.out;
         private final InputStream originalSysin = System.in;
+
 
         @SuppressWarnings("FieldCanBeLocal")
         private ByteArrayInputStream testIn;
 
+
         @SuppressWarnings("FieldCanBeLocal")
         private ByteArrayOutputStream testOut;
+
 
         @Before
         public void outputStart() {
             testOut = new ByteArrayOutputStream();
             System.setOut(new PrintStream(testOut));
         }
+
 
         @After
         public void restoreInputAndOutput() {
@@ -569,6 +574,7 @@ public class RunLocalTest {
             return testOut.toString();
         }
 
+
         @SuppressWarnings("SameParameterValue")
         private void receiveInput(String str) {
             testIn = new ByteArrayInputStream(str.getBytes());
@@ -577,15 +583,17 @@ public class RunLocalTest {
         @Test(timeout = 1000)
         public void testExpectedOne() {
 
+
             // Set the input
             String input = "1" + System.lineSeparator() +
-                    "abaldocc" + System.lineSeparator() +
-                    "archiebaldo" + System.lineSeparator() +
+                    "Abaldocc" + System.lineSeparator() +
+                    "Archiebaldo" + System.lineSeparator() +
                     "20" + System.lineSeparator() +
-                    "male" + System.lineSeparator() +
-                    "El Salvador" + System.lineSeparator() +
-                    "Building manager" + System.lineSeparator() +
+                    "Male" + System.lineSeparator() +
+                    "American" + System.lineSeparator() +
+                    "Student " + System.lineSeparator() +
                     "Polo" + System.lineSeparator();
+
 
             // Pair the input with the expected result
             String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
@@ -596,25 +604,113 @@ public class RunLocalTest {
                     "1" + System.lineSeparator() +
                     "Once you create an account, you can not change your username." + System.lineSeparator() +
                     "User name should be at least 4 characters and do not contain any spaces." + System.lineSeparator()
-                    + "Enter your username:" + System.lineSeparator() + "abaldocc" + System.lineSeparator() +
+                    + "Enter your username:" + System.lineSeparator() + "Abaldocc" + System.lineSeparator() +
                     "Password should be at least 6 characters." + System.lineSeparator() +
-                    "Enter your password:" + System.lineSeparator() + "archiebaldo" + System.lineSeparator() +
+                    "Enter your password:" + System.lineSeparator() + "Archiebaldo" + System.lineSeparator() +
                     "Age should be a number greater than 0." + System.lineSeparator() +
                     "Enter your age:" + System.lineSeparator() + "20" + System.lineSeparator() +
                     "Enter your gender from these options:" + System.lineSeparator() +
                     "Female" + System.lineSeparator() + "Male" + System.lineSeparator() +
-                    "Other" + System.lineSeparator() + "male" + System.lineSeparator() + "Enter your nationality:" +
-                    System.lineSeparator() + "El Salvador" + System.lineSeparator() + "Enter your job:" +
-                    System.lineSeparator() + "Building manager" + System.lineSeparator() + "Enter your hobby:" +
+                    "Other" + System.lineSeparator() + "Male" + System.lineSeparator() + "Enter your nationality:" +
+                    System.lineSeparator() + "American" + System.lineSeparator() + "Enter your job:" +
+                    System.lineSeparator() + "Student" + System.lineSeparator() + "Enter your hobby:" +
                     System.lineSeparator() + "Polo" + System.lineSeparator() + "Create account success." +
                     System.lineSeparator() + "You have to log in again." + System.lineSeparator();
+
 
             // Runs the program with the input values
             receiveInput(input);
             SocialMedia.main(new String[0]);
 
+
             // Retrieves the output from the program
             String output = getOutput();
+
+
+            // Trims the output and verifies it is correct.
+            expected = expected.replaceAll("\r\n", "\n");
+            output = output.replaceAll("\r\n", "\n");
+            assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
+                    expected.trim(), output.trim());
+        } // end of test 1
+
+
+        @Test
+        public void testExpectedTwo() {
+
+
+            // Set the input
+            String input = "2" + System.lineSeparator() +
+                    "Abaldocc" + System.lineSeparator() +
+                    "Archiebaldo" + System.lineSeparator() +
+                    "1" + System.lineSeparator() +
+                    "1" + System.lineSeparator() +
+                    "10" + System.lineSeparator() +
+                    "3" + System.lineSeparator();
+
+
+            // Pair the input with the expected result
+            String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. Create account." + System.lineSeparator() +
+                    "2. Log In." + System.lineSeparator() +
+                    "3. Exit the app." + System.lineSeparator() +
+                    "2" + System.lineSeparator() +
+                    "Enter your username:" + System.lineSeparator() +
+                    "abaldocc" + System.lineSeparator() +
+                    "Enter your password:" + System.lineSeparator() +
+                    "Archiebaldo" + System.lineSeparator() +
+                    "Log In successfully." + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. View your profile" + System.lineSeparator() +
+                    "2. Edit your profile" + System.lineSeparator() +
+                    "3. View other user profile" + System.lineSeparator() +
+                    "4. Delete account" + System.lineSeparator() +
+                    "5. Add friend" + System.lineSeparator() +
+                    "6. Delete friend" + System.lineSeparator() +
+                    "7. Block friend" + System.lineSeparator() +
+                    "8. Unblock friend" + System.lineSeparator() +
+                    "9. Send message" + System.lineSeparator() +
+                    "10. Log out" + System.lineSeparator() +
+                    "1" + System.lineSeparator() +
+                    "Which information do you want to see" + System.lineSeparator() +
+                    "1. Username" + System.lineSeparator() +
+                    "2. Password" + System.lineSeparator() +
+                    "3. Age" + System.lineSeparator() +
+                    "4. Gender" + System.lineSeparator() +
+                    "5. Nationality" + System.lineSeparator() +
+                    "6. Job" + System.lineSeparator() +
+                    "7. Hobby" + System.lineSeparator() +
+                    "1" + System.lineSeparator() +
+                    "Abaldocc" + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. View your profile" + System.lineSeparator() +
+                    "2. Edit your profile" + System.lineSeparator() +
+                    "3. View other user profile" + System.lineSeparator() +
+                    "4. Delete account" + System.lineSeparator() +
+                    "5. Add friend" + System.lineSeparator() +
+                    "6. Delete friend" + System.lineSeparator() +
+                    "7. Block friend" + System.lineSeparator() +
+                    "8. Unblock friend" + System.lineSeparator() +
+                    "9. Send message" + System.lineSeparator() +
+                    "10. Log out" + System.lineSeparator() +
+                    "10" + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. Create account." + System.lineSeparator() +
+                    "2. Log In." + System.lineSeparator() +
+                    "3. Exit the app." + System.lineSeparator() +
+                    "3" + System.lineSeparator() +
+                    "Exiting the app" + System.lineSeparator();
+
+
+            // Runs the program with the input values
+            receiveInput(input);
+            SocialMedia.main(new String[0]);
+
+
+            // Retrieves the output from the program
+            String output = getOutput();
+
 
             // Trims the output and verifies it is correct.
             expected = expected.replaceAll("\r\n", "\n");
@@ -622,24 +718,123 @@ public class RunLocalTest {
             assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
                     expected.trim(), output.trim());
         }
+        @Test
+        public void testExpectedThree() {
 
-        /*"2" + System.lineSeparator() +
+
+            // Set the input
+            String input = "3" + System.lineSeparator();
+
+
+            // Pair the input with the expected result
+            String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. Create account." + System.lineSeparator() +
+                    "2. Log In." + System.lineSeparator() +
+                    "3. Exit the app." + System.lineSeparator() +
+                    "3" + System.lineSeparator() +
+                    "Exiting the app" + System.lineSeparator();
+
+
+            // Runs the program with the input values
+            receiveInput(input);
+            SocialMedia.main(new String[0]);
+
+
+            // Retrieves the output from the program
+            String output = getOutput();
+
+
+            // Trims the output and verifies it is correct.
+            expected = expected.replaceAll("\r\n", "\n");
+            output = output.replaceAll("\r\n", "\n");
+            assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
+                    expected.trim(), output.trim());
+        } // end of test 1
+
+
+        @Test
+        public void testExpected4() {
+            // Set the input
+            String input = "2" + System.lineSeparator() +
+                    "Abaldocc" + System.lineSeparator() +
+                    "Archiebaldo" + System.lineSeparator() +
+                    "2" + System.lineSeparator() +
+                    "2" + System.lineSeparator() +
+                    "23" + System.lineSeparator() +
+                    "10" + System.lineSeparator() +
+                    "3" + System.lineSeparator();
+
+
+            // Pair the input with the expected result
+            String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. Create account." + System.lineSeparator() +
+                    "2. Log In." + System.lineSeparator() +
+                    "3. Exit the app." + System.lineSeparator() +
+                    "2" + System.lineSeparator() +
+                    "Enter your username:" + System.lineSeparator() +
                     "abaldocc" + System.lineSeparator() +
-                    "archiebaldo" + System.lineSeparator() +
-                    "3" + System.lineSeparator()*/
-        public void createAccountTest() {
+                    "Enter your password:" + System.lineSeparator() +
+                    "Archiebaldo" + System.lineSeparator() +
+                    "Log In successfully." + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. View your profile" + System.lineSeparator() +
+                    "2. Edit your profile" + System.lineSeparator() +
+                    "3. View other user profile" + System.lineSeparator() +
+                    "4. Delete account" + System.lineSeparator() +
+                    "5. Add friend" + System.lineSeparator() +
+                    "6. Delete friend" + System.lineSeparator() +
+                    "7. Block friend" + System.lineSeparator() +
+                    "8. Unblock friend" + System.lineSeparator() +
+                    "9. Send message" + System.lineSeparator() +
+                    "10. Log out" + System.lineSeparator() +
+                    "2" + System.lineSeparator() +
+                    "Which information do you want to edit" + System.lineSeparator() +
+                    "1. Password" + System.lineSeparator() +
+                    "2. Age" + System.lineSeparator() +
+                    "3. Gender" + System.lineSeparator() +
+                    "4. Nationality" + System.lineSeparator() +
+                    "5. Job" + System.lineSeparator() +
+                    "6. Hobby" + System.lineSeparator() +
+                    "2" + System.lineSeparator() +
+                    "Enter your age" + System.lineSeparator() +
+                    "23" + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. View your profile" + System.lineSeparator() +
+                    "2. Edit your profile" + System.lineSeparator() +
+                    "3. View other user profile" + System.lineSeparator() +
+                    "4. Delete account" + System.lineSeparator() +
+                    "5. Add friend" + System.lineSeparator() +
+                    "6. Delete friend" + System.lineSeparator() +
+                    "7. Block friend" + System.lineSeparator() +
+                    "8. Unblock friend" + System.lineSeparator() +
+                    "9. Send message" + System.lineSeparator() +
+                    "10. Log out" + System.lineSeparator() +
+                    "10" + System.lineSeparator() +
+                    "What would you like to do?" + System.lineSeparator() +
+                    "1. Create account." + System.lineSeparator() +
+                    "2. Log In." + System.lineSeparator() +
+                    "3. Exit the app." + System.lineSeparator() +
+                    "3" + System.lineSeparator() +
+                    "Exiting the app" + System.lineSeparator();
+            // Runs the program with the input values
+            receiveInput(input);
+            SocialMedia.main(new String[0]);
 
-        }
-        public void exitProgramTest() {
 
-        }
-        public void logInViewExitTest() {
+            // Retrieves the output from the program
+            String output = getOutput();
 
-        }
-        public void logInEditExit() {
 
-        }
-    }
+            // Trims the output and verifies it is correct.
+            expected = expected.replaceAll("\r\n", "\n");
+            output = output.replaceAll("\r\n", "\n");
+            assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
+                    expected.trim(), output.trim());
+        } // end of test 4
 
+
+    } // end of social Media test method
 
 } // end of class
