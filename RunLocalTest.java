@@ -68,33 +68,14 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result6 = JUnitCore.runClasses(SocialMedia.class);
-        if (result3.wasSuccessful()) {
-            System.out.println("Excellent - Social Media Account test ran successfully");
-        } else {
-            for (Failure failure : result3.getFailures()) {
-                System.out.println(failure.toString());
-            }
-        }
-
-        Result result5 = JUnitCore.runClasses(MethodTest.class);
-        if (result5.wasSuccessful()) {
-            System.out.println("Excellent - Method test ran successfully");
-        } else {
-            for (Failure failure : result5.getFailures()) {
-                System.out.println("method"+failure.toString());
-            }
-        }
-        Result result4 = JUnitCore.runClasses(DatabaseTest.class);
+        Result result4 = JUnitCore.runClasses(SocialMediaTest.class);
         if (result4.wasSuccessful()) {
-            System.out.println("Excellent - Database test ran successfully");
+            System.out.println("Excellent - Social Media Account test ran successfully");
         } else {
             for (Failure failure : result4.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
-
-
     }  // end of main
 
     @RunWith(Enclosed.class)
@@ -644,7 +625,7 @@ public class RunLocalTest {
                     "3. Exit the app." + System.lineSeparator() +
                     "2" + System.lineSeparator() +
                     "Enter your username:" + System.lineSeparator() +
-                    "abaldocc" + System.lineSeparator() +
+                    "Abaldocc" + System.lineSeparator() +
                     "Enter your password:" + System.lineSeparator() +
                     "Archiebaldo" + System.lineSeparator() +
                     "Log In successfully." + System.lineSeparator() +
@@ -751,7 +732,7 @@ public class RunLocalTest {
                     "3. Exit the app." + System.lineSeparator() +
                     "2" + System.lineSeparator() +
                     "Enter your username:" + System.lineSeparator() +
-                    "abaldocc" + System.lineSeparator() +
+                    "Abaldocc" + System.lineSeparator() +
                     "Enter your password:" + System.lineSeparator() +
                     "Archiebaldo" + System.lineSeparator() +
                     "Log In successfully." + System.lineSeparator() +
