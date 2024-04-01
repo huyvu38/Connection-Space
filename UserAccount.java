@@ -63,5 +63,4 @@ public class UserAccount implements UserAccountInterface {
         }
         return this.userProfile.toString() + ";FriendList:[" + friend + "];BlockList:[" + blockUser + "]";
     }
-
 }

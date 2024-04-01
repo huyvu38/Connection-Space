@@ -23,7 +23,7 @@ public class Message implements MessageInterface {
     //Message message = new Message();
 
     // Create a message row including timeStamp, save to Message.txt at the bottom of the file
-    public boolean sendMessage (String sendUserName, String receiverUserName, String content, boolean isBlocked) {
+    public boolean sendMessage(String sendUserName, String receiverUserName, String content, boolean isBlocked) {
         // Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -33,7 +33,7 @@ public class Message implements MessageInterface {
         String lastLine = null;
         BufferedReader reader = null;
         boolean isGetId = false;
-        int ID = 0;
+        int id = 0;
         try {
             // Create a BufferedReader to read from a file
             reader = new BufferedReader(new FileReader("Messages.txt"));
@@ -48,7 +48,7 @@ public class Message implements MessageInterface {
 
             if (lastLine != null) {
                 String[] rowInfo = lastLine.split(",");
-                ID = Integer.parseInt(rowInfo[0]) + 1;
+                id = Integer.parseInt(rowInfo[0]) + 1;
             }
             isGetId = true;
         } catch (IOException e) {
@@ -66,7 +66,7 @@ public class Message implements MessageInterface {
 
         if (isGetId) {
             // Create a message row
-            String messageRow = ID + ",1," + formattedDateTime + "," + sendUserName + "," + receiverUserName ;
+            String messageRow = id + ",1," + formattedDateTime + "," + sendUserName + "," + receiverUserName ;
             if (isBlocked) {
                 messageRow += ",blocked," + content;
 
@@ -104,7 +104,7 @@ public class Message implements MessageInterface {
     }
 
 
-    public boolean deleteMessage (int messageID) {
+    public boolean deleteMessage(int messageID) {
         Path path = Paths.get("Messages.txt");
 
 
@@ -133,19 +133,20 @@ public class Message implements MessageInterface {
     }
 
 
-    // Only send message to selected members in friendList (before use this method, make sure all input should in Users friendList.
+    // Only send message to selected members in friendList
+    // (before use this method, make sure all input should in Users friendList.
     // Only send message when otherUserName is in friendList
     // return empty string if all success, otherwirse indicate which one failed.
     public  String restrictMessage(String userName, ArrayList<String> groupMembersList, String content) {
         List<String> failedUser = new ArrayList<>();
         for (String friend: groupMembersList) {
-            if(!this.sendMessage(userName, friend, content, false)) {
+            if (!this.sendMessage(userName, friend, content, false)) {
                 failedUser.add(friend);
             }
         }
 
         if (failedUser.size() > 0) {
-            return "Failed to send to "+ failedUser.toString();
+            return "Failed to send to " + failedUser.toString();
 
         } else {
             return null;
@@ -183,7 +184,7 @@ public class Message implements MessageInterface {
                             temp.add(array[i]);
                         }
                     }
-                    mergeText = mergeText.substring(0,mergeText.length() - 1);
+                    mergeText = mergeText.substring(0, mergeText.length() - 1);
                     temp.add(mergeText);
                     temp.toArray(array);
                 }
@@ -197,7 +198,7 @@ public class Message implements MessageInterface {
                 if (array[1].equals(0)
                         && array[3].equals(senderName)
                         && array[4].equals(receiverName)) {
-                    System.out.printf("%s %s %s: %s %s", array[0],array[2],array[3],array[6],array[5]);
+                    System.out.printf("%s %s %s: %s %s", array[0], array[2], array[3], array[6], array[5]);
                 } else {
                     System.out.println("No message yet");
                 }
