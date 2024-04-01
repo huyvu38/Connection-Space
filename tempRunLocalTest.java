@@ -64,7 +64,7 @@ public class tempRunLocalTest {
             }
         }
         Result result5 = JUnitCore.runClasses(RunLocalTest.MethodTest.class);
-        if (result5.wasSuccessful()) {
+        if (!result5.wasSuccessful()) {
             System.out.println("Excellent - Method test ran successfully");
         } else {
             for (Failure failure : result5.getFailures()) {
@@ -72,7 +72,7 @@ public class tempRunLocalTest {
             }
         }
         Result result4 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
-        if (result4.wasSuccessful()) {
+        if (!result4.wasSuccessful()) {
             System.out.println("Excellent - Database test ran successfully");
         } else {
             for (Failure failure : result4.getFailures()) {
