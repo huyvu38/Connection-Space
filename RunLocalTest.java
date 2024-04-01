@@ -147,7 +147,7 @@ public class RunLocalTest {
         public void toStringTest() {
             String input = "abaldocc,whatsup,20,Male,Salvadorian,Building Manager,Soccer";
             assertEquals("toString method should name,password,age,gender,nationality,job,hobby" +
-                            " with a comma and no space after the comma.", input, profile.toString());
+                    " with a comma and no space after the comma.", input, profile.toString());
         }
 
     } // end of test case
