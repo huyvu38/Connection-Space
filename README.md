@@ -112,7 +112,7 @@ Persistent Logging: Use a buffered reader to timestamp and store messages, ensur
 This streamlined framework is built to facilitate effective and private communication among users, balancing functionality with user control.
 <br/>
 
-### Message.java <br/>
+### Login.java <br/>
 
 LogIn.java is a core component for managing user authentication in an application. It interacts with a Database to handle user logins, account creation, and deletion, utilizing user credentials for secure access.
 
