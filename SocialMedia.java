@@ -220,13 +220,50 @@ public class SocialMedia {
                                         }
                                     }
                                 } else if (userInput.equals("3")) {
+                                    System.out.println("Search the user name that you want to view profile");
+                                    userInput = scanner.nextLine();
+                                    if (actions.searchUser(allUserProfile, eachUserAccount.getBlockList(), userInput)) {
+                                        System.out.println("Which information do you want to see");
+                                        System.out.println("1. Age");
+                                        System.out.println("2. Gender");
+                                        System.out.println("3. Nationality");
+                                        System.out.println("4. Job");
+                                        System.out.println("5. Hobby");
+                                        for (Profile friendProfile : allUserProfile) {
+                                            if (friendProfile.getUserName().equals(userInput)) {
+                                                while (true) {
+                                                    userInput = scanner.nextLine();
+                                                    if (userInput.equals("1")) {
+                                                        System.out.println(friendProfile.getAge());
+                                                        break;
+                                                    } else if (userInput.equals("2")) {
+                                                        System.out.println(eachProfile.getGender());
+                                                        break;
+                                                    } else if (userInput.equals("3")) {
+                                                        System.out.println(eachProfile.getNationality());
+                                                        break;
+                                                    } else if (userInput.equals("4")) {
+                                                        System.out.println(eachProfile.getJob());
+                                                        break;
+                                                    } else if (userInput.equals("5")) {
+                                                        System.out.println(eachProfile.getHobby());
+                                                        break;
+                                                    } else {
+                                                        System.out.println("Please enter the right command.");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        System.out.println("Can not find that user");
+                                    }
                                 } else if (userInput.equals("4")) {
                                     newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, password);
                                     System.out.println("Delete account successfully");
                                     System.out.println("Log out from the app");
                                     break;
                                 } else if (userInput.equals("5")) {
-                                    System.out.println("Search for the username that you want to add friend");
+                                    System.out.println("Search the username that you want to add friend");
                                     userInput = scanner.nextLine();
                                     if (actions.addFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userInput)) {
                                         eachUserAccount.getFriendList().add(userInput);
