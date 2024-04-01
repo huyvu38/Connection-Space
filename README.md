@@ -100,13 +100,14 @@ The framework for the database system. Creates new database objects using all kn
 Query data on large scale by returning all accounts
 
 ### Message.java <br/>
-<br/>
+
 Message.java is a versatile messaging framework allowing users to send, delete, and view message histories. It features a blocking mechanism where messages from blocked users are saved but hidden from the recipient, ensuring privacy. The framework supports group messaging, enabling a user to communicate with multiple friends simultaneously, provided they are in the user's friend list. Messages are timestamped and logged into a "Messages.txt" file through a buffered reader, offering a durable record of interactions.
 
 #### Methods
-Message Operations: Send individual or group messages, with options to delete and review message history.
-Privacy Controls: Block specific users, hiding their messages from the recipient while still logging them.
-Group Messaging: Communicate with several friends at once, enhancing social interactions within the application.
-Persistent Logging: Use a buffered reader to timestamp and store messages, ensuring a reliable historical record.
+Message Operations: Send individual or group messages, with options to delete and review message history.<br/>
+Privacy Controls: Block specific users, hiding their messages from the recipient while still logging them.<br/>
+Group Messaging: Communicate with several friends at once, enhancing social interactions within the application.<br/>
+Persistent Logging: Use a buffered reader to timestamp and store messages, ensuring a reliable historical record.<br/>
+
 This streamlined framework is built to facilitate effective and private communication among users, balancing functionality with user control.
 <br/>
