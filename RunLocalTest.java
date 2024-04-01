@@ -64,7 +64,14 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-
+        Result result5 = JUnitCore.runClasses(RunLocalTest.MethodTest.class);
+        if (result5.wasSuccessful()) {
+            System.out.println("Excellent - Method test ran successfully");
+        } else {
+            for (Failure failure : result5.getFailures()) {
+                System.out.println("method"+failure.toString());
+            }
+        }
         Result result4 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
         if (result4.wasSuccessful()) {
             System.out.println("Excellent - Database test ran successfully");
@@ -73,6 +80,7 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
+
 
     }  // end of main
 
@@ -346,6 +354,59 @@ public class RunLocalTest {
         }
     }
 
+    public static class MethodTest {
+        private Method method;
+        private ArrayList<Profile> allUserList;
+        private ArrayList<String> friendList;
+        private ArrayList<String> blockList;
+        private Profile userProfile;
+
+        @Before
+        public void setUp() {
+            allUserList = new ArrayList<>();
+            friendList = new ArrayList<>();
+            blockList = new ArrayList<>();
+            userProfile = new Profile("User", "Pass", 25, "Gender", "Nationality", "Job", "Hobby");
+            allUserList.add(userProfile);
+            allUserList.add(new Profile("champagnepapi", "password123", 30, "Male", "American", "Engineer", "Coding"));
+            allUserList.add(new Profile("kwest", "password456", 28, "Female", "British", "Artist", "Painting"));
+            friendList.add("champagnepapi");
+            blockList.add("kwest");
+
+            method = new Method(allUserList, friendList, blockList, userProfile);
+        }
+
+        @Test
+        public void testIsValidUserNam() {
+            // Assuming "ExistingUser" exists in allUserList
+            boolean result = method.isValidUserName(allUserList, "ExistingUser");
+            assertFalse(result);
+        }
+
+        @Test
+        public void testIsValidUserName() {
+            boolean result = method.isValidUserName(allUserList, "NewUser");
+            assertTrue(result);
+        }
+
+        @Test
+        public void testAddFriend() {
+            boolean result = method.addFriend(allUserList, friendList, blockList, "NewFriend");
+            assertTrue( result);
+        }
+
+        @Test
+        public void testAddFriend_2() {
+            boolean result = method.addFriend(allUserList, friendList, blockList, "champagnepapi");
+            assertTrue(result);
+        }
+
+        @Test
+        public void testAddFriend_3() {
+            boolean result = method.addFriend(allUserList, friendList, blockList, "kwest");
+            assertTrue(result);
+        }
+    }
 
 
 } // end of class
