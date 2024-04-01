@@ -808,7 +808,6 @@ public class RunLocalTest {
             assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
                     expected.trim(), output.trim());
         } // end of test 4
-
     } // end of social Media test method
 
 
