@@ -774,7 +774,7 @@ public class RunLocalTest {
                     "3. Exit the app." + System.lineSeparator() +
                     "2" + System.lineSeparator() +
                     "Enter your username:" + System.lineSeparator() +
-                    "abaldocc" + System.lineSeparator() +
+                    "Abaldocc" + System.lineSeparator() +
                     "Enter your password:" + System.lineSeparator() +
                     "Archiebaldo" + System.lineSeparator() +
                     "Log In successfully." + System.lineSeparator() +
