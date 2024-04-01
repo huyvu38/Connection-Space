@@ -7,15 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.nio.file.*;
 
-import static jdk.internal.org.jline.utils.InfoCmp.Capability.columns;
-
 /**
  * Team Project
  *
  * Message.java
  *
- * @author Yanxin Yu, L22
- * @version 31 March 2024
+ * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @version 28 March 2024
  */
 
 
