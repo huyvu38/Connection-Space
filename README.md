@@ -123,3 +123,7 @@ Password Checks: Verifies password length for security and matches passwords for
 Account Management: Supports creating and deleting user accounts based on validation of credentials and username uniqueness.<br/>
 Login Verification: Authenticates user logins by matching usernames and passwords with database records.
 <br/>
+
+### SocialMedia.java <br/>
+The main program to allow user interact with the app. User can create account, search user, add friend, etc. More details on instruction how to compile and run the program.
+
