@@ -37,16 +37,16 @@ public class Method implements MethodInterface {
         return account;
     }
 
-    public boolean isValidUserName(ArrayList<Profile> allUsersList, String userName) {
+    public boolean usernameInDatabase(ArrayList<Profile> allUsersList, String userName) {
         for (Profile eachProfile : allUsersList) {
             if (eachProfile.getUserName().equals(userName)) {
-                return false; //User exist in the database
+                return true; //User exist in the database
             }
         }
-        return true; // User doesn't exist in the database
+        return false; // User doesn't exist in the database
     }
     public boolean inFriendList(ArrayList<Profile> allUsersList, ArrayList<String> friendsList, String userName) {
-        if (isValidUserName(allUsersList, userName)) {
+        if (usernameInDatabase(allUsersList, userName)) {
             for (String eachFriend : friendsList) {
                 if (eachFriend.equals(userName)) {
                     return true;
@@ -59,7 +59,7 @@ public class Method implements MethodInterface {
     //
     public boolean inBlockList(ArrayList<Profile> allUsersList, ArrayList<String> blocksList,
                                String userNameWantBlock) {
-        if (isValidUserName(allUsersList, userNameWantBlock)) {
+        if (usernameInDatabase(allUsersList, userNameWantBlock)) {
             for (String eachBlockUser : blocksList) {
                 if (eachBlockUser.equals(userNameWantBlock)) {
                     return true;
@@ -73,7 +73,7 @@ public class Method implements MethodInterface {
 
     public boolean addFriend(ArrayList<Profile> allUsersList, ArrayList<String> friendsList,
                              ArrayList<String> blocksList, String userName) {
-        if (isValidUserName(allUsersList, userName)) {
+        if (usernameInDatabase(allUsersList, userName)) {
             if (inBlockList(allUsersList, blocksList, userName)) {
                 return false; //Already block user
             }
@@ -86,18 +86,18 @@ public class Method implements MethodInterface {
     }
     public boolean removeFriend(ArrayList<Profile> allUsersList, ArrayList<String> friendsList,
                                 ArrayList<String> blocksList, String userName) {
-        if (isValidUserName(allUsersList, userName)) {
+        if (usernameInDatabase(allUsersList, userName)) {
             if (inBlockList(allUsersList, blocksList, userName)) {
                 return false; //Already in block list
             }
             if (inFriendList(allUsersList, friendsList, userName)) {
-                return true; //That userName in the list so can remove friend
+                return true; //That username in the list so can remove friend
             }
         }
         return false;
     }
     public boolean blockUser(ArrayList<Profile> allUsersList, ArrayList<String> blocksList, String userName) {
-        if (isValidUserName(allUsersList, userName)) {
+        if (usernameInDatabase(allUsersList, userName)) {
             if (!inBlockList(allUsersList, blocksList, userName)) {
                 return true; //Already block
             }
@@ -105,7 +105,7 @@ public class Method implements MethodInterface {
         return false;
     }
     public boolean unblockUser(ArrayList<Profile> allUsersList, ArrayList<String> blocksList, String userName) {
-        if (isValidUserName(allUsersList, userName)) {
+        if (usernameInDatabase(allUsersList, userName)) {
             if (inBlockList(allUsersList, blocksList, userName)) {
                 return true;
             }
@@ -131,7 +131,7 @@ public class Method implements MethodInterface {
     public boolean deleteAccount(ArrayList<Profile> allUsersList, Profile profile, String enteredPassword) {
         // parameter String enteredPassword:
         // is for making sure if is the user itself to request deleting the account
-        if ((!isValidUserName(allUsersList , profile.getUserName()))
+        if ((usernameInDatabase(allUsersList , profile.getUserName()))
                 && (checkIfPasswordCorrect(profile, enteredPassword))) {
 
             ArrayList<Profile> userList = allUsersList;

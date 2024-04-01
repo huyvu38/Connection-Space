@@ -379,13 +379,13 @@ public class RunLocalTest {
         @Test
         public void testIsValidUserNam() {
             // Assuming "ExistingUser" exists in allUserList
-            boolean result = method.isValidUserName(allUserList, "ExistingUser");
+            boolean result = method.usernameInDatabase(allUserList, "ExistingUser");
             assertFalse(result);
         }
 
         @Test
         public void testIsValidUserName() {
-            boolean result = method.isValidUserName(allUserList, "NewUser");
+            boolean result = method.usernameInDatabase(allUserList, "NewUser");
             assertTrue(result);
         }
 

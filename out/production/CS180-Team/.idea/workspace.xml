@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91a71d3d-553c-4d0e-baff-575972578bef" name="Changes" comment="11" />
+    <list default="true" id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MethodInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/MethodInterface.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,20 +16,42 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;huyvu38&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c5cd7498-332c-4fbb-9963-7f6059808bd6" />
+        <option name="url" value="https://github.com/huyvu38/CS180-Team.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/RunLocalTest.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2eF51xAqYbzfTKgvPEMOiVc6omW" />
+  <component name="ProjectId" id="2eG3wBB1U4TvSIF29GK82Haxd9q" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -34,79 +59,542 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.ApplicationControlFlow.executor": "Run",
-    "Application.Message.executor": "Run",
-    "Application.SocialMedia.executor": "Run",
-    "JUnit.tempRunLocalTest.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ApplicationControlFlow.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunLocalTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SocialMedia.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Yay.executor&quot;: &quot;Run&quot;,
+    &quot;Application.tempRunLocalTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestCase.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;
+    ]
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.SocialMedia">
-    <configuration name="Message" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Message" />
-      <module name="CS180-Team" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SocialMedia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="SocialMedia" />
-      <module name="CS180-Team" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.SocialMedia" />
-        <item itemvalue="Application.Message" />
-      </list>
-    </recent_temporary>
-  </component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-11.0.22-corretto-11.0.22-3183f394aec4-fdae186d" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="91a71d3d-553c-4d0e-baff-575972578bef" name="Changes" comment="" />
-      <created>1711487273416</created>
+      <changelist id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="" />
+      <created>1711517324129</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1711487273416</updated>
+      <updated>1711517324129</updated>
+      <workItem from="1711517326258" duration="320000" />
+      <workItem from="1711551970576" duration="625000" />
+      <workItem from="1711570203436" duration="2371000" />
+      <workItem from="1711586808741" duration="545000" />
+      <workItem from="1711590811369" duration="897000" />
+      <workItem from="1711599781927" duration="1232000" />
+      <workItem from="1711637623397" duration="1174000" />
+      <workItem from="1711643904127" duration="188000" />
+      <workItem from="1711651039476" duration="620000" />
+      <workItem from="1711656283047" duration="2189000" />
+      <workItem from="1711663930998" duration="3103000" />
+      <workItem from="1711668426542" duration="989000" />
+      <workItem from="1711679060250" duration="9462000" />
+      <workItem from="1711691054546" duration="615000" />
+      <workItem from="1711719095622" duration="3259000" />
+      <workItem from="1711725742090" duration="1967000" />
+      <workItem from="1711731779166" duration="136000" />
+      <workItem from="1711731941524" duration="2935000" />
+      <workItem from="1711745153565" duration="2164000" />
+      <workItem from="1711754026808" duration="2082000" />
+      <workItem from="1711758451533" duration="1034000" />
+      <workItem from="1711759738996" duration="3323000" />
+      <workItem from="1711771554646" duration="3009000" />
+      <workItem from="1711774582144" duration="3987000" />
+      <workItem from="1711778751315" duration="193000" />
+      <workItem from="1711803869702" duration="264000" />
+      <workItem from="1711804451319" duration="3010000" />
+      <workItem from="1711807775848" duration="639000" />
+      <workItem from="1711812458134" duration="2629000" />
+      <workItem from="1711815463621" duration="215000" />
+      <workItem from="1711815690982" duration="895000" />
+      <workItem from="1711816609771" duration="4946000" />
+      <workItem from="1711831957958" duration="1573000" />
+      <workItem from="1711833575824" duration="4299000" />
+      <workItem from="1711837905111" duration="8000" />
+      <workItem from="1711837926965" duration="113000" />
+      <workItem from="1711838051397" duration="145000" />
+      <workItem from="1711838208467" duration="1367000" />
+      <workItem from="1711846725136" duration="1686000" />
+      <workItem from="1711852180225" duration="7509000" />
+      <workItem from="1711864357152" duration="14000" />
+      <workItem from="1711898140370" duration="20000" />
+      <workItem from="1711898168672" duration="997000" />
+      <workItem from="1711899182130" duration="573000" />
+      <workItem from="1711899781387" duration="201000" />
+      <workItem from="1711899998567" duration="39000" />
+      <workItem from="1711900046043" duration="1803000" />
+      <workItem from="1711901906641" duration="32000" />
+      <workItem from="1711901954893" duration="3973000" />
+      <workItem from="1711905970924" duration="221000" />
+      <workItem from="1711906252195" duration="269000" />
+      <workItem from="1711906688289" duration="127000" />
+      <workItem from="1711906933003" duration="35000" />
+      <workItem from="1711907077105" duration="218000" />
+      <workItem from="1711907315426" duration="1046000" />
+      <workItem from="1711908383871" duration="132000" />
+      <workItem from="1711908557220" duration="19184000" />
+      <workItem from="1711938650758" duration="4263000" />
     </task>
-    <task id="LOCAL-00001" summary="11">
+    <task id="LOCAL-00094" summary="Merge remote-tracking branch 'origin/main'">
       <option name="closed" value="true" />
-      <created>1711816252216</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+      <created>1711903235395</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
       <option name="project" value="LOCAL" />
-      <updated>1711816252216</updated>
+      <updated>1711903235395</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00095" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711904785366</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1711904785366</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711905298563</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1711905298563</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711905744180</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1711905744180</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711908152365</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1711908152365</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711908249330</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1711908249330</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711908340710</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1711908340710</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711908686039</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1711908686039</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711908836554</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1711908836554</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711909189542</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909189542</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711909257259</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909257259</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711909502163</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909502163</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711909543301</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909543301</updated>
+    </task>
+    <task id="LOCAL-00107" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711909725963</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909725963</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711910105686</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1711910105686</updated>
+    </task>
+    <task id="LOCAL-00109" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1711910128216</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1711910128216</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711910960738</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1711910960738</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711911233932</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1711911233932</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711911363745</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1711911363745</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711911628200</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1711911628200</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711911646852</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1711911646852</updated>
+    </task>
+    <task id="LOCAL-00115" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711911834738</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1711911834738</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711911987556</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1711911987556</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711912562705</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1711912562705</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711912756380</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1711912756380</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711913055340</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1711913055340</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711913420622</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1711913420622</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711913632634</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1711913632634</updated>
+    </task>
+    <task id="LOCAL-00122" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711914029561</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1711914029561</updated>
+    </task>
+    <task id="LOCAL-00123" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711914568768</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1711914568768</updated>
+    </task>
+    <task id="LOCAL-00124" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711915056507</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1711915056507</updated>
+    </task>
+    <task id="LOCAL-00125" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711915118006</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1711915118006</updated>
+    </task>
+    <task id="LOCAL-00126" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711916495206</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1711916495206</updated>
+    </task>
+    <task id="LOCAL-00127" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711916628646</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1711916628646</updated>
+    </task>
+    <task id="LOCAL-00128" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711917100903</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1711917100903</updated>
+    </task>
+    <task id="LOCAL-00129" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711917573525</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1711917573525</updated>
+    </task>
+    <task id="LOCAL-00130" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711917635113</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1711917635113</updated>
+    </task>
+    <task id="LOCAL-00131" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class">
+      <option name="closed" value="true" />
+      <created>1711919359379</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1711919359379</updated>
+    </task>
+    <task id="LOCAL-00132" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711919554177</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1711919554177</updated>
+    </task>
+    <task id="LOCAL-00133" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711920563011</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1711920563011</updated>
+    </task>
+    <task id="LOCAL-00134" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711921924791</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1711921924791</updated>
+    </task>
+    <task id="LOCAL-00135" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711935351005</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1711935351005</updated>
+    </task>
+    <task id="LOCAL-00136" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711935792029</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1711935792029</updated>
+    </task>
+    <task id="LOCAL-00137" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711936246027</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1711936246027</updated>
+    </task>
+    <task id="LOCAL-00138" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711937106277</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1711937106277</updated>
+    </task>
+    <task id="LOCAL-00139" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711939586318</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1711939586318</updated>
+    </task>
+    <task id="LOCAL-00140" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711942045222</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1711942045222</updated>
+    </task>
+    <task id="LOCAL-00141" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711942145829</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1711942145829</updated>
+    </task>
+    <task id="LOCAL-00142" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711942248482</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1711942248482</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="1" />
-    <MESSAGE value="11" />
-    <option name="LAST_COMMIT_MESSAGE" value="11" />
+    <MESSAGE value="Update change" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class&#10;" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java&#10;" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Profile.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Message.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
