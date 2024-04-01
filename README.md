@@ -25,25 +25,29 @@ If login successfully, the program will show the Option Menu with 9 options:
   
 2. Edit that user profile
 
-3. Delete their account
+3. View other user profile
 
-4. Add friend
+4. Delete their account
 
-5. Remove friend
+5. Add friend
 
-6. Block friend
+6. Remove friend
 
-7. Unblock friend
+7. Block friend
 
-8. Send message
+8. Unblock friend
 
-9. Log out
+9. Send message
 
-If the user writes down 1 or 2, the program will prompted the user to enter the information that they want to see or edit, and the program comes back to the Option Menu again.
+10. Log out
 
-If the user writes down 3, 4, 5, 6, 7 or 8, the program will prompted the user to search for the specific username and check if they can do that action. After that, the program comes back to the Option Menu.
+If the user writes down 1, 2, 3, the program will prompt the user to enter the information that they want to see or edit, and the program comes back to the Option Menu again.
 
-If the user writes down 9, the program will exit from the Option Menu and goes to the Main Menu where user can Create account, Log in or Exit the app.
+If the user writes down 4, the program will prompt the user to enter the password to confirm. If the user delete account successfully, the program comes back to the Main Menu where user can Create account, Log in or Exit the app.
+
+If the user writes down 5, 6, 7 or 8, 9, the program will prompt the user to search for the specific username and check if they can do that action. After that, the program comes back to the Option Menu.
+
+If the user writes down 10, the program will exit from the Option Menu and goes to the Main Menu where user can Create account, Log in or Exit the app.
 
 
 3. User wants to exit the app
