@@ -222,13 +222,3 @@ public class Message implements MessageInterface {
     }
 
 }
-
-
-//    public static void main(String[] args) {
-//        Message text = new Message();
-//       //text.sendMessage("Eliza", "Lingling", "What is for dinner?");
-//        //text.sendMessage("Lingling", "Eliza", "Dumplings");
-//        text.deleteMessage(1 );
-//
-//
-//    }

@@ -32,7 +32,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class RunLocalTest {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(tempRunLocalTest.TestCase.class);
+        Result result = JUnitCore.runClasses(RunLocalTest.ProfileTest.class);
         if (result.wasSuccessful()) {
             System.out.println("Excellent - Profile test ran successfully");
         } else {
@@ -40,7 +40,7 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result1 = JUnitCore.runClasses(tempRunLocalTest.MessageTest.class);
+        Result result1 = JUnitCore.runClasses(RunLocalTest.MessageTest.class);
         if (result1.wasSuccessful()) {
             System.out.println("Excellent - Message test ran successfully");
         } else {
@@ -48,7 +48,7 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result2 = JUnitCore.runClasses(tempRunLocalTest.LogInTest.class);
+        Result result2 = JUnitCore.runClasses(RunLocalTest.LogInTest.class);
         if (result2.wasSuccessful()) {
             System.out.println("Excellent - Log in test ran successfully");
         } else {
@@ -56,12 +56,20 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-
-        Result result3 = JUnitCore.runClasses(tempRunLocalTest.DatabaseTest.class);
+        Result result3 = JUnitCore.runClasses(RunLocalTest.UserAccountTest.class);
         if (result3.wasSuccessful()) {
-            System.out.println("Excellent - Database test ran successfully");
+            System.out.println("Excellent - User Account test ran successfully");
         } else {
             for (Failure failure : result3.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+
+        Result result4 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
+        if (result4.wasSuccessful()) {
+            System.out.println("Excellent - Database test ran successfully");
+        } else {
+            for (Failure failure : result4.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
@@ -69,7 +77,7 @@ public class RunLocalTest {
     }  // end of main
 
     @RunWith(Enclosed.class)
-    public static class ProfileTestCase {
+    public static class ProfileTest {
         private Profile profile;
         // Set profile for each test with @Before to run before each test
         @Before
@@ -158,7 +166,7 @@ public class RunLocalTest {
         }
         @Test
         public void toStringTest() {
-            String a = String.format(";FriendList:[%s];BlockList:[%s]", userAccount.getFriendList(),
+            String a = String.format(";FriendList:%s;BlockList:%s", userAccount.getFriendList(),
                     userAccount.getBlockList());
             String formatToString = profile.toString() + a;
             assertEquals("Make sure the toString method matches correctly outputs the data.", formatToString,

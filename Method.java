@@ -25,8 +25,6 @@ public class Method implements MethodInterface {
     public Method() {
 
     }
-
-
     //a method to extract the userProfile given the userName
     public UserAccount searchAccount(String userName) {
         UserAccount account = null;
@@ -116,7 +114,7 @@ public class Method implements MethodInterface {
     }
     public boolean searchUser(ArrayList<Profile> allUsersList, ArrayList<String> blocksList, String username) {
         for (Profile eachProfile : allUsersList) {
-            //Check all username that contain the word
+            //Check all username
             if (eachProfile.getUserName().equals(username)) {
                 //Do not display username in block list
                 if (inBlockList(allUsersList, blocksList, username) == false) {

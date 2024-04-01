@@ -19,4 +19,6 @@ public interface MethodInterface {
     boolean blockUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
     boolean unblockUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
     boolean searchUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String word);
+    boolean deleteAccount(ArrayList<Profile> allUsersList, Profile profile, String enteredPassword);
+
 }
