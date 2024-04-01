@@ -502,7 +502,6 @@ public class RunLocalTest {
 
         @Test
         public void testUserNameInDatabase() {
-            // Assuming "ExistingUser" exists in allUserList
             boolean result = method.usernameInDatabase(allUserList, "ExistingUser");
             assertTrue(result);
         }
