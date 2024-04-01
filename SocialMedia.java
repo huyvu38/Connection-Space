@@ -75,6 +75,7 @@ public class SocialMedia {
                         databaseSocialMedia.getAllUserProfile().add(newProfile);
                         databaseSocialMedia.saveAllUserAccount();
                         System.out.println("Create account success.");
+                        //System.out.println("Returning back to the main menu and");
                         System.out.println("You have to log in again.");
                         break;
                     } else {
@@ -258,10 +259,20 @@ public class SocialMedia {
                                         System.out.println("Can not find that user");
                                     }
                                 } else if (userInput.equals("4")) {
-                                    newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, password);
-                                    System.out.println("Delete account successfully");
-                                    System.out.println("Log out from the app");
-                                    break;
+                                    System.out.println("Enter again your password to confirm");
+                                    userInput = scanner.nextLine();
+                                    if (newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, userInput)) {
+                                        for (UserAccount userDeleteAccount : allUserAccount) {
+                                            if (userDeleteAccount.getUserProfile().getPassword().equals(userInput)) {
+                                                System.out.println("Delete account successfully");
+                                                System.out.println("Log out from the app");
+                                                databaseSocialMedia.saveAllUserAccount();
+                                            }
+                                        }
+                                        break;
+                                    } else {
+                                        System.out.println("Can not delete the account");
+                                    }
                                 } else if (userInput.equals("5")) {
                                     System.out.println("Search the username that you want to add friend");
                                     userInput = scanner.nextLine();
