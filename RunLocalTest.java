@@ -63,13 +63,29 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
+        Result result5 = JUnitCore.runClasses(RunLocalTest.MethodTest.class);
+        if (result5.wasSuccessful()) {
+            System.out.println("Excellent - Method test ran successfully");
+        } else {
+            for (Failure failure : result5.getFailures()) {
+                System.out.println("method"+failure.toString());
+            }
+        }
+        Result result4 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
+        if (result4.wasSuccessful()) {
+            System.out.println("Excellent - Database test ran successfully");
+        } else {
+            for (Failure failure : result4.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+
 
     }  // end of main
 
     @RunWith(Enclosed.class)
     public static class ProfileTest {
         private Profile profile;
-
         public void ProfileDeclarationTest() {
             Class<?> clazz;
             int modifiers;
@@ -91,7 +107,6 @@ public class RunLocalTest {
             Assert.assertEquals("Ensure that `Profile` implements interfaces!",
                     1, superinterfaces.length);
         }
-
         // Set profile for each test with @Before to run before each test
         @Before
         public void setProfile() {
@@ -127,7 +142,6 @@ public class RunLocalTest {
             profile.setHobby("Poker");
             assertEquals("Hobby should now be Poker", "Poker", profile.getHobby());
         }
-
         // testing toString
         @Test
         public void toStringTest() {
@@ -137,13 +151,11 @@ public class RunLocalTest {
         }
 
     } // end of test case
-
     public static class UserAccountTest {
         private Profile profile;
         private UserAccount userAccount;
         private ArrayList<String> friendList;
         private ArrayList<String> blockList;
-
         public void UserAccountDeclarationTest() {
             Class<?> clazz;
             int modifiers;
@@ -179,7 +191,6 @@ public class RunLocalTest {
             userAccount.setFriendList(friendList);
             userAccount.setBlockList(blockList);
         }
-
         @Test
         public void getUserAccountTest() {
             assertEquals("Make sure UserAccount properly gets the profile information.",
@@ -202,7 +213,6 @@ public class RunLocalTest {
             ArrayList<String> newBlockList = new ArrayList<>(Arrays.asList("Frigolet", "Pablo"));
             assertEquals("Block list should now be [Frigolet, Pablo]", newBlockList, userAccount.getBlockList());
         }
-
         @Test
         public void toStringTest() {
             String a = String.format(";FriendList:%s;BlockList:%s", userAccount.getFriendList(),
@@ -218,7 +228,6 @@ public class RunLocalTest {
     public static class MessageTest {
         private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
         private Message message;
-
         public void MessageDeclarationTest() {
             Class<?> clazz;
             int modifiers;
@@ -292,7 +301,6 @@ public class RunLocalTest {
         private LogIn logIn;
         private Profile validProfile;
         private Profile invalidProfile;
-
         public void LogInDeclarationTest() {
             Class<?> clazz;
             int modifiers;
@@ -369,6 +377,160 @@ public class RunLocalTest {
         }
     }// for login
 
+    public static class DatabaseTest {
+        private static Database database;
+        private static ArrayList<Profile> TestUserProfiles = new ArrayList<>();
+
+        private static ArrayList<UserAccount> allUserAccount = new ArrayList<>();
+
+        private static ArrayList<UserAccount> TestUserAccounts = new ArrayList<>();
+        public void DatabaseDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Database` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `Database` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Database` implements interfaces!",
+                    1, superinterfaces.length);
+        }
+        @BeforeClass
+        public static void setupDatabase() {
+
+            allUserAccount.add(new UserAccount(new Profile ("vu28" , "12345678", 18,  "Male",  "VietNam",  "student",  "football")));
+            allUserAccount.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
+            allUserAccount.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
+
+
+            TestUserAccounts.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
+            TestUserAccounts.add(new UserAccount(new Profile ("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf")));
+            TestUserAccounts.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
+
+
+            TestUserProfiles.add(new Profile("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing"));
+            TestUserProfiles.add(new Profile("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf"));
+            TestUserProfiles.add(new Profile("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing"));
+
+            database = new Database("testDatabase.txt");
+
+        }
+
+        @Test
+        public void readAndGetAllUserAccountTest() {
+            boolean read1 = database.readAllUserAccount();
+            boolean save1 = database.saveAllUserAccount();
+            assertTrue(read1);
+            assertTrue(database.getAllUserAccount().equals(allUserAccount));
+        }
+
+        @Test
+        public void saveAllUserAccountTest() {
+            Database database2 = new Database("testDatabase.txt");
+            boolean read2 = database2.readAllUserAccount();
+            assertTrue(database2.getAllUserAccount().equals(allUserAccount));
+            boolean save1 = database.saveAllUserAccount();
+            assertTrue(save1);
+        }
+
+        @Test
+        public void setAllUserProfileTest() {
+            database.setAllUserProfile(TestUserProfiles);
+            assertTrue(database.getAllUserProfile().equals(TestUserProfiles));
+        }
+
+        @Test
+        public void setAndGetAllUserAccount() {
+            database.setAllUserAccount(TestUserAccounts);
+            assertTrue(database.getAllUserAccount().equals(TestUserAccounts));
+
+        }
+    }
+
+    public static class MethodTest {
+        private Method method;
+        private ArrayList<Profile> allUserList;
+        private ArrayList<String> friendList;
+        private ArrayList<String> blockList;
+        private Profile userProfile;
+        public void MethodDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Method` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `Method` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Method` implements interfaces!",
+                    1, superinterfaces.length);
+        }
+
+        @Before
+        public void setUp() {
+            allUserList = new ArrayList<>();
+            friendList = new ArrayList<>();
+            blockList = new ArrayList<>();
+            userProfile = new Profile("User", "Pass", 25, "Gender", "Nationality", "Job", "Hobby");
+            allUserList.add(userProfile);
+            allUserList.add(new Profile("champagnepapi", "password123", 30, "Male", "American", "Engineer", "Coding"));
+            allUserList.add(new Profile("kwest", "password456", 28, "Female", "British", "Artist", "Painting"));
+            friendList.add("champagnepapi");
+            blockList.add("kwest");
+
+            method = new Method(allUserList, friendList, blockList, userProfile);
+        }
+
+        @Test
+        public void testIsValidUserNam() {
+            // Assuming "ExistingUser" exists in allUserList
+            boolean result = method.usernameInDatabase(allUserList, "ExistingUser");
+            assertFalse(result);
+        }
+
+        @Test
+        public void testIsValidUserName() {
+            boolean result = method.usernameInDatabase(allUserList, "NewUser");
+            assertTrue(result);
+        }
+
+        @Test
+        public void testAddFriend() {
+            boolean result = method.addFriend(allUserList, friendList, blockList, "NewFriend");
+            assertTrue( result);
+        }
+
+        @Test
+        public void testAddFriend_2() {
+            boolean result = method.addFriend(allUserList, friendList, blockList, "champagnepapi");
+            assertTrue(result);
+        }
+
+        @Test
+        public void testAddFriend_3() {
+            boolean result = method.addFriend(allUserList, friendList, blockList, "kwest");
+            assertTrue(result);
+        }
+    }
 
 
 } // end of class
