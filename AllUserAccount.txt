@@ -9,3 +9,4 @@ ok2345,123456,23,Other,brazil,docto,jump;FriendList:[];BlockList:[]
 vu29,123456,213,Other,ferr,frgergger,reegrgtrt;FriendList:[];BlockList:[]
 ok23,ewrewre,2,Female,wergerf,jay,ewre;FriendList:[];BlockList:[]
 Yanxin,111111,21,Female,China,Student,Snowboarding;FriendList:[];BlockList:[]
+

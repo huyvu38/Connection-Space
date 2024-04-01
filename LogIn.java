@@ -16,10 +16,10 @@ public class LogIn implements LogInInterface {
     private String userName;
     private String password;
 
-    public LogIn(Database database, Profile loginUserProfile, String userName, String userPassword) {
+    public LogIn(Database database, Profile loginUserProfile, String usersName, String userPassword) {
         this.database = database;
         this.logInUserProfile = loginUserProfile;
-        this.userName = userName;
+        this.userName = usersName;
         this.password = userPassword;
     }
 
@@ -85,9 +85,9 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public boolean loginAccount(Database data, Profile profile, String userName, String userPassword) {
-        return (!isValidUserName(data.getAllUserProfile(), userName))
-               && checkIfPasswordCorrect(profile, userPassword);
+    public boolean loginAccount(Database data, Profile profile, String username, String userPassword) {
+        return (!isValidUserName(data.getAllUserProfile(), username))
+                && checkIfPasswordCorrect(profile, userPassword);
     }
 }
 

@@ -1,56 +1,63 @@
 # CS180-L22-Team 3
 
 ### Instruction on how to compile and run the program
+
+The user clicks the Run button in SocialMedia.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
+
+For any time that the user enters any wrong input or wrong command, the program will ask them until the user enter the valid input or right command.
+
 1. User wants to create an account
 
-Hit the Run button and write 1 to the program.
+Write 1 to the program.
 
-Then the user is prompted to enter username, password. 
+Then the user is prompted to enter username, password.
 
-Once the user create account succeesfully, they can not edit their username.
+Once the user create account successfully, they cannot edit their username.
 
-After that, the user is prompted to enter age, gender, nationality, job, and hobby.
+After that, the user is prompted to enter their age, gender, nationality, job, and hobby.
 
 Then the program goes back to the main menu to let the user create account or log in or exit the app.
 
 2. User wants to log in
 
-Hit the Run button and write 2 to the program.
+Write 2 to the program.
 
 Then the user is prompted to enter username and password for log in. 
 
-If login successfully, the program will show the Option Menu with 9 options:
+If user login successfully, the program will show the Option Menu with 10 options:
 
 1. View that user profile
   
 2. Edit that user profile
 
-3. Delete their account
+3. View other user profile
 
-4. Add friend
+4. Delete their account
 
-5. Remove friend
+5. Add friend
 
-6. Block friend
+6. Remove friend
 
-7. Unblock friend
+7. Block friend
 
-8. Send message
+8. Unblock friend
 
-9. Log out
+9. Send message
 
-If the user writes down 1 or 2, the program will prompted the user to enter the information that they want to see or edit, and the program comes back to the Option Menu again.
+10. Log out
 
-If the user writes down 3, 4, 5, 6, 7 or 8, the program will prompted the user to search for the specific username and check if they can do that action. After that, the program comes back to the Option Menu.
+If the user writes down 1, 2, 3, the program will prompt the user to enter the information that they want to see or edit, and the program comes back to the Option Menu again.
 
-If the user writes down 9, the program will exit from the Option Menu and goes to the Main Menu where user can Create account, Log in or Exit the app.
+If the user writes down 4, the program will prompt the user to enter the password to confirm. If the user delete account successfully, the program comes back to the Main Menu where user can create account or log in or exit the app.
+
+If the user writes down 5, 6, 7, 8, 9, the program will prompt the user to search for the specific username and check if they can do that action. After that, the program comes back to the Option Menu.
+
+If the user writes down 10, the program will exit from the Option Menu and goes to the Main Menu where user can create account or log in or exit the app.
 
 
 3. User wants to exit the app
 
-Hit the Run button and write 3 to the program. The program will stop.
-
-For any time that the user enters any wrong input or wrong command, the program will ask them until the user do the valid input or right command.
+Write 3 to the program. The program will stop.
 
 ### Profile.java <br/>
 Creates a new profile object with username, password, age, gender, nationality, job and hobby. Includes get/set methods to modify or return given attributes.

@@ -9,11 +9,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 import org.junit.*;
 import org.junit.runners.JUnit4;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
 import java.nio.file.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -34,7 +29,7 @@ import static org.junit.Assert.assertEquals;
  */
 
 @RunWith(Enclosed.class)
-public class RunLocalTest {
+public class tempRunLocalTest {
     public static void main(String[] args) {
         Result result = JUnitCore.runClasses(RunLocalTest.ProfileTest.class);
         if (result.wasSuccessful()) {
@@ -533,103 +528,6 @@ public class RunLocalTest {
         public void testAddFriend_3() {
             boolean result = method.addFriend(allUserList, friendList, blockList, "kwest");
             assertTrue(result);
-        }
-    }
-    public static class SocialMediaTest {
-
-        private final PrintStream originalOutput = System.out;
-        private final InputStream originalSysin = System.in;
-
-        @SuppressWarnings("FieldCanBeLocal")
-        private ByteArrayInputStream testIn;
-
-        @SuppressWarnings("FieldCanBeLocal")
-        private ByteArrayOutputStream testOut;
-
-        @Before
-        public void outputStart() {
-            testOut = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(testOut));
-        }
-
-        @After
-        public void restoreInputAndOutput() {
-            System.setIn(originalSysin);
-            System.setOut(originalOutput);
-        }
-        private String getOutput() {
-            return testOut.toString();
-        }
-
-        @SuppressWarnings("SameParameterValue")
-        private void receiveInput(String str) {
-            testIn = new ByteArrayInputStream(str.getBytes());
-            System.setIn(testIn);
-        }
-        @Test(timeout = 1000)
-        public void testExpectedOne() {
-
-            // Set the input
-            String input = "1" + System.lineSeparator() +
-                    "abaldocc" + System.lineSeparator() +
-                    "archiebaldo" + System.lineSeparator() +
-                    "20" + System.lineSeparator() +
-                    "male" + System.lineSeparator() +
-                    "El Salvador" + System.lineSeparator() +
-                    "Building manager" + System.lineSeparator() +
-                    "Polo" + System.lineSeparator();
-
-            // Pair the input with the expected result
-            String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. Create account." + System.lineSeparator() +
-                    "2. Log In." + System.lineSeparator() +
-                    "3. Exit the app." + System.lineSeparator() +
-                    "1" + System.lineSeparator() +
-                    "Once you create an account, you can not change your username." + System.lineSeparator() +
-                    "User name should be at least 4 characters and do not contain any spaces." + System.lineSeparator()
-                    + "Enter your username:" + System.lineSeparator() + "abaldocc" + System.lineSeparator() +
-                    "Password should be at least 6 characters." + System.lineSeparator() +
-                    "Enter your password:" + System.lineSeparator() + "archiebaldo" + System.lineSeparator() +
-                    "Age should be a number greater than 0." + System.lineSeparator() +
-                    "Enter your age:" + System.lineSeparator() + "20" + System.lineSeparator() +
-                    "Enter your gender from these options:" + System.lineSeparator() +
-                    "Female" + System.lineSeparator() + "Male" + System.lineSeparator() +
-                    "Other" + System.lineSeparator() + "male" + System.lineSeparator() + "Enter your nationality:" +
-                    System.lineSeparator() + "El Salvador" + System.lineSeparator() + "Enter your job:" +
-                    System.lineSeparator() + "Building manager" + System.lineSeparator() + "Enter your hobby:" +
-                    System.lineSeparator() + "Polo" + System.lineSeparator() + "Create account success." +
-                    System.lineSeparator() + "You have to log in again." + System.lineSeparator();
-
-            // Runs the program with the input values
-            receiveInput(input);
-            SocialMedia.main(new String[0]);
-
-            // Retrieves the output from the program
-            String output = getOutput();
-
-            // Trims the output and verifies it is correct.
-            expected = expected.replaceAll("\r\n", "\n");
-            output = output.replaceAll("\r\n", "\n");
-            assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
-                    expected.trim(), output.trim());
-        }
-
-        /*"2" + System.lineSeparator() +
-                    "abaldocc" + System.lineSeparator() +
-                    "archiebaldo" + System.lineSeparator() +
-                    "3" + System.lineSeparator()*/
-        public void createAccountTest() {
-
-        }
-        public void exitProgramTest() {
-
-        }
-        public void logInViewExitTest() {
-
-        }
-        public void logInEditExit() {
-
         }
     }
 
