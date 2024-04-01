@@ -97,7 +97,8 @@ public class SocialMedia {
                         if (newLogInAccount.loginAccount(databaseSocialMedia, eachProfile, userName, password)) {
                             System.out.println("Log In successfully.");
                             count = 1;
-                            Method actions = new Method(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), eachProfile);
+                            Method actions = new Method(allUserProfile, eachUserAccount.getFriendList(),
+                                    eachUserAccount.getBlockList(), eachProfile);
                             //After user log in
                             while (true) {
                                 System.out.println("What would you like to do?");
@@ -189,7 +190,8 @@ public class SocialMedia {
                                                 System.out.println("Male");
                                                 System.out.println("Other");
                                                 gender = scanner.nextLine();
-                                                if (gender.equals("Female") || gender.equals("Male") || gender.equals("Other")) {
+                                                if (gender.equals("Female") || gender.equals("Male")
+                                                        || gender.equals("Other")) {
                                                     break;
                                                 } else {
                                                     System.out.println("Please enter the right command.");
@@ -267,7 +269,8 @@ public class SocialMedia {
                                 } else if (userInput.equals("5")) {
                                     System.out.println("Search the username that you want to add friend");
                                     userInput = scanner.nextLine();
-                                    if (actions.addFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userInput)) {
+                                    if (actions.addFriend(allUserProfile, eachUserAccount.getFriendList(),
+                                            eachUserAccount.getBlockList(), userInput)) {
                                         eachUserAccount.getFriendList().add(userInput);
                                         for (UserAccount friendUserAccount : allUserAccount) {
                                             if (friendUserAccount.getUserProfile().equals(userInput)) {
@@ -281,7 +284,8 @@ public class SocialMedia {
                                 } else if (userInput.equals("6")) {
                                     System.out.println("Search for the username that you want to delete friend");
                                     userInput = scanner.nextLine();
-                                    if (actions.removeFriend(allUserProfile, eachUserAccount.getFriendList(), eachUserAccount.getBlockList(), userInput)) {
+                                    if (actions.removeFriend(allUserProfile, eachUserAccount.getFriendList(),
+                                            eachUserAccount.getBlockList(), userInput)) {
                                         eachUserAccount.getFriendList().remove(userInput);
                                         for (UserAccount friendUserAccount : allUserAccount) {
                                             if (friendUserAccount.getUserProfile().equals(userInput)) {
@@ -304,7 +308,8 @@ public class SocialMedia {
                                 } else if (userInput.equals("8")) {
                                     System.out.println("Search for the username that you want to unblock");
                                     userInput = scanner.nextLine();
-                                    if (actions.unblockUser(allUserProfile, eachUserAccount.getBlockList(), userInput)) {
+                                    if (actions.unblockUser(allUserProfile,
+                                            eachUserAccount.getBlockList(), userInput)) {
                                         eachUserAccount.getBlockList().remove(userName);
                                         System.out.println("Unblock friend successfully");
                                     } else {
@@ -331,12 +336,14 @@ public class SocialMedia {
                                                 if (hasMoreThanOneFriends) {
                                                     boolean groupMessageKeepGoing = false;
                                                     do {
-                                                        System.out.println("How many members do you want in this group?");
+                                                        System.out.println("How many members do " +
+                                                                "you want in this group?");
                                                         int num = scanner.nextInt();
                                                         scanner.nextLine();
                                                         ArrayList<String> groupMemberList = new ArrayList<String>();
                                                         for (int i = 0; i < num; i++) {
-                                                            System.out.println("Group member " + (i + 1) + " you want to send message to");
+                                                            System.out.println("Group member " + (i + 1) +
+                                                                    " you want to send message to");
                                                             groupMemberList.add(scanner.nextLine());
                                                         }
 
@@ -376,11 +383,13 @@ public class SocialMedia {
                                                     UserAccount userAccount = method.searchAccount(userName);
                                                     if (userAccount.getFriendList().contains(receiverName)) {
                                                         //check if the user is blocked by receiver
-                                                        boolean isBlocked = method.searchAccount(receiverName).getBlockList().contains(userName);
+                                                        UserAccount account = method.searchAccount(receiverName);
+                                                        boolean isBlocked = account.getBlockList().contains(userName);
                                                         System.out.println("What message do you want to send?");
                                                         String message = scanner.nextLine();
                                                         Message message1 = new Message();
-                                                        if (message1.sendMessage(userName, receiverName, message, isBlocked)) {
+                                                        if (message1.sendMessage(userName, receiverName,
+                                                                message, isBlocked)) {
                                                             System.out.println("Message sent successfully");
                                                         } else {
                                                             System.out.println("Message sent failed");
@@ -422,13 +431,12 @@ public class SocialMedia {
                                                     String ans = scanner.nextLine();
                                                     if (ans.equals(1)) {
                                                         System.out.println("Please enter conversation ID");
-                                                        String ID = scanner.nextLine();
-                                                        if (message.deleteMessage(Integer.parseInt(ID))) {
+                                                        String id = scanner.nextLine();
+                                                        if (message.deleteMessage(Integer.parseInt(id))) {
                                                             System.out.println("Message delete successfully");
                                                         } else {
                                                             System.out.println("Message delete failed");
                                                             System.out.println("Try an other ID");
-
                                                         }
                                                         keepDeleting = true;
                                                     } else if (ans.equals(2)) {
