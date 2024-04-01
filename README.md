@@ -1,6 +1,9 @@
 # CS180-L22-Team 3
 
 ### Instruction on how to compile and run the program
+
+The user clicks the Run button in SocialMedia.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
+
 1. User wants to create an account
 
 Hit the Run button and write 1 to the program.
@@ -43,11 +46,11 @@ If user login successfully, the program will show the Option Menu with 10 option
 
 If the user writes down 1, 2, 3, the program will prompt the user to enter the information that they want to see or edit, and the program comes back to the Option Menu again.
 
-If the user writes down 4, the program will prompt the user to enter the password to confirm. If the user delete account successfully, the program comes back to the Main Menu where user can Create account, Log in or Exit the app.
+If the user writes down 4, the program will prompt the user to enter the password to confirm. If the user delete account successfully, the program comes back to the Main Menu where user can create account or log in or exit the app.
 
 If the user writes down 5, 6, 7, 8, 9, the program will prompt the user to search for the specific username and check if they can do that action. After that, the program comes back to the Option Menu.
 
-If the user writes down 10, the program will exit from the Option Menu and goes to the Main Menu where user can Create account, Log in or Exit the app.
+If the user writes down 10, the program will exit from the Option Menu and goes to the Main Menu where user can create account or log in or exit the app.
 
 
 3. User wants to exit the app
