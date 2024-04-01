@@ -76,9 +76,17 @@ public class RunLocalTest {
                 System.out.println("method"+failure.toString());
             }
         }
-        Result result4 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
-        if (result4.wasSuccessful()) {
+        Result result6 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
+        if (result6.wasSuccessful()) {
             System.out.println("Excellent - Database test ran successfully");
+        } else {
+            for (Failure failure : result6.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+        Result result4 = JUnitCore.runClasses(RunLocalTest.SocialMediaTest.class);
+        if (result4.wasSuccessful()) {
+            System.out.println("Excellent - SocialMedia test ran successfully");
         } else {
             for (Failure failure : result4.getFailures()) {
                 System.out.println(failure.toString());
