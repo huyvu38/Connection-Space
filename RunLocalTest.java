@@ -12,9 +12,8 @@ import org.junit.runners.JUnit4;
 import java.nio.file.*;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.lang.reflect.Modifier;
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -87,6 +86,27 @@ public class RunLocalTest {
     @RunWith(Enclosed.class)
     public static class ProfileTest {
         private Profile profile;
+        public void ProfileDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Profile` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `Profile` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Profile` implements interfaces!",
+                    1, superinterfaces.length);
+        }
         // Set profile for each test with @Before to run before each test
         @Before
         public void setProfile() {
@@ -136,10 +156,31 @@ public class RunLocalTest {
         private UserAccount userAccount;
         private ArrayList<String> friendList;
         private ArrayList<String> blockList;
+        public void UserAccountDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `UserAccount` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `UserAccount` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `UserAccount` implements interfaces!",
+                    1, superinterfaces.length);
+        }
 
         // Set profile and userAcount for each test with @Before to run before each test
         @Before
-        public void setUserPandU() {
+        public void setUserAccountTest() {
             profile = new Profile("abaldocc", "whatsup", 20, "Male",
                     "Salvadorian", "Building Manager", "Soccer");
             userAccount = new UserAccount(profile);
@@ -187,6 +228,27 @@ public class RunLocalTest {
     public static class MessageTest {
         private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
         private Message message;
+        public void MessageDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Message` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `Message` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Message` implements interfaces!",
+                    1, superinterfaces.length);
+        }
 
         @Before
         public void setUp() {
@@ -239,6 +301,27 @@ public class RunLocalTest {
         private LogIn logIn;
         private Profile validProfile;
         private Profile invalidProfile;
+        public void LogInDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `LogIn` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `LogIn` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `LogIn` implements interfaces!",
+                    1, superinterfaces.length);
+        }
 
         @Before
         public void setUp() {
@@ -301,7 +384,27 @@ public class RunLocalTest {
         private static ArrayList<UserAccount> allUserAccount = new ArrayList<>();
 
         private static ArrayList<UserAccount> TestUserAccounts = new ArrayList<>();
+        public void DatabaseDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
 
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Database` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `Database` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Database` implements interfaces!",
+                    1, superinterfaces.length);
+        }
         @BeforeClass
         public static void setupDatabase() {
 
@@ -360,6 +463,27 @@ public class RunLocalTest {
         private ArrayList<String> friendList;
         private ArrayList<String> blockList;
         private Profile userProfile;
+        public void MethodDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Method` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `Method` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Method` implements interfaces!",
+                    1, superinterfaces.length);
+        }
 
         @Before
         public void setUp() {
