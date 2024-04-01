@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/Method.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MethodInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/MethodInterface.java" afterDir="false" />
-    </list>
+    <list default="true" id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,6 +63,8 @@
     &quot;Application.SocialMedia.executor&quot;: &quot;Run&quot;,
     &quot;Application.Yay.executor&quot;: &quot;Run&quot;,
     &quot;Application.tempRunLocalTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RunLocalTest$ProfileTest.ProfileDeclarationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RunLocalTest$ProfileTest.profileTestGettersAndConstructor.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.TestCase.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -89,6 +88,34 @@
     ]
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="RunLocalTest$ProfileTest.ProfileDeclarationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CS180-Team" />
+      <option name="PACKAGE_NAME" value="RunLocalTest" />
+      <option name="MAIN_CLASS_NAME" value="RunLocalTest$ProfileTest" />
+      <option name="METHOD_NAME" value="ProfileDeclarationTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RunLocalTest$ProfileTest.profileTestGettersAndConstructor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CS180-Team" />
+      <option name="PACKAGE_NAME" value="RunLocalTest" />
+      <option name="MAIN_CLASS_NAME" value="RunLocalTest$ProfileTest" />
+      <option name="METHOD_NAME" value="profileTestGettersAndConstructor" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RunLocalTest$ProfileTest.profileTestGettersAndConstructor" />
+        <item itemvalue="JUnit.RunLocalTest$ProfileTest.ProfileDeclarationTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -161,39 +188,7 @@
       <workItem from="1711907315426" duration="1046000" />
       <workItem from="1711908383871" duration="132000" />
       <workItem from="1711908557220" duration="19184000" />
-      <workItem from="1711938650758" duration="4263000" />
-    </task>
-    <task id="LOCAL-00094" summary="Merge remote-tracking branch 'origin/main'">
-      <option name="closed" value="true" />
-      <created>1711903235395</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1711903235395</updated>
-    </task>
-    <task id="LOCAL-00095" summary="Merge remote-tracking branch 'origin/main'">
-      <option name="closed" value="true" />
-      <created>1711904785366</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1711904785366</updated>
-    </task>
-    <task id="LOCAL-00096" summary="Merge remote-tracking branch 'origin/main'">
-      <option name="closed" value="true" />
-      <created>1711905298563</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1711905298563</updated>
-    </task>
-    <task id="LOCAL-00097" summary="Merge remote-tracking branch 'origin/main'">
-      <option name="closed" value="true" />
-      <created>1711905744180</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1711905744180</updated>
+      <workItem from="1711938650758" duration="9471000" />
     </task>
     <task id="LOCAL-00098" summary="Merge remote-tracking branch 'origin/main'">
       <option name="closed" value="true" />
@@ -555,7 +550,39 @@
       <option name="project" value="LOCAL" />
       <updated>1711942248482</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711943843939</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1711943843939</updated>
+    </task>
+    <task id="LOCAL-00144" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711948576499</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1711948576499</updated>
+    </task>
+    <task id="LOCAL-00145" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711949313766</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1711949313766</updated>
+    </task>
+    <task id="LOCAL-00146" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1711951849404</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1711951849404</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -586,13 +613,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Profile.java</url>
-          <line>10</line>
+          <line>8</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Message.java</url>
           <line>27</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Message.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

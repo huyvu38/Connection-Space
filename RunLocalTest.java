@@ -501,16 +501,16 @@ public class RunLocalTest {
         }
 
         @Test
-        public void testIsValidUserNam() {
+        public void testUserNameInDatabase() {
             // Assuming "ExistingUser" exists in allUserList
             boolean result = method.usernameInDatabase(allUserList, "ExistingUser");
-            assertFalse(result);
+            assertTrue(result);
         }
 
         @Test
-        public void testIsValidUserName() {
+        public void testUserNameNotInDatabase() {
             boolean result = method.usernameInDatabase(allUserList, "NewUser");
-            assertTrue(result);
+            assertFalse(result);
         }
 
         @Test
