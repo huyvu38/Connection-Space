@@ -185,7 +185,7 @@ public class Database implements DatabaseInterface {
                     if (userAccount.getUserProfile().getUserName().equals(userNameTwo)) {
                         ArrayList<String> friendListUserTwo = userAccount.getFriendList();
                         //remove the user1 to friend list of user2
-                        friendListUserTwo.add(userNameOne);
+                        friendListUserTwo.remove(userNameOne);
                         userAccount.setFriendList(friendListUserTwo);
                     }
                 }

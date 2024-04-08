@@ -5,6 +5,5 @@ alvin23,123uyr,33,Female,China,teacher,sing;FriendList:[vu28 george23 abaldocc];
 jay89,abcdef32,32,Female,USA,teacher,volleyball;FriendList:[vu28 abaldocc];BlockList:[]
 abaldocc,whatsup,20,Male,Salvadorian,Building Manager,Soccer;FriendList:[jay89 alvin23];BlockList:[]
 vu2332,123456,1392,Female,fewfefrer,werghggf,fregtrefrgt;FriendList:[];BlockList:[]
-ok2345,123456,23,Other,brazil,docto,jump;FriendList:[];BlockList:[]
 Archie,ArchieBaldo,20,Male,USA,Student,Polo;FriendList:[];BlockList:[]
 Abaldocc,Archiebaldo,23,Male,American,Student,Polo;FriendList:[];BlockList:[]
