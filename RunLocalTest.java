@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
  * <p>
  * RunLocalTest.java
  *
- * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
 
