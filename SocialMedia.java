@@ -23,12 +23,11 @@ public class SocialMedia {
             String userInput = scanner.nextLine();
             if (userInput.equals("1")) {
                 while (true) {
-                    ArrayList<Profile> allUserProfile = databaseSocialMedia.getAllUserProfile();
                     System.out.println("Once you create an account, you can not change your username.");
-                    System.out.println("User name should be at least 4 characters and do not contain any spaces.");
+                    System.out.println("User name should be at least 4 characters and do not contain any spaces or semicolon.");
                     System.out.println("Enter your username:");
                     String userName = scanner.nextLine();
-                    System.out.println("Password should be at least 6 characters.");
+                    System.out.println("Password should be at least 6 characters and do not contain any spaces or semicolon.");
                     System.out.println("Enter your password:");
                     String password = scanner.nextLine();
                     int newAge = 0;
@@ -60,11 +59,11 @@ public class SocialMedia {
                             System.out.println("Please enter the right command.");
                         }
                     }
-                    System.out.println("Enter your nationality:");
+                    System.out.println("Enter your nationality without any space or semicolon");
                     String nationality = scanner.nextLine();
-                    System.out.println("Enter your job:");
+                    System.out.println("Enter your job without any space or semicolon");
                     String job = scanner.nextLine();
-                    System.out.println("Enter your hobby:");
+                    System.out.println("Enter your hobby without any space or semicolon");
                     String hobby = scanner.nextLine();
                     // Assuming Profile and UserAccount classes are defined
                     Profile newProfile = new Profile(userName, password, newAge, gender, nationality, job, hobby);
