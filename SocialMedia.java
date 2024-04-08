@@ -262,6 +262,7 @@ public class SocialMedia {
                                     if (newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, userInput)) {
                                         System.out.println("Delete account successfully");
                                         System.out.println("Log out from the app");
+                                        databaseSocialMedia.saveAllUserAccount();
                                         break;
                                     } else {
                                         System.out.println("Can not delete the account");
@@ -272,6 +273,7 @@ public class SocialMedia {
                                     //userinput equals to userNameTwo
                                     if (databaseSocialMedia.addFriend(userName, userInput)) {
                                         System.out.println("Add friend successfully");
+                                        databaseSocialMedia.saveAllUserAccount();
                                     } else {
                                         System.out.println("You can not add that user");
                                     }
@@ -281,6 +283,7 @@ public class SocialMedia {
                                     //userinput equals to userNameTwo
                                     if (databaseSocialMedia.deleteFriend(userName, userInput)) {
                                         System.out.println("Delete friend successfully");
+                                        databaseSocialMedia.saveAllUserAccount();
                                     } else {
                                         System.out.println("You can not delete that user");
                                     }
@@ -289,7 +292,11 @@ public class SocialMedia {
                                     userInput = scanner.nextLine();
                                     //userinput equals to userNameTwo
                                     if (databaseSocialMedia.blockUser(userName, userInput)) {
+                                        if (databaseSocialMedia.deleteFriend(userName, userInput)) {
+                                            System.out.println("Delete the user from the friendlist");
+                                        }
                                         System.out.println("Block user successfully");
+                                        databaseSocialMedia.saveAllUserAccount();
                                     } else {
                                         System.out.println("You can not block that user");
                                     }
@@ -299,6 +306,7 @@ public class SocialMedia {
                                     //userinput equals to userNameTwo
                                     if (databaseSocialMedia.unblockUser(userName, userInput)) {
                                         System.out.println("Unblock friend successfully");
+                                        databaseSocialMedia.saveAllUserAccount();
                                     } else {
                                         System.out.println("You can not unblock that user");
                                     }
@@ -504,7 +512,6 @@ public class SocialMedia {
                                         System.out.println("Please add friend first");
                                     }
                                 } else if (userInput.equals("10")) {
-                                    databaseSocialMedia.saveAllUserAccount();
                                     break;
                                     //Log out
                                 } else {

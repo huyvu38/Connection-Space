@@ -211,24 +211,9 @@ public class Database implements DatabaseInterface {
                     //add the user2 to block list of user1
                     blockListUserOne.add(userNameTwo);
                     userAccount.setBlockList(blockListUserOne);
-                    if (inFriendList(userNameOne, userNameTwo)) {
-                        ArrayList<String> friendListUserOne = userAccount.getFriendList();
-                        //Remove the user2 from friendlist of the user1 if they are friends
-                        friendListUserOne.remove(userNameTwo);
-                        userAccount.setFriendList(friendListUserOne);
-                    }
-                }
-                //Find the account of user2 and remove friend of user1 if user1 block user2
-                if (userAccount.getUserProfile().getUserName().equals(userNameTwo)) {
-                    if (inFriendList(userNameOne, userNameTwo)) {
-                        ArrayList<String> friendListUserTwo = userAccount.getFriendList();
-                        //Remove the user1 from friendlist of the user2 if they are friends
-                        friendListUserTwo.remove(userNameOne);
-                        userAccount.setFriendList(friendListUserTwo);
-                    }
+                    return true; //user1 block user2 successfully
                 }
             }
-            return true; //user1 block user2 successfully
         }
         return false;
     }
