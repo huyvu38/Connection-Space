@@ -128,7 +128,7 @@ public class Database implements DatabaseInterface {
                     //Check the block list of user1
                     for (String blockUser : userAccount.getBlockList()) {
                         if (blockUser.equals(userNameTwo)) {
-                            return true; //Return if userName1 blocks userName2
+                            return true; //Return true if username2 in blocklsit of username1
                         }
                     }
                 }
