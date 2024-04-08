@@ -64,7 +64,7 @@ public class Message implements MessageInterface {
 
         if (isGetId) {
             // Create a message row
-            String messageRow = id + ",1," + formattedDateTime + "," + sendUserName + "," + receiverUserName ;
+            String messageRow = id + ",1," + formattedDateTime + "," + sendUserName + "," + receiverUserName;
             if (isBlocked) {
                 messageRow += ",blocked," + content;
 
@@ -200,7 +200,7 @@ public class Message implements MessageInterface {
                         && array[3].equals(receiverName)
                         && array[4].equals(senderName))) {
                     counter++;
-                    System.out.printf("%s %s %s: %s %s", array[0],array[2],array[3],array[6],array[5]);
+                    System.out.printf("%s %s %s: %s %s", array[0], array[2], array[3], array[6], array[5]);
                     System.out.println();
                 }
             }

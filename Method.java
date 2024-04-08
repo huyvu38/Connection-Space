@@ -14,7 +14,7 @@ public class Method implements MethodInterface {
     private ArrayList<String> blockList;
     private Profile userProfile;
 
-    public Method(ArrayList<Profile> allUserList, ArrayList<String> friendList,
+    public Method(ArrayList<Profile> allUserAccount, ArrayList<String> friendList,
                   ArrayList<String> blockList, Profile userProfile) {
         this.allUserList = allUserList;
         this.friendList = friendList;

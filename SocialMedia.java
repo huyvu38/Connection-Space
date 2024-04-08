@@ -345,7 +345,8 @@ public class SocialMedia {
 
                                             if (input == 1) {
                                                 //UserAccount userAccount = actions.searchAccount(userName);
-                                                //boolean hasMoreThanOneFriends = userAccount.getFriendList().size() > 1;
+                                                //boolean hasMoreThanOneFriends =
+                                                // userAccount.getFriendList().size() > 1;
                                                 if (hasMoreThanOneFriends) {
                                                     boolean groupMessageKeepGoing = true;
                                                     do {
@@ -396,12 +397,14 @@ public class SocialMedia {
                                                         // Variable for checking if the user is blocked by the receiver
                                                         boolean isBlocked = false;
                                                         UserAccount receiverAcc = null;
-                                                        for (UserAccount account : allUserAccount) { // Assuming allUserAccounts holds all user accounts
+                                                        for (UserAccount account : allUserAccount) {
+                                                            // Assuming allUserAccounts holds all user accounts
                                                             if (account.getUserProfile().getUserName().equals(receiverName)) {
                                                                 receiverAcc = account;
                                                                 if (account.getBlockList().contains(currentUserAcc.getUserProfile().getUserName())) {
                                                                     isBlocked = true;
-                                                                    break; // Stop searching once the receiver account is found and block status is determined
+                                                                    break;
+                                                                    // Stop searching once the receiver account is found and block status is determined
                                                                 }
 
                                                             }
@@ -411,7 +414,8 @@ public class SocialMedia {
                                                         if (receiverAcc != null && !isBlocked) {
                                                             System.out.println("What message do you want to send?");
                                                             String message = scanner.nextLine();
-                                                            Message messageObj = new Message(); // Assuming this is how you create a message
+                                                            Message messageObj = new Message();
+                                                            // Assuming this is how you create a message
                                                             if (messageObj.sendMessage(userName, receiverName, message, isBlocked)) {
                                                                 System.out.println("Message sent successfully.");
                                                             } else {
@@ -419,7 +423,8 @@ public class SocialMedia {
                                                             }
                                                         } else if (isBlocked) {
                                                             System.out.println("You are blocked by this user.");
-                                                            friendMessageKeepGoing = false; // Assuming you want to exit the loop if blocked
+                                                            friendMessageKeepGoing = false;
+                                                            // Assuming you want to exit the loop if blocked
                                                         } else {
                                                             System.out.println("Receiver not found.");
                                                         }
@@ -429,7 +434,8 @@ public class SocialMedia {
                                                     }
 
                                                     // Asking user if they want to continue sending messages
-                                                    if (friendMessageKeepGoing) { // Only prompt if still eligible to send messages
+                                                    if (friendMessageKeepGoing) {
+                                                        // Only prompt if still eligible to send messages
                                                         System.out.println("Do you want to keep sending messages? (1 for Yes, 2 for No)");
                                                         String ans = scanner.nextLine();
                                                         if (ans.equals("1")) {
@@ -459,7 +465,8 @@ public class SocialMedia {
                                                         String ans = scanner.nextLine();
 
                                                         // Correct the comparison to use string values
-                                                        if (ans.equals("1")) { // Change from ans.equals(1) to ans.equals("1")
+                                                        if (ans.equals("1")) {
+                                                            // Change from ans.equals(1) to ans.equals("1")
                                                             System.out.println("Please enter the conversation ID:");
                                                             String ID = scanner.nextLine();
                                                             try {
