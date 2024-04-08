@@ -108,8 +108,8 @@ public class SocialMedia {
                                 System.out.println("4. Delete account");
                                 System.out.println("5. Add friend");
                                 System.out.println("6. Delete friend");
-                                System.out.println("7. Block friend");
-                                System.out.println("8. Unblock friend");
+                                System.out.println("7. Block user");
+                                System.out.println("8. Unblock user");
                                 System.out.println("9. Send message");
                                 System.out.println("10. Log out");
                                 userInput = scanner.nextLine();

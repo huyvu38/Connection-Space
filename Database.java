@@ -26,10 +26,11 @@ public class Database implements DatabaseInterface {
             File f = new File(allUserAccountFile);
             FileReader fr = new FileReader(f);
             BufferedReader bfr = new BufferedReader(fr);
+            String firstline = bfr.readLine();
             String line = bfr.readLine();
             while (line != null) {
                 String[] element = line.split(";");
-                String[] userInfo = element[0].split(",");
+                String[] userInfo = element[0].split(" ");
                 Profile profile = new Profile(userInfo[0], userInfo[1], Integer.parseInt(userInfo[2]),
                         userInfo[3], userInfo[4], userInfo[5], userInfo[6]);
                 allUserProfile.add(profile);
@@ -62,7 +63,7 @@ public class Database implements DatabaseInterface {
         try {
             FileOutputStream fos = new FileOutputStream(allUserAccountFile);
             PrintWriter pw = new PrintWriter(fos);
-
+            pw.println("Database of User Account");
             for (int i = 0; i < allUserAccount.size(); i++) {
                 pw.println(allUserAccount.get(i).toString());
             }
@@ -242,10 +243,10 @@ public class Database implements DatabaseInterface {
                         ArrayList<String> blockListUserOne = userAccount.getBlockList();
                         //remove the user2 from the block list of user1
                         blockListUserOne.remove(userNameTwo);
-                        userAccount.setFriendList(blockListUserOne);
+                        userAccount.setBlockList(blockListUserOne);
+                        return true;
                     }
                 }
-                return true;
             }
         }
         return false;//if one of the username not valid or user2 not in block list of user1

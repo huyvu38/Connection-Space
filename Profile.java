@@ -82,7 +82,7 @@ public class Profile implements ProfileInterface {
 
 
     public String toString() {
-        return this.userName + "," + this.password + "," + this.age + "," + this.gender
-                + "," + this.nationality + "," + this.job + "," + this.hobby;
+        return this.userName + " " + this.password + " " + this.age + " " + this.gender
+                + " " + this.nationality + " " + this.job + " " + this.hobby;
     }
 }
