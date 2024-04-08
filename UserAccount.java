@@ -43,25 +43,33 @@ public class UserAccount implements UserAccountInterface {
     public String toString() {
         String friend = "";
         String blockUser = "";
+
         if (this.friendList.size() != 0) {
             for (int i = 0; i < this.friendList.size(); i++) {
                 String friendName = this.friendList.get(i);
-                friend += friendName;
-                if (i < (this.friendList.size() - 1)) {
-                    friend += " ";
+                if (friendName != null && !friendName.isEmpty()) {
+                    friend += friendName;
+                    if (i < (this.friendList.size() - 1)) {
+                        friend += " ";
+                    }
                 }
             }
         }
+
         if (this.blockList.size() != 0) {
             for (int i = 0; i < this.blockList.size(); i++) {
                 String blockedUser = this.blockList.get(i);
-                blockUser += blockedUser;
-                if (i < (this.blockList.size() - 1)) {
-                    blockUser += " ";
+                if (blockedUser != null && !blockedUser.isEmpty()) {
+                    blockUser += blockedUser;
+                    if (i < (this.blockList.size() - 1)) {
+                        blockUser += " ";
+                    }
                 }
             }
         }
+
         return this.userProfile.toString() + ";FriendList:[" + friend + "];BlockList:[" + blockUser + "]";
     }
+
 
 }
