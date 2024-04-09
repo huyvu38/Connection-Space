@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *
  * UserAccount.java
  *
- * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
 public class UserAccount implements UserAccountInterface {
@@ -43,24 +43,33 @@ public class UserAccount implements UserAccountInterface {
     public String toString() {
         String friend = "";
         String blockUser = "";
+
         if (this.friendList.size() != 0) {
             for (int i = 0; i < this.friendList.size(); i++) {
-                if (i < (this.friendList.size() - 1)) {
-                    friend = friend + this.friendList.get(i) + " ";
-                } else {
-                    friend = friend + this.friendList.get(i);
+                String friendName = this.friendList.get(i);
+                if (friendName != null && !friendName.isEmpty()) {
+                    friend += friendName;
+                    if (i < (this.friendList.size() - 1)) {
+                        friend += " ";
+                    }
                 }
             }
         }
-        if (this.friendList.size() != 0) {
+
+        if (this.blockList.size() != 0) {
             for (int i = 0; i < this.blockList.size(); i++) {
-                if (i < (this.blockList.size() - 1)) {
-                    blockUser = blockUser + this.blockList.get(i) + " ";
-                } else {
-                    blockUser = blockUser + this.blockList.get(i);
+                String blockedUser = this.blockList.get(i);
+                if (blockedUser != null && !blockedUser.isEmpty()) {
+                    blockUser += blockedUser;
+                    if (i < (this.blockList.size() - 1)) {
+                        blockUser += " ";
+                    }
                 }
             }
         }
+
         return this.userProfile.toString() + ";FriendList:[" + friend + "];BlockList:[" + blockUser + "]";
     }
+
+
 }

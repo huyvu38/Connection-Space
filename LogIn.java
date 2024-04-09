@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *
  * LogIn.java
  *
- * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 30 March 2024
  */
 

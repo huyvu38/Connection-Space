@@ -3,7 +3,7 @@
  *
  * Profile.java
  *
- * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
 public class Profile implements ProfileInterface {
@@ -82,7 +82,7 @@ public class Profile implements ProfileInterface {
 
 
     public String toString() {
-        return this.userName + "," + this.password + "," + this.age + "," + this.gender
-                + "," + this.nationality + "," + this.job + "," + this.hobby;
+        return this.userName + " " + this.password + " " + this.age + " " + this.gender
+                + " " + this.nationality + " " + this.job + " " + this.hobby;
     }
 }

@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
  * <p>
  * RunLocalTest.java
  *
- * @author Gabe Turner, Archie Baldocchi, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
 
@@ -108,7 +108,7 @@ public class RunLocalTest {
         @Before
         public void setProfile() {
             profile = new Profile("abaldocc", "whatsup", 20, "Male",
-                    "Salvadorian", "Building Manager", "Soccer");
+                    "Salvadorian", "Manager", "Soccer");
         } // end of setProfile
 
         /*Testing of constructors and getters*/
@@ -119,7 +119,7 @@ public class RunLocalTest {
             assertEquals("Age should be 20", 20, profile.getAge());
             assertEquals("Gender should be Male", "Male", profile.getGender());
             assertEquals("Nationality should be Salvadorian", "Salvadorian", profile.getNationality());
-            assertEquals("Job should be Building Manager", "Building Manager", profile.getJob());
+            assertEquals("Job should be Manager", "Manager", profile.getJob());
             assertEquals("Hobby should be Soccer", "Soccer", profile.getHobby());
         }
 
@@ -142,7 +142,7 @@ public class RunLocalTest {
         // testing toString
         @Test
         public void toStringTest() {
-            String input = "abaldocc,whatsup,20,Male,Salvadorian,Building Manager,Soccer";
+            String input = "abaldocc,whatsup,20,Male,Salvadorian,Manager,Soccer";
             assertEquals("toString method should name,password,age,gender,nationality,job,hobby" +
                     " with a comma and no space after the comma.", input, profile.toString());
         }
