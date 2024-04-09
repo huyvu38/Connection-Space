@@ -14,7 +14,7 @@ public interface LogInInterface {
 
     boolean createAccount(Database database, Profile newProfile);
 
-    boolean deleteAccount(Database database, Profile profile, String enteredPassword);
+    boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword);
 
     boolean loginAccount(Database database, Profile profile, String userName, String password);
 }

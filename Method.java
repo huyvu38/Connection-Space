@@ -104,6 +104,7 @@ public class Method implements MethodInterface {
         }
         return false;
     }
+
     public boolean unblockUser(ArrayList<Profile> allUsersList, ArrayList<String> blocksList, String userName) {
         if (usernameInDatabase(allUsersList, userName)) {
             if (inBlockList(allUsersList, blocksList, userName)) {
@@ -112,6 +113,7 @@ public class Method implements MethodInterface {
         }
         return false;
     }
+
     public boolean searchUser(ArrayList<Profile> allUsersList, ArrayList<String> blocksList, String username) {
         for (Profile eachProfile : allUsersList) {
             //Check all username

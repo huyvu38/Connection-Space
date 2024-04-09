@@ -66,18 +66,23 @@ public class LogIn implements LogInInterface {
 
     }
 
-    public boolean deleteAccount(Database data, Profile profile, String enteredPassword) {
-        if ((!isValidUserName(data.getAllUserProfile(), profile.getUserName()))
-                && (checkIfPasswordCorrect(profile, enteredPassword))) {
+    /**
+     * Deletes a specific user account from the database, requiring confirmation with the user's password.
+     *
+     * @param data The database from which the account will be deleted.
+     * @param userAccount The user account to be deleted.
+     * @param enteredPassword The password entered by the user to confirm the deletion.
+     * @return {@code true} if the account is successfully deleted, {@code false} if the password does not match.
+     */
 
-            ArrayList<Profile> userList = data.getAllUserProfile();
-            //ArrayList<UserAccount> userAccList = database.getAllUserAccount();
+    public boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
+        if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
 
-            userList.remove(profile);
-            //userAccList.remove(new UserAccount(profile));
+            ArrayList<UserAccount> userList = data.getAllUserAccount();
 
-            data.setAllUserProfile(userList);
-            //database.setAllUserAccount(userAccList);
+            userList.remove(userAccount);
+
+            data.setAllUserAccount(userList);
             return true;
 
         }
