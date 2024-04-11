@@ -12,6 +12,10 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public class Server {
+    private Socket socket;
+    public Server(Socket socket) {
+        this.socket = socket;
+    }
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(4242);
@@ -23,8 +27,6 @@ public class Server {
             while (true) {
                 //When any user connect to the server
                 Socket socket = serverSocket.accept();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                PrintWriter writer = new PrintWriter(socket.getOutputStream());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,7 +37,20 @@ public class Server {
     //Start whenever a user connect
     public void run () {
         try {
+            while (true) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter writer = new PrintWriter(socket.getOutputStream());
+                String command = reader.readLine();
+                //Command 1 is create account
+                if (command.equals("1")) {
 
+                }
+                //Command 2 is log in
+                if (command.equals("2")) {
+
+                }
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
