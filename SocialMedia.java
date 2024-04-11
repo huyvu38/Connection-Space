@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -9,6 +10,7 @@ import java.util.Scanner;
  * @version 28 March 2024
  */
 
+/*
 public class SocialMedia {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -258,7 +260,7 @@ public class SocialMedia {
                                 } else if (userInput.equals("4")) {
                                     System.out.println("Enter again your password to confirm");
                                     userInput = scanner.nextLine();
-                                    if (newLogInAccount.deleteAccount(databaseSocialMedia, eachProfile, userInput)) {
+                                    if (newLogInAccount.deleteAccount(databaseSocialMedia, eachUserAccount, userInput)) {
                                         System.out.println("Delete account successfully");
                                         System.out.println("Log out from the app");
                                         databaseSocialMedia.saveAllUserAccount();
@@ -533,3 +535,6 @@ public class SocialMedia {
         }
     }
 }
+
+
+ */

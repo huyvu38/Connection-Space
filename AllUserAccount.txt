@@ -1,7 +1,6 @@
 Database of User Account
-vu28 12345678 18 Male VietNam student football;FriendList:[];BlockList:[abaldocc george333]
-george333 123456789 19 Male China student food;FriendList:[];BlockList:[]
-george23 123456 20 Female Brazil doctor sing;FriendList:[];BlockList:[]
+george333 123456789 19 Male China student food;FriendList:[george23];BlockList:[]
+george23 123456 20 Female Brazil doctor sing;FriendList:[george333];BlockList:[]
 alvin23 123uyr 33 Female China teacher sing;FriendList:[];BlockList:[]
 jay89 abcdef 32 Female USA teacher volleyball;FriendList:[];BlockList:[]
 Archie ArchieBaldo 20 Male USA Student Polo;FriendList:[];BlockList:[]

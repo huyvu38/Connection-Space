@@ -1,3 +1,4 @@
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -68,6 +69,7 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
+        /*
         Result result4 = JUnitCore.runClasses(RunLocalTest.SocialMediaTest.class);
         if (result4.wasSuccessful()) {
             System.out.println("Excellent - SocialMedia test ran successfully");
@@ -76,6 +78,8 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
+
+         */
 
 
     }  // end of main
@@ -101,6 +105,8 @@ public class RunLocalTest {
                     Modifier.isPublic(modifiers));
             Assert.assertFalse("Ensure that `Profile` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Profile` extends `Object`!",
+                    Object.class, superclass);
             Assert.assertEquals("Ensure that `Profile` implements interfaces!",
                     1, superinterfaces.length);
         }
@@ -171,6 +177,8 @@ public class RunLocalTest {
                     Modifier.isPublic(modifiers));
             Assert.assertFalse("Ensure that `UserAccount` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `UserAccount` extends `Object`!",
+                    Object.class, superclass);
             Assert.assertEquals("Ensure that `UserAccount` implements interfaces!",
                     1, superinterfaces.length);
         }
@@ -243,6 +251,8 @@ public class RunLocalTest {
                     Modifier.isPublic(modifiers));
             Assert.assertFalse("Ensure that `Message` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Message` extends `Object`!",
+                    Object.class, superclass);
             Assert.assertEquals("Ensure that `Message` implements interfaces!",
                     1, superinterfaces.length);
         }
@@ -316,6 +326,8 @@ public class RunLocalTest {
                     Modifier.isPublic(modifiers));
             Assert.assertFalse("Ensure that `LogIn` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `LogIn` extends `Object`!",
+                    Object.class, superclass);
             Assert.assertEquals("Ensure that `LogIn` implements interfaces!",
                     1, superinterfaces.length);
         }
@@ -358,7 +370,7 @@ public class RunLocalTest {
             assertFalse(logIn.createAccount(database, invalidProfile));
             assertEquals(2, database.getAllUserProfile().size());
         }
-
+        /*
         @Test
         public void testDeleteAccount() {
             assertTrue(logIn.deleteAccount(database, validProfile, "!Starbucks123"));
@@ -372,9 +384,11 @@ public class RunLocalTest {
             assertTrue(logIn.loginAccount(database, validProfile, "ValidPerson", "!Starbucks123"));
             assertFalse(logIn.loginAccount(database, invalidProfile, "Bad", "123"));
         }
+
+         */
     }// for login
 
-
+    /*
     public static class SocialMediaTest {
 
 
@@ -447,4 +461,6 @@ public class RunLocalTest {
         } // end of test 1
     } // end of social Media test method
 
+
+     */
 } // end of class

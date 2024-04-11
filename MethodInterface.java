@@ -9,16 +9,13 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public interface MethodInterface {
-    boolean usernameInDatabase(ArrayList<Profile> allUsersList, String userName);
-    boolean inFriendList(ArrayList<Profile> allUserList, ArrayList<String> friendList, String userName);
-    boolean inBlockList(ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
-    boolean addFriend(ArrayList<Profile> allUserList, ArrayList<String> friendList,
-                      ArrayList<String> blockList, String userName);
-    boolean removeFriend(ArrayList<Profile> allUserList, ArrayList<String> friendList,
-                         ArrayList<String> blockList, String userName);
-    boolean blockUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
-    boolean unblockUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String userName);
-    boolean searchUser(ArrayList<Profile> allUserList, ArrayList<String> blockList, String word);
-    boolean deleteAccount(ArrayList<Profile> allUsersList, Profile profile, String enteredPassword);
+    boolean usernameInDatabase(String userName);
+    boolean inFriendList(String userNameOne, String userNameTwo);
+    boolean inBlockList(String userNameOne, String userNameTwo);
+    boolean addFriend(String userNameOne, String userNameTwo);
+    boolean deleteFriend(String userNameOne, String userNameTwo);
+    boolean blockUser(String userNameOne, String userNameTwo);
+    boolean unblockUser(String userNameOne, String userNameTwo);
+    boolean searchUser(String userNameOne, String userNameTwo);
 
 }

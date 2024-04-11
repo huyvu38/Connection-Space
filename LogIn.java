@@ -46,7 +46,7 @@ public class LogIn implements LogInInterface {
 
     public boolean createAccount(Database data, Profile newProfile) {
         boolean userNameFormateCorrect = true;
-        if (newProfile.getUserName().length() < 4 || newProfile.getUserName().contains(" ")) {
+        if (newProfile.getUserName().length() < 4 ) {
             userNameFormateCorrect = false;
         }
         if (isValidUserName(data.getAllUserProfile(), newProfile.getUserName())
