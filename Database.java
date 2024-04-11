@@ -12,13 +12,11 @@ import java.io.File;
  */
 public class Database implements DatabaseInterface {
     private String allUserAccountFile; // file name of save file
-    private ArrayList<Profile> allUserProfile;
     private ArrayList<UserAccount> allUserAccount;
 
     public Database(String allUserAccountFile) {
         this.allUserAccountFile = allUserAccountFile;
         this.allUserAccount = new ArrayList<>();
-        this.allUserProfile = new ArrayList<>();
     }
     public boolean readAllUserAccount() {
         // read from file and make array of account objects
@@ -33,7 +31,6 @@ public class Database implements DatabaseInterface {
                 String[] userInfo = element[0].split(" ");
                 Profile profile = new Profile(userInfo[0], userInfo[1], Integer.parseInt(userInfo[2]),
                         userInfo[3], userInfo[4], userInfo[5], userInfo[6]);
-                allUserProfile.add(profile);
                 String friendList = element[1].substring(12, element[1].length() - 1);
                 ArrayList<String> friends = new ArrayList<>();
                 String[] eachFriend = friendList.split(" ");
@@ -74,14 +71,6 @@ public class Database implements DatabaseInterface {
             return false;
         }
         return true;
-    }
-
-    public ArrayList<Profile> getAllUserProfile() {
-        return allUserProfile;
-    }
-
-    public void setAllUserProfile(ArrayList<Profile> allUserProfile) {
-        this.allUserProfile = allUserProfile;
     }
 
     public ArrayList<UserAccount> getAllUserAccount() {
