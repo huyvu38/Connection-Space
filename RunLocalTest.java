@@ -353,8 +353,8 @@ public class RunLocalTest {
 
         @Test
         public void testCheckPasswordLength() {
-            assertTrue(logIn.checkPasswordLength("!Starbucks123"));
-            assertFalse(logIn.checkPasswordLength("123"));
+            assertTrue(logIn.checkPasswordLength());
+            assertFalse(logIn.checkPasswordLength());
         }
 
         @Test
@@ -366,8 +366,8 @@ public class RunLocalTest {
         @Test
         public void testCreateAccount() {
             Profile newValidProfile = new Profile("NewValidUser", "New!Starbucks123", 30, "Gender", "Nationality", "Job", "Hobby");
-            assertTrue(logIn.createAccount(database, newValidProfile));
-            assertFalse(logIn.createAccount(database, invalidProfile));
+            assertTrue(logIn.createAccount(database));
+            assertFalse(logIn.createAccount(database));
             assertEquals(2, database.getAllUserProfile().size());
         }
         /*
