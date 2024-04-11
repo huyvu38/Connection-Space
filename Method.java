@@ -9,17 +9,15 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public class Method implements MethodInterface {
-    private ArrayList<Profile> allUserProfile;
     private ArrayList<UserAccount> allUserAccount;
 
-    public Method(ArrayList<UserAccount> allUserAccount, ArrayList<Profile> allUserProfile) {
-        this.allUserProfile = allUserProfile;
+    public Method(ArrayList<UserAccount> allUserAccount) {
         this.allUserAccount = allUserAccount;
     }
     public boolean usernameInDatabase(String userName) {
         //From a list of user profile, find the specific username
-        for (Profile eachProfile : this.allUserProfile) {
-            if (eachProfile.getUserName().equals(userName)) {
+        for (UserAccount eachUserAccount : this.allUserAccount) {
+            if (eachUserAccount.getUserProfile().getUserName().equals(userName)) {
                 return true; //User exist in the database
             }
         }
@@ -163,28 +161,37 @@ public class Method implements MethodInterface {
     }
 
     //User1 finds user2
-    public boolean searchUser(String userNameOne, String userNameTwo) {
-        //Check if the two usernames is in the SocialMedia database
-        if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
-            //Check if no account block other account
-            for (UserAccount userAccount : this.allUserAccount) {
-                if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
-                    for (String blockListOfUserOne : userAccount.getBlockList()) {
-                        if (blockListOfUserOne.equals(userNameTwo)) {
-                            return false; // User1 block user2 so cannot find user2
-                        }
+    public ArrayList<String> searchUser(String userNameOne, String word) {
+        ArrayList<String> findUserName = new ArrayList<>();
+        //Check if no account block user1
+        for (UserAccount userAccount : this.allUserAccount) {
+            if (userAccount.getUserProfile().getUserName().contains(word)) {
+                boolean userOneIsBlocked = false;
+                for (String blockListOfUserTwo : userAccount.getBlockList()) {
+                    //That user not block user1
+                    if (blockListOfUserTwo.equals(userNameOne) == true) {
+                        userOneIsBlocked = true;
+                        break;
                     }
                 }
-                if (userAccount.getUserProfile().getUserName().equals(userNameTwo)) {
-                    for (String blockListOfUserTwo : userAccount.getBlockList()) {
-                        if (blockListOfUserTwo.equals(userNameOne)) {
-                            return false; // User2 block user1 so cannot find user2
+                if (userOneIsBlocked == false) {
+                    findUserName.add(userAccount.getUserProfile().getUserName());
+                }
+            }
+        }
+        //Check if user 1 block any one in the findUserName
+        for (UserAccount userAccount : this.allUserAccount) {
+            if (userAccount.getUserProfile().getUserName().contains(userNameOne)) {
+                for (String eachBlockUserOfUserOne : userAccount.getBlockList()) {
+                    for (String eachUser : findUserName) {
+                        if (eachUser.equals(eachBlockUserOfUserOne)) {
+                            findUserName.remove(eachUser);
                         }
                     }
                 }
             }
         }
-        return false;
+        return findUserName;
     }
 }
 
