@@ -84,6 +84,7 @@ public class Server implements Runnable {
                     if (result) {
                         Profile newUserProfile = new Profile(username, password, newAge, gender, nationality, job, hobby);
                         UserAccount newUserAccount = new UserAccount(newUserProfile);
+                        LogIn createAccount =
                     }
                     //if the result is still true -> send back to the client that account create successfully
                     if (result) {

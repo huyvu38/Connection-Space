@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class LogIn implements LogInInterface {
     private Database database; // Our current database that contain all users' profile
+    private ArrayList<Profile> allUserProfile;
     private Profile UserProfile;
     private String userName;
     private String password;

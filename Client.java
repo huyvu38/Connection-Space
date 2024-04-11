@@ -64,16 +64,31 @@ public class Client {
                     writer.println();
                     writer.write(hobby);
                     writer.println();
-                    //writer.println();
                     writer.flush(); // ensure data is sent to the server
                     //Get the result from the server
                     String result = reader.readLine();
                     System.out.println(result);
                 }
                 if (userInput.equals("2")) {
+                    System.out.println("Enter your username");
+                    String username = scanner.nextLine();
+                    System.out.println("Enter your password");
+                    String password = scanner.nextLine();
+                    //Sent to the server
                     writer.write("2");
                     writer.println();
+                    writer.write(username);
+                    writer.println();
+                    writer.write(password);
+                    writer.println();
                     writer.flush(); // ensure data is sent to the server
+
+                    //Receive the result from the server
+                    String result = reader.readLine();
+                    System.out.println(result);
+                    if (result.equals("Log in successfully")) {
+                        System.out.println("What would you like to do? ");
+                    }
                 }
                 if (userInput.equals("3")) {
                     System.out.println("Exiting the app");
