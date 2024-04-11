@@ -34,6 +34,8 @@ public class Client {
                     String username = scanner.nextLine();
                     System.out.println("Enter your password");
                     String password = scanner.nextLine();
+                    System.out.println("Enter your age");
+                    String age = scanner.nextLine();
                     System.out.println("Enter your gender from these options:");
                     System.out.println("Female");
                     System.out.println("Male");
@@ -47,14 +49,26 @@ public class Client {
                     String hobby = scanner.nextLine();
                     //Send all information to the server
                     writer.write("1");
+                    writer.println();
                     writer.write(username);
+                    writer.println();
                     writer.write(password);
+                    writer.println();
+                    writer.write(age);
+                    writer.println();
                     writer.write(gender);
+                    writer.println();
                     writer.write(nationality);
+                    writer.println();
                     writer.write(job);
+                    writer.println();
                     writer.write(hobby);
                     writer.println();
+                    //writer.println();
                     writer.flush(); // ensure data is sent to the server
+                    //Get the result from the server
+                    String result = reader.readLine();
+                    System.out.println(result);
                 }
                 if (userInput.equals("2")) {
                     writer.write("2");
@@ -66,6 +80,8 @@ public class Client {
                     break;
                 }
             }
+            writer.close();
+            reader.close();
         } catch(Exception e){
             System.out.println("Can not connect to the server");
         }
