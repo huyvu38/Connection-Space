@@ -34,6 +34,11 @@ public class Server {
 
     //Start whenever a user connect
     public void run () {
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

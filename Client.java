@@ -30,7 +30,29 @@ public class Client {
                 //User want to create account -> send 1 to the server
                 //User want to logIn -> send 2 to the server
                 if (userInput.equals("1")) {
+                    System.out.println("Enter your username:");
+                    String username = scanner.nextLine();
+                    System.out.println("Enter your password");
+                    String password = scanner.nextLine();
+                    System.out.println("Enter your gender from these options:");
+                    System.out.println("Female");
+                    System.out.println("Male");
+                    System.out.println("Other");
+                    String gender = scanner.nextLine();
+                    System.out.println("Enter your nationality");
+                    String nationality = scanner.nextLine();
+                    System.out.println("Enter your job");
+                    String job = scanner.nextLine();
+                    System.out.println("Enter your hobby");
+                    String hobby = scanner.nextLine();
+                    //Send all information to the server
                     writer.write("1");
+                    writer.write(username);
+                    writer.write(password);
+                    writer.write(gender);
+                    writer.write(nationality);
+                    writer.write(job);
+                    writer.write(hobby);
                     writer.println();
                     writer.flush(); // ensure data is sent to the server
                 }
