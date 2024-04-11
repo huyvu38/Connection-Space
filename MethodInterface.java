@@ -17,5 +17,4 @@ public interface MethodInterface {
     boolean blockUser(String userNameOne, String userNameTwo);
     boolean unblockUser(String userNameOne, String userNameTwo);
     boolean searchUser(String userNameOne, String userNameTwo);
-
 }
