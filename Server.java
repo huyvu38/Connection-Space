@@ -120,9 +120,9 @@ public class Server implements Runnable {
             return false;
         }
     }
-    public static boolean isValidUserName(ArrayList<Profile> allUserList, String usersName) {
-        for (Profile eachProfile : allUserList) {
-            if (eachProfile.getUserName().equals(usersName)) {
+    public static boolean isValidUserName(ArrayList<UserAccount> allUserList, String usersName) {
+        for (UserAccount eachProfile : allUserList) {
+            if (eachProfile.getUserProfile().getUserName().equals(usersName)) {
                 return false;
             }
         }
@@ -157,7 +157,7 @@ public class Server implements Runnable {
     
 
     public static boolean loginAccount(Database database, String username, String userPassword) {
-        if (isValidUserName(database.getAllUserProfile(), username)) {
+        if (isValidUserName(database.getAllUserAccount(), username)) {
             for (UserAccount eachUserAccount: database.getAllUserAccount()) {
                 if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
                     if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
