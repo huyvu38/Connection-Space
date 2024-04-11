@@ -107,6 +107,70 @@ public class Server implements Runnable {
             e.printStackTrace();
         }
     }
+
+
+
+
+    public static boolean createAccount(Database database, UserAccount userAccount) {
+        try {
+            ArrayList<UserAccount> temp = database.getAllUserAccount();
+            temp.add(userAccount);
+            database.setAllUserAccount(temp);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public static boolean isValidUserName(ArrayList<Profile> allUserList, String usersName) {
+        for (Profile eachProfile : allUserList) {
+            if (eachProfile.getUserName().equals(usersName)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
+        return profile.getPassword().equals(userPassword);
+    }
+    public static boolean checkPasswordLength(String password) {
+        return password.length() >= 6 && !password.contains(" ") && !password.contains(";");
+    }
+    public static boolean checkUserNameFormat(String userName) {
+        return userName.length() >= 4 && !userName.contains(" ") && !userName.contains(";");
+    }
+
+
+    public static boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
+        if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
+
+            ArrayList<UserAccount> userList = data.getAllUserAccount();
+
+            userList.remove(userAccount);
+
+            data.setAllUserAccount(userList);
+            return true;
+
+        }
+        return false;
+    }
+
+    
+
+    public static boolean loginAccount(Database database, String username, String userPassword) {
+        if (isValidUserName(database.getAllUserProfile(), username)) {
+            for (UserAccount eachUserAccount: database.getAllUserAccount()) {
+                if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
+                    if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
+                        //System.out.println("Login in Successful");
+                        return true;
+                    }
+                }
+            }
+
+        }
+        return false;
+    }
 }
 
 

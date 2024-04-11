@@ -303,90 +303,90 @@ public class RunLocalTest {
     }// end of test case for messages
 
 
-    public static class LogInTest {
-        private Database database;
-        private LogIn logIn;
-        private Profile validProfile;
-        private Profile invalidProfile;
-        public void LogInDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `LogIn` is `public`!",
-                    Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `LogIn` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `LogIn` extends `Object`!",
-                    Object.class, superclass);
-            Assert.assertEquals("Ensure that `LogIn` implements interfaces!",
-                    1, superinterfaces.length);
-        }
-
-        @Before
-        public void setUp() {
-            database = new Database("testDatabase.txt");
-            validProfile = new Profile("ValidPerson", "!Starbucks123", 25, "Gender", "Nationality", "Job", "Hobby");
-            invalidProfile = new Profile("Bad", "123", 25, "Gender", "Nationality", "Job", "Hobby");
-
-            ArrayList<Profile> allProfiles = new ArrayList<>();
-            allProfiles.add(validProfile);
-            database.setAllUserProfile(allProfiles);
-
-            logIn = new LogIn(database, validProfile, validProfile.getUserName(), validProfile.getPassword());
-        }
-
-        @Test
-        public void testIsValidUserName() {
-            assertTrue(logIn.isValidUserName(database.getAllUserProfile(), "NewUser"));
-            assertFalse(logIn.isValidUserName(database.getAllUserProfile(), "ValidPerson"));
-        }
-
-        @Test
-        public void testCheckPasswordLength() {
-            assertTrue(logIn.checkPasswordLength());
-            assertFalse(logIn.checkPasswordLength());
-        }
-
-        @Test
-        public void testCheckIfPasswordCorrect() {
-            assertTrue(logIn.checkIfPasswordCorrect(validProfile, "!Starbucks123"));
-            assertFalse(logIn.checkIfPasswordCorrect(validProfile, "WrongPass"));
-        }
-
-        @Test
-        public void testCreateAccount() {
-            Profile newValidProfile = new Profile("NewValidUser", "New!Starbucks123", 30, "Gender", "Nationality", "Job", "Hobby");
-            assertTrue(logIn.createAccount(database));
-            assertFalse(logIn.createAccount(database));
-            assertEquals(2, database.getAllUserProfile().size());
-        }
-        /*
-        @Test
-        public void testDeleteAccount() {
-            assertTrue(logIn.deleteAccount(database, validProfile, "!Starbucks123"));
-            assertFalse(logIn.deleteAccount(database, invalidProfile, "123"));
-            // Check if the valid profile is indeed removed
-            assertEquals(0, database.getAllUserProfile().size());
-        }
-
-        @Test
-        public void testLoginAccount() {
-            assertTrue(logIn.loginAccount(database, validProfile, "ValidPerson", "!Starbucks123"));
-            assertFalse(logIn.loginAccount(database, invalidProfile, "Bad", "123"));
-        }
-
-         */
-    }// for login
+//    public static class LogInTest {
+//        private Database database;
+//        private LogIn logIn;
+//        private Profile validProfile;
+//        private Profile invalidProfile;
+//        public void LogInDeclarationTest() {
+//            Class<?> clazz;
+//            int modifiers;
+//            Class<?> superclass;
+//            Class<?>[] superinterfaces;
+//
+//            clazz = Profile.class;
+//
+//            modifiers = clazz.getModifiers();
+//
+//            superclass = clazz.getSuperclass();
+//
+//            superinterfaces = clazz.getInterfaces();
+//
+//            Assert.assertTrue("Ensure that `LogIn` is `public`!",
+//                    Modifier.isPublic(modifiers));
+//            Assert.assertFalse("Ensure that `LogIn` is NOT `abstract`!",
+//                    Modifier.isAbstract(modifiers));
+//            Assert.assertEquals("Ensure that `LogIn` extends `Object`!",
+//                    Object.class, superclass);
+//            Assert.assertEquals("Ensure that `LogIn` implements interfaces!",
+//                    1, superinterfaces.length);
+//        }
+//
+//        @Before
+//        public void setUp() {
+//            database = new Database("testDatabase.txt");
+//            validProfile = new Profile("ValidPerson", "!Starbucks123", 25, "Gender", "Nationality", "Job", "Hobby");
+//            invalidProfile = new Profile("Bad", "123", 25, "Gender", "Nationality", "Job", "Hobby");
+//
+//            ArrayList<Profile> allProfiles = new ArrayList<>();
+//            allProfiles.add(validProfile);
+//            database.setAllUserProfile(allProfiles);
+//
+//            logIn = new LogIn(database, validProfile, validProfile.getUserName(), validProfile.getPassword());
+//        }
+//
+//        @Test
+//        public void testIsValidUserName() {
+//            assertTrue(logIn.isValidUserName(database.getAllUserProfile(), "NewUser"));
+//            assertFalse(logIn.isValidUserName(database.getAllUserProfile(), "ValidPerson"));
+//        }
+//
+//        @Test
+//        public void testCheckPasswordLength() {
+//            assertTrue(logIn.checkPasswordLength());
+//            assertFalse(logIn.checkPasswordLength());
+//        }
+//
+//        @Test
+//        public void testCheckIfPasswordCorrect() {
+//            assertTrue(logIn.checkIfPasswordCorrect(validProfile, "!Starbucks123"));
+//            assertFalse(logIn.checkIfPasswordCorrect(validProfile, "WrongPass"));
+//        }
+//
+//        @Test
+//        public void testCreateAccount() {
+//            Profile newValidProfile = new Profile("NewValidUser", "New!Starbucks123", 30, "Gender", "Nationality", "Job", "Hobby");
+//            assertTrue(logIn.createAccount(database));
+//            assertFalse(logIn.createAccount(database));
+//            assertEquals(2, database.getAllUserProfile().size());
+//        }
+//        /*
+//        @Test
+//        public void testDeleteAccount() {
+//            assertTrue(logIn.deleteAccount(database, validProfile, "!Starbucks123"));
+//            assertFalse(logIn.deleteAccount(database, invalidProfile, "123"));
+//            // Check if the valid profile is indeed removed
+//            assertEquals(0, database.getAllUserProfile().size());
+//        }
+//
+//        @Test
+//        public void testLoginAccount() {
+//            assertTrue(logIn.loginAccount(database, validProfile, "ValidPerson", "!Starbucks123"));
+//            assertFalse(logIn.loginAccount(database, invalidProfile, "Bad", "123"));
+//        }
+//
+//         */
+//    }// for login
 
     /*
     public static class SocialMediaTest {
