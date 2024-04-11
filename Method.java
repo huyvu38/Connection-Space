@@ -183,18 +183,6 @@ public class Method implements MethodInterface {
                     }
                 }
             }
-            //If user1 can find user2 -> display information of user2
-            for (Profile userProfile : this.allUserProfile) {
-                if (userProfile.getUserName().equals(userNameTwo)) {
-                    System.out.println(userNameTwo + "has the following information.");
-                    System.out.println("Age: " + userProfile.getAge());
-                    System.out.println("Gender: " + userProfile.getGender());
-                    System.out.println("Nationality: " + userProfile.getNationality());
-                    System.out.println("Job: " + userProfile.getJob());
-                    System.out.println("Hobby: " + userProfile.getHobby());
-                    return true;
-                }
-            }
         }
         return false;
     }

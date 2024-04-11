@@ -11,8 +11,6 @@ import java.util.ArrayList;
 public interface DatabaseInterface {
     boolean readAllUserAccount();
     boolean saveAllUserAccount();
-    ArrayList<Profile> getAllUserProfile();
-    void setAllUserProfile(ArrayList<Profile> allUserProfile);
     ArrayList<UserAccount> getAllUserAccount();
     void setAllUserAccount(ArrayList<UserAccount> allUserAccount);
 }
