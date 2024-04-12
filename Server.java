@@ -132,11 +132,12 @@ public class Server implements Runnable {
     public static boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
         return profile.getPassword().equals(userPassword);
     }
+    //We already check if contain space or semicolon
     public static boolean checkPasswordLength(String password) {
-        return password.length() >= 6 && !password.contains(" ") && !password.contains(";");
+        return password.length() >= 6;
     }
     public static boolean checkUserNameFormat(String userName) {
-        return userName.length() >= 4 && !userName.contains(" ") && !userName.contains(";");
+        return userName.length() >= 4;
     }
 
 
@@ -161,7 +162,6 @@ public class Server implements Runnable {
             for (UserAccount eachUserAccount: database.getAllUserAccount()) {
                 if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
                     if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
-                        //System.out.println("Login in Successful");
                         return true;
                     }
                 }
@@ -171,26 +171,3 @@ public class Server implements Runnable {
         return false;
     }
 }
-
-
-/*
-//Main menu will have options create acc, log in, exit
-                String userInputMainMenu;
-                while ((userInputMainMenu = reader.readLine()) != null) {
-                    if (userInputMainMenu.equals("1")) {
-
-                    } else {
-
-                    }
-                }
-
-
-
-
-
-
-
-
-
-
- */
