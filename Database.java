@@ -80,7 +80,7 @@ public class Database implements DatabaseInterface {
     public void setAllUserAccount(ArrayList<UserAccount> allUserAccount) {
         this.allUserAccount = allUserAccount;
     }
-    public static boolean createAccount(Database database, UserAccount userAccount) {
+    public boolean createAccount(Database database, UserAccount userAccount) {
         try {
             ArrayList<UserAccount> temp = database.getAllUserAccount();
             temp.add(userAccount);
@@ -90,7 +90,7 @@ public class Database implements DatabaseInterface {
             return false;
         }
     }
-    public static boolean isValidUserName(ArrayList<UserAccount> allUserList, String usersName) {
+    public boolean isValidUserName(ArrayList<UserAccount> allUserList, String usersName) {
         for (UserAccount eachProfile : allUserList) {
             if (eachProfile.getUserProfile().getUserName().equals(usersName)) {
                 return false;
@@ -127,9 +127,9 @@ public class Database implements DatabaseInterface {
 
 
 
-    public boolean loginAccount(Database database, String username, String userPassword) {
-        if (isValidUserName(database.getAllUserAccount(), username)) {
-            for (UserAccount eachUserAccount: database.getAllUserAccount()) {
+    public boolean loginAccount(String username, String userPassword) {
+        if (isValidUserName(this.allUserAccount, username)) {
+            for (UserAccount eachUserAccount: this.allUserAccount) {
                 if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
                     if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
                         return true;
