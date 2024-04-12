@@ -110,7 +110,7 @@ public class Server implements Runnable {
 
 
 
-    public static boolean createAccount(Database database, UserAccount userAccount) {
+    synchronized boolean createAccount(Database database, UserAccount userAccount) {
         try {
             ArrayList<UserAccount> temp = database.getAllUserAccount();
             temp.add(userAccount);
@@ -120,7 +120,7 @@ public class Server implements Runnable {
             return false;
         }
     }
-    public static boolean isValidUserName(ArrayList<UserAccount> allUserList, String usersName) {
+    synchronized boolean isValidUserName(ArrayList<UserAccount> allUserList, String usersName) {
         for (UserAccount eachProfile : allUserList) {
             if (eachProfile.getUserProfile().getUserName().equals(usersName)) {
                 return false;
@@ -129,18 +129,18 @@ public class Server implements Runnable {
         return true;
     }
 
-    public static boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
+    synchronized boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
         return profile.getPassword().equals(userPassword);
     }
-    public static boolean checkPasswordLength(String password) {
+    synchronized boolean checkPasswordLength(String password) {
         return password.length() >= 6 && !password.contains(" ") && !password.contains(";");
     }
-    public static boolean checkUserNameFormat(String userName) {
+    synchronized boolean checkUserNameFormat(String userName) {
         return userName.length() >= 4 && !userName.contains(" ") && !userName.contains(";");
     }
 
 
-    public static boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
+    synchronized boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
         if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
 
             ArrayList<UserAccount> userList = data.getAllUserAccount();
@@ -156,7 +156,7 @@ public class Server implements Runnable {
 
     
 
-    public static boolean loginAccount(Database database, String username, String userPassword) {
+    synchronized boolean loginAccount(Database database, String username, String userPassword) {
         if (isValidUserName(database.getAllUserAccount(), username)) {
             for (UserAccount eachUserAccount: database.getAllUserAccount()) {
                 if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
