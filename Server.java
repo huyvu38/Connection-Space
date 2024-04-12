@@ -13,16 +13,18 @@ import java.util.ArrayList;
  */
 public class Server implements Runnable {
     private Socket socket;
+    private static Database database;
+    private static ArrayList<UserAccount> allUserAccount;
     public Server(Socket socket) {
         this.socket = socket;
     }
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(4242);
-            Database database = new Database("AllUserAccount.txt");
+            database = new Database("AllUserAccount.txt");
             database.readAllUserAccount();
             //Use these arraylist for any parameter
-            ArrayList<UserAccount> allUserAccount= database.getAllUserAccount();
+            allUserAccount= database.getAllUserAccount();
             while (true) {
                 //When any user connect to the server
                 Socket socket = serverSocket.accept();
@@ -47,7 +49,6 @@ public class Server implements Runnable {
                 if (command.equals("1")) {
                     boolean result = true;
                     String username = reader.readLine();
-                    System.out.println(username);
                     String password = reader.readLine();
                     String age = reader.readLine();
                     String gender = reader.readLine();
@@ -81,9 +82,11 @@ public class Server implements Runnable {
                     //If the user enter all valid information -> the result still true
                     //Then check if the username is valid to create a new Profile
                     if (result) {
+
+                        //After create account successully
                         Profile newUserProfile = new Profile(username, password, newAge, gender, nationality, job, hobby);
                         UserAccount newUserAccount = new UserAccount(newUserProfile);
-                        //LogIn createAccount =
+
                     }
                     //if the result is still true -> send back to the client that account create successfully
                     if (result) {
@@ -98,7 +101,18 @@ public class Server implements Runnable {
                 }
                 //Command 2 is log in
                 if (command.equals("2")) {
-
+                    String username = reader.readLine();
+                    String password = reader.readLine();
+                    //Log in success
+                    if (database.loginAccount(username, password)) {
+                        writer.write("Log in successfully");
+                        writer.println();
+                        writer.flush();
+                    } else {
+                        writer.write("Log in failure");
+                        writer.println();
+                        writer.flush();
+                    }
                 }
 
             }

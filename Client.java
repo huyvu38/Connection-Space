@@ -86,8 +86,9 @@ public class Client {
                     //Receive the result from the server
                     String result = reader.readLine();
                     System.out.println(result);
-                    if (result.equals("Log in successfully")) {
+                    if (result.equals("Log in failure")) {
                         System.out.println("What would you like to do? ");
+                        String choice = scanner.nextLine();
                     }
                 }
                 if (userInput.equals("3")) {

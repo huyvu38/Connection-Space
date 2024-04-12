@@ -90,14 +90,6 @@ public class Database implements DatabaseInterface {
             return false;
         }
     }
-    public boolean isValidUserName(ArrayList<UserAccount> allUserList, String usersName) {
-        for (UserAccount eachProfile : allUserList) {
-            if (eachProfile.getUserProfile().getUserName().equals(usersName)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
         return profile.getPassword().equals(userPassword);
@@ -128,7 +120,7 @@ public class Database implements DatabaseInterface {
 
 
     public boolean loginAccount(String username, String userPassword) {
-        if (isValidUserName(this.allUserAccount, username)) {
+        if (usernameInDatabase(username)) {
             for (UserAccount eachUserAccount: this.allUserAccount) {
                 if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
                     if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
