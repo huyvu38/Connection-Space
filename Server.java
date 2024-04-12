@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 /**
@@ -12,39 +13,47 @@ import java.util.ArrayList;
  * @version 28 March 2024
  */
 public class Server implements Runnable {
-    private Socket socket;
+    Socket socket;
     public static Database database;
     public static ArrayList<UserAccount> allUserAccount;
+
     public Server(Socket socket) {
         this.socket = socket;
     }
-    public static void main(String[] args) {
-        try {
-            ServerSocket serverSocket = new ServerSocket(4242);
-            database = new Database("AllUserAccount.txt");
-            database.readAllUserAccount();
-            //Use these arraylist for any parameter
-            allUserAccount= database.getAllUserAccount();
-            while (true) {
-                //When any user connect to the server
-                Socket socket = serverSocket.accept();
+
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(4242);
+        database = new Database("AllUserAccount.txt");
+        database.readAllUserAccount();
+        //Use these arraylist for any parameter
+        allUserAccount = database.getAllUserAccount();
+        while (true) {
+            Socket socket = null;
+            try {
+                socket = serverSocket.accept();
                 //make thread for client
                 Thread client = new Thread(new Server(socket));
                 client.start();
+            } catch (Exception e) {
+                socket.close();
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
-    //have to make thread for each user
 
     //Start whenever a user connect
     public void run () {
         try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter writer = new PrintWriter(socket.getOutputStream());
+            String command = reader.readLine();
             while (true) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                PrintWriter writer = new PrintWriter(socket.getOutputStream());
-                String command = reader.readLine();
+                if (command == null) {
+                    socket.close();
+                    reader.close();
+                    writer.close();
+                    break;
+                }
                 //Command 1 is create account
                 if (command.equals("1")) {
                     boolean result = true;
@@ -108,15 +117,78 @@ public class Server implements Runnable {
                         writer.write("Log in successfully");
                         writer.println();
                         writer.flush();
+                        while (true) {
+                            String choice = reader.readLine();
+                            if (choice.equals("1")) {
+                                String viewChoice = reader.readLine();
+                                for (UserAccount userAccount : allUserAccount) {
+                                    if (userAccount.getUserProfile().getUserName().equals(username)) {
+                                        if (viewChoice.equals("1")) {
+                                            writer.write(userAccount.getUserProfile().getUserName());
+                                        }
+                                        if (viewChoice.equals("2")) {
+                                            writer.write(userAccount.getUserProfile().getPassword());
+                                        }
+                                        if (viewChoice.equals("3")) {
+                                            writer.write(userAccount.getUserProfile().getAge());
+                                        }
+                                        if (viewChoice.equals("4")) {
+                                            writer.write(userAccount.getUserProfile().getGender());
+                                        }
+                                        if (viewChoice.equals("5")) {
+                                            writer.write(userAccount.getUserProfile().getNationality());
+                                        }
+                                        if (viewChoice.equals("6")) {
+                                            writer.write(userAccount.getUserProfile().getJob());
+                                        }
+                                        if (viewChoice.equals("7")) {
+                                            writer.write(userAccount.getUserProfile().getHobby());
+                                        }
+                                        writer.println();
+                                        writer.flush();
+                                    }
+                                }
+                            }
+                            if (choice.equals("2")) {
+
+                            }
+                            if (choice.equals("3")) {
+
+                            }
+                            if (choice.equals("4")) {
+
+                            }
+                            if (choice.equals("5")) {
+
+                            }
+                            if (choice.equals("6")) {
+
+                            }
+                            if (choice.equals("7")) {
+
+                            }
+                            if (choice.equals("8")) {
+
+                            }
+                            if (choice.equals("9")) {
+
+                            }
+                            if (choice.equals("10")) {
+
+                            }
+                            if (choice.equals("11")) {
+                                break;
+                            }
+                        }
                     } else {
                         writer.write("Log in failure");
                         writer.println();
                         writer.flush();
                     }
                 }
-
             }
         } catch (Exception e) {
+            System.out.println("A User is disconnect");
             e.printStackTrace();
         }
     }

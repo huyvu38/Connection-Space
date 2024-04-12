@@ -25,7 +25,6 @@ public class Client {
                 System.out.println("What would you like to do?");
                 System.out.println("1. Create account.");
                 System.out.println("2. Log In.");
-                System.out.println("3. Exit the app.");
                 String userInput = scanner.nextLine();
                 //User want to create account -> send 1 to the server
                 //User want to logIn -> send 2 to the server
@@ -86,19 +85,75 @@ public class Client {
                     //Receive the result from the server
                     String result = reader.readLine();
                     System.out.println(result);
-                    if (result.equals("Log in failure")) {
+                    if (result.equals("Log in successfully")) {
                         System.out.println("What would you like to do? ");
+                        System.out.println("1. View your profile");
+                        System.out.println("2. Edit your profile");
+                        System.out.println("3. View other user profile");
+                        System.out.println("4. Delete account");
+                        System.out.println("5. Add friend");
+                        System.out.println("6. Delete friend");
+                        System.out.println("7. Block user");
+                        System.out.println("8. Unblock user");
+                        System.out.println("9. Send message");
+                        System.out.println("10. Search other user");
+                        System.out.println("11. Log out");
                         String choice = scanner.nextLine();
+                        if (choice.equals("1")) {
+                            System.out.println("Which information do you want to see");
+                            System.out.println("1. Username");
+                            System.out.println("2. Password");
+                            System.out.println("3. Age");
+                            System.out.println("4. Gender");
+                            System.out.println("5. Nationality");
+                            System.out.println("6. Job");
+                            System.out.println("7. Hobby");
+                            String viewChoice = scanner.nextLine();
+                            writer.write(viewChoice);
+                            writer.println();
+                            writer.flush();
+                            String viewResult = reader.readLine();
+                            System.out.println(viewResult);
+                        }
+                        if (choice.equals("2")) {
+
+                        }
+                        if (choice.equals("3")) {
+
+                        }
+                        if (choice.equals("4")) {
+
+                        }
+                        if (choice.equals("5")) {
+
+                        }
+                        if (choice.equals("6")) {
+
+                        }
+                        if (choice.equals("7")) {
+
+                        }
+                        if (choice.equals("8")) {
+
+                        }
+                        if (choice.equals("9")) {
+
+                        }
+                        if (choice.equals("10")) {
+
+                        }
+                        if (choice.equals("11")) {
+                            writer.write("11");
+                            writer.println();
+                            writer.flush();
+                            break;
+                        }
                     }
-                }
-                if (userInput.equals("3")) {
-                    System.out.println("Exiting the app");
-                    break;
                 }
             }
             writer.close();
             reader.close();
-        } catch(Exception e){
+        } catch (Exception e){
             System.out.println("Can not connect to the server");
         }
     }
