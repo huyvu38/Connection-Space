@@ -21,7 +21,7 @@ public class Server implements Runnable {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(4321);
+        ServerSocket serverSocket = new ServerSocket(4242);
         database = new Database("AllUserAccount.txt");
         database.readAllUserAccount();
         //Use these arraylist for any parameter
@@ -30,6 +30,7 @@ public class Server implements Runnable {
             Socket socket = null;
             try {
                 socket = serverSocket.accept();
+                System.out.println("Connected");
                 //make thread for client
                 Thread client = new Thread(new Server(socket));
                 client.start();
@@ -42,10 +43,10 @@ public class Server implements Runnable {
 
     //Start whenever a user connect
     public void run () {
-        while (true) {
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                PrintWriter writer = new PrintWriter(socket.getOutputStream());
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter writer = new PrintWriter(socket.getOutputStream());
+            while (true) {
                 String command = reader.readLine();
                 //Command 1 is create account
                 if (command.equals("1")) {
@@ -143,7 +144,68 @@ public class Server implements Runnable {
                                 }
                             }
                             if (choice.equals("2")) {
-
+                                String editChoice = reader.readLine();
+                                String editInformation = reader.readLine();
+                                for (UserAccount userAccount : allUserAccount) {
+                                    if (userAccount.getUserProfile().getUserName().equals(username)) {
+                                        if (editChoice.equals("1")) {
+                                            if (editInformation.contains(" ") || editInformation.contains(";")) {
+                                                writer.write("Can not edit your information");
+                                            } else {
+                                                if (editInformation.length() < 6) {
+                                                    writer.write("Can not edit your information");
+                                                } else {
+                                                    userAccount.getUserProfile().setPassword(editInformation);
+                                                    writer.write("Edit successfully");
+                                                }
+                                            }
+                                        }
+                                        if (editChoice.equals("2")) {
+                                            try {
+                                                int editAge = Integer.parseInt(editInformation);
+                                                if (editAge > 0) {
+                                                    userAccount.getUserProfile().setAge(editAge);
+                                                    writer.write("Edit successfully");
+                                                } else {
+                                                    writer.write("Can not edit your information");
+                                                }
+                                            } catch (Exception e) {
+                                                writer.write("Can not edit your information");
+                                            }
+                                        }
+                                        if (editChoice.equals("3")) {
+                                            userAccount.getUserProfile().setGender(editInformation);
+                                            writer.write("Edit successfully");
+                                        }
+                                        if (editChoice.equals("4")) {
+                                            if (editInformation.contains(" ") || editInformation.contains(";")) {
+                                                writer.write("Can not edit your information");
+                                            } else {
+                                                userAccount.getUserProfile().setNationality(editInformation);
+                                                writer.write("Edit successfully");
+                                            }
+                                        }
+                                        if (editChoice.equals("5")) {
+                                            if (editInformation.contains(" ") || editInformation.contains(";")) {
+                                                writer.write("Can not edit your information");
+                                            } else {
+                                                userAccount.getUserProfile().setJob(editInformation);
+                                                writer.write("Edit successfully");
+                                            }
+                                        }
+                                        if (editChoice.equals("6")) {
+                                            if (editInformation.contains(" ") || editInformation.contains(";")) {
+                                                writer.write("Can not edit your information");
+                                            } else {
+                                                userAccount.getUserProfile().setHobby(editInformation);
+                                                writer.write("Edit successfully");
+                                            }
+                                        }
+                                    }
+                                }
+                                writer.println();
+                                writer.flush();
+                                database.saveAllUserAccount();
                             }
                             if (choice.equals("3")) {
 
@@ -152,15 +214,50 @@ public class Server implements Runnable {
 
                             }
                             if (choice.equals("5")) {
-
+                                String addFriendUserName = reader.readLine();
+                                if (database.addFriend(username, addFriendUserName)) {
+                                    writer.write("Add friend successfully");
+                                    database.saveAllUserAccount();
+                                } else {
+                                    writer.write("You can not add that user");
+                                }
+                                writer.println();
+                                writer.flush();
                             }
                             if (choice.equals("6")) {
-
+                                String unfriendUserName = reader.readLine();
+                                if (database.deleteFriend(username, unfriendUserName)) {
+                                    writer.write("Unfriend successfully");
+                                    database.saveAllUserAccount();
+                                } else {
+                                    writer.write("You can not unfriend that user");
+                                }
+                                writer.println();
+                                writer.flush();
                             }
                             if (choice.equals("7")) {
-
+                                String blockUserName = reader.readLine();
+                                if (database.blockUser(username, blockUserName)) {
+                                    writer.write("Block successfully");
+                                    //If both users are friend then delete after block
+                                    database.deleteFriend(username, blockUserName);
+                                    database.saveAllUserAccount();
+                                } else {
+                                    writer.write("You can not block that user");
+                                }
+                                writer.println();
+                                writer.flush();
                             }
                             if (choice.equals("8")) {
+                                String unblockUserName = reader.readLine();
+                                if (database.unblockUser(username, unblockUserName)) {
+                                    writer.write("Unblock successfully");
+                                    database.saveAllUserAccount();
+                                } else {
+                                    writer.write("You can not unblock that user");
+                                }
+                                writer.println();
+                                writer.flush();
 
                             }
                             if (choice.equals("9")) {
@@ -179,10 +276,10 @@ public class Server implements Runnable {
                         writer.flush();
                     }
                 }
-            } catch (Exception e) {
-                System.out.println("A User is disconnect");
-                e.printStackTrace();
             }
+        } catch (Exception f) {
+            System.out.println("A User is disconnect");
+            f.printStackTrace();
         }
     }
 
@@ -234,7 +331,7 @@ public class Server implements Runnable {
         return false;
     }
 
-    
+
 
     public static boolean loginAccount(Database database, String username, String userPassword) {
         if (isValidUserName(database.getAllUserAccount(), username)) {
