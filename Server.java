@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class Server implements Runnable {
     private Socket socket;
-    private static Database database;
-    private static ArrayList<UserAccount> allUserAccount;
+    public static Database database;
+    public static ArrayList<UserAccount> allUserAccount;
     public Server(Socket socket) {
         this.socket = socket;
     }
@@ -83,7 +83,7 @@ public class Server implements Runnable {
                     //Then check if the username is valid to create a new Profile
                     if (result) {
 
-                        //After create account successully
+                        //After create account successfully
                         Profile newUserProfile = new Profile(username, password, newAge, gender, nationality, job, hobby);
                         UserAccount newUserAccount = new UserAccount(newUserProfile);
 
