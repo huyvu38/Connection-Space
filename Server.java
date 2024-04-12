@@ -1,7 +1,6 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +21,7 @@ public class Server implements Runnable {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(4242);
+        ServerSocket serverSocket = new ServerSocket(4321);
         database = new Database("AllUserAccount.txt");
         database.readAllUserAccount();
         //Use these arraylist for any parameter
@@ -43,17 +42,11 @@ public class Server implements Runnable {
 
     //Start whenever a user connect
     public void run () {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter writer = new PrintWriter(socket.getOutputStream());
-            String command = reader.readLine();
-            while (true) {
-                if (command == null) {
-                    socket.close();
-                    reader.close();
-                    writer.close();
-                    break;
-                }
+        while (true) {
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter writer = new PrintWriter(socket.getOutputStream());
+                String command = reader.readLine();
                 //Command 1 is create account
                 if (command.equals("1")) {
                     boolean result = true;
@@ -186,10 +179,10 @@ public class Server implements Runnable {
                         writer.flush();
                     }
                 }
+            } catch (Exception e) {
+                System.out.println("A User is disconnect");
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            System.out.println("A User is disconnect");
-            e.printStackTrace();
         }
     }
 

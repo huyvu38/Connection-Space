@@ -16,7 +16,7 @@ public class Client {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
-            Socket socket = new Socket("localhost", 4242);
+            Socket socket = new Socket("localhost", 4321);
             //After connect to the server
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
@@ -116,6 +116,41 @@ public class Client {
                             System.out.println(viewResult);
                         }
                         if (choice.equals("2")) {
+                            System.out.println("Which information do you want to edit");
+                            System.out.println("1. Password");
+                            System.out.println("2. Age");
+                            System.out.println("3. Gender");
+                            System.out.println("4. Nationality");
+                            System.out.println("5. Job");
+                            System.out.println("6. Hobby");
+                            String editChoice = scanner.nextLine();
+                            if (editChoice.equals("1")) {
+                                System.out.println("Enter new password");
+                            }
+                            if (editChoice.equals("2")) {
+                                System.out.println("Enter your age");
+                            }
+                            if (editChoice.equals("3")) {
+                                System.out.println("Enter your gender from these options:");
+                                System.out.println("Female");
+                                System.out.println("Male");
+                                System.out.println("Other");
+                            }
+                            if (editChoice.equals("4")) {
+                                System.out.println("Enter your nationality");
+                            }
+                            if (editChoice.equals("5")) {
+                                System.out.println("Enter your job");
+                            }
+                            if (editChoice.equals("6")) {
+                                System.out.println("Enter your hobby");
+                            }
+                            String editInformation = scanner.nextLine();
+                            writer.write(editChoice);
+                            writer.println();
+                            writer.write(editInformation);
+                            writer.println();
+                            writer.flush();
 
                         }
                         if (choice.equals("3")) {
