@@ -1,4 +1,3 @@
-//
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.experimental.runners.Enclosed;
@@ -68,18 +67,6 @@
 //            for (Failure failure : result3.getFailures()) {
 //                System.out.println(failure.toString());
 //            }
-//        }
-//        /*
-//        Result result4 = JUnitCore.runClasses(RunLocalTest.SocialMediaTest.class);
-//        if (result4.wasSuccessful()) {
-//            System.out.println("Excellent - SocialMedia test ran successfully");
-//        } else {
-//            for (Failure failure : result4.getFailures()) {
-//                System.out.println(failure.toString());
-//            }
-//        }
-//
-//         */
 //
 //
 //    }  // end of main
@@ -387,80 +374,4 @@
 //
 //         */
 //    }// for login
-
-    /*
-    public static class SocialMediaTest {
-
-
-        private final PrintStream originalOutput = System.out;
-        private final InputStream originalSysin = System.in;
-
-
-        @SuppressWarnings("FieldCanBeLocal")
-        private ByteArrayInputStream testIn;
-
-
-        @SuppressWarnings("FieldCanBeLocal")
-        private ByteArrayOutputStream testOut;
-
-
-        @Before
-        public void outputStart() {
-            testOut = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(testOut));
-        }
-
-
-        @After
-        public void restoreInputAndOutput() {
-            System.setIn(originalSysin);
-            System.setOut(originalOutput);
-        }
-        private String getOutput() {
-            return testOut.toString();
-        }
-
-
-        @SuppressWarnings("SameParameterValue")
-        private void receiveInput(String str) {
-            testIn = new ByteArrayInputStream(str.getBytes());
-            System.setIn(testIn);
-        }
-        @Test(timeout = 1000)
-
-
-        public void testExpectedOne() {
-
-            // Set the input
-            String input = "3\n";
-
-
-            // Pair the input with the expected result
-            String expected = "Hi, welcome to the social media platform." + System.lineSeparator() +
-                    "What would you like to do?" + System.lineSeparator() +
-                    "1. Create account." + System.lineSeparator() +
-                    "2. Log In." + System.lineSeparator() +
-                    "3. Exit the app." + System.lineSeparator() +
-                    "Exiting the app" + System.lineSeparator();
-
-
-            // Runs the program with the input values
-            receiveInput(input);
-            SocialMedia.main(new String[0]);
-
-
-            // Retrieves the output from the program
-            String output = getOutput();
-
-
-            // Trims the output and verifies it is correct.
-            expected = expected.replaceAll("\r\n", "\n");
-            output = output.replaceAll("\r\n", "\n");
-            assertEquals("Make sure you follow the flowchart and use the given strings for the result!",
-                    expected.trim(), output.trim());
-        } // end of test 1
-    } // end of social Media test method
-
-
-     */
 //} // end of class

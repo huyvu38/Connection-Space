@@ -16,4 +16,5 @@ public interface MethodInterface {
     boolean deleteFriend(String userNameOne, String userNameTwo);
     boolean blockUser(String userNameOne, String userNameTwo);
     boolean unblockUser(String userNameOne, String userNameTwo);
+    ArrayList<String> searchUser(String userNameOne, String word);
 }
