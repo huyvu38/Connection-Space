@@ -96,7 +96,6 @@ public class Server implements ServerInterface{
 
                     //if the result is still true -> send back to the client that account create successfully
                     if (createAccount(database, newUserAccount, username, password)) {
-                        database.saveAllUserAccount();
                         result = true;
                     }
                     if (result) {
@@ -159,11 +158,11 @@ public class Server implements ServerInterface{
                                             if (editInformation.contains(" ") || editInformation.contains(";")) {
                                                 writer.write("Can not edit your information");
                                             } else {
-                                                if (editInformation.length() < 6) {
-                                                    writer.write("Can not edit your information");
-                                                } else {
+                                                if (checkPasswordLength(editInformation)) {
                                                     userAccount.getUserProfile().setPassword(editInformation);
                                                     writer.write("Edit successfully");
+                                                } else {
+                                                    writer.write("Can not edit your information");
                                                 }
                                             }
                                         }
@@ -183,6 +182,7 @@ public class Server implements ServerInterface{
                                         if (editChoice.equals("3")) {
                                             userAccount.getUserProfile().setGender(editInformation);
                                             writer.write("Edit successfully");
+                                            //Assume that the client only choose from Male, Female, Other
                                         }
                                         if (editChoice.equals("4")) {
                                             if (editInformation.contains(" ") || editInformation.contains(";")) {
