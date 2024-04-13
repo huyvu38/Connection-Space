@@ -258,6 +258,7 @@ public class Server implements ServerInterface{
                                 writer.flush();
                             }
                             if (choice.equals("8")) {
+
                             }
                             if (choice.equals("9")) {
                                 String word = reader.readLine();
@@ -389,14 +390,14 @@ public class Server implements ServerInterface{
         return false;
     }
 
-    public synchronized boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
+    public synchronized boolean deleteAccount(Database database, UserAccount userAccount, String enteredPassword) {
         if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
 
-            ArrayList<UserAccount> userList = data.getAllUserAccount();
+            ArrayList<UserAccount> userList = database.getAllUserAccount();
 
             userList.remove(userAccount);
 
-            data.setAllUserAccount(userList);
+            database.setAllUserAccount(userList);
             return true;
 
         }
@@ -557,7 +558,7 @@ public class Server implements ServerInterface{
         return findUserName;
     }
 
-    public boolean sendMessage(String sendUserName, String receiverUserName, String content, boolean isBlocked) {
+    public synchronized boolean sendMessage(String sendUserName, String receiverUserName, String content, boolean isBlocked) {
         // Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
