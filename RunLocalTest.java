@@ -1,31 +1,22 @@
-import org.junit.*;
-
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.*;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertFalse;
-
-
 import org.junit.runners.JUnit4;
 import org.mockito.MockitoAnnotations;
 
 import java.io.*;
 import java.lang.reflect.Modifier;
 import java.net.Socket;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Team Project
@@ -233,76 +224,69 @@ public class RunLocalTest {
 
     } // end of UserAccountTest
 
+    // start message tests
     @RunWith(JUnit4.class)
     public static class MessageTest {
-        private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
-        private Message message;
-        public void MessageDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `Message` is `public`!",
-                    Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `Message` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `Message` implements interfaces!",
-                    1, superinterfaces.length);
-        }
+        private Server server;
+        private Socket mockSocket;
+        private Database mockDatabase;
+        private PrintWriter mockWriter;
+        private BufferedReader mockReader;
+        private ArrayList<UserAccount> mockUserAccounts;
 
         @Before
-        public void setUp() {
-            message = new Message();
-            try {
-                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
-                Files.createFile(Paths.get(TEST_FILE_PATH));
-            } catch (Exception e) {
-                System.out.println("File path can't be created.");
-            }
+        public void setUp() throws Exception {
+            mockSocket = mock(Socket.class);
+            mockWriter = mock(PrintWriter.class);
+            mockReader = mock(BufferedReader.class);
+            mockDatabase = mock(Database.class);
+            mockUserAccounts = new ArrayList<>();
+            server = new Server(mockSocket);
+            server.database = mockDatabase;
+            server.allUserAccount = mockUserAccounts;
+
+            when(mockSocket.getOutputStream()).thenReturn(new ByteArrayOutputStream());
+            when(mockSocket.getInputStream()).thenReturn(new ByteArrayInputStream("".getBytes()));
+            when(mockSocket.isClosed()).thenReturn(false);
+            MockitoAnnotations.initMocks(this);
+        }
+
+        @Test
+        public void testSendMessage() throws IOException {
+            assertTrue("Message should be sent successfully",
+                    server.sendMessage("Alice", "Bob", "Hello Bob!", false));
+        }
+
+        @Test
+        public void testAddFriend() throws IOException {
+            UserAccount alice = new UserAccount(new Profile("Alice", "pass123", 25, "Female", "Wonderland", "Explorer", "Adventuring"));
+            UserAccount bob = new UserAccount(new Profile("Bob", "pass123", 30, "Male", "Builderland", "Builder", "Building"));
+            mockUserAccounts.add(alice);
+            mockUserAccounts.add(bob);
+            assertTrue("Alice should be able to add Bob as a friend",
+                    server.addFriend("Alice", "Bob"));
+        }
+
+        @Test
+        public void testRestrictMessage() throws IOException {
+            ArrayList<String> members = new ArrayList<>();
+            members.add("Bob");
+            assertNull("Message should be sent to all friends successfully",
+                    server.restrictMessage("Alice", members, "Hello group!"));
+        }
+
+        @Test
+        public void testPrintHistoryMessage() throws IOException {
+            assertTrue("History messages should be printed successfully",
+                    server.printHistoryMessage("Alice", "Bob"));
         }
 
         @After
         public void tearDown() {
-            try {
-                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
-            } catch (Exception e) {
-                System.out.println("File path can't be created.");
-            }
+            mockUserAccounts.clear();
         }
-
-        @Test
-        public void messageSuccessful() {
-            try {
-                message.sendMessage("sender", "receiver", "Test message", false);
-                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("File should contain the sent message", lines.get(0).contains("Test message"));
-            } catch (Exception e) {
-                System.out.println("Message failed to send.");
-
-            }
-        }
-
-        @Test
-        public void RemovesMessage() {
-            try {
-                Files.write(Paths.get(TEST_FILE_PATH), "1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message".getBytes());
-                //Message.deleteMessage(1); this has an error
-                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("Deleted message should have status changed", lines.get(0).contains("0"));
-            } catch (Exception e) {
-                System.out.println("Message failed to delete.");
-            }
-        }
-    }// end of test case for messages
+    }
+    // end of test case for messages
 
     // Begin Server test
     @RunWith(JUnit4.class)
