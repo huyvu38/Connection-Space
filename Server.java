@@ -267,6 +267,7 @@ public class Server implements ServerInterface{
                                 String word = reader.readLine();
                                 //username is the one who search other user
                                 ArrayList<String> findUserName = searchUser(username, word);
+                                System.out.println(findUserName.size());
                                 if (findUserName.size() == 0) {
                                     writer.write("Can not find any user");
                                     writer.println();
@@ -274,13 +275,40 @@ public class Server implements ServerInterface{
                                 } else {
                                     String allFindUser = "";
                                     for (int i = 0; i < findUserName.size(); i++) {
-                                        if (i < (findUserName.size() - 1)) {
-                                            allFindUser = allFindUser + findUserName.get(i) + " ";
+                                        String findUser = findUserName.get(i);
+                                        if (findUser != null && !findUser.isEmpty()) {
+                                            allFindUser += findUser;
+                                            if (i < (findUserName.size() - 1)) {
+                                                allFindUser += " ";
+                                            }
                                         }
                                     }
                                     writer.write(allFindUser);
                                     writer.println();
                                     writer.flush();
+                                    String userNameToViewProfile = reader.readLine();
+                                    String viewOtherProfileChoice = reader.readLine();
+                                    for (UserAccount userAccount : allUserAccount) {
+                                        if (userAccount.getUserProfile().getUserName().equals(userNameToViewProfile)) {
+                                            if (viewOtherProfileChoice.equals("1")) {
+                                                writer.write(userAccount.getUserProfile().getAge());
+                                            }
+                                            if (viewOtherProfileChoice.equals("2")) {
+                                                writer.write(userAccount.getUserProfile().getGender());
+                                            }
+                                            if (viewOtherProfileChoice.equals("3")) {
+                                                writer.write(userAccount.getUserProfile().getNationality());
+                                            }
+                                            if (viewOtherProfileChoice.equals("4")) {
+                                                writer.write(userAccount.getUserProfile().getJob());
+                                            }
+                                            if (viewOtherProfileChoice.equals("5")) {
+                                                writer.write(userAccount.getUserProfile().getHobby());
+                                            }
+                                            writer.println();
+                                            writer.flush();
+                                        }
+                                    }
                                 }
                             }
                             if (choice.equals("10")) {
@@ -498,7 +526,7 @@ public class Server implements ServerInterface{
         }
         return false;//if one of the username not valid or user2 not in block list of user1
     }
-    /*
+
 
     //User1 finds user2
     public ArrayList<String> searchUser(String userNameOne, String word) {
@@ -529,10 +557,10 @@ public class Server implements ServerInterface{
                         }
                     }
                 }
+                findUserName.remove(userNameOne);
+                //DO NOT INCLUDE THAT USERNAME IN SEARCH
             }
         }
         return findUserName;
     }
-
-     */
 }

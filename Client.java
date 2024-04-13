@@ -207,6 +207,27 @@ public class Client {
                                 writer.flush();
                                 String searchResult = reader.readLine();
                                 System.out.println(searchResult);
+                                //View other profile
+                                if (searchResult.equals("Can not find any user") == false) {
+                                    System.out.println("Enter the user that you want to view their profile");
+                                    //The client only view user from the previous search result
+                                    String userNameToViewProfile = scanner.nextLine();
+                                    writer.write(userNameToViewProfile);
+                                    writer.println();
+                                    writer.flush();
+                                    System.out.println("Which information do you want to see");
+                                    System.out.println("1. Age");
+                                    System.out.println("2. Gender");
+                                    System.out.println("3. Nationality");
+                                    System.out.println("4. Job");
+                                    System.out.println("5. Hobby");
+                                    String viewOtherProfileChoice = scanner.nextLine();
+                                    writer.write(viewOtherProfileChoice);
+                                    writer.println();
+                                    writer.flush();
+                                    String viewOtherProfileResult = reader.readLine();
+                                    System.out.println(viewOtherProfileResult);
+                                }
                             }
                             if (choice.equals("10")) {
                                 break;
