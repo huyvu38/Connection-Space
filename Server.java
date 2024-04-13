@@ -262,6 +262,7 @@ public class Server implements ServerInterface{
                                 writer.flush();
                             }
                             if (choice.equals("8")) {
+
                             }
                             if (choice.equals("9")) {
                                 String word = reader.readLine();
