@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import org.junit.*;
-=======
 
 import org.junit.Before;
 import org.junit.Test;
->>>>>>> 3f6eadceaec4ccaf087bc2cf2835c1303b380a5b
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -54,8 +51,6 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-<<<<<<< HEAD
-=======
         /*
         Result result2 = JUnitCore.runClasses(RunLocalTest.LogInTest.class);
         if (result2.wasSuccessful()) {
@@ -67,7 +62,6 @@ public class RunLocalTest {
         }
 
          */
->>>>>>> 3f6eadceaec4ccaf087bc2cf2835c1303b380a5b
         Result result3 = JUnitCore.runClasses(RunLocalTest.UserAccountTest.class);
         if (result3.wasSuccessful()) {
             System.out.println("Excellent - User Account test ran successfully");
