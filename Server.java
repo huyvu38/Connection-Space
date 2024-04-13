@@ -1,3 +1,5 @@
+//Gabes TODO list update interfaces as needed. Maintain testcases as needed.
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,7 +19,7 @@ import java.util.List;
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Server implements IServer{
+public class Server implements ServerInterface{
     Socket socket;
     public static Database database;
     public static ArrayList<UserAccount> allUserAccount;
@@ -38,7 +40,7 @@ public class Server implements IServer{
                 socket = serverSocket.accept();
                 System.out.println("Connected");
                 //make thread for client
-                Thread client = new Thread((Runnable) new Server(socket)); //??
+                Thread client = new Thread(new Server(socket));
                 client.start();
             } catch (Exception e) {
                 socket.close();
