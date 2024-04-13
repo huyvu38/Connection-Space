@@ -1,3 +1,5 @@
+//Gabes TODO list update interfaces as needed. Maintain testcases as needed.
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -213,9 +215,6 @@ public class Server implements ServerInterface{
                                 database.saveAllUserAccount();
                             }
                             if (choice.equals("3")) {
-
-                            }
-                            if (choice.equals("4")) {
                                 String addFriendUserName = reader.readLine();
                                 if (addFriend(username, addFriendUserName)) {
                                     writer.write("Add friend successfully");
@@ -225,7 +224,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("5")) {
+                            if (choice.equals("4")) {
                                 String unfriendUserName = reader.readLine();
                                 if (deleteFriend(username, unfriendUserName)) {
                                     writer.write("Unfriend successfully");
@@ -235,7 +234,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("6")) {
+                            if (choice.equals("5")) {
                                 String blockUserName = reader.readLine();
                                 if (blockUser(username, blockUserName)) {
                                     writer.write("Block successfully");
@@ -247,7 +246,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("7")) {
+                            if (choice.equals("6")) {
                                 String unblockUserName = reader.readLine();
                                 if (unblockUser(username, unblockUserName)) {
                                     writer.write("Unblock successfully");
@@ -257,7 +256,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("8")) {
+                            if (choice.equals("7")) {
                                 String userName = reader.readLine();
                                 UserAccount currentUserAcc = null;
                                 boolean hasFriends = false;
@@ -294,7 +293,7 @@ public class Server implements ServerInterface{
 
                                 }
                             }
-                            if (choice.equals("9")) {
+                            if (choice.equals("8")) {
                                 String word = reader.readLine();
                                 //username is the one who search other user
                                 ArrayList<String> findUserName = searchUser(username, word);
@@ -342,7 +341,7 @@ public class Server implements ServerInterface{
                                     }
                                 }
                             }
-                            if (choice.equals("10")) {
+                            if (choice.equals("9")) {
                                 break;
                             }
                         }
@@ -419,19 +418,21 @@ public class Server implements ServerInterface{
             ArrayList<UserAccount> temp = database.getAllUserAccount();
             temp.add(userAccount);
             database.setAllUserAccount(temp);
+            database.saveAllUserAccount();
             return true;
         }
         return false;
     }
 
-    public synchronized boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
+    public synchronized boolean deleteAccount(Database database, UserAccount userAccount, String enteredPassword) {
         if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
 
-            ArrayList<UserAccount> userList = data.getAllUserAccount();
+            ArrayList<UserAccount> userList = database.getAllUserAccount();
 
             userList.remove(userAccount);
 
-            data.setAllUserAccount(userList);
+            database.setAllUserAccount(userList);
+            database.saveAllUserAccount();
             return true;
 
         }
@@ -592,7 +593,7 @@ public class Server implements ServerInterface{
         return findUserName;
     }
 
-    public boolean sendMessage(String sendUserName, String receiverUserName, String content, boolean isBlocked) {
+    public synchronized boolean sendMessage(String sendUserName, String receiverUserName, String content, boolean isBlocked) {
         // Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

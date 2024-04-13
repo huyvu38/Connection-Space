@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public interface ServerInterface extends Runnable {
+public interface IServer {
     boolean checkIfPasswordCorrect(Profile profile, String userPassword);
     boolean checkPasswordLength(String password);
     boolean checkUserNameFormat(String userName);
@@ -8,7 +8,7 @@ public interface ServerInterface extends Runnable {
     boolean inFriendList(String userNameOne, String userNameTwo);
     boolean inBlockList(String userNameOne, String userNameTwo);
     boolean createAccount(Database database, UserAccount userAccount, String username, String password);
-    boolean deleteAccount(Database database, UserAccount userAccount, String enteredPassword);
+    boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword);
     boolean loginAccount(String username, String userPassword);
     boolean addFriend(String userNameOne, String userNameTwo);
     boolean deleteFriend(String userNameOne, String userNameTwo);
@@ -17,6 +17,6 @@ public interface ServerInterface extends Runnable {
     ArrayList<String> searchUser(String userNameOne, String word);
     boolean sendMessage(String sendUserName, String receiverUserName, String content, boolean isBlocked);
     boolean deleteMessage(int messageID);
-    String restrictMessage(String userName, ArrayList<String> friendList, String content);
+    String restrictMessage(String userName, ArrayList<String> friendListList, String content);
     boolean printHistoryMessage(String senderName, String receiverName);
 }
