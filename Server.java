@@ -341,6 +341,7 @@ public class Server implements ServerInterface{
             ArrayList<UserAccount> temp = database.getAllUserAccount();
             temp.add(userAccount);
             database.setAllUserAccount(temp);
+            database.saveAllUserAccount();
             return true;
         }
         return false;
@@ -354,13 +355,12 @@ public class Server implements ServerInterface{
             userList.remove(userAccount);
 
             data.setAllUserAccount(userList);
+            data.saveAllUserAccount();
             return true;
 
         }
         return false;
     }
-
-
 
     public synchronized boolean loginAccount(String username, String userPassword) {
         if (usernameInDatabase(username)) {
