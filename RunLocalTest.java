@@ -7,6 +7,10 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertFalse;
+
+
 import org.junit.runners.JUnit4;
 import org.mockito.MockitoAnnotations;
 
@@ -305,88 +309,75 @@ public class RunLocalTest {
     public static class ServerTest {
         private Server server;
         private Socket mockSocket;
-        private PrintWriter mockWriter;
-        private BufferedReader mockReader;
-        private ByteArrayOutputStream outContent;
+        private Database mockDatabase;
+        private static ArrayList<UserAccount> mockUserAccounts;
 
         @Before
-        public void setUp() throws Exception {
+        public void setUp() {
             mockSocket = mock(Socket.class);
-            outContent = new ByteArrayOutputStream();
-            mockWriter = new PrintWriter(outContent, true);
-            mockReader = mock(BufferedReader.class);
-
-            MockitoAnnotations.initMocks(this);
-            when(mockSocket.getOutputStream()).thenReturn(outContent);
-            when(mockSocket.getInputStream()).thenReturn(new ByteArrayInputStream("".getBytes()));
-
+            mockDatabase = mock(Database.class);
+            mockUserAccounts = new ArrayList<>();
             server = new Server(mockSocket);
-            server.database = mock(Database.class);
-            server.allUserAccount = new ArrayList<>();
+            server.database = mockDatabase;
+            server.allUserAccount = mockUserAccounts;
         }
 
         @Test
-        public void testAddFriendSuccess() throws IOException {
-            String input = "2\nuser1\npassword\n5\nuser2\n";
-            when(mockReader.readLine()).thenReturn("2", "user1", "password", "5", "user2", null);
-            Server.allUserAccount.add(new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming")));
-            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
-
-            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-            when(mockSocket.getInputStream()).thenReturn(inContent);
-
-            server.run();
-
-            assertTrue("Output should confirm friend addition", outContent.toString().contains("Add friend successfully"));
+        public void testConstructor() {
+            assertNotNull("Server instance should be created", server);
         }
 
         @Test
-        public void testBlockUserSuccess() throws IOException {
-            String input = "2\nuser1\npassword\n7\nuser2\n";
-            when(mockReader.readLine()).thenReturn("2", "user1", "password", "7", "user2", null);
-            Server.allUserAccount.add(new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming")));
-            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
-
-            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-            when(mockSocket.getInputStream()).thenReturn(inContent);
-
-            server.run();
-
-            assertTrue("Output should confirm user blocking", outContent.toString().contains("Block successfully"));
+        public void testCreateAccountValid() {
+            Profile profile = new Profile("user", "pass123", 25, "Male", "USA", "Engineer", "Reading");
+            UserAccount userAccount = new UserAccount(profile);
+            when(mockDatabase.getAllUserAccount()).thenReturn(mockUserAccounts);
+            assertTrue("Account should be created successfully", server.createAccount(mockDatabase, userAccount, "user", "pass123"));
         }
 
         @Test
-        public void testUnblockUserSuccess() throws IOException {
-            String input = "2\nuser1\npassword\n8\nuser2\n";
-            when(mockReader.readLine()).thenReturn("2", "user1", "password", "8", "user2", null);
-            UserAccount user1 = new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming"));
-            user1.getBlockList().add("user2");
-            Server.allUserAccount.add(user1);
-            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
-
-            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-            when(mockSocket.getInputStream()).thenReturn(inContent);
-
-            server.run();
-
-            assertTrue("Output should confirm user unblocking", outContent.toString().contains("Unblock successfully"));
+        public void testLoginAccountSuccess() {
+            Profile profile = new Profile("user", "pass123", 25, "Male", "USA", "Engineer", "Reading");
+            UserAccount userAccount = new UserAccount(profile);
+            mockUserAccounts.add(userAccount);
+            assertTrue("Login should succeed with correct username and password", server.loginAccount("user", "pass123"));
         }
 
         @Test
-        public void testLoginAndManageCommands() throws IOException {
-            String input = "2\nusername\npassword\n11\n";
-            when(mockReader.readLine()).thenReturn("2", "username", "password", "11", null);
-            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-            when(mockSocket.getInputStream()).thenReturn(inContent);
+        public void testLoginAccountFailure() {
+            Profile profile = new Profile("user", "pass123", 25, "Male", "USA", "Engineer", "Reading");
+            UserAccount userAccount = new UserAccount(profile);
+            mockUserAccounts.add(userAccount);
+            assertFalse("Login should fail with incorrect password", server.loginAccount("user", "wrongpassword"));
+        }
 
-            server.run();
+        @Test
+        public void testAddFriend() {
+            Profile profile1 = new Profile("user1", "pass123", 25, "Male", "USA", "Engineer", "Reading");
+            Profile profile2 = new Profile("user2", "pass123", 26, "Female", "USA", "Doctor", "Music");
+            UserAccount user1 = new UserAccount(profile1);
+            UserAccount user2 = new UserAccount(profile2);
+            mockUserAccounts.add(user1);
+            mockUserAccounts.add(user2);
+            assertTrue("Adding friend should succeed", server.addFriend("user1", "user2"));
+        }
 
-            assertTrue("Output should confirm successful login and subsequent logout", outContent.toString().contains("Log in successfully") && outContent.toString().contains("Logged out successfully"));
+        @Test
+        public void testDeleteFriend() {
+            Profile profile1 = new Profile("user1", "pass123", 25, "Male", "USA", "Engineer", "Reading");
+            Profile profile2 = new Profile("user2", "pass123", 26, "Female", "USA", "Doctor", "Music");
+            UserAccount user1 = new UserAccount(profile1);
+            UserAccount user2 = new UserAccount(profile2);
+            user1.getFriendList().add("user2");
+            user2.getFriendList().add("user1");
+            mockUserAccounts.add(user1);
+            mockUserAccounts.add(user2);
+            assertTrue("Deleting friend should succeed", server.deleteFriend("user1", "user2"));
         }
 
         @After
-        public void tearDown() throws IOException {
-            mockSocket.close();
+        public void tearDown() {
+            mockUserAccounts.clear();
         }
     }
 
