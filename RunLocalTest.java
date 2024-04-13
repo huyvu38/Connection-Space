@@ -1,3 +1,4 @@
+import org.junit.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,23 +7,21 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.*;
-import org.junit.*;
 import org.junit.runners.JUnit4;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.nio.file.*;
-import java.util.List;
-import java.util.ArrayList;
+import org.mockito.MockitoAnnotations;
+
+import java.io.*;
 import java.lang.reflect.Modifier;
-import static org.junit.Assert.*;
+import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
 
 /**
  * Team Project
@@ -76,6 +75,14 @@ public class RunLocalTest {
             System.out.println("Excellent - Database test ran successfully");
         } else {
             for (Failure failure : result4.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+        Result result44 = JUnitCore.runClasses(RunLocalTest.ServerTest.class);
+        if (result44.wasSuccessful()) {
+            System.out.println("Excellent - Server test ran successfully");
+        } else {
+            for (Failure failure : result44.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
@@ -293,90 +300,99 @@ public class RunLocalTest {
         }
     }// end of test case for messages
 
-    /*
-
-    public static class LogInTest {
-        private Database database;
-        private LogIn logIn;
-        private Profile validProfile;
-        private Profile invalidProfile;
-        public void LogInDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `LogIn` is `public`!",
-                    Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `LogIn` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `LogIn` implements interfaces!",
-                    1, superinterfaces.length);
-        }
+    // Begin Server test
+    @RunWith(JUnit4.class)
+    public static class ServerTest {
+        private Server server;
+        private Socket mockSocket;
+        private PrintWriter mockWriter;
+        private BufferedReader mockReader;
+        private ByteArrayOutputStream outContent;
 
         @Before
-        public void setUp() {
-            database = new Database("testDatabase.txt");
-            validProfile = new Profile("ValidPerson", "!Starbucks123", 25, "Gender", "Nationality", "Job", "Hobby");
-            invalidProfile = new Profile("Bad", "123", 25, "Gender", "Nationality", "Job", "Hobby");
+        public void setUp() throws Exception {
+            mockSocket = mock(Socket.class);
+            outContent = new ByteArrayOutputStream();
+            mockWriter = new PrintWriter(outContent, true);
+            mockReader = mock(BufferedReader.class);
 
-            ArrayList<Profile> allProfiles = new ArrayList<>();
-            allProfiles.add(validProfile);
-            database.setAllUserProfile(allProfiles);
+            MockitoAnnotations.initMocks(this);
+            when(mockSocket.getOutputStream()).thenReturn(outContent);
+            when(mockSocket.getInputStream()).thenReturn(new ByteArrayInputStream("".getBytes()));
 
-            logIn = new LogIn(database, validProfile, validProfile.getUserName(), validProfile.getPassword());
+            server = new Server(mockSocket);
+            server.database = mock(Database.class);
+            server.allUserAccount = new ArrayList<>();
         }
 
         @Test
-        public void testIsValidUserName() {
-            assertTrue(logIn.isValidUserName(database.getAllUserProfile(), "NewUser"));
-            assertFalse(logIn.isValidUserName(database.getAllUserProfile(), "ValidPerson"));
+        public void testAddFriendSuccess() throws IOException {
+            String input = "2\nuser1\npassword\n5\nuser2\n";
+            when(mockReader.readLine()).thenReturn("2", "user1", "password", "5", "user2", null);
+            Server.allUserAccount.add(new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming")));
+            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
+
+            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
+            when(mockSocket.getInputStream()).thenReturn(inContent);
+
+            server.run();
+
+            assertTrue("Output should confirm friend addition", outContent.toString().contains("Add friend successfully"));
         }
 
         @Test
-        public void testCheckPasswordLength() {
-            assertTrue(logIn.checkPasswordLength("!Starbucks123"));
-            assertFalse(logIn.checkPasswordLength("123"));
+        public void testBlockUserSuccess() throws IOException {
+            String input = "2\nuser1\npassword\n7\nuser2\n";
+            when(mockReader.readLine()).thenReturn("2", "user1", "password", "7", "user2", null);
+            Server.allUserAccount.add(new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming")));
+            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
+
+            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
+            when(mockSocket.getInputStream()).thenReturn(inContent);
+
+            server.run();
+
+            assertTrue("Output should confirm user blocking", outContent.toString().contains("Block successfully"));
         }
 
         @Test
-        public void testCheckIfPasswordCorrect() {
-            assertTrue(logIn.checkIfPasswordCorrect(validProfile, "!Starbucks123"));
-            assertFalse(logIn.checkIfPasswordCorrect(validProfile, "WrongPass"));
+        public void testUnblockUserSuccess() throws IOException {
+            String input = "2\nuser1\npassword\n8\nuser2\n";
+            when(mockReader.readLine()).thenReturn("2", "user1", "password", "8", "user2", null);
+            UserAccount user1 = new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming"));
+            user1.getBlockList().add("user2");
+            Server.allUserAccount.add(user1);
+            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
+
+            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
+            when(mockSocket.getInputStream()).thenReturn(inContent);
+
+            server.run();
+
+            assertTrue("Output should confirm user unblocking", outContent.toString().contains("Unblock successfully"));
         }
 
         @Test
-        public void testCreateAccount() {
-            Profile newValidProfile = new Profile("NewValidUser", "New!Starbucks123", 30, "Gender", "Nationality", "Job", "Hobby");
-            assertTrue(logIn.createAccount(database, newValidProfile));
-            assertFalse(logIn.createAccount(database, invalidProfile));
-            assertEquals(2, database.getAllUserProfile().size());
+        public void testLoginAndManageCommands() throws IOException {
+            String input = "2\nusername\npassword\n11\n";
+            when(mockReader.readLine()).thenReturn("2", "username", "password", "11", null);
+            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
+            when(mockSocket.getInputStream()).thenReturn(inContent);
+
+            server.run();
+
+            assertTrue("Output should confirm successful login and subsequent logout", outContent.toString().contains("Log in successfully") && outContent.toString().contains("Logged out successfully"));
         }
 
-        @Test
-        public void testDeleteAccount() {
-            assertTrue(logIn.deleteAccount(database, validProfile, "!Starbucks123"));
-            assertFalse(logIn.deleteAccount(database, invalidProfile, "123"));
-            // Check if the valid profile is indeed removed
-            assertEquals(0, database.getAllUserProfile().size());
+        @After
+        public void tearDown() throws IOException {
+            mockSocket.close();
         }
+    }
 
-        @Test
-        public void testLoginAccount() {
-            assertTrue(logIn.loginAccount(database, validProfile, "ValidPerson", "!Starbucks123"));
-            assertFalse(logIn.loginAccount(database, invalidProfile, "Bad", "123"));
-        }
-    }// for login
+    //-----------------------------------------------------------------------------------------------
+    //end server test
 
-     */
 
     public static class DatabaseTest {
         private static Database database;
@@ -446,8 +462,8 @@ public class RunLocalTest {
         /*
         @Test
         public void setAllUserProfileTest() {
-            database.setAllUserProfile(TestUserProfiles);
-            assertTrue(database.getAllUserProfile().equals(TestUserProfiles));
+            //database.setAllUserAccount(TestUserProfiles); <-- PROBLEM: setAllUsrAcc gets <profile> wants <account>
+            assertTrue(database.getAllUserAccount().equals(TestUserProfiles));
         }
 
         @Test
@@ -460,80 +476,4 @@ public class RunLocalTest {
          */
     }
 
-    /*
-    public static class MethodTest {
-        private Method method;
-        private ArrayList<Profile> allUserList;
-        private ArrayList<String> friendList;
-        private ArrayList<String> blockList;
-        private Profile userProfile;
-        public void MethodDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `Method` is `public`!",
-                    Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `Method` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `Method` implements interfaces!",
-                    1, superinterfaces.length);
-        }
-
-        @Before
-        public void setUp() {
-            allUserList = new ArrayList<>();
-            friendList = new ArrayList<>();
-            blockList = new ArrayList<>();
-            userProfile = new Profile("User", "Pass", 25, "Gender", "Nationality", "Job", "Hobby");
-            allUserList.add(userProfile);
-            allUserList.add(new Profile("champagnepapi", "password123", 30, "Male", "American", "Engineer", "Coding"));
-            allUserList.add(new Profile("kwest", "password456", 28, "Female", "British", "Artist", "Painting"));
-            friendList.add("champagnepapi");
-            blockList.add("kwest");
-
-            method = new Method(allUserList, friendList, blockList, userProfile);
-        }
-
-        @Test
-        public void testUserNameInDatabase() {
-            boolean result = method.usernameInDatabase(allUserList, "ExistingUser");
-            assertTrue(result);
-        }
-
-        @Test
-        public void testUserNameNotInDatabase() {
-            boolean result = method.usernameInDatabase(allUserList, "NewUser");
-            assertFalse(result);
-        }
-
-        @Test
-        public void testAddFriend() {
-            boolean result = method.addFriend(allUserList, friendList, blockList, "NewFriend");
-            assertTrue( result);
-        }
-
-        @Test
-        public void testAddFriend_2() {
-            boolean result = method.addFriend(allUserList, friendList, blockList, "champagnepapi");
-            assertTrue(result);
-        }
-
-        @Test
-        public void testAddFriend_3() {
-            boolean result = method.addFriend(allUserList, friendList, blockList, "kwest");
-            assertTrue(result);
-        }
-    }
-
-     */
-} // end of class
+    } // end of class

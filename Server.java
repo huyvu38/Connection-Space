@@ -94,6 +94,7 @@ public class Server implements ServerInterface{
 
                     //if the result is still true -> send back to the client that account create successfully
                     if (createAccount(database, newUserAccount, username, password)) {
+                        database.saveAllUserAccount();
                         result = true;
                     }
                     if (result) {
@@ -336,45 +337,6 @@ public class Server implements ServerInterface{
     public boolean checkUserNameFormat(String userName) {
         return userName.length() >= 4;
     }
-    public synchronized boolean createAccount(Database database, UserAccount userAccount, String username, String password) {
-        if (checkUserNameFormat(username) && checkPasswordLength(password)) {
-            ArrayList<UserAccount> temp = database.getAllUserAccount();
-            temp.add(userAccount);
-            database.setAllUserAccount(temp);
-            database.saveAllUserAccount();
-            return true;
-        }
-        return false;
-    }
-
-    public synchronized boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
-        if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
-
-            ArrayList<UserAccount> userList = data.getAllUserAccount();
-
-            userList.remove(userAccount);
-
-            data.setAllUserAccount(userList);
-            data.saveAllUserAccount();
-            return true;
-
-        }
-        return false;
-    }
-
-    public synchronized boolean loginAccount(String username, String userPassword) {
-        if (usernameInDatabase(username)) {
-            for (UserAccount eachUserAccount: allUserAccount) {
-                if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
-                    if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
-                        return true;
-                    }
-                }
-            }
-
-        }
-        return false;
-    }
     public boolean usernameInDatabase(String userName) {
         //From a list of user profile, find the specific username
         for (UserAccount eachUserAccount : allUserAccount) {
@@ -420,6 +382,43 @@ public class Server implements ServerInterface{
         }
         return false;
         //The method return false if user1 do not block user2
+    }
+    public synchronized boolean createAccount(Database database, UserAccount userAccount, String username, String password) {
+        if (checkUserNameFormat(username) && checkPasswordLength(password)) {
+            ArrayList<UserAccount> temp = database.getAllUserAccount();
+            temp.add(userAccount);
+            database.setAllUserAccount(temp);
+            return true;
+        }
+        return false;
+    }
+
+    public synchronized boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
+        if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
+
+            ArrayList<UserAccount> userList = data.getAllUserAccount();
+
+            userList.remove(userAccount);
+
+            data.setAllUserAccount(userList);
+            return true;
+
+        }
+        return false;
+    }
+
+    public synchronized boolean loginAccount(String username, String userPassword) {
+        if (usernameInDatabase(username)) {
+            for (UserAccount eachUserAccount: allUserAccount) {
+                if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
+                    if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
+                        return true;
+                    }
+                }
+            }
+
+        }
+        return false;
     }
     public synchronized boolean addFriend(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
