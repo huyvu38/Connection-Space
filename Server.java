@@ -424,21 +424,6 @@ public class Server implements ServerInterface{
         return false;
     }
 
-    public synchronized boolean deleteAccount(Database database, UserAccount userAccount, String enteredPassword) {
-        if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
-
-            ArrayList<UserAccount> userList = database.getAllUserAccount();
-
-            userList.remove(userAccount);
-
-            database.setAllUserAccount(userList);
-            database.saveAllUserAccount();
-            return true;
-
-        }
-        return false;
-    }
-
     public synchronized boolean loginAccount(String username, String userPassword) {
         if (usernameInDatabase(username)) {
             for (UserAccount eachUserAccount: allUserAccount) {
