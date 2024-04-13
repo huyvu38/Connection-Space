@@ -639,7 +639,7 @@ public class Server implements ServerInterface{
     }
 
 
-    public boolean deleteMessage(int messageID) {
+    public synchronized boolean deleteMessage(int messageID) {
         Path path = Paths.get("Messages.txt");
 
 
@@ -672,7 +672,7 @@ public class Server implements ServerInterface{
     // (before use this method, make sure all input should in Users friendList.
     // Only send message when otherUserName is in friendList
     // return empty string if all success, otherwirse indicate which one failed.
-    public  String restrictMessage(String userName, ArrayList<String> groupMembersList, String content) {
+    public synchronized String restrictMessage(String userName, ArrayList<String> groupMembersList, String content) {
         List<String> failedUser = new ArrayList<>();
         for (String friend: groupMembersList) {
             if (!this.sendMessage(userName, friend, content, false)) {
@@ -695,7 +695,7 @@ public class Server implements ServerInterface{
     // The message that already deleted will not be printed in this method, but it still exist in the database
     // For the blocked message, the sender still can see it, but on the receiver side, it won't be shown
 
-    public boolean printHistoryMessage(String senderName, String receiverName) {
+    public synchronized boolean printHistoryMessage(String senderName, String receiverName) {
         String filePath = "Messages.txt";
         BufferedReader br = null;
         boolean isSuccessful = true;
