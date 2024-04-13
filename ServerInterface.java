@@ -8,7 +8,6 @@ public interface ServerInterface extends Runnable {
     boolean inFriendList(String userNameOne, String userNameTwo);
     boolean inBlockList(String userNameOne, String userNameTwo);
     boolean createAccount(Database database, UserAccount userAccount, String username, String password);
-    boolean deleteAccount(Database database, UserAccount userAccount, String enteredPassword);
     boolean loginAccount(String username, String userPassword);
     boolean addFriend(String userNameOne, String userNameTwo);
     boolean deleteFriend(String userNameOne, String userNameTwo);
