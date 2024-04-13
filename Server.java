@@ -81,22 +81,15 @@ public class Server implements ServerInterface{
                     if (newAge < 0) {
                         result = false;
                     }
-                    if (checkPasswordLength(password) == false) {
-                        result = false;
-                    }
-                    if (checkUserNameFormat(username) == false) {
-                        result = false;
-                    }
                     //If the user enter all valid information -> the result still true
                     //Then check if the username is valid to create a new Profile
-                    if (result) {
-                        //After create account successfully
-                        Profile newUserProfile = new Profile(username, password, newAge, gender, nationality, job, hobby);
-                        UserAccount newUserAccount = new UserAccount(newUserProfile);
-                        allUserAccount.add(newUserAccount);
-                        database.saveAllUserAccount();
-                    }
+                    Profile newUserProfile = new Profile(username, password, newAge, gender, nationality, job, hobby);
+                    UserAccount newUserAccount = new UserAccount(newUserProfile);
+
                     //if the result is still true -> send back to the client that account create successfully
+                    if (createAccount(database, newUserAccount, username, password)) {
+                        result = true;
+                    }
                     if (result) {
                         writer.write("Create Account successfully. You have to log in again");
                         writer.println();
@@ -327,19 +320,6 @@ public class Server implements ServerInterface{
             e.printStackTrace();
         }
     }
-    /*
-    public boolean createAccount(Database database, UserAccount userAccount) {
-        try {
-            ArrayList<UserAccount> temp = database.getAllUserAccount();
-            temp.add(userAccount);
-            database.setAllUserAccount(temp);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-     */
     public boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
         return profile.getPassword().equals(userPassword);
     }
@@ -350,7 +330,15 @@ public class Server implements ServerInterface{
     public boolean checkUserNameFormat(String userName) {
         return userName.length() >= 4;
     }
-
+    public synchronized boolean createAccount(Database database, UserAccount userAccount, String username, String password) {
+        if (checkUserNameFormat(username) && checkPasswordLength(password)) {
+            ArrayList<UserAccount> temp = database.getAllUserAccount();
+            temp.add(userAccount);
+            database.setAllUserAccount(temp);
+            return true;
+        }
+        return false;
+    }
 
     public synchronized boolean deleteAccount(Database data, UserAccount userAccount, String enteredPassword) {
         if (checkIfPasswordCorrect(userAccount.getUserProfile(), enteredPassword)) {
@@ -368,7 +356,7 @@ public class Server implements ServerInterface{
 
 
 
-    public boolean loginAccount(String username, String userPassword) {
+    public synchronized boolean loginAccount(String username, String userPassword) {
         if (usernameInDatabase(username)) {
             for (UserAccount eachUserAccount: allUserAccount) {
                 if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
@@ -427,7 +415,7 @@ public class Server implements ServerInterface{
         return false;
         //The method return false if user1 do not block user2
     }
-    public boolean addFriend(String userNameOne, String userNameTwo) {
+    public synchronized boolean addFriend(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             if (inBlockList(userNameOne, userNameTwo)) {
@@ -461,7 +449,7 @@ public class Server implements ServerInterface{
         }
         return false; //If one of two username not in the database
     }
-    public boolean deleteFriend(String userNameOne, String userNameTwo) {
+    public synchronized boolean deleteFriend(String userNameOne, String userNameTwo) {
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             if (inFriendList(userNameOne, userNameTwo)) { //both users are friend
                 for (UserAccount userAccount : allUserAccount) {
@@ -485,7 +473,7 @@ public class Server implements ServerInterface{
         }
         return false; //If one of two username not in the database or not in the friendlist of each other
     }
-    public boolean blockUser(String userNameOne, String userNameTwo) {
+    public synchronized boolean blockUser(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             if (inBlockList(userNameOne, userNameTwo)) {
@@ -507,7 +495,7 @@ public class Server implements ServerInterface{
         }
         return false;
     }
-    public boolean unblockUser(String userNameOne, String userNameTwo) {
+    public synchronized boolean unblockUser(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             if (inBlockList(userNameOne, userNameTwo)) {
@@ -529,7 +517,7 @@ public class Server implements ServerInterface{
 
 
     //User1 finds user2
-    public ArrayList<String> searchUser(String userNameOne, String word) {
+    public synchronized ArrayList<String> searchUser(String userNameOne, String word) {
         ArrayList<String> findUserName = new ArrayList<>();
         //Check if no account block user1
         for (UserAccount userAccount : allUserAccount) {
