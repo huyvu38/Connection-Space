@@ -28,10 +28,9 @@ public class Client {
                 String userInput = scanner.nextLine();
                 //User want to create account -> send 1 to the server
                 //User want to logIn -> send 2 to the server
-                if (userInput == null) {
-                    writer.close();
-                    reader.close();
-                }
+                writer.write(userInput);
+                writer.println();
+                writer.flush();
                 if (userInput.equals("1")) {
                     System.out.println("Enter your username:");
                     String username = scanner.nextLine();
@@ -51,8 +50,6 @@ public class Client {
                     System.out.println("Enter your hobby");
                     String hobby = scanner.nextLine();
                     //Send all information to the server
-                    writer.write("1");
-                    writer.println();
                     writer.write(username);
                     writer.println();
                     writer.write(password);
@@ -78,8 +75,6 @@ public class Client {
                     System.out.println("Enter your password");
                     String password = scanner.nextLine();
                     //Sent to the server
-                    writer.write("2");
-                    writer.println();
                     writer.write(username);
                     writer.println();
                     writer.write(password);
@@ -94,16 +89,18 @@ public class Client {
                             System.out.println("What would you like to do? ");
                             System.out.println("1. View your profile");
                             System.out.println("2. Edit your profile");
-                            System.out.println("3. View other user profile");
-                            System.out.println("4. Delete account");
-                            System.out.println("5. Add friend");
-                            System.out.println("6. Delete friend");
-                            System.out.println("7. Block user");
-                            System.out.println("8. Unblock user");
-                            System.out.println("9. Send message");
-                            System.out.println("10. Search other user");
-                            System.out.println("11. Log out");
+                            System.out.println("3. Delete account");
+                            System.out.println("4. Add friend");
+                            System.out.println("5. Delete friend");
+                            System.out.println("6. Block user");
+                            System.out.println("7. Unblock user");
+                            System.out.println("8. Send message");
+                            System.out.println("9. Search other user");
+                            System.out.println("10. Log out");
                             String choice = scanner.nextLine();
+                            writer.write(choice);
+                            writer.println();
+                            writer.flush();
                             if (choice.equals("1")) {
                                 System.out.println("Which information do you want to see");
                                 System.out.println("1. Username");
@@ -114,8 +111,6 @@ public class Client {
                                 System.out.println("6. Job");
                                 System.out.println("7. Hobby");
                                 String viewChoice = scanner.nextLine();
-                                writer.write(choice);
-                                writer.println();
                                 writer.write(viewChoice);
                                 writer.println();
                                 writer.flush();
@@ -153,8 +148,6 @@ public class Client {
                                     System.out.println("Enter your hobby");
                                 }
                                 String editInformation = scanner.nextLine();
-                                writer.write(choice);
-                                writer.println();
                                 writer.write(editChoice);
                                 writer.println();
                                 writer.write(editInformation);
@@ -167,35 +160,26 @@ public class Client {
 
                             }
                             if (choice.equals("4")) {
-
-                            }
-                            if (choice.equals("5")) {
                                 System.out.println("Enter the user that you want to add friend");
                                 String addFriendUserName = scanner.nextLine();
-                                writer.write(choice);
-                                writer.println();
                                 writer.write(addFriendUserName);
                                 writer.println();
                                 writer.flush();
                                 String addFriendResult = reader.readLine();
                                 System.out.println(addFriendResult);
                             }
-                            if (choice.equals("6")) {
+                            if (choice.equals("5")) {
                                 System.out.println("Enter the user that you want to unfriend");
                                 String unfriendUserName = scanner.nextLine();
-                                writer.write(choice);
-                                writer.println();
                                 writer.write(unfriendUserName);
                                 writer.println();
                                 writer.flush();
                                 String unfriendResult = reader.readLine();
                                 System.out.println(unfriendResult);
                             }
-                            if (choice.equals("7")) {
+                            if (choice.equals("6")) {
                                 System.out.println("Enter the user that you want to block");
                                 String blockUserName = scanner.nextLine();
-                                writer.write(choice);
-                                writer.println();
                                 writer.write(blockUserName);
                                 writer.println();
                                 writer.flush();
@@ -203,27 +187,49 @@ public class Client {
                                 System.out.println(blockResult);
 
                             }
-                            if (choice.equals("8")) {
+                            if (choice.equals("7")) {
                                 System.out.println("Enter the user that you want to unblock");
                                 String unblockUserName = scanner.nextLine();
-                                writer.write(choice);
-                                writer.println();
                                 writer.write(unblockUserName);
                                 writer.println();
                                 writer.flush();
                                 String unblockResult = reader.readLine();
                                 System.out.println(unblockResult);
                             }
+                            if (choice.equals("8")) {
+
+                            }
                             if (choice.equals("9")) {
-
-                            }
-                            if (choice.equals("10")) {
-
-                            }
-                            if (choice.equals("11")) {
-                                writer.write("11");
+                                System.out.println("Enter the word to search user");
+                                String word = scanner.nextLine();
+                                writer.write(word);
                                 writer.println();
                                 writer.flush();
+                                String searchResult = reader.readLine();
+                                System.out.println(searchResult);
+                                //View other profile
+                                if (searchResult.equals("Can not find any user") == false) {
+                                    System.out.println("Enter the user that you want to view their profile");
+                                    //The client only view user from the previous search result
+                                    String userNameToViewProfile = scanner.nextLine();
+                                    writer.write(userNameToViewProfile);
+                                    writer.println();
+                                    writer.flush();
+                                    System.out.println("Which information do you want to see");
+                                    System.out.println("1. Age");
+                                    System.out.println("2. Gender");
+                                    System.out.println("3. Nationality");
+                                    System.out.println("4. Job");
+                                    System.out.println("5. Hobby");
+                                    String viewOtherProfileChoice = scanner.nextLine();
+                                    writer.write(viewOtherProfileChoice);
+                                    writer.println();
+                                    writer.flush();
+                                    String viewOtherProfileResult = reader.readLine();
+                                    System.out.println(viewOtherProfileResult);
+                                }
+                            }
+                            if (choice.equals("10")) {
                                 break;
                             }
                         }
