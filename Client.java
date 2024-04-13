@@ -197,6 +197,23 @@ public class Client {
                                 System.out.println(unblockResult);
                             }
                             if (choice.equals("8")) {
+                                int ans;
+                                do {
+                                    System.out.println("Select your choice:");
+                                    System.out.println("1. Send Group Message");
+                                    System.out.println("2. Send message to friends");
+                                    System.out.println("3. Print history message");
+                                    ans = scanner.nextInt();
+                                    if (ans == 1) {
+
+                                    } else if (ans == 2) {
+
+                                    } else if (ans == 3) {
+
+                                    } else {
+                                        System.out.println("Please enter a valid input");
+                                    }
+                                } while (ans != 1 && ans != 2 && ans != 3);
 
                             }
                             if (choice.equals("9")) {
