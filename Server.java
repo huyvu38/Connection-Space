@@ -282,14 +282,46 @@ public class Server implements ServerInterface{
                                             isBlock = userAccount.getBlockList().contains(userName);
                                         }
                                     }
-                                    sendMessage(userName, receiver, message, isBlock);
-                                    writer.write('');
+                                    if (sendMessage(userName, receiver, message, isBlock)) {
+                                        writer.write("Message sent successfully");
+                                        writer.println();
+                                        writer.flush();
+                                    } else {
+                                        writer.write("Message sent failed");
+                                        writer.println();
+                                        writer.flush();
+                                    }
 
                                 } else if (ans == 2) {
                                     //Send message to friends
+                                    String message = reader.readLine();
+                                    assert currentUserAcc != null;
+                                    ArrayList<String> friendList = currentUserAcc.getFriendList();
+                                    writer.write(restrictMessage(userName, friendList, message));
+                                    writer.println();
+                                    writer.flush();
+
 
                                 } else if (ans == 3) {
                                     //View history Message
+                                    String name = reader.readLine();
+                                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                    PrintStream ps = new PrintStream(baos);
+
+                                    // Save the old System.out
+                                    PrintStream old = System.out;
+                                    // Tell Java to use your special stream
+                                    System.setOut(ps);
+                                    printHistoryMessage(userName, name);
+                                    // Put things back
+                                    System.out.flush();
+                                    System.setOut(old);
+
+                                    // Show what happened
+                                    String output = baos.toString();
+                                    writer.write(output);
+                                    writer.println();
+                                    writer.flush();
 
                                 }
                             }
@@ -700,7 +732,7 @@ public class Server implements ServerInterface{
             }
         }
 
-        if (failedUser.size() > 0) {
+        if (!failedUser.isEmpty()) {
             return "Failed to send to " + failedUser.toString();
 
         } else {

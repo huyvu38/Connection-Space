@@ -1,8 +1,10 @@
 import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -197,13 +199,12 @@ public class Client {
                                 writer.write(username);
                                 writer.println();
                                 writer.flush();
-
                                 int ans;
                                 boolean hasFriends = Boolean.parseBoolean(reader.readLine());
                                 if (hasFriends) {
                                     System.out.println("Select your choice:");
                                     System.out.println("1. Send Message to specific user");
-                                    System.out.println("2. Send message to friends");
+                                    System.out.println("2. Send message only to friends");
                                     System.out.println("3. Print history message");
                                     ans = scanner.nextInt();
                                     writer.write(ans);
@@ -220,11 +221,49 @@ public class Client {
                                         writer.write(message);
                                         writer.println();
                                         writer.flush();
-                                        
+                                        System.out.println(reader.readLine());
 
                                     } else if (ans == 2) {
+                                        System.out.println("What message do you want to send?");
+                                        String message = scanner.nextLine();
+                                        writer.write(message);
+                                        writer.println();
+                                        writer.flush();
+                                        String result1 = reader.readLine();
+                                        System.out.println(Objects.requireNonNullElse(result1, "Message sent successfully"));
 
                                     } else if (ans == 3) {
+                                        String ans2;
+                                        do {
+                                            System.out.println("Who do you want to print the conversation with?");
+                                            String name = scanner.nextLine();
+                                            writer.write(name);
+                                            writer.println();
+                                            writer.flush();
+
+                                            try {
+                                                System.out.println(reader.readLine()); // Assuming that the response is a single line
+                                            } catch (IOException e) {
+                                                System.out.println("Error reading response: " + e.getMessage());
+                                            }
+
+                                            System.out.println("Do you want to delete any message?");
+                                            System.out.println("1. Yes");
+                                            System.out.println("2. No");
+                                            String ans1 = scanner.nextLine();
+                                            writer.write(ans1);
+                                            writer.println();
+                                            writer.flush();
+
+                                            if (!ans1.equals("1")) { // Only ask to keep printing if no deletion was requested
+                                                System.out.println("Keep printing message?");
+                                                System.out.println("1. Yes");
+                                                System.out.println("2. No");
+                                                ans2 = scanner.nextLine();
+                                            } else {
+                                                ans2 = "1"; // Assume user wants to continue if they chose to delete a message
+                                            }
+                                        } while (ans2.equals("1")); // Loop until the user chooses not to continue
 
                                     } else {
                                         System.out.println("Please enter a valid input");
