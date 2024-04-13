@@ -507,17 +507,9 @@ public class Server implements ServerInterface{
                     }
                 }
             }
-        } catch (Exception f) {
+        } catch (Exception e) {
             System.out.println("A User is disconnect");
-            f.printStackTrace();
+            e.printStackTrace();
         }
-    }
-    synchronized boolean isValidUserName(ArrayList<UserAccount> allUserList, String usersName) {
-        for (UserAccount eachProfile : allUserList) {
-            if (eachProfile.getUserProfile().getUserName().equals(usersName)) {
-                return false;
-            }
-        }
-        return true;
     }
 }
