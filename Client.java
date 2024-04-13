@@ -89,15 +89,14 @@ public class Client {
                             System.out.println("What would you like to do? ");
                             System.out.println("1. View your profile");
                             System.out.println("2. Edit your profile");
-                            System.out.println("3. View other user profile");
-                            System.out.println("4. Delete account");
-                            System.out.println("5. Add friend");
-                            System.out.println("6. Delete friend");
-                            System.out.println("7. Block user");
-                            System.out.println("8. Unblock user");
-                            System.out.println("9. Send message");
-                            System.out.println("10. Search other user");
-                            System.out.println("11. Log out");
+                            System.out.println("3. Delete account");
+                            System.out.println("4. Add friend");
+                            System.out.println("5. Delete friend");
+                            System.out.println("6. Block user");
+                            System.out.println("7. Unblock user");
+                            System.out.println("8. Send message");
+                            System.out.println("9. Search other user");
+                            System.out.println("10. Log out");
                             String choice = scanner.nextLine();
                             writer.write(choice);
                             writer.println();
@@ -161,9 +160,6 @@ public class Client {
 
                             }
                             if (choice.equals("4")) {
-
-                            }
-                            if (choice.equals("5")) {
                                 System.out.println("Enter the user that you want to add friend");
                                 String addFriendUserName = scanner.nextLine();
                                 writer.write(addFriendUserName);
@@ -172,7 +168,7 @@ public class Client {
                                 String addFriendResult = reader.readLine();
                                 System.out.println(addFriendResult);
                             }
-                            if (choice.equals("6")) {
+                            if (choice.equals("5")) {
                                 System.out.println("Enter the user that you want to unfriend");
                                 String unfriendUserName = scanner.nextLine();
                                 writer.write(unfriendUserName);
@@ -181,7 +177,7 @@ public class Client {
                                 String unfriendResult = reader.readLine();
                                 System.out.println(unfriendResult);
                             }
-                            if (choice.equals("7")) {
+                            if (choice.equals("6")) {
                                 System.out.println("Enter the user that you want to block");
                                 String blockUserName = scanner.nextLine();
                                 writer.write(blockUserName);
@@ -191,7 +187,7 @@ public class Client {
                                 System.out.println(blockResult);
 
                             }
-                            if (choice.equals("8")) {
+                            if (choice.equals("7")) {
                                 System.out.println("Enter the user that you want to unblock");
                                 String unblockUserName = scanner.nextLine();
                                 writer.write(unblockUserName);
@@ -200,13 +196,13 @@ public class Client {
                                 String unblockResult = reader.readLine();
                                 System.out.println(unblockResult);
                             }
+                            if (choice.equals("8")) {
+
+                            }
                             if (choice.equals("9")) {
 
                             }
                             if (choice.equals("10")) {
-
-                            }
-                            if (choice.equals("11")) {
                                 break;
                             }
                         }
