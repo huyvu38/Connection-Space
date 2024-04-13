@@ -215,29 +215,6 @@ public class Server implements ServerInterface{
                                 database.saveAllUserAccount();
                             }
                             if (choice.equals("3")) {
-                                String confirmPassword = reader.readLine();
-                                int count = 0;
-                                UserAccount deleteUserAccount = new UserAccount(new Profile("", "", 0, "", "", "", ""));
-                                for (UserAccount userAccount : allUserAccount) {
-                                    if (userAccount.getUserProfile().getUserName().equals(username)) {
-                                        deleteUserAccount = userAccount;
-                                        count = 1;
-                                    }
-                                }
-                                if (count == 0) {
-                                    writer.write("Can not delete your account");
-                                }
-                                if (count == 1) {
-                                    if (deleteAccount(database, deleteUserAccount, confirmPassword)) {
-                                        writer.write("Delete successfully");
-                                    } else {
-                                        writer.write("Can not delete your account");
-                                    }
-                                }
-                                writer.println();
-                                writer.flush();
-                            }
-                            if (choice.equals("4")) {
                                 String addFriendUserName = reader.readLine();
                                 if (addFriend(username, addFriendUserName)) {
                                     writer.write("Add friend successfully");
@@ -247,7 +224,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("5")) {
+                            if (choice.equals("4")) {
                                 String unfriendUserName = reader.readLine();
                                 if (deleteFriend(username, unfriendUserName)) {
                                     writer.write("Unfriend successfully");
@@ -257,7 +234,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("6")) {
+                            if (choice.equals("5")) {
                                 String blockUserName = reader.readLine();
                                 if (blockUser(username, blockUserName)) {
                                     writer.write("Block successfully");
@@ -269,7 +246,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("7")) {
+                            if (choice.equals("6")) {
                                 String unblockUserName = reader.readLine();
                                 if (unblockUser(username, unblockUserName)) {
                                     writer.write("Unblock successfully");
@@ -279,10 +256,10 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("8")) {
+                            if (choice.equals("7")) {
 
                             }
-                            if (choice.equals("9")) {
+                            if (choice.equals("8")) {
                                 String word = reader.readLine();
                                 //username is the one who search other user
                                 ArrayList<String> findUserName = searchUser(username, word);
@@ -330,7 +307,7 @@ public class Server implements ServerInterface{
                                     }
                                 }
                             }
-                            if (choice.equals("10")) {
+                            if (choice.equals("9")) {
                                 break;
                             }
                         }
