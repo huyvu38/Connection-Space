@@ -81,14 +81,20 @@ public class Server implements ServerInterface{
                     if (newAge < 0) {
                         result = false;
                     }
+                    if (checkPasswordLength(password) == false) {
+                        result = false;
+                    }
+                    if (checkUserNameFormat(username) == false) {
+                        result = false;
+                    }
                     //If the user enter all valid information -> the result still true
                     //Then check if the username is valid to create a new Profile
                     if (result) {
-
                         //After create account successfully
                         Profile newUserProfile = new Profile(username, password, newAge, gender, nationality, job, hobby);
                         UserAccount newUserAccount = new UserAccount(newUserProfile);
-
+                        allUserAccount.add(newUserAccount);
+                        database.saveAllUserAccount();
                     }
                     //if the result is still true -> send back to the client that account create successfully
                     if (result) {
@@ -281,6 +287,7 @@ public class Server implements ServerInterface{
             e.printStackTrace();
         }
     }
+    /*
     public boolean createAccount(Database database, UserAccount userAccount) {
         try {
             ArrayList<UserAccount> temp = database.getAllUserAccount();
@@ -291,6 +298,8 @@ public class Server implements ServerInterface{
             return false;
         }
     }
+
+     */
     public boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
         return profile.getPassword().equals(userPassword);
     }
@@ -321,7 +330,7 @@ public class Server implements ServerInterface{
 
     public boolean loginAccount(String username, String userPassword) {
         if (usernameInDatabase(username)) {
-            for (UserAccount eachUserAccount: this.allUserAccount) {
+            for (UserAccount eachUserAccount: allUserAccount) {
                 if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
                     if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
                         return true;
@@ -334,7 +343,7 @@ public class Server implements ServerInterface{
     }
     public boolean usernameInDatabase(String userName) {
         //From a list of user profile, find the specific username
-        for (UserAccount eachUserAccount : this.allUserAccount) {
+        for (UserAccount eachUserAccount : allUserAccount) {
             if (eachUserAccount.getUserProfile().getUserName().equals(userName)) {
                 return true; //User exist in the database
             }
@@ -344,7 +353,7 @@ public class Server implements ServerInterface{
     public boolean inFriendList(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
-            for (UserAccount userAccount : this.allUserAccount) {
+            for (UserAccount userAccount : allUserAccount) {
                 //Find the account of user1
                 //If we find username2 in friend list of username1,
                 // we don't have to check username1 in friendlist of username2
@@ -363,7 +372,7 @@ public class Server implements ServerInterface{
     public boolean inBlockList(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
-            for (UserAccount userAccount : this.allUserAccount) {
+            for (UserAccount userAccount : allUserAccount) {
                 //Find the account of user1 and check if the user1 block user2
                 if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                     //Check the block list of user1
@@ -391,7 +400,7 @@ public class Server implements ServerInterface{
                 return false; // two users already in the friend list so cannot add friend
             } else {
                 //If both users not in friendlist
-                for (UserAccount userAccount : this.allUserAccount) {
+                for (UserAccount userAccount : allUserAccount) {
                     //Find the friendlist of user1
                     if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                         ArrayList<String> friendListUserOne = userAccount.getFriendList();
@@ -415,7 +424,7 @@ public class Server implements ServerInterface{
     public boolean deleteFriend(String userNameOne, String userNameTwo) {
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             if (inFriendList(userNameOne, userNameTwo)) { //both users are friend
-                for (UserAccount userAccount : this.allUserAccount) {
+                for (UserAccount userAccount : allUserAccount) {
                     //Find the friendlist of user1
                     if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                         ArrayList<String> friendListUserOne = userAccount.getFriendList();
@@ -445,7 +454,7 @@ public class Server implements ServerInterface{
             if (inBlockList(userNameTwo, userNameOne)) {
                 return false; //User2 block user1 so user1 cannot block user2
             }
-            for (UserAccount userAccount : this.allUserAccount) {
+            for (UserAccount userAccount : allUserAccount) {
                 //Find the blocklist of user1
                 if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                     ArrayList<String> blockListUserOne = userAccount.getBlockList();
@@ -463,7 +472,7 @@ public class Server implements ServerInterface{
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             if (inBlockList(userNameOne, userNameTwo)) {
                 //User1 block user2 and want to remove user2 from blocklist
-                for (UserAccount userAccount : this.allUserAccount) {
+                for (UserAccount userAccount : allUserAccount) {
                     //Find the blocklist of user1
                     if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                         ArrayList<String> blockListUserOne = userAccount.getBlockList();
@@ -482,7 +491,7 @@ public class Server implements ServerInterface{
     public ArrayList<String> searchUser(String userNameOne, String word) {
         ArrayList<String> findUserName = new ArrayList<>();
         //Check if no account block user1
-        for (UserAccount userAccount : this.allUserAccount) {
+        for (UserAccount userAccount : allUserAccount) {
             if (userAccount.getUserProfile().getUserName().contains(word)) {
                 boolean userOneIsBlocked = false;
                 for (String blockListOfUserTwo : userAccount.getBlockList()) {
@@ -498,7 +507,7 @@ public class Server implements ServerInterface{
             }
         }
         //Check if user 1 block any one in the findUserName
-        for (UserAccount userAccount : this.allUserAccount) {
+        for (UserAccount userAccount : allUserAccount) {
             if (userAccount.getUserProfile().getUserName().contains(userNameOne)) {
                 for (String eachBlockUserOfUserOne : userAccount.getBlockList()) {
                     for (String eachUser : findUserName) {

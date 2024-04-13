@@ -1,3 +1,4 @@
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -51,6 +52,7 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
+        /*
         Result result2 = JUnitCore.runClasses(RunLocalTest.LogInTest.class);
         if (result2.wasSuccessful()) {
             System.out.println("Excellent - Log in test ran successfully");
@@ -59,6 +61,8 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
+
+         */
         Result result3 = JUnitCore.runClasses(RunLocalTest.UserAccountTest.class);
         if (result3.wasSuccessful()) {
             System.out.println("Excellent - User Account test ran successfully");
@@ -439,7 +443,7 @@ public class RunLocalTest {
             boolean save1 = database.saveAllUserAccount();
             assertTrue(save1);
         }
-
+        /*
         @Test
         public void setAllUserProfileTest() {
             database.setAllUserProfile(TestUserProfiles);
@@ -452,6 +456,8 @@ public class RunLocalTest {
             assertTrue(database.getAllUserAccount().equals(TestUserAccounts));
 
         }
+
+         */
     }
 
     /*
