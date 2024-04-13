@@ -17,7 +17,7 @@ import java.util.List;
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Server implements ServerInterface{
+public class Server implements IServer{
     Socket socket;
     public static Database database;
     public static ArrayList<UserAccount> allUserAccount;
