@@ -38,7 +38,7 @@ public class Server implements IServer{
                 socket = serverSocket.accept();
                 System.out.println("Connected");
                 //make thread for client
-                Thread client = new Thread(new Server(socket));
+                Thread client = new Thread((Runnable) new Server(socket)); //??
                 client.start();
             } catch (Exception e) {
                 socket.close();
