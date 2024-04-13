@@ -1,3 +1,4 @@
+import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -157,7 +158,13 @@ public class Client {
                                 System.out.println(editResult);
                             }
                             if (choice.equals("3")) {
-
+                                System.out.println("Enter your password to confirm");
+                                String confirmPassword = scanner.nextLine();
+                                writer.write(confirmPassword);
+                                writer.println();
+                                writer.flush();
+                                String deleteAccountResult = reader.readLine();
+                                System.out.println(deleteAccountResult);
                             }
                             if (choice.equals("4")) {
                                 System.out.println("Enter the user that you want to add friend");

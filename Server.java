@@ -215,7 +215,27 @@ public class Server implements ServerInterface{
                                 database.saveAllUserAccount();
                             }
                             if (choice.equals("3")) {
-
+                                String confirmPassword = reader.readLine();
+                                int count = 0;
+                                UserAccount deleteUserAccount = new UserAccount(new Profile("", "", 0, "", "", "", ""));
+                                for (UserAccount userAccount : allUserAccount) {
+                                    if (userAccount.getUserProfile().getUserName().equals(username)) {
+                                        deleteUserAccount = userAccount;
+                                        count = 1;
+                                    }
+                                }
+                                if (count == 0) {
+                                    writer.write("Can not delete your account");
+                                }
+                                if (count == 1) {
+                                    if (deleteAccount(database, deleteUserAccount, confirmPassword)) {
+                                        writer.write("Delete successfully");
+                                    } else {
+                                        writer.write("Can not delete your account");
+                                    }
+                                }
+                                writer.println();
+                                writer.flush();
                             }
                             if (choice.equals("4")) {
                                 String addFriendUserName = reader.readLine();
@@ -387,6 +407,7 @@ public class Server implements ServerInterface{
             ArrayList<UserAccount> temp = database.getAllUserAccount();
             temp.add(userAccount);
             database.setAllUserAccount(temp);
+            database.saveAllUserAccount();
             return true;
         }
         return false;
@@ -400,6 +421,7 @@ public class Server implements ServerInterface{
             userList.remove(userAccount);
 
             database.setAllUserAccount(userList);
+            database.saveAllUserAccount();
             return true;
 
         }
