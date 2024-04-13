@@ -197,14 +197,33 @@ public class Client {
                                 System.out.println(unblockResult);
                             }
                             if (choice.equals("8")) {
+                                writer.write(username);
+                                writer.println();
+                                writer.flush();
                                 int ans;
-                                do {
+                                boolean hasFriends = Boolean.parseBoolean(reader.readLine());
+                                if (hasFriends) {
                                     System.out.println("Select your choice:");
-                                    System.out.println("1. Send Group Message");
+                                    System.out.println("1. Send Message to specific user");
                                     System.out.println("2. Send message to friends");
                                     System.out.println("3. Print history message");
                                     ans = scanner.nextInt();
+                                    writer.write(ans);
+                                    writer.println();
+                                    writer.flush();
                                     if (ans == 1) {
+                                        System.out.println("Who you want to send message to?");
+                                        String receiver = scanner.nextLine();
+                                        writer.write(receiver);
+                                        writer.println();
+                                        writer.flush();
+                                        System.out.println("What message do you want to send?");
+                                        String message = scanner.nextLine();
+                                        writer.write(message);
+                                        writer.println();
+                                        writer.flush();
+
+
 
                                     } else if (ans == 2) {
 
@@ -213,7 +232,9 @@ public class Client {
                                     } else {
                                         System.out.println("Please enter a valid input");
                                     }
-                                } while (ans != 1 && ans != 2 && ans != 3);
+                                } else {
+                                    System.out.println("Please add friend first");
+                                }
 
                             }
                             if (choice.equals("9")) {

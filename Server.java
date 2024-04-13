@@ -258,7 +258,41 @@ public class Server implements ServerInterface{
                                 writer.flush();
                             }
                             if (choice.equals("8")) {
+                                String userName = reader.readLine();
+                                UserAccount currentUserAcc = null;
+                                boolean hasFriends = false;
+                                for (UserAccount userAccount: allUserAccount) {
+                                    if (userAccount.getUserProfile().getUserName().equals(userName)) {
+                                        currentUserAcc = userAccount;
+                                        if (!userAccount.getFriendList().isEmpty()) {
+                                            hasFriends = true;
+                                        }
+                                    }
+                                }
+                                writer.write(String.valueOf(hasFriends));
+                                writer.println();
+                                writer.flush();
+                                int ans = Integer.parseInt(reader.readLine());
+                                if (ans == 1) {
+                                    //Send message to specific person
+                                    String receiver = reader.readLine();
+                                    String message = reader.readLine();
+                                    boolean isBlock = false;
+                                    for (UserAccount userAccount: allUserAccount) {
+                                        if (userAccount.getUserProfile().getUserName().equals(receiver)) {
+                                            isBlock = userAccount.getBlockList().contains(userName);
+                                        }
+                                    }
+                                    sendMessage(userName, receiver, message, isBlock);
+                                    writer.write('');
 
+                                } else if (ans == 2) {
+                                    //Send message to friends
+
+                                } else if (ans == 3) {
+                                    //View history Message
+
+                                }
                             }
                             if (choice.equals("9")) {
                                 String word = reader.readLine();
