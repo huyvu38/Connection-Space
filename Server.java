@@ -219,7 +219,6 @@ public class Server implements ServerInterface{
                                 String addFriendUserName = reader.readLine();
                                 if (addFriend(username, addFriendUserName)) {
                                     writer.write("Add friend successfully");
-                                    database.saveAllUserAccount();
                                 } else {
                                     writer.write("You can not add that user");
                                 }
@@ -230,7 +229,6 @@ public class Server implements ServerInterface{
                                 String unfriendUserName = reader.readLine();
                                 if (deleteFriend(username, unfriendUserName)) {
                                     writer.write("Unfriend successfully");
-                                    database.saveAllUserAccount();
                                 } else {
                                     writer.write("You can not unfriend that user");
                                 }
@@ -243,7 +241,6 @@ public class Server implements ServerInterface{
                                     writer.write("Block successfully");
                                     //If both users are friend then delete after block
                                     deleteFriend(username, blockUserName);
-                                    database.saveAllUserAccount();
                                 } else {
                                     writer.write("You can not block that user");
                                 }
@@ -254,7 +251,6 @@ public class Server implements ServerInterface{
                                 String unblockUserName = reader.readLine();
                                 if (unblockUser(username, unblockUserName)) {
                                     writer.write("Unblock successfully");
-                                    database.saveAllUserAccount();
                                 } else {
                                     writer.write("You can not unblock that user");
                                 }
@@ -449,6 +445,7 @@ public class Server implements ServerInterface{
                         userAccount.setFriendList(friendListUserTwo);
                     }
                 }
+                database.saveAllUserAccount();
                 return true; //add friend success
             }
         }
@@ -473,6 +470,7 @@ public class Server implements ServerInterface{
                         userAccount.setFriendList(friendListUserTwo);
                     }
                 }
+                database.saveAllUserAccount();
                 return true; // remove friend successfully
             }
         }
@@ -494,6 +492,7 @@ public class Server implements ServerInterface{
                     //add the user2 to block list of user1
                     blockListUserOne.add(userNameTwo);
                     userAccount.setBlockList(blockListUserOne);
+                    database.saveAllUserAccount();
                     return true; //user1 block user2 successfully
                 }
             }
@@ -512,6 +511,7 @@ public class Server implements ServerInterface{
                         //remove the user2 from the block list of user1
                         blockListUserOne.remove(userNameTwo);
                         userAccount.setBlockList(blockListUserOne);
+                        database.saveAllUserAccount();
                         return true;
                     }
                 }
