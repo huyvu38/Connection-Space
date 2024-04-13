@@ -667,13 +667,13 @@ public class Server implements ServerInterface{
     }
 
 
-    // Only send message to selected members in friendList
+    // Only send message to members in friendList
     // (before use this method, make sure all input should in Users friendList.
     // Only send message when otherUserName is in friendList
     // return empty string if all success, otherwirse indicate which one failed.
-    public synchronized String restrictMessage(String userName, ArrayList<String> groupMembersList, String content) {
+    public synchronized String restrictMessage(String userName, ArrayList<String> friendListList, String content) {
         List<String> failedUser = new ArrayList<>();
-        for (String friend: groupMembersList) {
+        for (String friend: friendListList) {
             if (!this.sendMessage(userName, friend, content, false)) {
                 failedUser.add(friend);
             }
