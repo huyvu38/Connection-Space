@@ -96,7 +96,6 @@ public class Server implements ServerInterface{
 
                     //if the result is still true -> send back to the client that account create successfully
                     if (createAccount(database, newUserAccount, username, password)) {
-                        database.saveAllUserAccount();
                         result = true;
                     }
                     if (result) {
