@@ -216,9 +216,6 @@ public class Server implements ServerInterface{
 
                             }
                             if (choice.equals("4")) {
-
-                            }
-                            if (choice.equals("5")) {
                                 String addFriendUserName = reader.readLine();
                                 if (addFriend(username, addFriendUserName)) {
                                     writer.write("Add friend successfully");
@@ -229,7 +226,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("6")) {
+                            if (choice.equals("5")) {
                                 String unfriendUserName = reader.readLine();
                                 if (deleteFriend(username, unfriendUserName)) {
                                     writer.write("Unfriend successfully");
@@ -240,7 +237,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("7")) {
+                            if (choice.equals("6")) {
                                 String blockUserName = reader.readLine();
                                 if (blockUser(username, blockUserName)) {
                                     writer.write("Block successfully");
@@ -253,7 +250,7 @@ public class Server implements ServerInterface{
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("8")) {
+                            if (choice.equals("7")) {
                                 String unblockUserName = reader.readLine();
                                 if (unblockUser(username, unblockUserName)) {
                                     writer.write("Unblock successfully");
@@ -263,15 +260,30 @@ public class Server implements ServerInterface{
                                 }
                                 writer.println();
                                 writer.flush();
-
+                            }
+                            if (choice.equals("8")) {
                             }
                             if (choice.equals("9")) {
-
+                                String word = reader.readLine();
+                                //username is the one who search other user
+                                ArrayList<String> findUserName = searchUser(username, word);
+                                if (findUserName.size() == 0) {
+                                    writer.write("Can not find any user");
+                                    writer.println();
+                                    writer.flush();
+                                } else {
+                                    String allFindUser = "";
+                                    for (int i = 0; i < findUserName.size(); i++) {
+                                        if (i < (findUserName.size() - 1)) {
+                                            allFindUser = allFindUser + findUserName.get(i) + " ";
+                                        }
+                                    }
+                                    writer.write(allFindUser);
+                                    writer.println();
+                                    writer.flush();
+                                }
                             }
                             if (choice.equals("10")) {
-
-                            }
-                            if (choice.equals("11")) {
                                 break;
                             }
                         }
@@ -486,6 +498,7 @@ public class Server implements ServerInterface{
         }
         return false;//if one of the username not valid or user2 not in block list of user1
     }
+    /*
 
     //User1 finds user2
     public ArrayList<String> searchUser(String userNameOne, String word) {
@@ -508,7 +521,7 @@ public class Server implements ServerInterface{
         }
         //Check if user 1 block any one in the findUserName
         for (UserAccount userAccount : allUserAccount) {
-            if (userAccount.getUserProfile().getUserName().contains(userNameOne)) {
+            if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                 for (String eachBlockUserOfUserOne : userAccount.getBlockList()) {
                     for (String eachUser : findUserName) {
                         if (eachUser.equals(eachBlockUserOfUserOne)) {
@@ -520,4 +533,6 @@ public class Server implements ServerInterface{
         }
         return findUserName;
     }
+
+     */
 }

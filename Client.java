@@ -200,7 +200,13 @@ public class Client {
 
                             }
                             if (choice.equals("9")) {
-
+                                System.out.println("Enter the word to search user");
+                                String word = scanner.nextLine();
+                                writer.write(word);
+                                writer.println();
+                                writer.flush();
+                                String searchResult = reader.readLine();
+                                System.out.println(searchResult);
                             }
                             if (choice.equals("10")) {
                                 break;
