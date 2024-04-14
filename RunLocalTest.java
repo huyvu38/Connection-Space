@@ -109,6 +109,8 @@ public class RunLocalTest {
                     Modifier.isPublic(modifiers));
             Assert.assertFalse("Ensure that `Profile` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Profile` extends `Object`!",
+                    Object.class, superclass);
             Assert.assertEquals("Ensure that `Profile` implements interfaces!",
                     1, superinterfaces.length);
         }
@@ -179,6 +181,8 @@ public class RunLocalTest {
                     Modifier.isPublic(modifiers));
             Assert.assertFalse("Ensure that `UserAccount` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `UserAccount` extends `Object`!",
+                    Object.class, superclass);
             Assert.assertEquals("Ensure that `UserAccount` implements interfaces!",
                     1, superinterfaces.length);
         }
@@ -311,6 +315,9 @@ public class RunLocalTest {
 
         @Before
         public void setUp() throws Exception {
+            //dont't test anything to NetWork IO, server or client, just test the function like log in, add friend
+
+            /*
             mockSocket = mock(Socket.class);
             outContent = new ByteArrayOutputStream();
             mockWriter = new PrintWriter(outContent, true);
@@ -323,6 +330,8 @@ public class RunLocalTest {
             server = new Server(mockSocket);
             server.database = mock(Database.class);
             server.allUserAccount = new ArrayList<>();
+
+             */
         }
 
         @Test
