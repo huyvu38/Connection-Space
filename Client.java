@@ -27,6 +27,7 @@ public class Client {
                 System.out.println("What would you like to do?");
                 System.out.println("1. Create account.");
                 System.out.println("2. Log In.");
+                System.out.println("3. Exit the app");
                 String userInput = scanner.nextLine();
                 //User want to create account -> send 1 to the server
                 //User want to log in -> send 2 to the server
@@ -339,6 +340,10 @@ public class Client {
                             }
                         }
                     }
+                }
+                //Exit
+                if (userInput.equals("3")) {
+                    break;
                 }
             }
         } catch (Exception e){

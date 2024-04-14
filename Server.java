@@ -384,6 +384,10 @@ public class Server implements ServerInterface{
                         writer.flush();
                     }
                 }
+                //Exit the app
+                if (command.equals("3")) {
+                    break;
+                }
             }
         } catch (Exception e) {
             System.out.println("A User is disconnect");
@@ -435,7 +439,7 @@ public class Server implements ServerInterface{
                     //Check the block list of user1
                     for (String blockUser : userAccount.getBlockList()) {
                         if (blockUser.equals(userNameTwo)) {
-                            return true; //Return true if username2 in blocklsit of username1
+                            return true; //Return true if username2 in blocklist of username1
                         }
                     }
                 }
