@@ -29,7 +29,7 @@ public class Server implements ServerInterface{
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(4242);
+        ServerSocket serverSocket = new ServerSocket(5050);
         database = new Database("AllUserAccount.txt");
         database.readAllUserAccount();
         //Use these arraylist for any parameter
@@ -38,7 +38,7 @@ public class Server implements ServerInterface{
             Socket socket = null;
             try {
                 socket = serverSocket.accept();
-                System.out.println("Connected");
+                System.out.println("A client is connected.");
                 //make thread for client
                 Thread client = new Thread(new Server(socket));
                 client.start();
@@ -390,7 +390,7 @@ public class Server implements ServerInterface{
                 }
             }
         } catch (Exception e) {
-            System.out.println("A User is disconnect");
+            System.out.println("A client is disconnected");
             e.printStackTrace();
         }
     }
