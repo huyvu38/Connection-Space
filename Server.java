@@ -121,29 +121,25 @@ public class Server implements ServerInterface{
                         writer.flush();
                         while (true) {
                             String choice = reader.readLine();
+                            //Choice 1 is view their own profile
                             if (choice.equals("1")) {
+                                //Get the information that user want to view
                                 String viewChoice = reader.readLine();
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUserName().equals(username)) {
                                         if (viewChoice.equals("1")) {
-                                            writer.write(userAccount.getUserProfile().getUserName());
-                                        }
-                                        if (viewChoice.equals("2")) {
-                                            writer.write(userAccount.getUserProfile().getPassword());
-                                        }
-                                        if (viewChoice.equals("3")) {
                                             writer.write(userAccount.getUserProfile().getAge());
                                         }
-                                        if (viewChoice.equals("4")) {
+                                        if (viewChoice.equals("2")) {
                                             writer.write(userAccount.getUserProfile().getGender());
                                         }
-                                        if (viewChoice.equals("5")) {
+                                        if (viewChoice.equals("3")) {
                                             writer.write(userAccount.getUserProfile().getNationality());
                                         }
-                                        if (viewChoice.equals("6")) {
+                                        if (viewChoice.equals("4")) {
                                             writer.write(userAccount.getUserProfile().getJob());
                                         }
-                                        if (viewChoice.equals("7")) {
+                                        if (viewChoice.equals("5")) {
                                             writer.write(userAccount.getUserProfile().getHobby());
                                         }
                                         writer.println();

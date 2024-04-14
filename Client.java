@@ -98,7 +98,7 @@ public class Client {
                     //Sent to the server
                     writer.write(password);
                     writer.println();
-                    writer.flush(); // ensure data is sent to the server
+                    writer.flush();
 
                     //Receive the result from the server
                     String result = reader.readLine();
@@ -116,22 +116,23 @@ public class Client {
                             System.out.println("8. Search other user");
                             System.out.println("9. Log out");
                             String choice = scanner.nextLine();
+                            //Send choice to the server
                             writer.write(choice);
                             writer.println();
                             writer.flush();
                             if (choice.equals("1")) {
                                 System.out.println("Which information do you want to see");
-                                System.out.println("1. Username");
-                                System.out.println("2. Password");
-                                System.out.println("3. Age");
-                                System.out.println("4. Gender");
-                                System.out.println("5. Nationality");
-                                System.out.println("6. Job");
-                                System.out.println("7. Hobby");
-                                String viewChoice = scanner.nextLine();
-                                writer.write(viewChoice);
+                                System.out.println("1. Age");
+                                System.out.println("2. Gender");
+                                System.out.println("3. Nationality");
+                                System.out.println("4. Job");
+                                System.out.println("5. Hobby");
+                                //Send the information that want to view
+                                String viewInformationChoice = scanner.nextLine();
+                                writer.write(viewInformationChoice);
                                 writer.println();
                                 writer.flush();
+
                                 String viewResult = reader.readLine();
                                 System.out.println(viewResult);
                             }
@@ -144,6 +145,11 @@ public class Client {
                                 System.out.println("5. Job");
                                 System.out.println("6. Hobby");
                                 String editChoice = scanner.nextLine();
+
+                                writer.write(editChoice);
+                                writer.println();
+                                writer.flush();
+
                                 if (editChoice.equals("1")) {
                                     System.out.println("Enter new password");
                                 }
@@ -165,18 +171,19 @@ public class Client {
                                 if (editChoice.equals("6")) {
                                     System.out.println("Enter your hobby");
                                 }
+                                //Send information that want to edit to server
                                 String editInformation = scanner.nextLine();
-                                writer.write(editChoice);
-                                writer.println();
                                 writer.write(editInformation);
                                 writer.println();
                                 writer.flush();
+                                //Get the result from the server
                                 String editResult = reader.readLine();
                                 System.out.println(editResult);
                             }
                             if (choice.equals("3")) {
                                 System.out.println("Enter the user that you want to add friend");
                                 String addFriendUserName = scanner.nextLine();
+                                //Send username that want to add friend to server
                                 writer.write(addFriendUserName);
                                 writer.println();
                                 writer.flush();
@@ -186,6 +193,7 @@ public class Client {
                             if (choice.equals("4")) {
                                 System.out.println("Enter the user that you want to unfriend");
                                 String unfriendUserName = scanner.nextLine();
+                                //Send username that want to unfriend to server
                                 writer.write(unfriendUserName);
                                 writer.println();
                                 writer.flush();
@@ -195,6 +203,7 @@ public class Client {
                             if (choice.equals("5")) {
                                 System.out.println("Enter the user that you want to block");
                                 String blockUserName = scanner.nextLine();
+                                //Send username that want to block to server
                                 writer.write(blockUserName);
                                 writer.println();
                                 writer.flush();
@@ -205,6 +214,7 @@ public class Client {
                             if (choice.equals("6")) {
                                 System.out.println("Enter the user that you want to unblock");
                                 String unblockUserName = scanner.nextLine();
+                                //Send username that want to unblock to server
                                 writer.write(unblockUserName);
                                 writer.println();
                                 writer.flush();
@@ -291,13 +301,15 @@ public class Client {
                             }
                             if (choice.equals("8")) {
                                 System.out.println("Enter the word to search user");
+                                //Send the word to server so server check if any username contains that word
                                 String word = scanner.nextLine();
                                 writer.write(word);
                                 writer.println();
                                 writer.flush();
+                                //Get all the username that contain the word from the server
                                 String searchResult = reader.readLine();
                                 System.out.println(searchResult);
-                                //View other profile
+                                //View other profile if the result have atleast 1 people
                                 if (searchResult.equals("Can not find any user") == false) {
                                     System.out.println("Enter the user that you want to view their profile");
                                     //The client only view user from the previous search result
@@ -305,16 +317,19 @@ public class Client {
                                     writer.write(userNameToViewProfile);
                                     writer.println();
                                     writer.flush();
+
                                     System.out.println("Which information do you want to see");
                                     System.out.println("1. Age");
                                     System.out.println("2. Gender");
                                     System.out.println("3. Nationality");
                                     System.out.println("4. Job");
                                     System.out.println("5. Hobby");
+
                                     String viewOtherProfileChoice = scanner.nextLine();
                                     writer.write(viewOtherProfileChoice);
                                     writer.println();
                                     writer.flush();
+
                                     String viewOtherProfileResult = reader.readLine();
                                     System.out.println(viewOtherProfileResult);
                                 }
