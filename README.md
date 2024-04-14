@@ -138,16 +138,22 @@ Login Verification: Authenticates user logins by matching usernames and password
 
 ### AllUserAccount.txt <br/>
 The file that store profile, friendlist, blocklist of each user.
+
 Format: [username] [password] [age] [gender] [nationality] [job] [hobby];FriendList:[list of friends];BlockList:[list of block users]
 
 Username must be at least 4 characters.
+
 Password must be at least 6 characters.
+
 Age must be a positive number.
+
 User only choose gender from the following options : Male, Female, Other.
+
 Every information in the Profile of the user can not contain any spaces or semicolon.
 
 ### Message.txt <br/>
 The file that store every message between each user.
+
 Format: [conversationID] [ConversationTime] [Sender-Message] [if message blocked]
 
 
