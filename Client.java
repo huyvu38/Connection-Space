@@ -208,6 +208,7 @@ public class Client {
                                     System.out.println("2. Send message only to friends");
                                     System.out.println("3. Print history message");
                                     ans = scanner.nextInt();
+                                    scanner.nextLine();
                                     writer.write(ans);
                                     writer.println();
                                     writer.flush();
@@ -216,7 +217,6 @@ public class Client {
                                         String receiver = scanner.nextLine();
                                         writer.write(receiver);
                                         writer.println();
-                                        writer.flush();
                                         System.out.println("What message do you want to send?");
                                         String message = scanner.nextLine();
                                         writer.write(message);

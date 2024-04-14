@@ -271,8 +271,8 @@ public class Server implements ServerInterface{
                                 writer.write(String.valueOf(hasFriends));
                                 writer.println();
                                 writer.flush();
-                                int ans = Integer.parseInt(reader.readLine());
-                                if (ans == 1) {
+                                String ans = reader.readLine();
+                                if (ans.equals("1")) {
                                     //Send message to specific person
                                     String receiver = reader.readLine();
                                     String message = reader.readLine();
@@ -292,7 +292,7 @@ public class Server implements ServerInterface{
                                         writer.flush();
                                     }
 
-                                } else if (ans == 2) {
+                                } else if (ans.equals("2")) {
                                     //Send message to friends
                                     String message = reader.readLine();
                                     assert currentUserAcc != null;
@@ -302,7 +302,7 @@ public class Server implements ServerInterface{
                                     writer.flush();
 
 
-                                } else if (ans == 3) {
+                                } else if (ans.equals("3")) {
                                     //View history Message
                                     String name = reader.readLine();
                                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
