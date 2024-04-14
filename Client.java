@@ -20,7 +20,7 @@ public class Client extends Thread implements Runnable {
 
         Scanner scanner = new Scanner(System.in);
         try {
-            Socket socket = new Socket("localhost", 4242);
+            Socket socket = new Socket("localhost", 5050);
             //After connect to the server
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
@@ -29,61 +29,79 @@ public class Client extends Thread implements Runnable {
                 System.out.println("What would you like to do?");
                 System.out.println("1. Create account.");
                 System.out.println("2. Log In.");
+                System.out.println("3. Exit the app");
                 String userInput = scanner.nextLine();
                 //User want to create account -> send 1 to the server
-                //User want to logIn -> send 2 to the server
+                //User want to log in -> send 2 to the server
                 writer.write(userInput);
                 writer.println();
                 writer.flush();
                 if (userInput.equals("1")) {
+                    //Send username
+                    System.out.println("Once you create an account, you can not change your username.");
+                    System.out.println("User name should be at least 4 characters and do not contain any spaces or semicolon.");
                     System.out.println("Enter your username:");
                     String username = scanner.nextLine();
-                    System.out.println("Enter your password");
+                    writer.write(username);
+                    writer.println();
+                    writer.flush();
+                    //Send password
+                    System.out.println("Password should be at least 6 characters and do not contain any spaces or semicolon.");
+                    System.out.println("Enter your password:");
                     String password = scanner.nextLine();
+                    writer.write(password);
+                    writer.println();
+                    writer.flush();
+                    //Send age
                     System.out.println("Enter your age");
                     String age = scanner.nextLine();
+                    writer.write(age);
+                    writer.println();
+                    writer.flush();
+                    //Send gender
                     System.out.println("Enter your gender from these options:");
                     System.out.println("Female");
                     System.out.println("Male");
                     System.out.println("Other");
                     String gender = scanner.nextLine();
-                    System.out.println("Enter your nationality");
-                    String nationality = scanner.nextLine();
-                    System.out.println("Enter your job");
-                    String job = scanner.nextLine();
-                    System.out.println("Enter your hobby");
-                    String hobby = scanner.nextLine();
-                    //Send all information to the server
-                    writer.write(username);
-                    writer.println();
-                    writer.write(password);
-                    writer.println();
-                    writer.write(age);
-                    writer.println();
                     writer.write(gender);
                     writer.println();
+                    //Send nationality
+                    System.out.println("Enter your nationality");
+                    String nationality = scanner.nextLine();
                     writer.write(nationality);
                     writer.println();
+                    writer.flush();
+                    //Send job
+                    System.out.println("Enter your job");
+                    String job = scanner.nextLine();
                     writer.write(job);
                     writer.println();
+                    writer.flush();
+                    //Send hobby
+                    System.out.println("Enter your hobby");
+                    String hobby = scanner.nextLine();
                     writer.write(hobby);
                     writer.println();
-                    writer.flush(); // ensure data is sent to the server
+                    writer.flush();
+
                     //Get the result from the server
-                    String result = reader.readLine();
-                    System.out.println(result);
+                    String createAccountResult = reader.readLine();
+                    System.out.println(createAccountResult);
                 }
                 if (userInput.equals("2")) {
                     System.out.println("Enter your username");
                     String username = scanner.nextLine();
+                    writer.write(username);
+                    writer.println();
+                    writer.flush();
+
                     System.out.println("Enter your password");
                     String password = scanner.nextLine();
                     //Sent to the server
-                    writer.write(username);
-                    writer.println();
                     writer.write(password);
                     writer.println();
-                    writer.flush(); // ensure data is sent to the server
+                    writer.flush();
 
                     //Receive the result from the server
                     String result = reader.readLine();
@@ -101,22 +119,23 @@ public class Client extends Thread implements Runnable {
                             System.out.println("8. Search other user");
                             System.out.println("9. Log out");
                             String choice = scanner.nextLine();
+                            //Send choice to the server
                             writer.write(choice);
                             writer.println();
                             writer.flush();
                             if (choice.equals("1")) {
                                 System.out.println("Which information do you want to see");
-                                System.out.println("1. Username");
-                                System.out.println("2. Password");
-                                System.out.println("3. Age");
-                                System.out.println("4. Gender");
-                                System.out.println("5. Nationality");
-                                System.out.println("6. Job");
-                                System.out.println("7. Hobby");
-                                String viewChoice = scanner.nextLine();
-                                writer.write(viewChoice);
+                                System.out.println("1. Age");
+                                System.out.println("2. Gender");
+                                System.out.println("3. Nationality");
+                                System.out.println("4. Job");
+                                System.out.println("5. Hobby");
+                                //Send the information that want to view
+                                String viewInformationChoice = scanner.nextLine();
+                                writer.write(viewInformationChoice);
                                 writer.println();
                                 writer.flush();
+
                                 String viewResult = reader.readLine();
                                 System.out.println(viewResult);
                             }
@@ -129,6 +148,11 @@ public class Client extends Thread implements Runnable {
                                 System.out.println("5. Job");
                                 System.out.println("6. Hobby");
                                 String editChoice = scanner.nextLine();
+
+                                writer.write(editChoice);
+                                writer.println();
+                                writer.flush();
+
                                 if (editChoice.equals("1")) {
                                     System.out.println("Enter new password");
                                 }
@@ -150,18 +174,19 @@ public class Client extends Thread implements Runnable {
                                 if (editChoice.equals("6")) {
                                     System.out.println("Enter your hobby");
                                 }
+                                //Send information that want to edit to server
                                 String editInformation = scanner.nextLine();
-                                writer.write(editChoice);
-                                writer.println();
                                 writer.write(editInformation);
                                 writer.println();
                                 writer.flush();
+                                //Get the result from the server
                                 String editResult = reader.readLine();
                                 System.out.println(editResult);
                             }
                             if (choice.equals("3")) {
                                 System.out.println("Enter the user that you want to add friend");
                                 String addFriendUserName = scanner.nextLine();
+                                //Send username that want to add friend to server
                                 writer.write(addFriendUserName);
                                 writer.println();
                                 writer.flush();
@@ -171,6 +196,7 @@ public class Client extends Thread implements Runnable {
                             if (choice.equals("4")) {
                                 System.out.println("Enter the user that you want to unfriend");
                                 String unfriendUserName = scanner.nextLine();
+                                //Send username that want to unfriend to server
                                 writer.write(unfriendUserName);
                                 writer.println();
                                 writer.flush();
@@ -180,6 +206,7 @@ public class Client extends Thread implements Runnable {
                             if (choice.equals("5")) {
                                 System.out.println("Enter the user that you want to block");
                                 String blockUserName = scanner.nextLine();
+                                //Send username that want to block to server
                                 writer.write(blockUserName);
                                 writer.println();
                                 writer.flush();
@@ -190,6 +217,7 @@ public class Client extends Thread implements Runnable {
                             if (choice.equals("6")) {
                                 System.out.println("Enter the user that you want to unblock");
                                 String unblockUserName = scanner.nextLine();
+                                //Send username that want to unblock to server
                                 writer.write(unblockUserName);
                                 writer.println();
                                 writer.flush();
@@ -278,13 +306,15 @@ public class Client extends Thread implements Runnable {
                             }
                             if (choice.equals("8")) {
                                 System.out.println("Enter the word to search user");
+                                //Send the word to server so server check if any username contains that word
                                 String word = scanner.nextLine();
                                 writer.write(word);
                                 writer.println();
                                 writer.flush();
+                                //Get all the username that contain the word from the server
                                 String searchResult = reader.readLine();
                                 System.out.println(searchResult);
-                                //View other profile
+                                //View other profile if the result have atleast 1 people
                                 if (searchResult.equals("Can not find any user") == false) {
                                     System.out.println("Enter the user that you want to view their profile");
                                     //The client only view user from the previous search result
@@ -292,16 +322,19 @@ public class Client extends Thread implements Runnable {
                                     writer.write(userNameToViewProfile);
                                     writer.println();
                                     writer.flush();
+
                                     System.out.println("Which information do you want to see");
                                     System.out.println("1. Age");
                                     System.out.println("2. Gender");
                                     System.out.println("3. Nationality");
                                     System.out.println("4. Job");
                                     System.out.println("5. Hobby");
+
                                     String viewOtherProfileChoice = scanner.nextLine();
                                     writer.write(viewOtherProfileChoice);
                                     writer.println();
                                     writer.flush();
+
                                     String viewOtherProfileResult = reader.readLine();
                                     System.out.println(viewOtherProfileResult);
                                 }
@@ -311,6 +344,12 @@ public class Client extends Thread implements Runnable {
                             }
                         }
                     }
+                }
+                //Exit
+                if (userInput.equals("3")) {
+                    writer.close();
+                    reader.close();
+                    break;
                 }
             }
         } catch (Exception e){

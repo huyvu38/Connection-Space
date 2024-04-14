@@ -29,7 +29,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(4242);
+        ServerSocket serverSocket = new ServerSocket(5050);
         database = new Database("AllUserAccount.txt");
         database.readAllUserAccount();
         //Use these arraylist for any parameter
@@ -38,7 +38,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
             Socket socket = null;
             try {
                 socket = serverSocket.accept();
-                System.out.println("Connected");
+                System.out.println("A client is connected.");
                 //make thread for client
                 Thread client = new Thread(new Server(socket));
                 client.start();
@@ -59,6 +59,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                 //Command 1 is create account
                 if (command.equals("1")) {
                     boolean result = true;
+                    //Get all information for server
                     String username = reader.readLine();
                     String password = reader.readLine();
                     String age = reader.readLine();
@@ -66,6 +67,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                     String nationality = reader.readLine();
                     String job = reader.readLine();
                     String hobby = reader.readLine();
+                    //Check information
                     if (username.contains(" ") || username.contains(";")) {
                         result = false;
                     }
@@ -100,7 +102,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                         result = true;
                     }
                     if (result) {
-                        writer.write("Create Account successfully. You have to log in again");
+                        writer.write("Create account successfully. You have to log in again.");
                         writer.println();
                         writer.flush();
                     } else {
@@ -120,29 +122,25 @@ public class Server extends Thread implements ServerInterface, Runnable {
                         writer.flush();
                         while (true) {
                             String choice = reader.readLine();
+                            //Choice 1 is view their own profile
                             if (choice.equals("1")) {
+                                //Get the information that user want to view
                                 String viewChoice = reader.readLine();
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUserName().equals(username)) {
                                         if (viewChoice.equals("1")) {
-                                            writer.write(userAccount.getUserProfile().getUserName());
-                                        }
-                                        if (viewChoice.equals("2")) {
-                                            writer.write(userAccount.getUserProfile().getPassword());
-                                        }
-                                        if (viewChoice.equals("3")) {
                                             writer.write(userAccount.getUserProfile().getAge());
                                         }
-                                        if (viewChoice.equals("4")) {
+                                        if (viewChoice.equals("2")) {
                                             writer.write(userAccount.getUserProfile().getGender());
                                         }
-                                        if (viewChoice.equals("5")) {
+                                        if (viewChoice.equals("3")) {
                                             writer.write(userAccount.getUserProfile().getNationality());
                                         }
-                                        if (viewChoice.equals("6")) {
+                                        if (viewChoice.equals("4")) {
                                             writer.write(userAccount.getUserProfile().getJob());
                                         }
-                                        if (viewChoice.equals("7")) {
+                                        if (viewChoice.equals("5")) {
                                             writer.write(userAccount.getUserProfile().getHobby());
                                         }
                                         writer.println();
@@ -170,11 +168,13 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                         if (editChoice.equals("2")) {
                                             try {
                                                 int editAge = Integer.parseInt(editInformation);
-                                                if (editAge > 0) {
+                                                if (editAge < 0) {
+                                                    writer.write("Can not edit your information");
                                                     userAccount.getUserProfile().setAge(editAge);
                                                     writer.write("Edit successfully");
                                                 } else {
-                                                    writer.write("Can not edit your information");
+                                                    userAccount.getUserProfile().setAge(editAge);
+                                                    writer.write("Edit successfully");
                                                 }
                                             } catch (Exception e) {
                                                 writer.write("Can not edit your information");
@@ -334,7 +334,6 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                 String word = reader.readLine();
                                 //username is the one who search other user
                                 ArrayList<String> findUserName = searchUser(username, word);
-                                System.out.println(findUserName.size());
                                 if (findUserName.size() == 0) {
                                     writer.write("Can not find any user");
                                     writer.println();
@@ -353,6 +352,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                     writer.write(allFindUser);
                                     writer.println();
                                     writer.flush();
+                                    //User want to view Profile of other user
                                     String userNameToViewProfile = reader.readLine();
                                     String viewOtherProfileChoice = reader.readLine();
                                     for (UserAccount userAccount : allUserAccount) {
@@ -378,6 +378,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                     }
                                 }
                             }
+                            //Log Out
                             if (choice.equals("9")) {
                                 break;
                             }
@@ -388,16 +389,22 @@ public class Server extends Thread implements ServerInterface, Runnable {
                         writer.flush();
                     }
                 }
+                //Exit the app
+                if (command.equals("3")) {
+                    socket.close();
+                    writer.close();
+                    reader.close();
+                    break;
+                }
             }
         } catch (Exception e) {
             System.out.println("A User is disconnect");
             //e.printStackTrace();
+
         }
     }
-    public boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
-        return profile.getPassword().equals(userPassword);
-    }
-    //We already check if contain space or semicolon
+
+    //Already check if contain space or semicolon
     public boolean checkPasswordLength(String password) {
         return password.length() >= 6;
     }
@@ -441,7 +448,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                     //Check the block list of user1
                     for (String blockUser : userAccount.getBlockList()) {
                         if (blockUser.equals(userNameTwo)) {
-                            return true; //Return true if username2 in blocklsit of username1
+                            return true; //Return true if username2 in blocklist of username1
                         }
                     }
                 }
