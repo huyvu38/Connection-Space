@@ -1,6 +1,6 @@
 # CS180-L22-Team 3
 
-Huy Vu <Submitted Vocareum Work Phase 1>
+Huy Vu <Submitted Vocareum Work Phase 2>
 
 ### Instruction on how to compile and run the program
 
@@ -71,6 +71,11 @@ Get/Set methods to modify and return attributes inherent to
 each profile object
 <br/>
 
+### Server.java <br/>
+
+#### Methods
+
+
 ### UserAccount.java <br/>
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependant on Profile.java. Getter and setter methods to modify and return account attributes such as blocked users and friends.
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependent on Profile.java. 
@@ -128,6 +133,12 @@ Login Verification: Authenticates user logins by matching usernames and password
 ### AllUserAccount.txt <br/>
 The file that store profile, friendlist, blocklist of each user.
 Format: [username] [password] [age] [gender] [nationality] [job] [hobby];FriendList:[list of friends];BlockList:[list of block users]
+
+Username must be at least 4 characters.
+Password must be at least 6 characters.
+Age must be a positive number.
+User only choose gender from the following options : Male, Female, Other.
+Every information in the Profile of the user can not contain any spaces or semicolon.
 
 ### Message.txt <br/>
 The file that store every message between each user.
