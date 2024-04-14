@@ -19,7 +19,7 @@ public class Database implements DatabaseInterface {
         this.allUserAccount = new ArrayList<>();
     }
 
-    public boolean readAllUserAccount() {
+    public synchronized boolean readAllUserAccount() {
         // read from file and make array of account objects
         try {
             File f = new File(allUserAccountFile);
@@ -57,7 +57,7 @@ public class Database implements DatabaseInterface {
         return true;
     }
 
-    public boolean saveAllUserAccount() {
+    public synchronized boolean saveAllUserAccount() {
         try {
             FileOutputStream fos = new FileOutputStream(allUserAccountFile);
             PrintWriter pw = new PrintWriter(fos);
