@@ -4,9 +4,10 @@ Huy Vu <Submitted Vocareum Work Phase 1>
 
 ### Instruction on how to compile and run the program
 
-The user clicks the Run button in SocialMedia.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
+The server in Server.java needs to be run first so that the client can connect to the server and using the app.
 
-For any time that the user enters any wrong input or wrong command, the program will ask them until the user enter the valid input or right command.
+The user clicks the Run button in Client.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
+
 
 1. User wants to create an account
 
@@ -26,27 +27,25 @@ Write 2 to the program.
 
 Then the user is prompted to enter username and password for log in. 
 
-If user login successfully, the program will show the Option Menu with 10 options:
+If user login successfully, the program will show the Option Menu with 9 options:
 
 1. View that user profile
   
 2. Edit that user profile
 
-3. View other user profile
+3. Add friend
 
-4. Delete their account
+4. Delete friend
 
-5. Add friend
+5. Block user
 
-6. Remove friend
+6. Unblock user
 
-7. Block friend
+7. Send message
 
-8. Unblock friend
+8. Search user then view other user profile
 
-9. Send message
-
-10. Log out
+9. Log out
 
 If the user writes down 1, 2, 3, the program will prompt the user to enter the information that they want to see or edit, and the program comes back to the Option Menu again.
 
