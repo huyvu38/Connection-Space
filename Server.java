@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 
 
 public class Server implements ServerInterface {
-    private static final int PORT = 4242;
+    private static final int PORT = 4243;
     private Socket socket;
     private static ExecutorService threadPool = Executors.newCachedThreadPool(); // Using thread pool for better performance
     public static Database database;
@@ -92,7 +92,7 @@ public class Server implements ServerInterface {
                     } catch (NumberFormatException e) {
                         result = false;
                     }
-                    if (newAge < 0) {
+                    if (newAge <= 0) {
                         result = false;
                     }
                     //If the user enter all valid information -> the result still true
@@ -171,7 +171,7 @@ public class Server implements ServerInterface {
                                         if (editChoice.equals("2")) {
                                             try {
                                                 int editAge = Integer.parseInt(editInformation);
-                                                if (editAge < 0) {
+                                                if (editAge <= 0) {
                                                     writer.write("Can not edit your information");
                                                     userAccount.getUserProfile().setAge(editAge);
                                                     writer.write("Edit successfully");
