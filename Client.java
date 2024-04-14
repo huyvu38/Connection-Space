@@ -74,11 +74,13 @@ public class Client {
                 if (userInput.equals("2")) {
                     System.out.println("Enter your username");
                     String username = scanner.nextLine();
+                    writer.write(username);
+                    writer.println();
+                    writer.flush();
+
                     System.out.println("Enter your password");
                     String password = scanner.nextLine();
                     //Sent to the server
-                    writer.write(username);
-                    writer.println();
                     writer.write(password);
                     writer.println();
                     writer.flush(); // ensure data is sent to the server

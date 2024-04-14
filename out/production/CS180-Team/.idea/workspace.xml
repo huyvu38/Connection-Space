@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RunLocalTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,42 +60,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ApplicationControlFlow.executor": "Run",
-    "Application.Client.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.RunLocalTest.executor": "Run",
-    "Application.Server.executor": "Run",
-    "Application.SocialMedia.executor": "Run",
-    "Application.Test.executor": "Run",
-    "Application.Yay.executor": "Run",
-    "Application.tempRunLocalTest.executor": "Run",
-    "JUnit.RunLocalTest$ProfileTest.ProfileDeclarationTest.executor": "Run",
-    "JUnit.RunLocalTest$ProfileTest.profileTestGettersAndConstructor.executor": "Run",
-    "JUnit.TestCase.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ApplicationControlFlow.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunLocalTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SocialMedia.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Yay.executor&quot;: &quot;Run&quot;,
+    &quot;Application.tempRunLocalTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RunLocalTest$ProfileTest.ProfileDeclarationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RunLocalTest$ProfileTest.profileTestGettersAndConstructor.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestCase.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory",
-      "module"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -221,47 +221,9 @@
       <workItem from="1712969935983" duration="267000" />
       <workItem from="1712981607761" duration="4518000" />
       <workItem from="1712987499218" duration="634000" />
-      <workItem from="1713017153042" duration="8161000" />
-    </task>
-    <task id="LOCAL-00146" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1711951849404</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1711951849404</updated>
-    </task>
-    <task id="LOCAL-00147" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1711978717373</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1711978717373</updated>
-    </task>
-    <task id="LOCAL-00148" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1711984048892</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1711984048892</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1711984129846</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1711984129846</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1711984211617</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1711984211617</updated>
+      <workItem from="1713017153042" duration="9145000" />
+      <workItem from="1713026435507" duration="5318000" />
+      <workItem from="1713050151756" duration="2155000" />
     </task>
     <task id="LOCAL-00151" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
       <option name="closed" value="true" />
@@ -615,7 +577,47 @@
       <option name="project" value="LOCAL" />
       <updated>1713024290038</updated>
     </task>
-    <option name="localTasksCounter" value="195" />
+    <task id="LOCAL-00195" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1713026039468</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1713026039469</updated>
+    </task>
+    <task id="LOCAL-00196" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1713026535568</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1713026535568</updated>
+    </task>
+    <task id="LOCAL-00197" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1713026622004</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1713026622004</updated>
+    </task>
+    <task id="LOCAL-00198" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1713026706912</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1713026706912</updated>
+    </task>
+    <task id="LOCAL-00199" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1713027058776</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1713027058776</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
