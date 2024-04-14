@@ -129,7 +129,7 @@ public class RunLocalTest {
             assertEquals("Age should be 20", 20, profile.getAge());
             assertEquals("Gender should be Male", "Male", profile.getGender());
             assertEquals("Nationality should be Salvadorian", "Salvadorian", profile.getNationality());
-            assertEquals("Job should be Building Manager", "Building Manager", profile.getJob());
+            assertEquals("Job should be Building Manager", "Manager", profile.getJob());
             assertEquals("Hobby should be Soccer", "Soccer", profile.getHobby());
         }
 
@@ -153,8 +153,8 @@ public class RunLocalTest {
         @Test
         public void toStringTest() {
             String input = "abaldocc,whatsup,20,Male,Salvadorian,Building Manager,Soccer";
-            assertEquals("toString method should name,password,age,gender,nationality,job,hobby" +
-                    " with a comma and no space after the comma.", input, profile.toString());
+            assertEquals("toString method should name password age gender nationality job hobby" +
+                    " with a space.", input, profile.toString());
         }
 
     } // end of test case
@@ -191,7 +191,7 @@ public class RunLocalTest {
         @Before
         public void setUserAccountTest() {
             profile = new Profile("abaldocc", "whatsup", 20, "Male",
-                    "Salvadorian", "Building Manager", "Soccer");
+                    "Salvadorian", "Manager", "Soccer");
             userAccount = new UserAccount(profile);
             friendList = new ArrayList<>();
             blockList = new ArrayList<>();
@@ -215,12 +215,12 @@ public class RunLocalTest {
             friendList.add("Matt");
             userAccount.setFriendList(friendList);
             ArrayList<String> newFriendList = new ArrayList<>(Arrays.asList("archie", "Matt"));
-            assertEquals("Friend list should now be [archie, Matt]", newFriendList, userAccount.getFriendList());
+            assertEquals("Friend list should now be [archie Matt]", newFriendList, userAccount.getFriendList());
             blockList.add("Pablo");
 
             userAccount.setBlockList(blockList);
             ArrayList<String> newBlockList = new ArrayList<>(Arrays.asList("Frigolet", "Pablo"));
-            assertEquals("Block list should now be [Frigolet, Pablo]", newBlockList, userAccount.getBlockList());
+            assertEquals("Block list should now be [Frigolet Pablo]", newBlockList, userAccount.getBlockList());
         }
         @Test
         public void toStringTest() {
