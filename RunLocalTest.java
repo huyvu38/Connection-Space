@@ -307,6 +307,18 @@ public class RunLocalTest {
     // Begin Server test
     @RunWith(JUnit4.class)
     public static class ServerTest {
+        private Profile profile1;
+        private UserAccount userAccount1;
+        private ArrayList<String> friendList1;
+        private ArrayList<String> blockList1;
+
+        private Profile profile2;
+        private UserAccount userAccount2;
+        private ArrayList<String> friendList2;
+        private ArrayList<String> blockList2;
+
+        private ArrayList<UserAccount> allUserAccount = new ArrayList<>();
+
         private Server server;
         private Socket mockSocket;
         private PrintWriter mockWriter;
