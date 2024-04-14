@@ -167,11 +167,13 @@ public class Server implements ServerInterface{
                                         if (editChoice.equals("2")) {
                                             try {
                                                 int editAge = Integer.parseInt(editInformation);
-                                                if (editAge > 0) {
+                                                if (editAge < 0) {
+                                                    writer.write("Can not edit your information");
                                                     userAccount.getUserProfile().setAge(editAge);
                                                     writer.write("Edit successfully");
                                                 } else {
-                                                    writer.write("Can not edit your information");
+                                                    userAccount.getUserProfile().setAge(editAge);
+                                                    writer.write("Edit successfully");
                                                 }
                                             } catch (Exception e) {
                                                 writer.write("Can not edit your information");
@@ -327,7 +329,6 @@ public class Server implements ServerInterface{
                                 String word = reader.readLine();
                                 //username is the one who search other user
                                 ArrayList<String> findUserName = searchUser(username, word);
-                                System.out.println(findUserName.size());
                                 if (findUserName.size() == 0) {
                                     writer.write("Can not find any user");
                                     writer.println();
@@ -346,6 +347,7 @@ public class Server implements ServerInterface{
                                     writer.write(allFindUser);
                                     writer.println();
                                     writer.flush();
+                                    //User want to view Profile of other user
                                     String userNameToViewProfile = reader.readLine();
                                     String viewOtherProfileChoice = reader.readLine();
                                     for (UserAccount userAccount : allUserAccount) {
