@@ -71,11 +71,6 @@ Get/Set methods to modify and return attributes inherent to
 each profile object
 <br/>
 
-### Server.java <br/>
-
-#### Methods
-
-
 ### UserAccount.java <br/>
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependant on Profile.java. Getter and setter methods to modify and return account attributes such as blocked users and friends.
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependent on Profile.java. 
@@ -87,13 +82,7 @@ Create new UserAccount with Profile and list of friends/blocked users.
 <br/>
 Methods to add or remove users to lists, as well as retrieve the lists for purposes such as messaging.
 <br/>
-### Method.java <br/>
-Contains boolean methods crucial to the function of the database system such as block user and add friend. Depends on Profile.java, future classes more integral to the database system will depend on this class.
-This class acts as a service, allowing action between users to create relationships within the database.
-#### Methods
-Add and remove friends using Profile objects
-<br/>
-Block and unblock users using Profile objects
+
 ### Database.java <br/>
 
 The framework for the database system. Creates new database objects using all known accounts. Dependent on Profile and UserAccount. 
@@ -104,6 +93,18 @@ Create and delete accounts using Profile objects
 The framework for the database system. Creates new database objects using all known accounts. Dependant on Profile and UserAccount. Methods include means to modify accounts on a large scale, including wiping all accounts and returning all accounts.
 <br/>
 Query data on large scale by returning all accounts
+
+### Server.java <br/>
+
+#### Methods
+
+### Method.java <br/>
+Contains boolean methods crucial to the function of the database system such as block user and add friend. Depends on Profile.java, future classes more integral to the database system will depend on this class.
+This class acts as a service, allowing action between users to create relationships within the database.
+#### Methods
+Add and remove friends using Profile objects
+<br/>
+Block and unblock users using Profile objects
 
 ### Message.java <br/>
 
