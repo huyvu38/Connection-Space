@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Team Project
@@ -19,8 +21,12 @@ import java.util.List;
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Server extends Thread implements ServerInterface, Runnable {
-    Socket socket;
+
+
+public class Server implements ServerInterface {
+    private static final int PORT = 4242;
+    private Socket socket;
+    private static ExecutorService threadPool = Executors.newCachedThreadPool(); // Using thread pool for better performance
     public static Database database;
     public static ArrayList<UserAccount> allUserAccount;
 
@@ -29,22 +35,19 @@ public class Server extends Thread implements ServerInterface, Runnable {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(5050);
+        ServerSocket serverSocket = new ServerSocket(PORT);
         database = new Database("AllUserAccount.txt");
         database.readAllUserAccount();
         //Use these arraylist for any parameter
         allUserAccount = database.getAllUserAccount();
         while (true) {
-            Socket socket = null;
             try {
-                socket = serverSocket.accept();
+                Socket socket = serverSocket.accept();
                 System.out.println("A client is connected.");
                 //make thread for client
                 Thread client = new Thread(new Server(socket));
-                client.start();
-                //client.join();
+                threadPool.execute(client);
             } catch (Exception e) {
-                socket.close();
                 e.printStackTrace();
             }
         }
@@ -398,9 +401,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                 }
             }
         } catch (Exception e) {
-            System.out.println("A User is disconnect");
-            //e.printStackTrace();
-
+            System.out.println("A client is disconnected");
         }
     }
 
