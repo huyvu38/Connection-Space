@@ -14,7 +14,8 @@ Then the Main Menu will appear with 3 options
 2. Log in
 3. Exit the app.
 
-1. User wants to create an account
+
+5. User wants to create an account
 
 Write 1 to the program.
 
