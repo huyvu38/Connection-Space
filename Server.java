@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 
 
 public class Server implements ServerInterface {
-    private static final int PORT = 4242;
+    private static final int PORT = 5050;
     private Socket socket;
     private static ExecutorService threadPool = Executors.newCachedThreadPool(); // Using thread pool for better performance
     public static Database database;
@@ -92,7 +92,7 @@ public class Server implements ServerInterface {
                     } catch (NumberFormatException e) {
                         result = false;
                     }
-                    if (newAge < 0) {
+                    if (newAge <= 0) {
                         result = false;
                     }
                     //If the user enter all valid information -> the result still true
@@ -171,7 +171,7 @@ public class Server implements ServerInterface {
                                         if (editChoice.equals("2")) {
                                             try {
                                                 int editAge = Integer.parseInt(editInformation);
-                                                if (editAge < 0) {
+                                                if (editAge <= 0) {
                                                     writer.write("Can not edit your information");
                                                     userAccount.getUserProfile().setAge(editAge);
                                                     writer.write("Edit successfully");
@@ -286,6 +286,12 @@ public class Server implements ServerInterface {
                                     for (UserAccount userAccount: allUserAccount) {
                                         if (userAccount.getUserProfile().getUserName().equals(receiver)) {
                                             isBlock = userAccount.getBlockList().contains(userName);
+                                        }
+                                    }
+                                    //Check if the sender not block the receiver
+                                    for (UserAccount userAccount: allUserAccount) {
+                                        if (userAccount.getUserProfile().getUserName().equals(userName)) {
+                                            isBlock = userAccount.getBlockList().contains(receiver);
                                         }
                                     }
                                     if (sendMessage(userName, receiver, message, isBlock)) {
@@ -413,13 +419,13 @@ public class Server implements ServerInterface {
     }
 
     //Already check if contain space or semicolon
-    public boolean checkPasswordLength(String password) {
+    public synchronized boolean checkPasswordLength(String password) {
         return password.length() >= 6;
     }
-    public boolean checkUserNameFormat(String userName) {
+    public synchronized boolean checkUserNameFormat(String userName) {
         return userName.length() >= 4;
     }
-    public boolean usernameInDatabase(String userName) {
+    public synchronized boolean usernameInDatabase(String userName) {
         //From a list of user profile, find the specific username
         for (UserAccount eachUserAccount : allUserAccount) {
             if (eachUserAccount.getUserProfile().getUserName().equals(userName)) {
@@ -428,7 +434,7 @@ public class Server implements ServerInterface {
         }
         return false; // User doesn't exist in the database
     }
-    public boolean inFriendList(String userNameOne, String userNameTwo) {
+    public synchronized boolean inFriendList(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             for (UserAccount userAccount : allUserAccount) {
@@ -447,7 +453,7 @@ public class Server implements ServerInterface {
         }
         return false;
     }
-    public boolean inBlockList(String userNameOne, String userNameTwo) {
+    public synchronized boolean inBlockList(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             for (UserAccount userAccount : allUserAccount) {

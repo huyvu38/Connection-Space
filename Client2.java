@@ -14,10 +14,12 @@ import java.util.Scanner;
  * @version 28 March 2024
  */
 public class Client2 {
+
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         try {
-            Socket socket = new Socket("localhost", 4242);
+            Socket socket = new Socket("localhost", 5050);
             //After connect to the server
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
