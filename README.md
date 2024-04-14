@@ -6,18 +6,21 @@ Huy Vu <Submitted Vocareum Work Phase 2>
 
 The server in Server.java needs to be run first so that the client can connect to the server and using the app.
 
-The user clicks the Run button in Client.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
+First, the user clicks the Run button in Client.java. 
 
+Then the Main Menu will appear with 3 options
+
+1. Create an account
+2. Log in
+3. Exit the app.
 
 1. User wants to create an account
 
 Write 1 to the program.
 
-Then the user is prompted to enter username, password.
+Then the user is prompted to enter username, password, age, gender, nationality, job, and hobby.
 
-Once the user create account successfully, they cannot edit their username.
-
-After that, the user is prompted to enter their age, gender, nationality, job, and hobby.
+After the server check every information of the user is in the right format and the username is valid, the client will receive the message that the user create account successfully and they cannot edit their username later.
 
 Then the program goes back to the main menu to let the user create account or log in or exit the app.
 
@@ -27,7 +30,9 @@ Write 2 to the program.
 
 Then the user is prompted to enter username and password for log in. 
 
-If user login successfully, the program will show the Option Menu with 9 options:
+If the user login fail, the program will go back to the Main Menu.
+
+If the user login successfully, the program will show the Option Menu with 9 options:
 
 1. View that user profile
   
