@@ -407,13 +407,13 @@ public class Server implements ServerInterface {
     }
 
     //Already check if contain space or semicolon
-    public boolean checkPasswordLength(String password) {
+    public synchronized boolean checkPasswordLength(String password) {
         return password.length() >= 6;
     }
-    public boolean checkUserNameFormat(String userName) {
+    public synchronized boolean checkUserNameFormat(String userName) {
         return userName.length() >= 4;
     }
-    public boolean usernameInDatabase(String userName) {
+    public synchronized boolean usernameInDatabase(String userName) {
         //From a list of user profile, find the specific username
         for (UserAccount eachUserAccount : allUserAccount) {
             if (eachUserAccount.getUserProfile().getUserName().equals(userName)) {
@@ -422,7 +422,7 @@ public class Server implements ServerInterface {
         }
         return false; // User doesn't exist in the database
     }
-    public boolean inFriendList(String userNameOne, String userNameTwo) {
+    public synchronized boolean inFriendList(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             for (UserAccount userAccount : allUserAccount) {
@@ -441,7 +441,7 @@ public class Server implements ServerInterface {
         }
         return false;
     }
-    public boolean inBlockList(String userNameOne, String userNameTwo) {
+    public synchronized boolean inBlockList(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             for (UserAccount userAccount : allUserAccount) {
