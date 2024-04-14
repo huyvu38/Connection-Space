@@ -316,6 +316,8 @@ public class RunLocalTest {
         @Before
         public void setUp() throws Exception {
             //dont't test anything to NetWork IO, server or client, just test the function like log in, add friend
+            // Can make an arraylist<User Account> to store few clients then check from that
+            //Maybe do not need to access to Server.allUserAccount
 
             /*
             mockSocket = mock(Socket.class);
