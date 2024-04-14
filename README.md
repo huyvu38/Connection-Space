@@ -108,7 +108,14 @@ Query data on large scale by returning all accounts
 
 ### Server.java <br/>
 
+A class representing the server that allows client to connect, processing of data and update the data after the specific actions of the client.
+
 #### Methods
+
+Username Validation: Ensures usernames are unique and meet formatting standards.<br/>
+Password Checks: Verifies password length for security and matches passwords for login.<br/>
+Create account: Check if user enter unique username and every information in the profile meet formatting standards.<br/>
+Login Verification: Authenticates user logins by matching usernames and passwords with database records.
 
 ### Method.java <br/>
 Contains boolean methods crucial to the function of the database system such as block user and add friend. Depends on Profile.java, future classes more integral to the database system will depend on this class.
@@ -131,17 +138,6 @@ Persistent Logging: Use a buffered reader to timestamp and store messages, ensur
 This streamlined framework is built to facilitate effective and private communication among users, balancing functionality with user control.
 <br/>
 
-### Login.java <br/>
-
-LogIn.java is a core component for managing user authentication in an application. It interacts with a Database to handle user logins, account creation, and deletion, utilizing user credentials for secure access.
-
-#### Methods
-Initial Setup: Constructs with database and user profile for authentication tasks.<br/>
-Username Validation: Ensures usernames are unique and meet formatting standards.<br/>
-Password Checks: Verifies password length for security and matches passwords for login.<br/>
-Account Management: Supports creating and deleting user accounts based on validation of credentials and username uniqueness.<br/>
-Login Verification: Authenticates user logins by matching usernames and passwords with database records.
-<br/>
 
 ### AllUserAccount.txt <br/>
 The file that store profile, friendlist, blocklist of each user.
