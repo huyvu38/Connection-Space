@@ -1,12 +1,13 @@
 # CS180-L22-Team 3
 
-Huy Vu <Submitted Vocareum Work Phase 1>
+Huy Vu <Submitted Vocareum Work Phase 2>
 
 ### Instruction on how to compile and run the program
 
-The user clicks the Run button in SocialMedia.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
+The server in Server.java needs to be run first so that the client can connect to the server and using the app.
 
-For any time that the user enters any wrong input or wrong command, the program will ask them until the user enter the valid input or right command.
+The user clicks the Run button in Client.java. Then the Main Menu will appear and allow the user to create an account, log in, or exit the app.
+
 
 1. User wants to create an account
 
@@ -26,27 +27,25 @@ Write 2 to the program.
 
 Then the user is prompted to enter username and password for log in. 
 
-If user login successfully, the program will show the Option Menu with 10 options:
+If user login successfully, the program will show the Option Menu with 9 options:
 
 1. View that user profile
   
 2. Edit that user profile
 
-3. View other user profile
+3. Add friend
 
-4. Delete their account
+4. Delete friend
 
-5. Add friend
+5. Block user
 
-6. Remove friend
+6. Unblock user
 
-7. Block friend
+7. Send message
 
-8. Unblock friend
+8. Search user then view other user profile
 
-9. Send message
-
-10. Log out
+9. Log out
 
 If the user writes down 1, 2, 3, the program will prompt the user to enter the information that they want to see or edit, and the program comes back to the Option Menu again.
 
@@ -71,6 +70,11 @@ Constructors to initialize new profiles
 Get/Set methods to modify and return attributes inherent to 
 each profile object
 <br/>
+
+### Server.java <br/>
+
+#### Methods
+
 
 ### UserAccount.java <br/>
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependant on Profile.java. Getter and setter methods to modify and return account attributes such as blocked users and friends.
@@ -126,6 +130,18 @@ Account Management: Supports creating and deleting user accounts based on valida
 Login Verification: Authenticates user logins by matching usernames and passwords with database records.
 <br/>
 
-### SocialMedia.java <br/>
-The main program to allow user interact with the app. User can create account, search user, add friend, etc. More details on instruction how to compile and run the program.
+### AllUserAccount.txt <br/>
+The file that store profile, friendlist, blocklist of each user.
+Format: [username] [password] [age] [gender] [nationality] [job] [hobby];FriendList:[list of friends];BlockList:[list of block users]
+
+Username must be at least 4 characters.
+Password must be at least 6 characters.
+Age must be a positive number.
+User only choose gender from the following options : Male, Female, Other.
+Every information in the Profile of the user can not contain any spaces or semicolon.
+
+### Message.txt <br/>
+The file that store every message between each user.
+Format: [conversationID] [ConversationTime] [Sender-Message] [if message blocked]
+
 
