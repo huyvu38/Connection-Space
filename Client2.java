@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Client extends Thread implements Runnable {
+public class Client2 extends Thread implements Runnable {
 
     public static void main(String[] args) {
 

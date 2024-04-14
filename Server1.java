@@ -1,5 +1,3 @@
-//Gabes TODO list update interfaces as needed. Maintain testcases as needed.
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,47 +8,51 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Team Project
  *
  * Server.java
  *
- * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Server extends Thread implements ServerInterface, Runnable {
-    Socket socket;
+public class Server1 {
+    private static final int PORT = 4242;
+    private static ExecutorService threadPool = Executors.newCachedThreadPool(); // Using thread pool for better performance
     public static Database database;
     public static ArrayList<UserAccount> allUserAccount;
 
-    public Server (Socket socket) {
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(PORT);
+        database = new Database("AllUserAccount.txt");  // Correct initialization
+        database.readAllUserAccount();
+        allUserAccount = database.getAllUserAccount();
+
+        try {
+            while (true) {
+                Socket socket = serverSocket.accept();
+                System.out.println("Connected to a new client.");
+                Runnable clientHandler = new ClientHandler1(socket);
+                threadPool.execute(clientHandler);
+            }
+        } finally {
+            serverSocket.close();
+        }
+    }
+}
+
+class ClientHandler1 implements Runnable {
+    private Socket socket;
+
+    public ClientHandler1(Socket socket) {
         this.socket = socket;
     }
 
-    public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(4242);
-        database = new Database("AllUserAccount.txt");
-        database.readAllUserAccount();
-        //Use these arraylist for any parameter
-        allUserAccount = database.getAllUserAccount();
-        while (true) {
-            Socket socket = null;
-            try {
-                socket = serverSocket.accept();
-                System.out.println("Connected");
-                //make thread for client
-                Thread client = new Thread(new Server(socket));
-                client.start();
-                //client.join();
-            } catch (Exception e) {
-                socket.close();
-                e.printStackTrace();
-            }
-        }
-    }
-    //Start whenever a user connect
-    public void run () {
+    @Override
+    public void run() {
+        // Handling client communication
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
@@ -96,7 +98,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                     UserAccount newUserAccount = new UserAccount(newUserProfile);
 
                     //if the result is still true -> send back to the client that account create successfully
-                    if (createAccount(database, newUserAccount, username, password)) {
+                    if (createAccount(Server1.database, newUserAccount, username, password)) {
                         result = true;
                     }
                     if (result) {
@@ -122,7 +124,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                             String choice = reader.readLine();
                             if (choice.equals("1")) {
                                 String viewChoice = reader.readLine();
-                                for (UserAccount userAccount : allUserAccount) {
+                                for (UserAccount userAccount : Server1.allUserAccount) {
                                     if (userAccount.getUserProfile().getUserName().equals(username)) {
                                         if (viewChoice.equals("1")) {
                                             writer.write(userAccount.getUserProfile().getUserName());
@@ -153,7 +155,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                             if (choice.equals("2")) {
                                 String editChoice = reader.readLine();
                                 String editInformation = reader.readLine();
-                                for (UserAccount userAccount : allUserAccount) {
+                                for (UserAccount userAccount : Server1.allUserAccount) {
                                     if (userAccount.getUserProfile().getUserName().equals(username)) {
                                         if (editChoice.equals("1")) {
                                             if (editInformation.contains(" ") || editInformation.contains(";")) {
@@ -213,7 +215,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                 }
                                 writer.println();
                                 writer.flush();
-                                database.saveAllUserAccount();
+                                Server1.database.saveAllUserAccount();
                             }
                             if (choice.equals("3")) {
                                 String addFriendUserName = reader.readLine();
@@ -262,7 +264,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                 System.out.println(userName);
                                 UserAccount currentUserAcc = null;
                                 boolean hasFriends = false;
-                                for (UserAccount userAccount: allUserAccount) {
+                                for (UserAccount userAccount: Server1.allUserAccount) {
                                     if (userAccount.getUserProfile().getUserName().equals(userName)) {
                                         currentUserAcc = userAccount;
                                         if (!userAccount.getFriendList().isEmpty()) {
@@ -280,7 +282,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                     String receiver = reader.readLine();
                                     String message = reader.readLine();
                                     boolean isBlock = false;
-                                    for (UserAccount userAccount: allUserAccount) {
+                                    for (UserAccount userAccount: Server1.allUserAccount) {
                                         if (userAccount.getUserProfile().getUserName().equals(receiver)) {
                                             isBlock = userAccount.getBlockList().contains(userName);
                                         }
@@ -298,7 +300,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                 } else if (ans.equals("2")) {
                                     //Send message to friends
                                     String message = reader.readLine();
-                                   // System.out.println(message);
+                                    // System.out.println(message);
                                     assert currentUserAcc != null;
                                     ArrayList<String> friendList = currentUserAcc.getFriendList();
                                     String result = restrictMessage(userName, friendList, message);
@@ -355,7 +357,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                                     writer.flush();
                                     String userNameToViewProfile = reader.readLine();
                                     String viewOtherProfileChoice = reader.readLine();
-                                    for (UserAccount userAccount : allUserAccount) {
+                                    for (UserAccount userAccount : Server1.allUserAccount) {
                                         if (userAccount.getUserProfile().getUserName().equals(userNameToViewProfile)) {
                                             if (viewOtherProfileChoice.equals("1")) {
                                                 writer.write(userAccount.getUserProfile().getAge());
@@ -389,11 +391,17 @@ public class Server extends Thread implements ServerInterface, Runnable {
                     }
                 }
             }
-        } catch (Exception e) {
-            System.out.println("A User is disconnect");
-            //e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error handling client: " + e.getMessage());
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                System.out.println("Failed to close the socket: " + e.getMessage());
+            }
         }
     }
+
     public boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
         return profile.getPassword().equals(userPassword);
     }
@@ -406,7 +414,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
     }
     public boolean usernameInDatabase(String userName) {
         //From a list of user profile, find the specific username
-        for (UserAccount eachUserAccount : allUserAccount) {
+        for (UserAccount eachUserAccount : Server1.allUserAccount) {
             if (eachUserAccount.getUserProfile().getUserName().equals(userName)) {
                 return true; //User exist in the database
             }
@@ -416,7 +424,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
     public boolean inFriendList(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
-            for (UserAccount userAccount : allUserAccount) {
+            for (UserAccount userAccount : Server1.allUserAccount) {
                 //Find the account of user1
                 //If we find username2 in friend list of username1,
                 // we don't have to check username1 in friendlist of username2
@@ -435,7 +443,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
     public boolean inBlockList(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
-            for (UserAccount userAccount : allUserAccount) {
+            for (UserAccount userAccount : Server1.allUserAccount) {
                 //Find the account of user1 and check if the user1 block user2
                 if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                     //Check the block list of user1
@@ -463,7 +471,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
 
     public synchronized boolean loginAccount(String username, String userPassword) {
         if (usernameInDatabase(username)) {
-            for (UserAccount eachUserAccount: allUserAccount) {
+            for (UserAccount eachUserAccount: Server1.allUserAccount) {
                 if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
                     if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
                         return true;
@@ -487,7 +495,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                 return false; // two users already in the friend list so cannot add friend
             } else {
                 //If both users not in friendlist
-                for (UserAccount userAccount : allUserAccount) {
+                for (UserAccount userAccount : Server1.allUserAccount) {
                     //Find the friendlist of user1
                     if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                         ArrayList<String> friendListUserOne = userAccount.getFriendList();
@@ -503,7 +511,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                         userAccount.setFriendList(friendListUserTwo);
                     }
                 }
-                database.saveAllUserAccount();
+                Server1.database.saveAllUserAccount();
                 return true; //add friend success
             }
         }
@@ -512,7 +520,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
     public synchronized boolean deleteFriend(String userNameOne, String userNameTwo) {
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             if (inFriendList(userNameOne, userNameTwo)) { //both users are friend
-                for (UserAccount userAccount : allUserAccount) {
+                for (UserAccount userAccount : Server1.allUserAccount) {
                     //Find the friendlist of user1
                     if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                         ArrayList<String> friendListUserOne = userAccount.getFriendList();
@@ -528,7 +536,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
                         userAccount.setFriendList(friendListUserTwo);
                     }
                 }
-                database.saveAllUserAccount();
+                Server1.database.saveAllUserAccount();
                 return true; // remove friend successfully
             }
         }
@@ -543,14 +551,14 @@ public class Server extends Thread implements ServerInterface, Runnable {
             if (inBlockList(userNameTwo, userNameOne)) {
                 return false; //User2 block user1 so user1 cannot block user2
             }
-            for (UserAccount userAccount : allUserAccount) {
+            for (UserAccount userAccount : Server1.allUserAccount) {
                 //Find the blocklist of user1
                 if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                     ArrayList<String> blockListUserOne = userAccount.getBlockList();
                     //add the user2 to block list of user1
                     blockListUserOne.add(userNameTwo);
                     userAccount.setBlockList(blockListUserOne);
-                    database.saveAllUserAccount();
+                    Server1.database.saveAllUserAccount();
                     return true; //user1 block user2 successfully
                 }
             }
@@ -562,14 +570,14 @@ public class Server extends Thread implements ServerInterface, Runnable {
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             if (inBlockList(userNameOne, userNameTwo)) {
                 //User1 block user2 and want to remove user2 from blocklist
-                for (UserAccount userAccount : allUserAccount) {
+                for (UserAccount userAccount : Server1.allUserAccount) {
                     //Find the blocklist of user1
                     if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                         ArrayList<String> blockListUserOne = userAccount.getBlockList();
                         //remove the user2 from the block list of user1
                         blockListUserOne.remove(userNameTwo);
                         userAccount.setBlockList(blockListUserOne);
-                        database.saveAllUserAccount();
+                        Server1.database.saveAllUserAccount();
                         return true;
                     }
                 }
@@ -583,7 +591,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
     public synchronized ArrayList<String> searchUser(String userNameOne, String word) {
         ArrayList<String> findUserName = new ArrayList<>();
         //Check if no account block user1
-        for (UserAccount userAccount : allUserAccount) {
+        for (UserAccount userAccount : Server1.allUserAccount) {
             if (userAccount.getUserProfile().getUserName().contains(word)) {
                 boolean userOneIsBlocked = false;
                 for (String blockListOfUserTwo : userAccount.getBlockList()) {
@@ -599,7 +607,7 @@ public class Server extends Thread implements ServerInterface, Runnable {
             }
         }
         //Check if user 1 block any one in the findUserName
-        for (UserAccount userAccount : allUserAccount) {
+        for (UserAccount userAccount : Server1.allUserAccount) {
             if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
                 for (String eachBlockUserOfUserOne : userAccount.getBlockList()) {
                     for (String eachUser : findUserName) {
@@ -825,5 +833,4 @@ public class Server extends Thread implements ServerInterface, Runnable {
         return result;
 
     }
-
 }
