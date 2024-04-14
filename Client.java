@@ -29,47 +29,62 @@ public class Client {
                 System.out.println("2. Log In.");
                 String userInput = scanner.nextLine();
                 //User want to create account -> send 1 to the server
-                //User want to logIn -> send 2 to the server
+                //User want to log in -> send 2 to the server
                 writer.write(userInput);
                 writer.println();
                 writer.flush();
                 if (userInput.equals("1")) {
+                    //Send username
+                    System.out.println("Once you create an account, you can not change your username.");
+                    System.out.println("User name should be at least 4 characters and do not contain any spaces or semicolon.");
                     System.out.println("Enter your username:");
                     String username = scanner.nextLine();
-                    System.out.println("Enter your password");
+                    writer.write(username);
+                    writer.println();
+                    writer.flush();
+                    //Send password
+                    System.out.println("Password should be at least 6 characters and do not contain any spaces or semicolon.");
+                    System.out.println("Enter your password:");
                     String password = scanner.nextLine();
+                    writer.write(password);
+                    writer.println();
+                    writer.flush();
+                    //Send age
                     System.out.println("Enter your age");
                     String age = scanner.nextLine();
+                    writer.write(age);
+                    writer.println();
+                    writer.flush();
+                    //Send gender
                     System.out.println("Enter your gender from these options:");
                     System.out.println("Female");
                     System.out.println("Male");
                     System.out.println("Other");
                     String gender = scanner.nextLine();
-                    System.out.println("Enter your nationality");
-                    String nationality = scanner.nextLine();
-                    System.out.println("Enter your job");
-                    String job = scanner.nextLine();
-                    System.out.println("Enter your hobby");
-                    String hobby = scanner.nextLine();
-                    //Send all information to the server
-                    writer.write(username);
-                    writer.println();
-                    writer.write(password);
-                    writer.println();
-                    writer.write(age);
-                    writer.println();
                     writer.write(gender);
                     writer.println();
+                    //Send nationality
+                    System.out.println("Enter your nationality");
+                    String nationality = scanner.nextLine();
                     writer.write(nationality);
                     writer.println();
+                    writer.flush();
+                    //Send job
+                    System.out.println("Enter your job");
+                    String job = scanner.nextLine();
                     writer.write(job);
                     writer.println();
+                    writer.flush();
+                    //Send hobby
+                    System.out.println("Enter your hobby");
+                    String hobby = scanner.nextLine();
                     writer.write(hobby);
                     writer.println();
-                    writer.flush(); // ensure data is sent to the server
+                    writer.flush();
+
                     //Get the result from the server
-                    String result = reader.readLine();
-                    System.out.println(result);
+                    String createAccountResult = reader.readLine();
+                    System.out.println(createAccountResult);
                 }
                 if (userInput.equals("2")) {
                     System.out.println("Enter your username");

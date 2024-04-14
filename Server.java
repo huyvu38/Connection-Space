@@ -58,6 +58,7 @@ public class Server implements ServerInterface{
                 //Command 1 is create account
                 if (command.equals("1")) {
                     boolean result = true;
+                    //Get all information for server
                     String username = reader.readLine();
                     String password = reader.readLine();
                     String age = reader.readLine();
@@ -65,6 +66,7 @@ public class Server implements ServerInterface{
                     String nationality = reader.readLine();
                     String job = reader.readLine();
                     String hobby = reader.readLine();
+                    //Check information
                     if (username.contains(" ") || username.contains(";")) {
                         result = false;
                     }
@@ -99,7 +101,7 @@ public class Server implements ServerInterface{
                         result = true;
                     }
                     if (result) {
-                        writer.write("Create Account successfully. You have to log in again");
+                        writer.write("Create account successfully. You have to log in again.");
                         writer.println();
                         writer.flush();
                     } else {
@@ -373,6 +375,7 @@ public class Server implements ServerInterface{
                                     }
                                 }
                             }
+                            //Log Out
                             if (choice.equals("9")) {
                                 break;
                             }
