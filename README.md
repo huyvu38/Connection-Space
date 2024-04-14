@@ -126,6 +126,12 @@ Account Management: Supports creating and deleting user accounts based on valida
 Login Verification: Authenticates user logins by matching usernames and passwords with database records.
 <br/>
 
-### SocialMedia.java <br/>
-The main program to allow user interact with the app. User can create account, search user, add friend, etc. More details on instruction how to compile and run the program.
+### AllUserAccount.txt <br/>
+The file that store profile, friendlist, blocklist of each user.
+Format: [username] [password] [age] [gender] [nationality] [job] [hobby];FriendList:[list of friends];BlockList:[list of block users]
+
+### Message.txt <br/>
+The file that store every message between each user.
+Format: [conversationID] [ConversationTime] [Sender-Message] [if message blocked]
+
 
