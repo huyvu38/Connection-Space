@@ -288,6 +288,12 @@ public class Server implements ServerInterface {
                                             isBlock = userAccount.getBlockList().contains(userName);
                                         }
                                     }
+                                    //Check if the sender not block the receiver
+                                    for (UserAccount userAccount: allUserAccount) {
+                                        if (userAccount.getUserProfile().getUserName().equals(userName)) {
+                                            isBlock = userAccount.getBlockList().contains(receiver);
+                                        }
+                                    }
                                     if (sendMessage(userName, receiver, message, isBlock)) {
                                         writer.write("Message sent successfully");
                                         writer.println();
