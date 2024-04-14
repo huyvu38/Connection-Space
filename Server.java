@@ -390,10 +390,8 @@ public class Server implements ServerInterface{
             e.printStackTrace();
         }
     }
-    public boolean checkIfPasswordCorrect(Profile profile, String userPassword) {
-        return profile.getPassword().equals(userPassword);
-    }
-    //We already check if contain space or semicolon
+
+    //Already check if contain space or semicolon
     public boolean checkPasswordLength(String password) {
         return password.length() >= 6;
     }

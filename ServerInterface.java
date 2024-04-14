@@ -10,7 +10,6 @@ import java.util.ArrayList;
  */
 
 public interface ServerInterface extends Runnable {
-    boolean checkIfPasswordCorrect(Profile profile, String userPassword);
     boolean checkPasswordLength(String password);
     boolean checkUserNameFormat(String userName);
     boolean usernameInDatabase(String userName);
