@@ -14,9 +14,7 @@ import java.util.Scanner;
  * @version 28 March 2024
  */
 public class Client2 {
-
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
         try {
             Socket socket = new Socket("localhost", 4242);
@@ -52,6 +50,7 @@ public class Client2 {
                     writer.println();
                     writer.flush();
                     //Send age
+                    System.out.println("Age should be a positive number");
                     System.out.println("Enter your age");
                     String age = scanner.nextLine();
                     writer.write(age);
@@ -66,18 +65,21 @@ public class Client2 {
                     writer.write(gender);
                     writer.println();
                     //Send nationality
+                    System.out.println("Nationality should not contain any spaces or semicolon.");
                     System.out.println("Enter your nationality");
                     String nationality = scanner.nextLine();
                     writer.write(nationality);
                     writer.println();
                     writer.flush();
                     //Send job
+                    System.out.println("Job should not contain any spaces or semicolon.");
                     System.out.println("Enter your job");
                     String job = scanner.nextLine();
                     writer.write(job);
                     writer.println();
                     writer.flush();
                     //Send hobby
+                    System.out.println("Hobby should not contain any spaces or semicolon.");
                     System.out.println("Enter your hobby");
                     String hobby = scanner.nextLine();
                     writer.write(hobby);
@@ -348,6 +350,7 @@ public class Client2 {
                 if (userInput.equals("3")) {
                     writer.close();
                     reader.close();
+                    socket.close();
                     break;
                 }
             }

@@ -397,6 +397,7 @@ public class Server implements ServerInterface {
                     socket.close();
                     writer.close();
                     reader.close();
+                    System.out.println("A client is disconnected");
                     break;
                 }
             }
