@@ -8,7 +8,7 @@ The server in Server.java needs to be run first so that the client can connect t
 
 First, the user clicks the Run button in Client.java. 
 
-Then the Main Menu will appear with 3 options
+After the user connects with the server, the Main Menu will appear with 3 options:
 
 1. Create an account
 2. Log in
