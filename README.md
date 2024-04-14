@@ -20,7 +20,9 @@ Write 1 to the program.
 
 Then the user is prompted to enter username, password, age, gender, nationality, job, and hobby.
 
-After the server check every information of the user is in the right format and the username is valid, the client will receive the message that the user create account successfully and they cannot edit their username later.
+The server will then check every information of the user is in the right format and the username is valid. After that, the client will receive the message if they create account successfully.
+
+If the user create account successfully, they cannot edit their username later.
 
 Then the program goes back to the main menu to let the user create account or log in or exit the app.
 
