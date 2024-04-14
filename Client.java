@@ -343,6 +343,8 @@ public class Client {
                 }
                 //Exit
                 if (userInput.equals("3")) {
+                    writer.close();
+                    reader.close();
                     break;
                 }
             }

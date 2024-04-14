@@ -386,6 +386,9 @@ public class Server implements ServerInterface{
                 }
                 //Exit the app
                 if (command.equals("3")) {
+                    socket.close();
+                    writer.close();
+                    reader.close();
                     break;
                 }
             }
