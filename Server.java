@@ -330,6 +330,12 @@ public class Server implements ServerInterface {
                                     writer.write("end");
                                     writer.println();
                                     writer.flush();
+                                    String ans1 = reader.readLine();
+                                    if (ans1.equals("1")) {
+
+                                    } else if (ans1.equals("2")) {
+
+                                    }
 
                                 }
                             }
