@@ -20,7 +20,7 @@ public class Client extends Thread implements Runnable {
 
         Scanner scanner = new Scanner(System.in);
         try {
-            Socket socket = new Socket("localhost", 5050);
+            Socket socket = new Socket("localhost", 4242);
             //After connect to the server
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());

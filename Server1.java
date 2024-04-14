@@ -61,6 +61,7 @@ class ClientHandler1 implements Runnable {
                 //Command 1 is create account
                 if (command.equals("1")) {
                     boolean result = true;
+                    //Get all information for server
                     String username = reader.readLine();
                     String password = reader.readLine();
                     String age = reader.readLine();
@@ -68,6 +69,7 @@ class ClientHandler1 implements Runnable {
                     String nationality = reader.readLine();
                     String job = reader.readLine();
                     String hobby = reader.readLine();
+                    //Check information
                     if (username.contains(" ") || username.contains(";")) {
                         result = false;
                     }
@@ -102,7 +104,7 @@ class ClientHandler1 implements Runnable {
                         result = true;
                     }
                     if (result) {
-                        writer.write("Create Account successfully. You have to log in again");
+                        writer.write("Create account successfully. You have to log in again.");
                         writer.println();
                         writer.flush();
                     } else {
@@ -122,29 +124,25 @@ class ClientHandler1 implements Runnable {
                         writer.flush();
                         while (true) {
                             String choice = reader.readLine();
+                            //Choice 1 is view their own profile
                             if (choice.equals("1")) {
+                                //Get the information that user want to view
                                 String viewChoice = reader.readLine();
                                 for (UserAccount userAccount : Server1.allUserAccount) {
                                     if (userAccount.getUserProfile().getUserName().equals(username)) {
                                         if (viewChoice.equals("1")) {
-                                            writer.write(userAccount.getUserProfile().getUserName());
-                                        }
-                                        if (viewChoice.equals("2")) {
-                                            writer.write(userAccount.getUserProfile().getPassword());
-                                        }
-                                        if (viewChoice.equals("3")) {
                                             writer.write(userAccount.getUserProfile().getAge());
                                         }
-                                        if (viewChoice.equals("4")) {
+                                        if (viewChoice.equals("2")) {
                                             writer.write(userAccount.getUserProfile().getGender());
                                         }
-                                        if (viewChoice.equals("5")) {
+                                        if (viewChoice.equals("3")) {
                                             writer.write(userAccount.getUserProfile().getNationality());
                                         }
-                                        if (viewChoice.equals("6")) {
+                                        if (viewChoice.equals("4")) {
                                             writer.write(userAccount.getUserProfile().getJob());
                                         }
-                                        if (viewChoice.equals("7")) {
+                                        if (viewChoice.equals("5")) {
                                             writer.write(userAccount.getUserProfile().getHobby());
                                         }
                                         writer.println();
@@ -172,11 +170,13 @@ class ClientHandler1 implements Runnable {
                                         if (editChoice.equals("2")) {
                                             try {
                                                 int editAge = Integer.parseInt(editInformation);
-                                                if (editAge > 0) {
+                                                if (editAge < 0) {
+                                                    writer.write("Can not edit your information");
                                                     userAccount.getUserProfile().setAge(editAge);
                                                     writer.write("Edit successfully");
                                                 } else {
-                                                    writer.write("Can not edit your information");
+                                                    userAccount.getUserProfile().setAge(editAge);
+                                                    writer.write("Edit successfully");
                                                 }
                                             } catch (Exception e) {
                                                 writer.write("Can not edit your information");
@@ -336,7 +336,6 @@ class ClientHandler1 implements Runnable {
                                 String word = reader.readLine();
                                 //username is the one who search other user
                                 ArrayList<String> findUserName = searchUser(username, word);
-                                System.out.println(findUserName.size());
                                 if (findUserName.size() == 0) {
                                     writer.write("Can not find any user");
                                     writer.println();
@@ -355,6 +354,7 @@ class ClientHandler1 implements Runnable {
                                     writer.write(allFindUser);
                                     writer.println();
                                     writer.flush();
+                                    //User want to view Profile of other user
                                     String userNameToViewProfile = reader.readLine();
                                     String viewOtherProfileChoice = reader.readLine();
                                     for (UserAccount userAccount : Server1.allUserAccount) {
@@ -380,6 +380,7 @@ class ClientHandler1 implements Runnable {
                                     }
                                 }
                             }
+                            //Log Out
                             if (choice.equals("9")) {
                                 break;
                             }
@@ -390,15 +391,18 @@ class ClientHandler1 implements Runnable {
                         writer.flush();
                     }
                 }
+                //Exit the app
+                if (command.equals("3")) {
+                    socket.close();
+                    writer.close();
+                    reader.close();
+                    break;
+                }
             }
-        } catch (IOException e) {
-            System.out.println("Error handling client: " + e.getMessage());
-        } finally {
-            try {
-                socket.close();
-            } catch (IOException e) {
-                System.out.println("Failed to close the socket: " + e.getMessage());
-            }
+        } catch (Exception e) {
+            System.out.println("A User is disconnect");
+            //e.printStackTrace();
+
         }
     }
 
