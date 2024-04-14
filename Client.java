@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -14,13 +13,13 @@ import java.util.Scanner;
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Client extends Thread implements Runnable {
+public class Client {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         try {
-            Socket socket = new Socket("localhost", 4243);
+            Socket socket = new Socket("localhost", 4242);
             //After connect to the server
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
