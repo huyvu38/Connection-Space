@@ -430,6 +430,8 @@ public class RunLocalTest {
                     Modifier.isPublic(modifiers));
             Assert.assertFalse("Ensure that `Database` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Database` extends `Object`!",
+                    Object.class, superclass);
             Assert.assertEquals("Ensure that `Database` implements interfaces!",
                     1, superinterfaces.length);
         }
