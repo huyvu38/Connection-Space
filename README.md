@@ -115,29 +115,11 @@ A class representing the server that allows client to connect, processing of dat
 Username Validation: Ensures usernames are unique and meet formatting standards.<br/>
 Password Checks: Verifies password length for security and matches passwords for login.<br/>
 Create account: Check if user enter unique username and every information in the profile meet formatting standards.<br/>
-Login Verification: Authenticates user logins by matching usernames and passwords with database records.
-
-### Method.java <br/>
-Contains boolean methods crucial to the function of the database system such as block user and add friend. Depends on Profile.java, future classes more integral to the database system will depend on this class.
-This class acts as a service, allowing action between users to create relationships within the database.
-#### Methods
-Add and remove friends using Profile objects
-<br/>
-Block and unblock users using Profile objects
-
-### Message.java <br/>
-
-Message.java is a versatile messaging framework allowing users to send, delete, and view message histories. It features a blocking mechanism where messages from blocked users are saved but hidden from the recipient, ensuring privacy. The framework supports group messaging, enabling a user to communicate with multiple friends simultaneously, provided they are in the user's friend list. Messages are timestamped and logged into a "Messages.txt" file through a buffered reader, offering a durable record of interactions.
-
-#### Methods
+Login Verification: Authenticates user logins by matching usernames and passwords with database records.<br/>
+Add/Delete/Block/Unblock User: Boolean method to check if the client can do that action. If the method returns true, store the update data to AllUserAccount.txt
 Message Operations: Send individual or group messages, with options to delete and review message history.<br/>
 Privacy Controls: Block specific users, hiding their messages from the recipient while still logging them.<br/>
-Group Messaging: Communicate with several friends at once, enhancing social interactions within the application.<br/>
 Persistent Logging: Use a buffered reader to timestamp and store messages, ensuring a reliable historical record.<br/>
-
-This streamlined framework is built to facilitate effective and private communication among users, balancing functionality with user control.
-<br/>
-
 
 ### AllUserAccount.txt <br/>
 The file that store profile, friendlist, blocklist of each user.
