@@ -351,21 +351,13 @@ public class RunLocalTest {
         @Before //                                                     I think its stored on github like the other .java files -gabe
         public void setUp() {
             try {
-                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
                 Files.createFile(Paths.get(TEST_FILE_PATH));
             } catch (Exception e) {
                 System.out.println("File path can't be created.");
             }
         }
 
-        @After
-        public void tearDown() {
-            try {
-                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
-            } catch (Exception e) {
-                System.out.println("File path can't be created.");
-            }
-        }
+
         @Test
         public void messageSuccessful() {
             try {
