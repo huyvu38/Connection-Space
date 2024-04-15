@@ -38,14 +38,16 @@ public class Client2 {
                 if (userInput.equals("1")) {
                     //Send username
                     System.out.println("Once you create an account, you can not change your username.");
-                    System.out.println("User name should be at least 4 characters and do not contain any spaces or semicolon.");
+                    System.out.println("User name should be at least 4 characters" +
+                            " and not contain any spaces or semicolon.");
                     System.out.println("Enter your username:");
                     String username = scanner.nextLine();
                     writer.write(username);
                     writer.println();
                     writer.flush();
                     //Send password
-                    System.out.println("Password should be at least 6 characters and do not contain any spaces or semicolon.");
+                    System.out.println("Password should be at least 6 characters " +
+                            "and do not contain any spaces or semicolon.");
                     System.out.println("Enter your password:");
                     String password = scanner.nextLine();
                     writer.write(password);
@@ -120,7 +122,8 @@ public class Client2 {
                             System.out.println("6. Unblock user");
                             System.out.println("7. Send message");
                             System.out.println("8. Search other user");
-                            System.out.println("9. Log out");
+                            System.out.println("9. View other user profile");
+                            System.out.println("10. Log out");
                             String choice = scanner.nextLine();
                             //Send choice to the server
                             writer.write(choice);
@@ -215,7 +218,6 @@ public class Client2 {
                                 writer.flush();
                                 String blockResult = reader.readLine();
                                 System.out.println(blockResult);
-
                             }
                             if (choice.equals("6")) {
                                 System.out.println("Enter the user that you want to unblock");
@@ -264,43 +266,39 @@ public class Client2 {
                                         writer.println();
                                         writer.flush();
                                         String result1 = reader.readLine();
-                                        System.out.println(Objects.requireNonNullElse(result1, "Message sent successfully"));
+                                        System.out.println(Objects.requireNonNullElse(result1,
+                                                "Message sent successfully"));
 
                                     } else if (ans == 3) {
-                                        String ans2;
-                                        do {
-                                            System.out.println("Who do you want to print the conversation with?");
-                                            String name = scanner.nextLine();
-                                            writer.write(name);
+                                        //String ans2;
+
+                                        System.out.println("Who do you want to print the conversation with?");
+                                        String name = scanner.nextLine();
+                                        writer.write(name);
+                                        writer.println();
+                                        writer.flush();
+
+                                        String sentMsg = reader.readLine();
+                                        while (!sentMsg.equals("end")) {
+                                            System.out.println(sentMsg); // Assuming that the response is a single line
+                                            sentMsg = reader.readLine();
+                                        }
+
+                                        System.out.println("Do you want to delete any message?");
+                                        System.out.println("1. Yes");
+                                        System.out.println("2. No");
+                                        String ans1 = scanner.nextLine();
+                                        writer.write(ans1);
+                                        writer.println();
+                                        writer.flush();
+                                        if (ans1.equals("1")) {
+                                            System.out.println("Please enter the conversationID");
+                                            String conversationID = scanner.nextLine();
+                                            writer.write(conversationID);
                                             writer.println();
                                             writer.flush();
-
-                                            String sentMsg = reader.readLine();
-                                            while (!sentMsg.equals("end")) {
-                                                System.out.println(sentMsg); // Assuming that the response is a single line
-                                                sentMsg = reader.readLine();
-                                            }
-
-                                            System.out.println("Do you want to delete any message?");
-                                            System.out.println("1. Yes");
-                                            System.out.println("2. No");
-                                            String ans1 = scanner.nextLine();
-                                            writer.write(ans1);
-                                            writer.println();
-                                            writer.flush();
-
-                                            if (!ans1.equals("1")) { // Only ask to keep printing if no deletion was requested
-                                                System.out.println("Keep printing message?");
-                                                System.out.println("1. Yes");
-                                                System.out.println("2. No");
-                                                ans2 = scanner.nextLine();
-                                            } else {
-                                                ans2 = "1"; // Assume user wants to continue if they chose to delete a message
-                                            }
-                                        } while (ans2.equals("1")); // Loop until the user chooses not to continue
-
-                                    } else {
-                                        System.out.println("Please enter a valid input");
+                                            System.out.println(reader.readLine());
+                                        }
                                     }
                                 } else {
                                     System.out.println("Please add friend first");
@@ -317,16 +315,17 @@ public class Client2 {
                                 //Get all the username that contain the word from the server
                                 String searchResult = reader.readLine();
                                 System.out.println(searchResult);
-                                //View other profile if the result have atleast 1 people
-                                if (searchResult.equals("Can not find any user") == false) {
-                                    System.out.println("Enter the user that you want to view their profile");
-                                    //The client only view user from the previous search result
-                                    String userNameToViewProfile = scanner.nextLine();
-                                    writer.write(userNameToViewProfile);
-                                    writer.println();
-                                    writer.flush();
-
-                                    System.out.println("Which information do you want to see");
+                            }
+                            if (choice.equals("9")) {
+                                System.out.println("Enter the user that you want to view their profile");
+                                //The client only view user from the previous search result
+                                String userNameToViewProfile = scanner.nextLine();
+                                writer.write(userNameToViewProfile);
+                                writer.println();
+                                writer.flush();
+                                String viewResult = reader.readLine();
+                                System.out.println(viewResult);
+                                if (viewResult.equals("Which information do you want to see?")) {
                                     System.out.println("1. Age");
                                     System.out.println("2. Gender");
                                     System.out.println("3. Nationality");
@@ -342,7 +341,7 @@ public class Client2 {
                                     System.out.println(viewOtherProfileResult);
                                 }
                             }
-                            if (choice.equals("9")) {
+                            if (choice.equals("10")) {
                                 break;
                             }
                         }
@@ -356,7 +355,7 @@ public class Client2 {
                     break;
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Can not connect to the server");
         }
     }
