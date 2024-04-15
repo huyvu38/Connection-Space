@@ -1,5 +1,3 @@
-//Gabes TODO list update interfaces as needed. Maintain testcases as needed.
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -26,7 +24,8 @@ import java.util.concurrent.Executors;
 public class Server implements ServerInterface {
     private static final int PORT = 5050;
     private Socket socket;
-    private static ExecutorService threadPool = Executors.newCachedThreadPool(); // Using thread pool for better performance
+    private static ExecutorService threadPool = Executors.newCachedThreadPool();
+    // Using thread pool for better performance
     public static Database database;
     public static ArrayList<UserAccount> allUserAccount;
 
@@ -471,7 +470,8 @@ public class Server implements ServerInterface {
         return false;
         //The method return false if user1 do not block user2
     }
-    public synchronized boolean createAccount(Database database, UserAccount userAccount, String username, String password) {
+    public synchronized boolean createAccount(Database database, UserAccount userAccount,
+                                              String username, String password) {
         if (checkUserNameFormat(username) && checkPasswordLength(password)) {
             ArrayList<UserAccount> temp = database.getAllUserAccount();
             temp.add(userAccount);
@@ -636,7 +636,8 @@ public class Server implements ServerInterface {
         return findUserName;
     }
 
-    public synchronized boolean sendMessage(String sendUserName, String receiverUserName, String content, boolean isBlocked) {
+    public synchronized boolean sendMessage(String sendUserName, String receiverUserName, 
+                                            String content, boolean isBlocked) {
         // Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
