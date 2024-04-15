@@ -50,15 +50,17 @@ If the user login successfully, the program will show the Option Menu with 9 opt
 
 7. Send message
 
-8. Search user then view other user profile
+8. Search user
 
-9. Log out
+9. View other user profile
+
+10. Log out
 
 If the user writes down 1 the program will prompt the user to enter the information that they want to view from their profile.
 
 If the user writes down 2 the program will prompt the user to enter the information that the user is allowed to edit and let the user enter the new information. The server will check if the new information is in the right format and send the edit result to the client.
 
-If the user writes down 3, 4, 5, 6, the program will prompt the user to enter the username of other account and send the result of the specifc action to the client.
+If the user writes down 3, 4, 5, 6, 9 the program will prompt the user to enter the username of other account and send the result of the specifc action to the client.
 
 If the user writes down 7, the program will allow user to choose 1 of these 3 options : 
 
@@ -69,9 +71,7 @@ Then the user can delete any messages that they want.
 
 If the user writes down 8, the program will prompt the user to enter the word for searching and the server will send back a list of username that contains the word to the user. 
 
-If the search result have at least 1 username, the user can write the specific username from the search list and the information that they want to view from other user. 
-
-If the user writes down 9, the program will exit from the Option Menu and goes to the Main Menu where user can create account or log in or exit the app.
+If the user writes down 10, the program will exit from the Option Menu and goes to the Main Menu where user can create account or log in or exit the app.
 
 Main Menu Option 3: User wants to exit the app
 
