@@ -268,36 +268,35 @@ public class Client {
 
                                     } else if (ans == 3) {
                                         String ans2;
-                                        do {
-                                            System.out.println("Who do you want to print the conversation with?");
-                                            String name = scanner.nextLine();
-                                            writer.write(name);
+
+                                        System.out.println("Who do you want to print the conversation with?");
+                                        String name = scanner.nextLine();
+                                        writer.write(name);
+                                        writer.println();
+                                        writer.flush();
+
+                                        String sentMsg = reader.readLine();
+                                        while (!sentMsg.equals("end")) {
+                                            System.out.println(sentMsg); // Assuming that the response is a single line
+                                            sentMsg = reader.readLine();
+                                        }
+
+                                        System.out.println("Do you want to delete any message?");
+                                        System.out.println("1. Yes");
+                                        System.out.println("2. No");
+                                        String ans1 = scanner.nextLine();
+                                        writer.write(ans1);
+                                        writer.println();
+                                        writer.flush();
+                                        if (ans1.equals("1")) {
+                                            System.out.println("Please enter the conversationID");
+                                            String conversationID = scanner.nextLine();
+                                            writer.write(conversationID);
                                             writer.println();
                                             writer.flush();
+                                            System.out.println(reader.readLine());
+                                        }
 
-                                            String sentMsg = reader.readLine();
-                                            while (!sentMsg.equals("end")) {
-                                                System.out.println(sentMsg); // Assuming that the response is a single line
-                                                sentMsg = reader.readLine();
-                                            }
-
-                                            System.out.println("Do you want to delete any message?");
-                                            System.out.println("1. Yes");
-                                            System.out.println("2. No");
-                                            String ans1 = scanner.nextLine();
-                                            writer.write(ans1);
-                                            writer.println();
-                                            writer.flush();
-
-                                            if (!ans1.equals("1")) { // Only ask to keep printing if no deletion was requested
-                                                System.out.println("Keep printing message?");
-                                                System.out.println("1. Yes");
-                                                System.out.println("2. No");
-                                                ans2 = scanner.nextLine();
-                                            } else {
-                                                ans2 = "1"; // Assume user wants to continue if they chose to delete a message
-                                            }
-                                        } while (ans2.equals("1")); // Loop until the user chooses not to continue
 
                                     } else {
                                         System.out.println("Please enter a valid input");

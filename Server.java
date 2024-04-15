@@ -338,6 +338,16 @@ public class Server implements ServerInterface {
                                     writer.flush();
                                     String ans1 = reader.readLine();
                                     if (ans1.equals("1")) {
+                                        if (deleteMessage(Integer.parseInt(reader.readLine()))) {
+                                            writer.write("Message delete successfully");
+                                            writer.println();
+                                            writer.flush();
+                                        } else {
+                                            writer.write("Message delete Failed");
+                                            writer.println();
+                                            writer.flush();
+                                        }
+
 
                                     } else if (ans1.equals("2")) {
 
@@ -345,6 +355,7 @@ public class Server implements ServerInterface {
 
                                 }
                             }
+
                             if (choice.equals("8")) {
                                 String word = reader.readLine();
                                 //username is the one who search other user
