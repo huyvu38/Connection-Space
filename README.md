@@ -60,7 +60,12 @@ If the user writes down 2 the program will prompt the user to enter the informat
 
 If the user writes down 3, 4, 5, 6, the program will prompt the user to enter the username of other account and send the result of the specifc action to the client.
 
-If the user writes down 7,
+If the user writes down 7, the program will allow user to choose 1 of these 3 options : 
+
+1. Send Message to specific user
+2. Send message only to friends
+3. Print history message
+Then the user can delete any messages that they want.
 
 If the user writes down 8, the program will prompt the user to enter the word for searching and the server will send back a list of username that contains the word to the user. 
 
@@ -139,6 +144,6 @@ Every information in the Profile of the user can not contain any spaces or semic
 ### Message.txt <br/>
 The file that store every message between each user.
 
-Format: [conversationID] [ConversationTime] [Sender-Message] [if message blocked]
+Format: [conversationID],[ConversationTime],[Sender username],[Receiver username],[if message blocked],[message content]
 
 
