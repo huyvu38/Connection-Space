@@ -15,8 +15,6 @@ public class Profile implements ProfileInterface {
     private String job;
     private String hobby;
 
-
-
     public Profile(String userName, String password, int age,
                     String gender, String nationality, String job, String hobby) {
         this.userName = userName;
