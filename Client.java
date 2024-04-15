@@ -359,7 +359,7 @@ public class Client {
                     break;
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Can not connect to the server");
         }
     }
