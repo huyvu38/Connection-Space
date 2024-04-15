@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import org.junit.Assert;
 import static org.junit.Assert.*;
 
 /**
@@ -74,8 +74,8 @@ public class RunLocalTest {
         }
     }  // end of main
 
-    @RunWith(Enclosed.class)
     public static class DeclarationTest {
+        @Test(timeout = 1000)
         public void ProfileDeclarationTest() {
             Class<?> clazz;
             int modifiers;
@@ -99,6 +99,7 @@ public class RunLocalTest {
             Assert.assertEquals("Ensure that `Profile` implements interfaces!",
                     1, superinterfaces.length);
         }
+        @Test(timeout = 1000)
 
         public void UserAccountDeclarationTest() {
             Class<?> clazz;
@@ -123,6 +124,7 @@ public class RunLocalTest {
             Assert.assertEquals("Ensure that `UserAccount` implements interfaces!",
                     1, superinterfaces.length);
         }
+        @Test(timeout = 1000)
 
         public void ServerDeclarationTest() {
             Class<?> clazz;
@@ -147,7 +149,7 @@ public class RunLocalTest {
             Assert.assertEquals("Ensure that `Server` implements interfaces!",
                     1, superinterfaces.length);
         }
-
+        @Test(timeout = 1000)
         public void DatabaseDeclarationTest() {
             Class<?> clazz;
             int modifiers;
@@ -277,83 +279,6 @@ public class RunLocalTest {
         }
 
     } // end of UserAccountTest
-
-    /*
-    @RunWith(JUnit4.class)
-    public static class MessageTest {
-        private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
-        private Message message;
-        public void MessageDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = .class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `Message` is `public`!",
-                    Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `Message` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `Message` implements interfaces!",
-                    1, superinterfaces.length);
-        }
-        @Before
-        public void setUp() {
-            message = new Message();
-            try {
-                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
-                Files.createFile(Paths.get(TEST_FILE_PATH));
-            } catch (Exception e) {
-                System.out.println("File path can't be created.");
-            }
-        }
-
-        @After
-        public void tearDown() {
-            try {
-                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
-            } catch (Exception e) {
-                System.out.println("File path can't be created.");
-            }
-        }
-
-        @Test
-        public void messageSuccessful() {
-            try {
-                message.sendMessage("sender", "receiver", "Test message", false);
-                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("File should contain the send message", lines.get(0).contains("Test message"));
-            } catch (Exception e) {
-                System.out.println("Message failed to send.");
-
-            }
-        }
-
-        @Test
-        public void RemovesMessage() {
-            try {
-                Files.write(Paths.get(TEST_FILE_PATH), "1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message".getBytes());
-                //Message.deleteMessage(1); this has an error
-                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("Deleted message should have status changed", lines.get(0).contains("0"));
-            } catch (Exception e) {
-                System.out.println("Message failed to delete.");
-            }
-        }
-    }// end of test case for messages
-
-    // Begin Server test
-    @RunWith(Enclosed.class)
-
-     */
-    //@RunWith(Enclosed.class)
     public static class ServerTest {
         public ServerTest() throws IOException {
         }
@@ -424,8 +349,53 @@ public class RunLocalTest {
             Server.allUserAccount = Server.database.getAllUserAccount();
             assertFalse(server.unblockUser("george23", "vu28"));
         }
+        private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
+        @Before
+        public void setUp() {
+            try {
+                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
+                Files.createFile(Paths.get(TEST_FILE_PATH));
+            } catch (Exception e) {
+                System.out.println("File path can't be created.");
+            }
+        }
 
+        @After
+        public void tearDown() {
+            try {
+                Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
+            } catch (Exception e) {
+                System.out.println("File path can't be created.");
+            }
+        }
+        /*
+        @Test
+        public void messageSuccessful() {
+            try {
+                message.sendMessage("sender", "receiver", "Test message", false);
+                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
+                assertTrue("File should contain the send message", lines.get(0).contains("Test message"));
+            } catch (Exception e) {
+                System.out.println("Message failed to send.");
 
+            }
+        }
+
+         */
+        /*
+        @Test
+        public void RemovesMessage() {
+            try {
+                Files.write(Paths.get(TEST_FILE_PATH), "1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message".getBytes());
+                //Message.deleteMessage(1); this has an error
+                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
+                assertTrue("Deleted message should have status changed", lines.get(0).contains("0"));
+            } catch (Exception e) {
+                System.out.println("Message failed to delete.");
+            }
+        }
+
+         */
     }
     /*
     public static class DatabaseTest {
