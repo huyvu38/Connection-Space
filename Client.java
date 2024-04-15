@@ -122,7 +122,8 @@ public class Client {
                             System.out.println("6. Unblock user");
                             System.out.println("7. Send message");
                             System.out.println("8. Search other user");
-                            System.out.println("9. Log out");
+                            System.out.println("9. View other user profile");
+                            System.out.println("10. Log out");
                             String choice = scanner.nextLine();
                             //Send choice to the server
                             writer.write(choice);
@@ -318,16 +319,17 @@ public class Client {
                                 //Get all the username that contain the word from the server
                                 String searchResult = reader.readLine();
                                 System.out.println(searchResult);
-                                //View other profile if the result have atleast 1 people
-                                if (searchResult.equals("Can not find any user") == false) {
-                                    System.out.println("Enter the user that you want to view their profile");
-                                    //The client only view user from the previous search result
-                                    String userNameToViewProfile = scanner.nextLine();
-                                    writer.write(userNameToViewProfile);
-                                    writer.println();
-                                    writer.flush();
-
-                                    System.out.println("Which information do you want to see");
+                            }
+                            if (choice.equals("9")) {
+                                System.out.println("Enter the user that you want to view their profile");
+                                //The client only view user from the previous search result
+                                String userNameToViewProfile = scanner.nextLine();
+                                writer.write(userNameToViewProfile);
+                                writer.println();
+                                writer.flush();
+                                String viewResult = reader.readLine();
+                                System.out.println(viewResult);
+                                if (viewResult.equals("Which information do you want to see?")) {
                                     System.out.println("1. Age");
                                     System.out.println("2. Gender");
                                     System.out.println("3. Nationality");
@@ -343,7 +345,7 @@ public class Client {
                                     System.out.println(viewOtherProfileResult);
                                 }
                             }
-                            if (choice.equals("9")) {
+                            if (choice.equals("10")) {
                                 break;
                             }
                         }

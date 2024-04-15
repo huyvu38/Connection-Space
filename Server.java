@@ -383,8 +383,20 @@ public class Server implements ServerInterface {
                                     writer.write(allFindUser);
                                     writer.println();
                                     writer.flush();
-                                    //User want to view Profile of other user
-                                    String userNameToViewProfile = reader.readLine();
+                                }
+                            }
+                            if (choice.equals("9")) {
+                                String userNameToViewProfile = reader.readLine();
+                                if (inBlockList(username, userNameToViewProfile) ||
+                                        inBlockList(userNameToViewProfile, username) ||
+                                        (usernameInDatabase(userNameToViewProfile) == false)) {
+                                    writer.write("Can not view profile");
+                                    writer.println();
+                                    writer.flush();
+                                } else {
+                                    writer.write("Which information do you want to see?");
+                                    writer.println();
+                                    writer.flush();
                                     String viewOtherProfileChoice = reader.readLine();
                                     for (UserAccount userAccount : allUserAccount) {
                                         if (userAccount.getUserProfile().getUserName().equals(userNameToViewProfile)) {
@@ -410,7 +422,7 @@ public class Server implements ServerInterface {
                                 }
                             }
                             //Log Out
-                            if (choice.equals("9")) {
+                            if (choice.equals("10")) {
                                 break;
                             }
                         }
