@@ -346,9 +346,9 @@ public class RunLocalTest {
             Server.allUserAccount = Server.database.getAllUserAccount();
             assertFalse(server.unblockUser("george23", "vu28"));
         }
-        /*
+
         private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
-        @Before
+        @Before //                                                     I think its stored on github like the other .java files -gabe
         public void setUp() {
             try {
                 Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
@@ -366,11 +366,10 @@ public class RunLocalTest {
                 System.out.println("File path can't be created.");
             }
         }
-        /*
         @Test
         public void messageSuccessful() {
             try {
-                message.sendMessage("sender", "receiver", "Test message", false);
+                server.sendMessage("sender", "receiver", "Test message", false);
                 List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
                 assertTrue("File should contain the send message", lines.get(0).contains("Test message"));
             } catch (Exception e) {
@@ -379,8 +378,6 @@ public class RunLocalTest {
             }
         }
 
-         */
-        /*
         @Test
         public void RemovesMessage() {
             try {
@@ -393,7 +390,7 @@ public class RunLocalTest {
             }
         }
 
-         */
+
     }
 
     public static class DatabaseTest {
