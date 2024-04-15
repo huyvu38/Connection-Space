@@ -352,12 +352,7 @@ public class Server implements ServerInterface {
                                             writer.println();
                                             writer.flush();
                                         }
-
-
-                                    } else if (ans1.equals("2")) {
-
                                     }
-
                                 }
                             }
 

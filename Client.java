@@ -270,7 +270,7 @@ public class Client {
                                                 "Message sent successfully"));
 
                                     } else if (ans == 3) {
-                                        String ans2;
+                                        //String ans2;
 
                                         System.out.println("Who do you want to print the conversation with?");
                                         String name = scanner.nextLine();
@@ -299,10 +299,6 @@ public class Client {
                                             writer.flush();
                                             System.out.println(reader.readLine());
                                         }
-
-
-                                    } else {
-                                        System.out.println("Please enter a valid input");
                                     }
                                 } else {
                                     System.out.println("Please add friend first");
