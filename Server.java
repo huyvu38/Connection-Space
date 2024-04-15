@@ -29,7 +29,7 @@ public class Server implements ServerInterface {
     public static Database database;
     public static ArrayList<UserAccount> allUserAccount;
 
-    public Server (Socket socket) {
+    public Server(Socket socket) {
         this.socket = socket;
     }
 
@@ -52,7 +52,7 @@ public class Server implements ServerInterface {
         }
     }
     //Start whenever a user connect
-    public void run () {
+    public void run() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
@@ -333,7 +333,7 @@ public class Server implements ServerInterface {
                                     String readMsg = printHistoryMessage(userName, name);
                                     String[] messageResult = readMsg.split("\n");
                                     //System.out.println(readMsg);
-                                    for (int i=0; i< messageResult.length; i++) {
+                                    for (int i = 0; i < messageResult.length; i++) {
                                         writer.write(messageResult[i]);
                                         writer.println();
                                         writer.flush();
@@ -499,13 +499,13 @@ public class Server implements ServerInterface {
         return false;
         //The method return false if user1 do not block user2
     }
-    public synchronized boolean createAccount(Database database, UserAccount userAccount,
+    public synchronized boolean createAccount(Database data, UserAccount userAccount,
                                               String username, String password) {
         if (checkUserNameFormat(username) && checkPasswordLength(password)) {
-            ArrayList<UserAccount> temp = database.getAllUserAccount();
+            ArrayList<UserAccount> temp = data.getAllUserAccount();
             temp.add(userAccount);
-            database.setAllUserAccount(temp);
-            database.saveAllUserAccount();
+            data.setAllUserAccount(temp);
+            data.saveAllUserAccount();
             return true;
         }
         return false;
@@ -621,7 +621,7 @@ public class Server implements ServerInterface {
                 }
             }
         }
-        return false;//if one of the username not valid or user2 not in block list of user1
+        return false; //if one of the username not valid or user2 not in block list of user1
     }
 
 
