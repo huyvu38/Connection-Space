@@ -1,5 +1,4 @@
 import org.junit.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -8,8 +7,6 @@ import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
 import org.junit.runners.JUnit4;
-import org.mockito.MockitoAnnotations;
-
 import java.io.*;
 import java.lang.reflect.Modifier;
 import java.net.Socket;
@@ -18,7 +15,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
@@ -51,38 +47,28 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        /*
-        Result result2 = JUnitCore.runClasses(RunLocalTest.LogInTest.class);
+
+        Result result2 = JUnitCore.runClasses(RunLocalTest.UserAccountTest.class);
         if (result2.wasSuccessful()) {
-            System.out.println("Excellent - Log in test ran successfully");
+            System.out.println("Excellent - User Account test ran successfully");
         } else {
             for (Failure failure : result2.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
-
-         */
-        Result result3 = JUnitCore.runClasses(RunLocalTest.UserAccountTest.class);
+        Result result3 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
         if (result3.wasSuccessful()) {
-            System.out.println("Excellent - User Account test ran successfully");
+            System.out.println("Excellent - Database test ran successfully");
         } else {
             for (Failure failure : result3.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
-        Result result4 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
+        Result result4 = JUnitCore.runClasses(RunLocalTest.FunctionServerTest.class);
         if (result4.wasSuccessful()) {
-            System.out.println("Excellent - Database test ran successfully");
+            System.out.println("Excellent - FunctionServer test ran successfully");
         } else {
             for (Failure failure : result4.getFailures()) {
-                System.out.println(failure.toString());
-            }
-        }
-        Result result44 = JUnitCore.runClasses(RunLocalTest.ServerTest.class);
-        if (result44.wasSuccessful()) {
-            System.out.println("Excellent - Server test ran successfully");
-        } else {
-            for (Failure failure : result44.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
@@ -306,7 +292,7 @@ public class RunLocalTest {
 
     // Begin Server test
     @RunWith(JUnit4.class)
-    public static class ServerTest {
+    public static class FunctionServerTest {
         private Profile profile1;
         private UserAccount userAccount1;
         private ArrayList<String> friendList1;
@@ -316,8 +302,48 @@ public class RunLocalTest {
         private UserAccount userAccount2;
         private ArrayList<String> friendList2;
         private ArrayList<String> blockList2;
-
+        private Profile profile3;
+        private UserAccount userAccount3;
+        private ArrayList<String> friendList3;
+        private ArrayList<String> blockList3;
         private ArrayList<UserAccount> allUserAccount = new ArrayList<>();
+        public void setUserAccountTest() {
+            profile1 = new Profile("vu28", "12345678", 18, "Male",
+                    "VietNam", "student", "football");
+            userAccount1 = new UserAccount(profile1);
+            friendList1 = new ArrayList<>();
+            blockList1 = new ArrayList<>();
+            friendList1.add("george23");
+            blockList1.add("george333");
+            userAccount1.setFriendList(friendList1);
+            userAccount1.setBlockList(blockList1);
+
+            profile2 = new Profile("george333", "123456789", 19, "Male",
+                    "China", "student", "food");
+            userAccount2 = new UserAccount(profile2);
+            friendList2 = new ArrayList<>();
+            blockList2 = new ArrayList<>();
+            friendList2.add("");
+            blockList2.add("");
+            userAccount2.setFriendList(friendList2);
+            userAccount2.setBlockList(blockList2);
+
+            profile3 = new Profile("george333", "123456789", 19, "Male",
+                    "China", "student", "food");
+            userAccount3 = new UserAccount(profile3);
+            friendList3 = new ArrayList<>();
+            blockList3 = new ArrayList<>();
+            friendList3.add("vu28");
+            blockList3.add("");
+            userAccount3.setFriendList(friendList3);
+            userAccount3.setBlockList(blockList3);
+            //vu28 12345678 18 Male VietNam student football;FriendList:[george23];BlockList:[george333]
+            //george333 123456789 19 Male China student food;FriendList:[];BlockList:[]
+            //george23 123456 20 Female Brazil doctor sing;FriendList:[vu28];BlockList:[]
+        }
+        public void logInAccount() {
+
+        }
 
         private Server server;
         private Socket mockSocket;
