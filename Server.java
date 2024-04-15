@@ -285,28 +285,30 @@ public class Server implements ServerInterface {
                                     //Send message to specific person
                                     String receiver = reader.readLine();
                                     String message = reader.readLine();
-                                    boolean isBlock = false;
-                                    for (UserAccount userAccount: allUserAccount) {
-                                        if (userAccount.getUserProfile().getUserName().equals(receiver)) {
-                                            isBlock = userAccount.getBlockList().contains(userName);
+                                    //Check if the receiver is a valid user
+                                    if (usernameInDatabase(receiver)) {
+                                        boolean isBlock = false;
+                                        for (UserAccount userAccount: allUserAccount) {
+                                            if (userAccount.getUserProfile().getUserName().equals(receiver)) {
+                                                isBlock = userAccount.getBlockList().contains(userName);
+                                            }
                                         }
-                                    }
-                                    //Check if the sender not block the receiver
-                                    for (UserAccount userAccount: allUserAccount) {
-                                        if (userAccount.getUserProfile().getUserName().equals(userName)) {
-                                            isBlock = userAccount.getBlockList().contains(receiver);
+                                        //Check if the sender not block the receiver
+                                        for (UserAccount userAccount: allUserAccount) {
+                                            if (userAccount.getUserProfile().getUserName().equals(userName)) {
+                                                isBlock = userAccount.getBlockList().contains(receiver);
+                                            }
                                         }
-                                    }
-                                    if (sendMessage(userName, receiver, message, isBlock)) {
-                                        writer.write("Message sent successfully");
-                                        writer.println();
-                                        writer.flush();
+                                        if (sendMessage(userName, receiver, message, isBlock)) {
+                                            writer.write("Message sent successfully");
+                                            writer.println();
+                                            writer.flush();
+                                        }
                                     } else {
                                         writer.write("Message sent failed");
                                         writer.println();
                                         writer.flush();
                                     }
-
                                 } else if (ans.equals("2")) {
                                     //Send message to friends
                                     String message = reader.readLine();

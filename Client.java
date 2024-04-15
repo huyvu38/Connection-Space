@@ -38,14 +38,16 @@ public class Client {
                 if (userInput.equals("1")) {
                     //Send username
                     System.out.println("Once you create an account, you can not change your username.");
-                    System.out.println("User name should be at least 4 characters and do not contain any spaces or semicolon.");
+                    System.out.println("User name should be at least 4 characters" +
+                            " and not contain any spaces or semicolon.");
                     System.out.println("Enter your username:");
                     String username = scanner.nextLine();
                     writer.write(username);
                     writer.println();
                     writer.flush();
                     //Send password
-                    System.out.println("Password should be at least 6 characters and do not contain any spaces or semicolon.");
+                    System.out.println("Password should be at least 6 characters " +
+                            "and do not contain any spaces or semicolon.");
                     System.out.println("Enter your password:");
                     String password = scanner.nextLine();
                     writer.write(password);
@@ -215,7 +217,6 @@ public class Client {
                                 writer.flush();
                                 String blockResult = reader.readLine();
                                 System.out.println(blockResult);
-
                             }
                             if (choice.equals("6")) {
                                 System.out.println("Enter the user that you want to unblock");
@@ -264,7 +265,8 @@ public class Client {
                                         writer.println();
                                         writer.flush();
                                         String result1 = reader.readLine();
-                                        System.out.println(Objects.requireNonNullElse(result1, "Message sent successfully"));
+                                        System.out.println(Objects.requireNonNullElse(result1,
+                                                "Message sent successfully"));
 
                                     } else if (ans == 3) {
                                         String ans2;
