@@ -53,7 +53,6 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        /*
         Result result4 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
         if (result4.wasSuccessful()) {
             System.out.println("Excellent - Database test ran successfully");
@@ -62,8 +61,6 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-
-         */
         Result result5 = JUnitCore.runClasses(RunLocalTest.ServerTest.class);
         if (result5.wasSuccessful()) {
             System.out.println("Excellent - FunctionServer test ran successfully");
