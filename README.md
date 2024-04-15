@@ -89,7 +89,6 @@ each profile object
 <br/>
 
 ### UserAccount.java <br/>
-Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependant on Profile.java. Getter and setter methods to modify and return account attributes such as blocked users and friends.
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependent on Profile.java. 
 Getter and setter methods to modify and return account attributes such as blocked users and friends.
 Extends the functionality of 'Profile' objects incorporating social networks.
