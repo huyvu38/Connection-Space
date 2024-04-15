@@ -17,8 +17,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 /**
  * Team Project
@@ -97,7 +97,7 @@ public class RunLocalTest {
 
             Assert.assertTrue("Ensure that `Profile` is `public`!",
                     Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `Profile` is NOT `abstract`!",
+            assertFalse("Ensure that `Profile` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
             Assert.assertEquals("Ensure that `Profile` extends `Object`!",
                     Object.class, superclass);
@@ -170,7 +170,7 @@ public class RunLocalTest {
 
             Assert.assertTrue("Ensure that `UserAccount` is `public`!",
                     Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `UserAccount` is NOT `abstract`!",
+            assertFalse("Ensure that `UserAccount` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
             Assert.assertEquals("Ensure that `UserAccount` extends `Object`!",
                     Object.class, superclass);
@@ -299,6 +299,7 @@ public class RunLocalTest {
     @RunWith(Enclosed.class)
 
      */
+    @RunWith(Enclosed.class)
     public static class ServerTest {
         public ServerTest() throws IOException {
         }
@@ -318,7 +319,7 @@ public class RunLocalTest {
 
             Assert.assertTrue("Ensure that `Server` is `public`!",
                     Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `Server` is NOT `abstract`!",
+            assertFalse("Ensure that `Server` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
             Assert.assertEquals("Ensure that `Server` extends `Object`!",
                     Object.class, superclass);
@@ -328,113 +329,39 @@ public class RunLocalTest {
 
         Socket socket = new Socket("example.com", 80);
         Server server = new Server(socket);
-
         @Test
-        public void logInAccount() {
+        public void createAccountTest() {
             Database database = new Database("AllUserAccount.txt");
             database.readAllUserAccount();
             ArrayList<UserAccount> allUserAccountTestCase = database.getAllUserAccount();
             Server.allUserAccount = allUserAccountTestCase;
+            UserAccount userAccount = new UserAccount(new Profile("abaldocc", "whatsup", 20, "Male",
+                    "Salvadorian", "Manager", "Soccer"));
+            assertTrue(server.createAccount(database, userAccount, "abaldocc", "whatsup"));
+        }
+        public void setAllUserAccount() {
+            Database database = new Database("AllUserAccount.txt");
+            database.readAllUserAccount();
+            ArrayList<UserAccount> allUserAccountTestCase = database.getAllUserAccount();
+            Server.allUserAccount = allUserAccountTestCase;
+        }
+
+        @Test
+        public void logInAccountTest() {
             assertTrue(server.loginAccount("vu28", "12345678"));
         }
-        /*
-        private Server server;
-        private Socket mockSocket;
-        private PrintWriter mockWriter;
-        private BufferedReader mockReader;
-        private ByteArrayOutputStream outContent;
-
-        @Before
-        public void setUp() throws Exception {
-            //dont't test anything to NetWork IO, server or client, just test the function like log in, add friend
-            // Can make an arraylist<User Account> to store few clients then check from that
-            //Maybe do not need to access to Server.allUserAccount
-
-
-            mockSocket = mock(Socket.class);
-            outContent = new ByteArrayOutputStream();
-            mockWriter = new PrintWriter(outContent, true);
-            mockReader = mock(BufferedReader.class);
-
-            MockitoAnnotations.initMocks(this);
-            when(mockSocket.getOutputStream()).thenReturn(outContent);
-            when(mockSocket.getInputStream()).thenReturn(new ByteArrayInputStream("".getBytes()));
-
-            server = new Server(mockSocket);
-            server.database = mock(Database.class);
-            server.allUserAccount = new ArrayList<>();
-
-
+        @Test
+        public void userNameInDataBaseTest() {
+            assertTrue(server.usernameInDatabase("vu28"));
         }
         @Test
-        public void testAddFriendSuccess() throws IOException {
-            String input = "2\nuser1\npassword\n5\nuser2\n";
-            when(mockReader.readLine()).thenReturn("2", "user1", "password", "5", "user2", null);
-            Server.allUserAccount.add(new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming")));
-            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
-
-            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-            when(mockSocket.getInputStream()).thenReturn(inContent);
-
-            server.run();
-
-            assertTrue("Output should confirm friend addition", outContent.toString().contains("Add friend successfully"));
+        public void inFriendListTest() {
+            assertTrue(server.inFriendList("vu28", "george23"));
         }
-
         @Test
-        public void testBlockUserSuccess() throws IOException {
-            String input = "2\nuser1\npassword\n7\nuser2\n";
-            when(mockReader.readLine()).thenReturn("2", "user1", "password", "7", "user2", null);
-            Server.allUserAccount.add(new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming")));
-            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
-
-            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-            when(mockSocket.getInputStream()).thenReturn(inContent);
-
-            server.run();
-
-            assertTrue("Output should confirm user blocking", outContent.toString().contains("Block successfully"));
+        public void inBlockListTest() {
+            assertFalse(server.inBlockList("Archie", "Yanxin171"));
         }
-
-        @Test
-        public void testUnblockUserSuccess() throws IOException {
-            String input = "2\nuser1\npassword\n8\nuser2\n";
-            when(mockReader.readLine()).thenReturn("2", "user1", "password", "8", "user2", null);
-            UserAccount user1 = new UserAccount(new Profile("user1", "password", 30, "Male", "USA", "Developer", "Gaming"));
-            user1.getBlockList().add("user2");
-            Server.allUserAccount.add(user1);
-            Server.allUserAccount.add(new UserAccount(new Profile("user2", "password2", 28, "Female", "Canada", "Designer", "Reading")));
-
-            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-            when(mockSocket.getInputStream()).thenReturn(inContent);
-
-            server.run();
-
-            assertTrue("Output should confirm user unblocking", outContent.toString().contains("Unblock successfully"));
-        }
-
-        @Test
-        public void testLoginAndManageCommands() throws IOException {
-            String input = "2\nusername\npassword\n11\n";
-            when(mockReader.readLine()).thenReturn("2", "username", "password", "11", null);
-            ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-            when(mockSocket.getInputStream()).thenReturn(inContent);
-
-            server.run();
-
-            assertTrue("Output should confirm successful login and subsequent logout", outContent.toString().contains("Log in successfully") && outContent.toString().contains("Logged out successfully"));
-        }
-
-        @After
-        public void tearDown() throws IOException {
-            mockSocket.close();
-        }
-    }
-
-    //-----------------------------------------------------------------------------------------------
-    //end server test
-    }
-         */
     }
     @RunWith(Enclosed.class)
     public static class DatabaseTest {
@@ -461,7 +388,7 @@ public class RunLocalTest {
 
             Assert.assertTrue("Ensure that `Database` is `public`!",
                     Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `Database` is NOT `abstract`!",
+            assertFalse("Ensure that `Database` is NOT `abstract`!",
                     Modifier.isAbstract(modifiers));
             Assert.assertEquals("Ensure that `Database` extends `Object`!",
                     Object.class, superclass);
