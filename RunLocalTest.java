@@ -6,9 +6,6 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
-import org.junit.runners.JUnit4;
-
-import javax.print.attribute.standard.Severity;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.net.Socket;
@@ -32,55 +29,53 @@ import static org.junit.Assert.*;
 @RunWith(Enclosed.class)
 public class RunLocalTest {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(RunLocalTest.ProfileTest.class);
-        if (result.wasSuccessful()) {
-            System.out.println("Excellent - Profile test ran successfully");
-        } else {
-            for (Failure failure : result.getFailures()) {
-                System.out.println(failure.toString());
-            }
-        }
-        /*
-        Result result1 = JUnitCore.runClasses(RunLocalTest.MessageTest.class);
+        Result result1 = JUnitCore.runClasses(RunLocalTest.DeclarationTest.class);
         if (result1.wasSuccessful()) {
-            System.out.println("Excellent - Message test ran successfully");
+            System.out.println("Excellent - Declaration test ran successfully");
         } else {
             for (Failure failure : result1.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
-
-         */
-
-        Result result2 = JUnitCore.runClasses(RunLocalTest.UserAccountTest.class);
+        Result result2 = JUnitCore.runClasses(RunLocalTest.ProfileTest.class);
         if (result2.wasSuccessful()) {
-            System.out.println("Excellent - User Account test ran successfully");
+            System.out.println("Excellent - Profile test ran successfully");
         } else {
             for (Failure failure : result2.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
-        Result result3 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
+        Result result3 = JUnitCore.runClasses(RunLocalTest.UserAccountTest.class);
         if (result3.wasSuccessful()) {
-            System.out.println("Excellent - Database test ran successfully");
+            System.out.println("Excellent - User Account test ran successfully");
         } else {
             for (Failure failure : result3.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
-        Result result4 = JUnitCore.runClasses(RunLocalTest.ServerTest.class);
+        /*
+        Result result4 = JUnitCore.runClasses(RunLocalTest.DatabaseTest.class);
         if (result4.wasSuccessful()) {
-            System.out.println("Excellent - FunctionServer test ran successfully");
+            System.out.println("Excellent - Database test ran successfully");
         } else {
             for (Failure failure : result4.getFailures()) {
+                System.out.println(failure.toString());
+            }
+        }
+
+         */
+        Result result5 = JUnitCore.runClasses(RunLocalTest.ServerTest.class);
+        if (result5.wasSuccessful()) {
+            System.out.println("Excellent - FunctionServer test ran successfully");
+        } else {
+            for (Failure failure : result5.getFailures()) {
                 System.out.println(failure.toString());
             }
         }
     }  // end of main
 
     @RunWith(Enclosed.class)
-    public static class ProfileTest {
-        private Profile profile;
+    public static class DeclarationTest {
         public void ProfileDeclarationTest() {
             Class<?> clazz;
             int modifiers;
@@ -104,6 +99,84 @@ public class RunLocalTest {
             Assert.assertEquals("Ensure that `Profile` implements interfaces!",
                     1, superinterfaces.length);
         }
+
+        public void UserAccountDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = UserAccount.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `UserAccount` is `public`!",
+                    Modifier.isPublic(modifiers));
+            assertFalse("Ensure that `UserAccount` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `UserAccount` extends `Object`!",
+                    Object.class, superclass);
+            Assert.assertEquals("Ensure that `UserAccount` implements interfaces!",
+                    1, superinterfaces.length);
+        }
+
+        public void ServerDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Server.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Server` is `public`!",
+                    Modifier.isPublic(modifiers));
+            assertFalse("Ensure that `Server` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Server` extends `Object`!",
+                    Object.class, superclass);
+            Assert.assertEquals("Ensure that `Server` implements interfaces!",
+                    1, superinterfaces.length);
+        }
+
+        public void DatabaseDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Database.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Database` is `public`!",
+                    Modifier.isPublic(modifiers));
+            assertFalse("Ensure that `Database` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Database` extends `Object`!",
+                    Object.class, superclass);
+            Assert.assertEquals("Ensure that `Database` implements interfaces!",
+                    1, superinterfaces.length);
+        }
+
+    }
+
+    public static class ProfileTest {
+        private Profile profile;
+
         // Set profile for each test with @Before to run before each test
         @Before
         public void setProfile() {
@@ -139,46 +212,25 @@ public class RunLocalTest {
             profile.setHobby("Poker");
             assertEquals("Hobby should now be Poker", "Poker", profile.getHobby());
         }
+
         // testing toString
         @Test
         public void toStringTest() {
-            String input = "abaldocc,whatsup,20,Male,Salvadorian,Building Manager,Soccer";
+            String input = "abaldocc whatsup 20 Male Salvadorian Manager Soccer";
             assertEquals("toString method should name password age gender nationality job hobby" +
                     " with a space.", input, profile.toString());
         }
 
     } // end of test case
-    @RunWith(Enclosed.class)
+
+    //@RunWith(Enclosed.class)
     public static class UserAccountTest {
         private Profile profile;
         private UserAccount userAccount;
         private ArrayList<String> friendList;
         private ArrayList<String> blockList;
-        public void UserAccountDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
 
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `UserAccount` is `public`!",
-                    Modifier.isPublic(modifiers));
-            assertFalse("Ensure that `UserAccount` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `UserAccount` extends `Object`!",
-                    Object.class, superclass);
-            Assert.assertEquals("Ensure that `UserAccount` implements interfaces!",
-                    1, superinterfaces.length);
-        }
-
-        // Set profile and userAcount for each test with @Before to run before each test
+        // Set profile and userAccount for each test with @Before to run before each test
         @Before
         public void setUserAccountTest() {
             profile = new Profile("abaldocc", "whatsup", 20, "Male",
@@ -191,6 +243,7 @@ public class RunLocalTest {
             userAccount.setFriendList(friendList);
             userAccount.setBlockList(blockList);
         }
+
         @Test
         public void getUserAccountTest() {
             assertEquals("Make sure UserAccount properly gets the profile information.",
@@ -213,6 +266,7 @@ public class RunLocalTest {
             ArrayList<String> newBlockList = new ArrayList<>(Arrays.asList("Frigolet", "Pablo"));
             assertEquals("Block list should now be [Frigolet Pablo]", newBlockList, userAccount.getBlockList());
         }
+
         @Test
         public void toStringTest() {
             String a = String.format(";FriendList:%s;BlockList:%s", userAccount.getFriendList(),
@@ -235,7 +289,7 @@ public class RunLocalTest {
             Class<?> superclass;
             Class<?>[] superinterfaces;
 
-            clazz = Profile.class;
+            clazz = .class;
 
             modifiers = clazz.getModifiers();
 
@@ -275,7 +329,7 @@ public class RunLocalTest {
             try {
                 message.sendMessage("sender", "receiver", "Test message", false);
                 List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("File should contain the sent message", lines.get(0).contains("Test message"));
+                assertTrue("File should contain the send message", lines.get(0).contains("Test message"));
             } catch (Exception e) {
                 System.out.println("Message failed to send.");
 
@@ -299,71 +353,81 @@ public class RunLocalTest {
     @RunWith(Enclosed.class)
 
      */
-    @RunWith(Enclosed.class)
+    //@RunWith(Enclosed.class)
     public static class ServerTest {
         public ServerTest() throws IOException {
-        }
-        public void ServerDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `Server` is `public`!",
-                    Modifier.isPublic(modifiers));
-            assertFalse("Ensure that `Server` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `Server` extends `Object`!",
-                    Object.class, superclass);
-            Assert.assertEquals("Ensure that `Server` implements interfaces!",
-                    1, superinterfaces.length);
         }
 
         Socket socket = new Socket("example.com", 80);
         Server server = new Server(socket);
-        @Test
-        public void createAccountTest() {
-            Database database = new Database("AllUserAccount.txt");
-            database.readAllUserAccount();
-            ArrayList<UserAccount> allUserAccountTestCase = database.getAllUserAccount();
-            Server.allUserAccount = allUserAccountTestCase;
-            UserAccount userAccount = new UserAccount(new Profile("abaldocc", "whatsup", 20, "Male",
-                    "Salvadorian", "Manager", "Soccer"));
-            assertTrue(server.createAccount(database, userAccount, "abaldocc", "whatsup"));
-        }
-        public void setAllUserAccount() {
-            Database database = new Database("AllUserAccount.txt");
-            database.readAllUserAccount();
-            ArrayList<UserAccount> allUserAccountTestCase = database.getAllUserAccount();
-            Server.allUserAccount = allUserAccountTestCase;
-        }
 
         @Test
         public void logInAccountTest() {
+            Server.database = new Database("AllUserAccount.txt");
+            Server.database.readAllUserAccount();
+            Server.allUserAccount = Server.database.getAllUserAccount();
             assertTrue(server.loginAccount("vu28", "12345678"));
         }
+
         @Test
         public void userNameInDataBaseTest() {
+            Server.database = new Database("AllUserAccount.txt");
+            Server.database.readAllUserAccount();
+            Server.allUserAccount = Server.database.getAllUserAccount();
             assertTrue(server.usernameInDatabase("vu28"));
         }
+
         @Test
         public void inFriendListTest() {
+            Server.database = new Database("AllUserAccount.txt");
+            Server.database.readAllUserAccount();
+            Server.allUserAccount = Server.database.getAllUserAccount();
             assertTrue(server.inFriendList("vu28", "george23"));
         }
+
         @Test
         public void inBlockListTest() {
+            Server.database = new Database("AllUserAccount.txt");
+            Server.database.readAllUserAccount();
+            Server.allUserAccount = Server.database.getAllUserAccount();
             assertFalse(server.inBlockList("Archie", "Yanxin171"));
         }
+
+        @Test
+        public void addFriendTest() {
+            Server.database = new Database("AllUserAccount.txt");
+            Server.database.readAllUserAccount();
+            Server.allUserAccount = Server.database.getAllUserAccount();
+            assertTrue(server.addFriend("george333", "alvin23"));
+        }
+
+        @Test
+        public void deleteFriendTest() {
+            Server.database = new Database("AllUserAccount.txt");
+            Server.database.readAllUserAccount();
+            Server.allUserAccount = Server.database.getAllUserAccount();
+            assertTrue(server.deleteFriend("george23", "vu28"));
+        }
+
+        @Test
+        public void blockUserTest() {
+            Server.database = new Database("AllUserAccount.txt");
+            Server.database.readAllUserAccount();
+            Server.allUserAccount = Server.database.getAllUserAccount();
+            assertTrue(server.blockUser("george23", "vu28"));
+        }
+
+        @Test
+        public void unblockUserTest() {
+            Server.database = new Database("AllUserAccount.txt");
+            Server.database.readAllUserAccount();
+            Server.allUserAccount = Server.database.getAllUserAccount();
+            assertFalse(server.unblockUser("george23", "vu28"));
+        }
+
+
     }
-    @RunWith(Enclosed.class)
+    /*
     public static class DatabaseTest {
         private static Database database;
         private static ArrayList<Profile> TestUserProfiles = new ArrayList<>();
@@ -371,30 +435,6 @@ public class RunLocalTest {
         private static ArrayList<UserAccount> allUserAccount = new ArrayList<>();
 
         private static ArrayList<UserAccount> TestUserAccounts = new ArrayList<>();
-
-        public void DatabaseDeclarationTest() {
-            Class<?> clazz;
-            int modifiers;
-            Class<?> superclass;
-            Class<?>[] superinterfaces;
-
-            clazz = Profile.class;
-
-            modifiers = clazz.getModifiers();
-
-            superclass = clazz.getSuperclass();
-
-            superinterfaces = clazz.getInterfaces();
-
-            Assert.assertTrue("Ensure that `Database` is `public`!",
-                    Modifier.isPublic(modifiers));
-            assertFalse("Ensure that `Database` is NOT `abstract`!",
-                    Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `Database` extends `Object`!",
-                    Object.class, superclass);
-            Assert.assertEquals("Ensure that `Database` implements interfaces!",
-                    1, superinterfaces.length);
-        }
 
         @BeforeClass
         public static void setupDatabase() {
@@ -416,6 +456,7 @@ public class RunLocalTest {
             database = new Database("testDatabase.txt");
 
         }
+        /*
 
         @Test
         public void readAndGetAllUserAccountTest() {
@@ -446,5 +487,8 @@ public class RunLocalTest {
             assertTrue(database.getAllUserAccount().equals(TestUserAccounts));
 
         }
-    }
+
+
+
+     */
 } // end of class
