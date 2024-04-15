@@ -7,7 +7,9 @@ import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
 import org.junit.runners.JUnit4;
-import java.io.*;
+
+import javax.print.attribute.standard.Severity;
+import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.net.Socket;
 import java.nio.file.Files;
@@ -17,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
 
 /**
  * Team Project
@@ -39,6 +40,7 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
+        /*
         Result result1 = JUnitCore.runClasses(RunLocalTest.MessageTest.class);
         if (result1.wasSuccessful()) {
             System.out.println("Excellent - Message test ran successfully");
@@ -47,6 +49,8 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
+
+         */
 
         Result result2 = JUnitCore.runClasses(RunLocalTest.UserAccountTest.class);
         if (result2.wasSuccessful()) {
@@ -64,7 +68,7 @@ public class RunLocalTest {
                 System.out.println(failure.toString());
             }
         }
-        Result result4 = JUnitCore.runClasses(RunLocalTest.FunctionServerTest.class);
+        Result result4 = JUnitCore.runClasses(RunLocalTest.ServerTest.class);
         if (result4.wasSuccessful()) {
             System.out.println("Excellent - FunctionServer test ran successfully");
         } else {
@@ -104,7 +108,7 @@ public class RunLocalTest {
         @Before
         public void setProfile() {
             profile = new Profile("abaldocc", "whatsup", 20, "Male",
-                    "Salvadorian", "Building Manager", "Soccer");
+                    "Salvadorian", "Manager", "Soccer");
         } // end of setProfile
 
         /*Testing of constructors and getters*/
@@ -144,6 +148,7 @@ public class RunLocalTest {
         }
 
     } // end of test case
+    @RunWith(Enclosed.class)
     public static class UserAccountTest {
         private Profile profile;
         private UserAccount userAccount;
@@ -219,6 +224,7 @@ public class RunLocalTest {
 
     } // end of UserAccountTest
 
+    /*
     @RunWith(JUnit4.class)
     public static class MessageTest {
         private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
@@ -244,7 +250,6 @@ public class RunLocalTest {
             Assert.assertEquals("Ensure that `Message` implements interfaces!",
                     1, superinterfaces.length);
         }
-
         @Before
         public void setUp() {
             message = new Message();
@@ -291,60 +296,48 @@ public class RunLocalTest {
     }// end of test case for messages
 
     // Begin Server test
-    @RunWith(JUnit4.class)
-    public static class FunctionServerTest {
-        private Profile profile1;
-        private UserAccount userAccount1;
-        private ArrayList<String> friendList1;
-        private ArrayList<String> blockList1;
+    @RunWith(Enclosed.class)
 
-        private Profile profile2;
-        private UserAccount userAccount2;
-        private ArrayList<String> friendList2;
-        private ArrayList<String> blockList2;
-        private Profile profile3;
-        private UserAccount userAccount3;
-        private ArrayList<String> friendList3;
-        private ArrayList<String> blockList3;
-        private ArrayList<UserAccount> allUserAccount = new ArrayList<>();
-        public void setUserAccountTest() {
-            profile1 = new Profile("vu28", "12345678", 18, "Male",
-                    "VietNam", "student", "football");
-            userAccount1 = new UserAccount(profile1);
-            friendList1 = new ArrayList<>();
-            blockList1 = new ArrayList<>();
-            friendList1.add("george23");
-            blockList1.add("george333");
-            userAccount1.setFriendList(friendList1);
-            userAccount1.setBlockList(blockList1);
-
-            profile2 = new Profile("george333", "123456789", 19, "Male",
-                    "China", "student", "food");
-            userAccount2 = new UserAccount(profile2);
-            friendList2 = new ArrayList<>();
-            blockList2 = new ArrayList<>();
-            friendList2.add("");
-            blockList2.add("");
-            userAccount2.setFriendList(friendList2);
-            userAccount2.setBlockList(blockList2);
-
-            profile3 = new Profile("george333", "123456789", 19, "Male",
-                    "China", "student", "food");
-            userAccount3 = new UserAccount(profile3);
-            friendList3 = new ArrayList<>();
-            blockList3 = new ArrayList<>();
-            friendList3.add("vu28");
-            blockList3.add("");
-            userAccount3.setFriendList(friendList3);
-            userAccount3.setBlockList(blockList3);
-            //vu28 12345678 18 Male VietNam student football;FriendList:[george23];BlockList:[george333]
-            //george333 123456789 19 Male China student food;FriendList:[];BlockList:[]
-            //george23 123456 20 Female Brazil doctor sing;FriendList:[vu28];BlockList:[]
+     */
+    public static class ServerTest {
+        public ServerTest() throws IOException {
         }
+        public void ServerDeclarationTest() {
+            Class<?> clazz;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Profile.class;
+
+            modifiers = clazz.getModifiers();
+
+            superclass = clazz.getSuperclass();
+
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `Server` is `public`!",
+                    Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `Server` is NOT `abstract`!",
+                    Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `Server` extends `Object`!",
+                    Object.class, superclass);
+            Assert.assertEquals("Ensure that `Server` implements interfaces!",
+                    1, superinterfaces.length);
+        }
+
+        Socket socket = new Socket("example.com", 80);
+        Server server = new Server(socket);
+
+        @Test
         public void logInAccount() {
-
+            Database database = new Database("AllUserAccount.txt");
+            database.readAllUserAccount();
+            ArrayList<UserAccount> allUserAccountTestCase = database.getAllUserAccount();
+            Server.allUserAccount = allUserAccountTestCase;
+            assertTrue(server.loginAccount("vu28", "12345678"));
         }
-
+        /*
         private Server server;
         private Socket mockSocket;
         private PrintWriter mockWriter;
@@ -357,7 +350,7 @@ public class RunLocalTest {
             // Can make an arraylist<User Account> to store few clients then check from that
             //Maybe do not need to access to Server.allUserAccount
 
-            /*
+
             mockSocket = mock(Socket.class);
             outContent = new ByteArrayOutputStream();
             mockWriter = new PrintWriter(outContent, true);
@@ -371,9 +364,8 @@ public class RunLocalTest {
             server.database = mock(Database.class);
             server.allUserAccount = new ArrayList<>();
 
-             */
-        }
 
+        }
         @Test
         public void testAddFriendSuccess() throws IOException {
             String input = "2\nuser1\npassword\n5\nuser2\n";
@@ -441,8 +433,10 @@ public class RunLocalTest {
 
     //-----------------------------------------------------------------------------------------------
     //end server test
-
-
+    }
+         */
+    }
+    @RunWith(Enclosed.class)
     public static class DatabaseTest {
         private static Database database;
         private static ArrayList<Profile> TestUserProfiles = new ArrayList<>();
@@ -450,6 +444,7 @@ public class RunLocalTest {
         private static ArrayList<UserAccount> allUserAccount = new ArrayList<>();
 
         private static ArrayList<UserAccount> TestUserAccounts = new ArrayList<>();
+
         public void DatabaseDeclarationTest() {
             Class<?> clazz;
             int modifiers;
@@ -473,22 +468,23 @@ public class RunLocalTest {
             Assert.assertEquals("Ensure that `Database` implements interfaces!",
                     1, superinterfaces.length);
         }
+
         @BeforeClass
         public static void setupDatabase() {
 
-            allUserAccount.add(new UserAccount(new Profile ("vu28" , "12345678", 18,  "Male",  "VietNam",  "student",  "football")));
-            allUserAccount.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
-            allUserAccount.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
+            allUserAccount.add(new UserAccount(new Profile("vu28", "12345678", 18, "Male", "VietNam", "student", "football")));
+            allUserAccount.add(new UserAccount(new Profile("george23", "123456", 20, "Female", "Brazil", "doctor", "sing")));
+            allUserAccount.add(new UserAccount(new Profile("alvin23", "123uyr", 33, "Female", "China", "teacher", "sing")));
 
 
-            TestUserAccounts.add(new UserAccount(new Profile ("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing")));
-            TestUserAccounts.add(new UserAccount(new Profile ("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf")));
-            TestUserAccounts.add(new UserAccount(new Profile ("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing")));
+            TestUserAccounts.add(new UserAccount(new Profile("george23", "123456", 20, "Female", "Brazil", "doctor", "sing")));
+            TestUserAccounts.add(new UserAccount(new Profile("joh3", "634", 48, "Male", "US", "Retired", "golf")));
+            TestUserAccounts.add(new UserAccount(new Profile("alvin23", "123uyr", 33, "Female", "China", "teacher", "sing")));
 
 
-            TestUserProfiles.add(new Profile("george23" , "123456", 20,  "Female",  "Brazil",  "doctor",  "sing"));
-            TestUserProfiles.add(new Profile("joh3" , "634", 48,  "Male",  "US",  "Retired",  "golf"));
-            TestUserProfiles.add(new Profile("alvin23" , "123uyr", 33,  "Female",  "China",  "teacher",  "sing"));
+            TestUserProfiles.add(new Profile("george23", "123456", 20, "Female", "Brazil", "doctor", "sing"));
+            TestUserProfiles.add(new Profile("joh3", "634", 48, "Male", "US", "Retired", "golf"));
+            TestUserProfiles.add(new Profile("alvin23", "123uyr", 33, "Female", "China", "teacher", "sing"));
 
             database = new Database("testDatabase.txt");
 
@@ -510,7 +506,7 @@ public class RunLocalTest {
             boolean save1 = database.saveAllUserAccount();
             assertTrue(save1);
         }
-        /*
+
         @Test
         public void setAllUserProfileTest() {
             //database.setAllUserAccount(TestUserProfiles); <-- PROBLEM: setAllUsrAcc gets <profile> wants <account>
@@ -523,8 +519,5 @@ public class RunLocalTest {
             assertTrue(database.getAllUserAccount().equals(TestUserAccounts));
 
         }
-
-         */
     }
-
 } // end of class
