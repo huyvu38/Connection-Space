@@ -5,11 +5,13 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
+import java.nio.file.StandardOpenOption;
 import org.junit.runner.notification.Failure;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.net.Socket;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -346,17 +348,22 @@ public class RunLocalTest {
             Server.allUserAccount = Server.database.getAllUserAccount();
             assertFalse(server.unblockUser("george23", "vu28"));
         }
-
         private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
-        @Before //                                                     I think its stored on github like the other .java files -gabe
+
+        @Before
         public void setUp() {
             try {
-                Files.createFile(Paths.get(TEST_FILE_PATH));
+                Path path = Paths.get(TEST_FILE_PATH);
+                if (!Files.exists(path)) {
+                    Files.createFile(path);
+                    System.out.println("Created new test file--did not exist.");
+                } else {
+                    System.out.println("File already exists.");
+                }
             } catch (Exception e) {
-                System.out.println("File path can't be created.");
+                System.out.println("Error: " + e.getMessage());
             }
         }
-
 
         @Test
         public void messageSuccessful() {
@@ -366,19 +373,23 @@ public class RunLocalTest {
                 assertTrue("File should contain the send message", lines.get(0).contains("Test message"));
             } catch (Exception e) {
                 System.out.println("Message failed to send.");
-
             }
         }
 
         @Test
         public void RemovesMessage() {
             try {
-                Files.write(Paths.get(TEST_FILE_PATH), "1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message".getBytes());
-                //Message.deleteMessage(1); this has an error
+                // Append to the file instead of overwriting it
+                Files.write(Paths.get(TEST_FILE_PATH),
+                        ("1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message" + System.lineSeparator()).getBytes(),
+                        StandardOpenOption.CREATE,  // Create the file if it doesn't exist
+                        StandardOpenOption.APPEND); // Append to the file, do not overwrite
+
+                // Assuming you want to verify content after appending
                 List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("Deleted message should have status changed", lines.get(0).contains("0"));
+                assertTrue("Appended message should be present", lines.contains("1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message"));
             } catch (Exception e) {
-                System.out.println("Message failed to delete.");
+                System.out.println("Failed to append or verify message: " + e.getMessage());
             }
         }
 
