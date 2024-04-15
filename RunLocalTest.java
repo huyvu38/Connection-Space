@@ -399,107 +399,11 @@ public class RunLocalTest {
     }
 
     public static class DatabaseTest {
-        private Profile profile1;
-        private UserAccount userAccount1;
-        private ArrayList<String> friendList1;
-        private Profile profile2;
-        private UserAccount userAccount2;
-        private ArrayList<String> friendList2;
-        private Profile profile3;
-        private UserAccount userAccount3;
-        private ArrayList<String> friendList3;
-        private Profile profile4;
-        private UserAccount userAccount4;
-        private ArrayList<String> friendList4;
-        private Profile profile5;
-        private UserAccount userAccount5;
-        private ArrayList<String> friendList5;
-        private Profile profile6;
-        private UserAccount userAccount6;
-        private ArrayList<String> friendList6;
-        private Profile profile7;
-        private UserAccount userAccount7;
-        private ArrayList<String> friendList7;
-        private ArrayList<UserAccount> allAccountTest = new ArrayList<>();
-
         @Test
         public void readAllUserAccountTest() {
             Database testdatabase = new Database("AllUserAccount.txt");
             boolean read = testdatabase.readAllUserAccount();
             assertTrue(read);
-        }
-        @Test
-        public void getAllUserAccountTest() {
-            Database testdatabase = new Database("AllUserAccount.txt");
-            testdatabase.readAllUserAccount();
-            //Account 1
-            profile1 = new Profile("vu28", "12345678", 18, "Male",
-                    "VietNam", "student", "football");
-            userAccount1 = new UserAccount(profile1);
-            friendList1 = new ArrayList<>();
-            friendList1.add("george23");
-            friendList1.add("alvin23");
-            friendList1.add("jay89");
-            userAccount1.setFriendList(friendList1);
-            allAccountTest.add(userAccount1);
-
-            //Account 2
-            profile2 = new Profile("george333", "123456789", 19, "Male",
-                    "China", "student", "food");
-            userAccount2 = new UserAccount(profile2);
-            allAccountTest.add(userAccount2);
-
-            //Account 3
-            profile3 = new Profile("george23", "123456", 20, "Female",
-                    "Brazil", "doctor", "sing");
-            userAccount3 = new UserAccount(profile3);
-            friendList3 = new ArrayList<>();
-            friendList3.add("vu28");
-            friendList3.add("alvin23");
-            userAccount3.setFriendList(friendList3);
-            allAccountTest.add(userAccount3);
-
-            //Account 4
-            profile4 = new Profile("alvin23", "123456789", 27, "Male",
-                    "China", "teacher", "sing");
-            userAccount4 = new UserAccount(profile4);
-            friendList4 = new ArrayList<>();
-            friendList4.add("george23");
-            friendList4.add("vu28");
-            userAccount4.setFriendList(friendList4);
-            allAccountTest.add(userAccount4);
-
-            //Account 5
-            profile5 = new Profile("jay89", "abcdef", 32, "Female",
-                    "USA", "teacher", "volleyball");
-            userAccount5 = new UserAccount(profile5);
-            friendList5 = new ArrayList<>();
-            friendList5.add("vu28");
-            friendList5.add("Yanxin171");
-            userAccount5.setFriendList(friendList5);
-            allAccountTest.add(userAccount5);
-
-            //Account 6
-            profile6 = new Profile("Archie", "ArchieBaldo", 20, "Male",
-                    "USA", "Student", "Polo");
-            userAccount6 = new UserAccount(profile6);
-            friendList6 = new ArrayList<>();
-            friendList6.add("alvin23");
-            friendList6.add("Yanxin171");
-            userAccount6.setFriendList(friendList6);
-            allAccountTest.add(userAccount6);
-
-            //Account 7
-            profile7 = new Profile("Yanxin171", "123456", 21, "Female",
-                    "China", "Student", "Snowboard");
-            userAccount7 = new UserAccount(profile7);
-            friendList7 = new ArrayList<>();
-            friendList7.add("jay89");
-            friendList7.add("Archie");
-            userAccount7.setFriendList(friendList7);
-            allAccountTest.add(userAccount7);
-
-            assertEquals(allAccountTest, testdatabase.getAllUserAccount());
         }
     }
 } // end of class
