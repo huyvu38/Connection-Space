@@ -6,3 +6,4 @@ alvin23 123456789 27 Male China teacher sing;FriendList:[george23 vu28];BlockLis
 jay89 abcdef 32 Female USA teacher volleyball;FriendList:[vu28 Yanxin171];BlockList:[]
 Archie ArchieBaldo 20 Male USA Student Polo;FriendList:[alvin23 Yanxin171];BlockList:[]
 Yanxin171 123456 21 Female China Student Snowboard;FriendList:[jay89 Archie];BlockList:[]
+testuser testPW 19 Male American Student Skiing;FriendList:[];BlockList:[]
