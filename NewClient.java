@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -29,29 +30,51 @@ public class NewClient extends JComponent implements Runnable {
         SwingUtilities.invokeLater(new NewClient());
     }
 
-    //JFrame and JButton
-    //Main menu
-
-
-    //Create account
+    //JFrame and JButton for main menu
+    JFrame mainMenuFrame;
     JButton createAccountButton;
+    JButton loginButton;
+    JButton exitAppButton;
 
+    //JFrame and JButton for create account
 
-    //Log in
+    //JFrame and JButton for Log in
 
+    //JFrame and JButton after log in successfully
 
-    //After log in successfully
+    //JFrame and JButton in the frame of actions (Add, delete, block, remove, search?)
 
-
-    //Buttons in the frame of actions (Add, delete, block, remove, search?)
-
-
-    //Buttons for the message frame
+    //JFrame and JButton for the message frame
 
 
     //All of the frames in run()
     public void run() {
+        //First frame is the main menu after the client connect to the server
+        {
+            mainMenuFrame = new JFrame();
+            //frame.setTitle("Message");
+            Container content = mainMenuFrame.getContentPane();
+            content.setLayout(new BorderLayout());
+            mainMenuFrame.setSize(600, 400);
+            mainMenuFrame.setLocationRelativeTo(null);
+            mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            mainMenuFrame.setVisible(true);
 
+            loginButton = new JButton("Login");
+            createAccountButton = new JButton("Create account");
+            exitAppButton = new JButton("Exit the app");
+
+            JPanel mainMenuPanel = new JPanel();
+            mainMenuPanel.add(loginButton);
+            mainMenuPanel.add(createAccountButton);
+            mainMenuPanel.add(exitAppButton);
+
+            createAccountButton.addActionListener(actionListener);
+            loginButton.addActionListener(actionListener);
+            exitAppButton.add(exitAppButton);
+
+            content.add(mainMenuPanel, BorderLayout.CENTER);
+        }
     }
 
     ActionListener actionListener = new ActionListener() {
