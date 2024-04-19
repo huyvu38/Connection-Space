@@ -80,11 +80,32 @@ public class NewClient extends JComponent implements Runnable {
             content.add(exitAppButton);
 
         }
+        //Frame for create account
+        {
+
+        }
+        //Frame for log in account
+        {
+
+        }
+        //Frame after log in successfully
+        {
+
+        }
+        //Frame for specific actions
+        {
+
+        }
+        //Frame for the messages
+        {
+
+        }
     }
 
     ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             try {
+                //Buttons in main menu frame
                 if (e.getSource() == createAccountButton) {
                 }
                 if (e.getSource() == loginButton) {
@@ -93,6 +114,11 @@ public class NewClient extends JComponent implements Runnable {
                     //close
                     mainMenuFrame.dispose();
                 }
+                //Buttons in create account frame
+                //Buttons in log in frame
+                //Buttons after log in successfully
+                //Buttons for specific action
+                //Buttons for message
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
