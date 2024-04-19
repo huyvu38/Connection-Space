@@ -53,27 +53,32 @@ public class NewClient extends JComponent implements Runnable {
         {
             mainMenuFrame = new JFrame("Main Menu");
             Container content = mainMenuFrame.getContentPane();
-            content.setLayout(new BorderLayout());
-
+            content.setLayout(null);
             mainMenuFrame.setSize(600, 400);
             mainMenuFrame.setLocationRelativeTo(null);
             mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             mainMenuFrame.setVisible(true);
 
             loginButton = new JButton("Login");
+            loginButton.setBounds(210, 50, 160, 70);
             createAccountButton = new JButton("Create account");
+            createAccountButton.setBounds(210, 140, 160,70);
             exitAppButton = new JButton("Exit the app");
+            exitAppButton.setBounds(210,230,160,70);
 
-            JPanel mainMenuPanel = new JPanel();
-            mainMenuPanel.add(createAccountButton);
-            mainMenuPanel.add(loginButton);
-            mainMenuPanel.add(exitAppButton);
+            //JPanel mainMenuPanel = new JPanel();
+            //mainMenuPanel.add(createAccountButton);
+            //mainMenuPanel.add(loginButton);
+            //mainMenuPanel.add(exitAppButton);
 
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
             exitAppButton.addActionListener(actionListener);
 
-            content.add(mainMenuPanel, BorderLayout.CENTER);
+            content.add(loginButton);
+            content.add(createAccountButton);
+            content.add(exitAppButton);
+
         }
     }
 
