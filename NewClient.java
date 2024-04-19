@@ -51,10 +51,10 @@ public class NewClient extends JComponent implements Runnable {
     public void run() {
         //First frame is the main menu after the client connect to the server
         {
-            mainMenuFrame = new JFrame();
-            //frame.setTitle("Message");
+            mainMenuFrame = new JFrame("Main Menu");
             Container content = mainMenuFrame.getContentPane();
             content.setLayout(new BorderLayout());
+
             mainMenuFrame.setSize(600, 400);
             mainMenuFrame.setLocationRelativeTo(null);
             mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,13 +65,13 @@ public class NewClient extends JComponent implements Runnable {
             exitAppButton = new JButton("Exit the app");
 
             JPanel mainMenuPanel = new JPanel();
-            mainMenuPanel.add(loginButton);
             mainMenuPanel.add(createAccountButton);
+            mainMenuPanel.add(loginButton);
             mainMenuPanel.add(exitAppButton);
 
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
-            exitAppButton.add(exitAppButton);
+            exitAppButton.addActionListener(actionListener);
 
             content.add(mainMenuPanel, BorderLayout.CENTER);
         }
@@ -81,6 +81,12 @@ public class NewClient extends JComponent implements Runnable {
         public void actionPerformed(ActionEvent e) {
             try {
                 if (e.getSource() == createAccountButton) {
+                }
+                if (e.getSource() == loginButton) {
+                }
+                if (e.getSource() == exitAppButton) {
+                    //close
+                    mainMenuFrame.dispose();
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
