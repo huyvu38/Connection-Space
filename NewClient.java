@@ -38,10 +38,10 @@ public class NewClient extends JComponent implements Runnable {
 
     //JFrame and JButton for create account
     JFrame createAccountFrame;
-    JLabel usernameLabel;
-    JTextField usernameText;
-    JLabel passwordLabel;
-    JTextField passwordText;
+    JLabel usernameLabel1;
+    JTextField usernameText1;
+    JLabel passwordLabel1;
+    JTextField passwordText1;
     JLabel ageLabel;
     JTextField ageText;
     JLabel genderLabel;
@@ -53,12 +53,17 @@ public class NewClient extends JComponent implements Runnable {
     JLabel hobbyLabel;
     JTextField hobbyText;
 
-    JButton enterButton;
+    JButton enterButton1;
 
     //JButton returnButton; //return to the main menu
 
     //JFrame and JButton for Log in
     JFrame loginFrame;
+    JLabel usernameLabel2;
+    JTextField usernameText2;
+    JLabel passwordLabel2;
+    JTextField passwordText2;
+    JButton enterButton2;
 
     //JFrame and JButton after log in successfully
 
@@ -106,15 +111,15 @@ public class NewClient extends JComponent implements Runnable {
             //Only set visible = true after client click the create account button
             createAccountFrame.setVisible(false);
 
-            usernameText = new JTextField(10);
-            usernameText.setBounds(300, 33, 120, 25);
-            usernameLabel = new JLabel("Username");
-            usernameLabel.setBounds(180, 33, 120, 25);
+            usernameText1 = new JTextField(10);
+            usernameText1.setBounds(300, 33, 120, 25);
+            usernameLabel1 = new JLabel("Username");
+            usernameLabel1.setBounds(180, 33, 120, 25);
 
-            passwordText = new JTextField(10);
-            passwordText.setBounds(300, 66, 120, 25);
-            passwordLabel = new JLabel("Password");
-            passwordLabel.setBounds(180, 66, 120, 25);
+            passwordText1 = new JTextField(10);
+            passwordText1.setBounds(300, 66, 120, 25);
+            passwordLabel1 = new JLabel("Password");
+            passwordLabel1.setBounds(180, 66, 120, 25);
 
             ageText = new JTextField(10);
             ageText.setBounds(300, 99, 120, 25);
@@ -144,18 +149,18 @@ public class NewClient extends JComponent implements Runnable {
             hobbyLabel = new JLabel("Hobby");
             hobbyLabel.setBounds(180, 231, 120, 25);
 
-            enterButton = new JButton("Enter");
-            enterButton.setBounds(240, 270, 140, 30);
-            enterButton.addActionListener(actionListener);
+            enterButton1 = new JButton("Enter");
+            enterButton1.setBounds(240, 270, 140, 30);
+            enterButton1.addActionListener(actionListener);
 
             //returnButton = new JButton("Return");
             //returnButton.setBounds(240, 320, 140, 30);
             //returnButton.addActionListener(actionListener);
 
-            content.add(usernameText);
-            content.add(usernameLabel);
-            content.add(passwordText);
-            content.add(passwordLabel);
+            content.add(usernameText1);
+            content.add(usernameLabel1);
+            content.add(passwordText1);
+            content.add(passwordLabel1);
             content.add(ageText);
             content.add(ageLabel);
             content.add(genderType);
@@ -166,7 +171,7 @@ public class NewClient extends JComponent implements Runnable {
             content.add(jobLabel);
             content.add(hobbyText);
             content.add(hobbyLabel);
-            content.add(enterButton);
+            content.add(enterButton1);
             //content.add(returnButton);
 
         }
@@ -180,6 +185,21 @@ public class NewClient extends JComponent implements Runnable {
             loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //Only set visible = true after client click the log in button
             loginFrame.setVisible(false);
+            usernameText2 = new JTextField(10);
+            usernameText2.setBounds(300, 33, 120, 25);
+            usernameLabel2 = new JLabel("Username");
+            usernameLabel2.setBounds(180, 33, 120, 25);
+
+            passwordText2 = new JTextField(10);
+            passwordText2.setBounds(300, 66, 120, 25);
+            passwordLabel2 = new JLabel("Password");
+            passwordLabel2.setBounds(180, 66, 120, 25);
+
+            content.add(usernameText2);
+            content.add(usernameLabel2);
+            content.add(passwordText2);
+            content.add(passwordLabel2);
+
         }
         //Frame after log in successfully
         {
@@ -220,9 +240,9 @@ public class NewClient extends JComponent implements Runnable {
                     mainMenuFrame.dispose();
                 }
                 //Buttons in create account frame
-                if (e.getSource() == enterButton) {
-                    writer.println(usernameText.getText());
-                    writer.println(passwordText.getText());
+                if (e.getSource() == enterButton1) {
+                    writer.println(usernameText1.getText());
+                    writer.println(passwordText1.getText());
                     writer.println(ageText.getText());
                     writer.println(genderType.getSelectedItem());
                     writer.println(nationalityText.getText());
@@ -247,6 +267,23 @@ public class NewClient extends JComponent implements Runnable {
 
                  */
                 //Buttons in log in frame
+                if (e.getSource() == enterButton2) {
+                    writer.println(usernameText2.getText());
+                    writer.println(passwordText2.getText());
+                    writer.flush();
+                    String loginResult = reader.readLine();
+                    if (loginResult.equals("Log in successfully")) {
+                        JOptionPane.showMessageDialog(null, loginResult, "Log in", JOptionPane.INFORMATION_MESSAGE);
+                        //Go to another frame after log in
+                        loginFrame.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(null, loginResult, "Log in", JOptionPane.ERROR_MESSAGE);
+                        //return to the main menu frame
+                        loginFrame.setVisible(false);
+                        mainMenuFrame.setVisible(true);
+                    }
+                }
+
                 //Buttons after log in successfully
                 //Buttons for specific action
                 //Buttons for message
