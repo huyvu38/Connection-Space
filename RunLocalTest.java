@@ -188,7 +188,7 @@ public class RunLocalTest {
         /*Testing of constructors and getters*/
         @Test
         public void profileTestGettersAndConstructor() {
-            assertEquals("Username should be abaldocc", "abaldocc", profile.getUserName());
+            assertEquals("Username should be abaldocc", "abaldocc", profile.getUsername());
             assertEquals("Password should be whatsup", "whatsup", profile.getPassword());
             assertEquals("Age should be 20", 20, profile.getAge());
             assertEquals("Gender should be Male", "Male", profile.getGender());
