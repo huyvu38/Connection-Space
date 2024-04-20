@@ -266,6 +266,42 @@ public class Server implements ServerInterface {
                                     writer.println();
                                     writer.flush();
                                 }
+                                if (choice.equals("View other user profile")) {
+                                    String userNameToViewProfile = reader.readLine();
+                                    if (inBlockList(username, userNameToViewProfile) ||
+                                            inBlockList(userNameToViewProfile, username) ||
+                                            (usernameInDatabase(userNameToViewProfile) == false)) {
+                                        writer.write("Can not view profile");
+                                        writer.println();
+                                        writer.flush();
+                                    } else {
+                                        writer.write("Which information do you want to see?");
+                                        writer.println();
+                                        writer.flush();
+                                        String viewOtherProfileChoice = reader.readLine();
+                                        for (UserAccount userAccount : allUserAccount) {
+                                            if (userAccount.getUserProfile().getUsername().equals(userNameToViewProfile)) {
+                                                if (viewOtherProfileChoice.equals("1")) {
+                                                    writer.write(userAccount.getUserProfile().getAge());
+                                                }
+                                                if (viewOtherProfileChoice.equals("2")) {
+                                                    writer.write(userAccount.getUserProfile().getGender());
+                                                }
+                                                if (viewOtherProfileChoice.equals("3")) {
+                                                    writer.write(userAccount.getUserProfile().getNationality());
+                                                }
+                                                if (viewOtherProfileChoice.equals("4")) {
+                                                    writer.write(userAccount.getUserProfile().getJob());
+                                                }
+                                                if (viewOtherProfileChoice.equals("5")) {
+                                                    writer.write(userAccount.getUserProfile().getHobby());
+                                                }
+                                                writer.println();
+                                                writer.flush();
+                                            }
+                                        }
+                                    }
+                                }
                             }
                             if (choice.equals("Send Message")) {
                                 String messageOption = reader.readLine();
@@ -335,42 +371,6 @@ public class Server implements ServerInterface {
                                     writer.write(allFindUser);
                                     writer.println();
                                     writer.flush();
-                                }
-                            }
-                            if (choice.equals("View other user profile")) {
-                                String userNameToViewProfile = reader.readLine();
-                                if (inBlockList(username, userNameToViewProfile) ||
-                                        inBlockList(userNameToViewProfile, username) ||
-                                        (usernameInDatabase(userNameToViewProfile) == false)) {
-                                    writer.write("Can not view profile");
-                                    writer.println();
-                                    writer.flush();
-                                } else {
-                                    writer.write("Which information do you want to see?");
-                                    writer.println();
-                                    writer.flush();
-                                    String viewOtherProfileChoice = reader.readLine();
-                                    for (UserAccount userAccount : allUserAccount) {
-                                        if (userAccount.getUserProfile().getUsername().equals(userNameToViewProfile)) {
-                                            if (viewOtherProfileChoice.equals("1")) {
-                                                writer.write(userAccount.getUserProfile().getAge());
-                                            }
-                                            if (viewOtherProfileChoice.equals("2")) {
-                                                writer.write(userAccount.getUserProfile().getGender());
-                                            }
-                                            if (viewOtherProfileChoice.equals("3")) {
-                                                writer.write(userAccount.getUserProfile().getNationality());
-                                            }
-                                            if (viewOtherProfileChoice.equals("4")) {
-                                                writer.write(userAccount.getUserProfile().getJob());
-                                            }
-                                            if (viewOtherProfileChoice.equals("5")) {
-                                                writer.write(userAccount.getUserProfile().getHobby());
-                                            }
-                                            writer.println();
-                                            writer.flush();
-                                        }
-                                    }
                                 }
                             }
                             //Message

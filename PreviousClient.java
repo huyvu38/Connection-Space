@@ -121,7 +121,6 @@ public class PreviousClient {
                             System.out.println("Action"); //Include add, delete, block, unblock
                             System.out.println("Send message");
                             System.out.println("Search other user");
-                            System.out.println("View other user profile");
                             System.out.println("Log out");
                             String choice = scanner.nextLine();
                             //Send choice to the server
@@ -204,6 +203,7 @@ public class PreviousClient {
                                 System.out.println("Delete friend");
                                 System.out.println("Block user");
                                 System.out.println("Unblock user");
+                                System.out.println("View other user profile");
                                 String specificAction = scanner.nextLine();
                                 writer.write(specificAction);
                                 writer.println();
@@ -238,6 +238,32 @@ public class PreviousClient {
                                     String unblockResult = reader.readLine();
                                     System.out.println(unblockResult);
                                 }
+                                if (specificAction.equals("View other user profile")) {
+                                    System.out.println("Enter the user that you want to view their profile");
+                                    //The client only view user from the previous search result
+                                    String userNameToViewProfile = scanner.nextLine();
+                                    writer.write(userNameToViewProfile);
+                                    writer.println();
+                                    writer.flush();
+                                    String viewResult = reader.readLine();
+                                    System.out.println(viewResult);
+                                    if (viewResult.equals("Which information do you want to see?")) {
+                                        System.out.println("1. Age");
+                                        System.out.println("2. Gender");
+                                        System.out.println("3. Nationality");
+                                        System.out.println("4. Job");
+                                        System.out.println("5. Hobby");
+
+                                        String viewOtherProfileChoice = scanner.nextLine();
+                                        writer.write(viewOtherProfileChoice);
+                                        writer.println();
+                                        writer.flush();
+
+                                        String viewOtherProfileResult = reader.readLine();
+                                        System.out.println(viewOtherProfileResult);
+                                    }
+                                }
+
                             }
                             if (choice.equals("Send message")) {
                                 writer.write(username);
@@ -325,31 +351,6 @@ public class PreviousClient {
                                 //Get all the username that contain the word from the server
                                 String searchResult = reader.readLine();
                                 System.out.println(searchResult);
-                            }
-                            if (choice.equals("View other user profile")) {
-                                System.out.println("Enter the user that you want to view their profile");
-                                //The client only view user from the previous search result
-                                String userNameToViewProfile = scanner.nextLine();
-                                writer.write(userNameToViewProfile);
-                                writer.println();
-                                writer.flush();
-                                String viewResult = reader.readLine();
-                                System.out.println(viewResult);
-                                if (viewResult.equals("Which information do you want to see?")) {
-                                    System.out.println("1. Age");
-                                    System.out.println("2. Gender");
-                                    System.out.println("3. Nationality");
-                                    System.out.println("4. Job");
-                                    System.out.println("5. Hobby");
-
-                                    String viewOtherProfileChoice = scanner.nextLine();
-                                    writer.write(viewOtherProfileChoice);
-                                    writer.println();
-                                    writer.flush();
-
-                                    String viewOtherProfileResult = reader.readLine();
-                                    System.out.println(viewOtherProfileResult);
-                                }
                             }
                             if (choice.equals("Log out")) {
                                 break;
