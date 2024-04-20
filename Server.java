@@ -126,7 +126,6 @@ public class Server implements ServerInterface {
                         writer.flush();
                         while (true) {
                             String choice = reader.readLine();
-                            //Choice 1 is view their own profile
                             if (choice.equals("View your profile")) {
                                 //Get the information that user want to view
                                 String viewChoice = reader.readLine();
