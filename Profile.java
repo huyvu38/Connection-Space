@@ -66,7 +66,6 @@ public class Profile implements ProfileInterface {
     public String getJob() {
         return job;
     }
-
     public void setJob(String job) {
         this.job = job;
     }
@@ -84,4 +83,4 @@ public class Profile implements ProfileInterface {
         return this.username + " " + this.password + " " + this.age + " " + this.gender
                 + " " + this.nationality + " " + this.job + " " + this.hobby;
     }
-}
+//
