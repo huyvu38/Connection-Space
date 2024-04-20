@@ -248,11 +248,11 @@ public class PreviousClient {
                                     String viewResult = reader.readLine();
                                     System.out.println(viewResult);
                                     if (viewResult.equals("Which information do you want to see?")) {
-                                        System.out.println("1. Age");
-                                        System.out.println("2. Gender");
-                                        System.out.println("3. Nationality");
-                                        System.out.println("4. Job");
-                                        System.out.println("5. Hobby");
+                                        System.out.println("Age");
+                                        System.out.println("Gender");
+                                        System.out.println("Nationality");
+                                        System.out.println("Job");
+                                        System.out.println("Hobby");
 
                                         String viewOtherProfileChoice = scanner.nextLine();
                                         writer.write(viewOtherProfileChoice);

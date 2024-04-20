@@ -266,7 +266,7 @@ public class Server implements ServerInterface {
                                     writer.println();
                                     writer.flush();
                                 }
-                                if (choice.equals("View other user profile")) {
+                                if (specificAction.equals("View other user profile")) {
                                     String userNameToViewProfile = reader.readLine();
                                     if (inBlockList(username, userNameToViewProfile) ||
                                             inBlockList(userNameToViewProfile, username) ||
@@ -281,19 +281,19 @@ public class Server implements ServerInterface {
                                         String viewOtherProfileChoice = reader.readLine();
                                         for (UserAccount userAccount : allUserAccount) {
                                             if (userAccount.getUserProfile().getUsername().equals(userNameToViewProfile)) {
-                                                if (viewOtherProfileChoice.equals("1")) {
+                                                if (viewOtherProfileChoice.equals("Age")) {
                                                     writer.write(userAccount.getUserProfile().getAge());
                                                 }
-                                                if (viewOtherProfileChoice.equals("2")) {
+                                                if (viewOtherProfileChoice.equals("Gender")) {
                                                     writer.write(userAccount.getUserProfile().getGender());
                                                 }
-                                                if (viewOtherProfileChoice.equals("3")) {
+                                                if (viewOtherProfileChoice.equals("Nationality")) {
                                                     writer.write(userAccount.getUserProfile().getNationality());
                                                 }
-                                                if (viewOtherProfileChoice.equals("4")) {
+                                                if (viewOtherProfileChoice.equals("Job")) {
                                                     writer.write(userAccount.getUserProfile().getJob());
                                                 }
-                                                if (viewOtherProfileChoice.equals("5")) {
+                                                if (viewOtherProfileChoice.equals("Hobby")) {
                                                     writer.write(userAccount.getUserProfile().getHobby());
                                                 }
                                                 writer.println();
@@ -387,7 +387,7 @@ public class Server implements ServerInterface {
                     }
                 }
                 //Exit the app
-                if (command.equals("3")) {
+                if (command.equals("Exit the app")) {
                     socket.close();
                     writer.close();
                     reader.close();
