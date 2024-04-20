@@ -418,6 +418,51 @@ public class Server implements ServerInterface {
                                     }
                                 }
                             }
+                            //Message
+                            if (choice.equals("Send Message")) {
+                                String messageOption = reader.readLine();
+                                if (messageOption.equals("Send Message to specific user")) {
+                                    boolean continueSending = true;
+                                    while (continueSending) {
+                                        String receiver = reader.readLine();
+                                        printHistoryMessage(username, receiver);
+                                        boolean isBlocked = false;
+                                        for (UserAccount userAccount : allUserAccount) {
+                                            if (userAccount.getUserProfile().getUsername().equals(receiver)) {
+                                                isBlocked = userAccount.getBlockList().contains(username);
+                                            }
+                                        }
+                                        String content = reader.readLine();
+                                        sendMessage(username, receiver, content, isBlocked);
+                                        printHistoryMessage(username, receiver);
+//                                        if (receivedCancelMessageFromClient) {
+//                                            continueSending = false;
+//                                        }
+                                    }
+                                } else if (messageOption.equals("Send Message to all friends")) {
+                                    boolean continueSending = true;
+                                    while (continueSending) {
+                                        ArrayList<String> friendList = null;
+
+                                        for (UserAccount userAccount: allUserAccount) {
+                                            if (userAccount.g)
+                                        }
+                                        printHistoryMessage(username, receiver);
+                                        boolean isBlocked = false;
+                                        for (UserAccount userAccount : allUserAccount) {
+                                            if (userAccount.getUserProfile().getUsername().equals(receiver)) {
+                                                isBlocked = userAccount.getBlockList().contains(username);
+                                            }
+                                        }
+                                        String content = reader.readLine();
+                                        sendMessage(username, receiver, content, isBlocked);
+                                        printHistoryMessage(username, receiver);
+//                                        if (receivedCancelMessageFromClient) {
+//                                            continueSending = false;
+//                                        }
+                                    }
+                                }
+                            }
                             //Log Out
                             if (choice.equals("Log out")) {
                                 break;
