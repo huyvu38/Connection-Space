@@ -81,4 +81,4 @@ public class Database implements DatabaseInterface {
     public synchronized void setAllUserAccount(ArrayList<UserAccount> allUserAccount) {
         this.allUserAccount = allUserAccount;
     }
-}
+//
