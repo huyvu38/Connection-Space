@@ -129,7 +129,7 @@ public class Server implements ServerInterface {
                                 //Get the information that user want to view
                                 String viewChoice = reader.readLine();
                                 for (UserAccount userAccount : allUserAccount) {
-                                    if (userAccount.getUserProfile().getUserName().equals(username)) {
+                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
                                         if (viewChoice.equals("1")) {
                                             writer.write(userAccount.getUserProfile().getAge());
                                         }
@@ -154,7 +154,7 @@ public class Server implements ServerInterface {
                                 String editChoice = reader.readLine();
                                 String editInformation = reader.readLine();
                                 for (UserAccount userAccount : allUserAccount) {
-                                    if (userAccount.getUserProfile().getUserName().equals(username)) {
+                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
                                         if (editChoice.equals("1")) {
                                             if (editInformation.contains(" ") || editInformation.contains(";")) {
                                                 writer.write("Can not edit your information");
@@ -269,7 +269,7 @@ public class Server implements ServerInterface {
                                 UserAccount currentUserAcc = null;
                                 boolean hasFriends = false;
                                 for (UserAccount userAccount: allUserAccount) {
-                                    if (userAccount.getUserProfile().getUserName().equals(userName)) {
+                                    if (userAccount.getUserProfile().getUsername().equals(userName)) {
                                         currentUserAcc = userAccount;
                                         if (!userAccount.getFriendList().isEmpty()) {
                                             hasFriends = true;
@@ -289,13 +289,13 @@ public class Server implements ServerInterface {
                                     if (usernameInDatabase(receiver)) {
                                         boolean isBlock = false;
                                         for (UserAccount userAccount: allUserAccount) {
-                                            if (userAccount.getUserProfile().getUserName().equals(receiver)) {
+                                            if (userAccount.getUserProfile().getUsername().equals(receiver)) {
                                                 isBlock = userAccount.getBlockList().contains(userName);
                                             }
                                         }
                                         //Check if the sender not block the receiver
                                         for (UserAccount userAccount: allUserAccount) {
-                                            if (userAccount.getUserProfile().getUserName().equals(userName)) {
+                                            if (userAccount.getUserProfile().getUsername().equals(userName)) {
                                                 isBlock = userAccount.getBlockList().contains(receiver);
                                             }
                                         }
@@ -394,7 +394,7 @@ public class Server implements ServerInterface {
                                     writer.flush();
                                     String viewOtherProfileChoice = reader.readLine();
                                     for (UserAccount userAccount : allUserAccount) {
-                                        if (userAccount.getUserProfile().getUserName().equals(userNameToViewProfile)) {
+                                        if (userAccount.getUserProfile().getUsername().equals(userNameToViewProfile)) {
                                             if (viewOtherProfileChoice.equals("1")) {
                                                 writer.write(userAccount.getUserProfile().getAge());
                                             }
@@ -451,7 +451,7 @@ public class Server implements ServerInterface {
     public synchronized boolean usernameInDatabase(String userName) {
         //From a list of user profile, find the specific username
         for (UserAccount eachUserAccount : allUserAccount) {
-            if (eachUserAccount.getUserProfile().getUserName().equals(userName)) {
+            if (eachUserAccount.getUserProfile().getUsername().equals(userName)) {
                 return true; //User exist in the database
             }
         }
@@ -464,7 +464,7 @@ public class Server implements ServerInterface {
                 //Find the account of user1
                 //If we find username2 in friend list of username1,
                 // we don't have to check username1 in friendlist of username2
-                if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
+                if (userAccount.getUserProfile().getUsername().equals(userNameOne)) {
                     //Check the friend list of user1
                     for (String friend : userAccount.getFriendList()) {
                         if (friend.equals(userNameTwo)) {
@@ -481,7 +481,7 @@ public class Server implements ServerInterface {
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
             for (UserAccount userAccount : allUserAccount) {
                 //Find the account of user1 and check if the user1 block user2
-                if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
+                if (userAccount.getUserProfile().getUsername().equals(userNameOne)) {
                     //Check the block list of user1
                     for (String blockUser : userAccount.getBlockList()) {
                         if (blockUser.equals(userNameTwo)) {
@@ -509,7 +509,7 @@ public class Server implements ServerInterface {
     public synchronized boolean loginAccount(String username, String userPassword) {
         if (usernameInDatabase(username)) {
             for (UserAccount eachUserAccount: allUserAccount) {
-                if (eachUserAccount.getUserProfile().getUserName().equals(username)) {
+                if (eachUserAccount.getUserProfile().getUsername().equals(username)) {
                     if (eachUserAccount.getUserProfile().getPassword().equals(userPassword)) {
                         return true;
                     }
@@ -534,14 +534,14 @@ public class Server implements ServerInterface {
                 //If both users not in friendlist
                 for (UserAccount userAccount : allUserAccount) {
                     //Find the friendlist of user1
-                    if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
+                    if (userAccount.getUserProfile().getUsername().equals(userNameOne)) {
                         ArrayList<String> friendListUserOne = userAccount.getFriendList();
                         //Add the user2 to friend list of user1
                         friendListUserOne.add(userNameTwo);
                         userAccount.setFriendList(friendListUserOne);
                     }
                     //Find the friendlist of user2
-                    if (userAccount.getUserProfile().getUserName().equals(userNameTwo)) {
+                    if (userAccount.getUserProfile().getUsername().equals(userNameTwo)) {
                         ArrayList<String> friendListUserTwo = userAccount.getFriendList();
                         //Add the user1 to friend list of user2
                         friendListUserTwo.add(userNameOne);
@@ -558,14 +558,14 @@ public class Server implements ServerInterface {
             if (inFriendList(userNameOne, userNameTwo)) { //both users are friend
                 for (UserAccount userAccount : allUserAccount) {
                     //Find the friendlist of user1
-                    if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
+                    if (userAccount.getUserProfile().getUsername().equals(userNameOne)) {
                         ArrayList<String> friendListUserOne = userAccount.getFriendList();
                         //remove the user2 to friend list of user1
                         friendListUserOne.remove(userNameTwo);
                         userAccount.setFriendList(friendListUserOne);
                     }
                     //Find the friendlist of user2
-                    if (userAccount.getUserProfile().getUserName().equals(userNameTwo)) {
+                    if (userAccount.getUserProfile().getUsername().equals(userNameTwo)) {
                         ArrayList<String> friendListUserTwo = userAccount.getFriendList();
                         //remove the user1 to friend list of user2
                         friendListUserTwo.remove(userNameOne);
@@ -588,7 +588,7 @@ public class Server implements ServerInterface {
             }
             for (UserAccount userAccount : allUserAccount) {
                 //Find the blocklist of user1
-                if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
+                if (userAccount.getUserProfile().getUsername().equals(userNameOne)) {
                     ArrayList<String> blockListUserOne = userAccount.getBlockList();
                     //add the user2 to block list of user1
                     blockListUserOne.add(userNameTwo);
@@ -606,7 +606,7 @@ public class Server implements ServerInterface {
                 //User1 block user2 and want to remove user2 from blocklist
                 for (UserAccount userAccount : allUserAccount) {
                     //Find the blocklist of user1
-                    if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
+                    if (userAccount.getUserProfile().getUsername().equals(userNameOne)) {
                         ArrayList<String> blockListUserOne = userAccount.getBlockList();
                         //remove the user2 from the block list of user1
                         blockListUserOne.remove(userNameTwo);
@@ -625,7 +625,7 @@ public class Server implements ServerInterface {
         ArrayList<String> findUserName = new ArrayList<>();
         //Check if no account block user1
         for (UserAccount userAccount : allUserAccount) {
-            if (userAccount.getUserProfile().getUserName().contains(word)) {
+            if (userAccount.getUserProfile().getUsername().contains(word)) {
                 boolean userOneIsBlocked = false;
                 for (String blockListOfUserTwo : userAccount.getBlockList()) {
                     //That user not block user1
@@ -635,13 +635,13 @@ public class Server implements ServerInterface {
                     }
                 }
                 if (userOneIsBlocked == false) {
-                    findUserName.add(userAccount.getUserProfile().getUserName());
+                    findUserName.add(userAccount.getUserProfile().getUsername());
                 }
             }
         }
         //Check if user 1 block any one in the findUserName
         for (UserAccount userAccount : allUserAccount) {
-            if (userAccount.getUserProfile().getUserName().equals(userNameOne)) {
+            if (userAccount.getUserProfile().getUsername().equals(userNameOne)) {
                 for (String eachBlockUserOfUserOne : userAccount.getBlockList()) {
                     for (String eachUser : findUserName) {
                         if (eachUser.equals(eachBlockUserOfUserOne)) {
