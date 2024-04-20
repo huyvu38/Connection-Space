@@ -8,7 +8,7 @@
  */
 
 public interface ProfileInterface {
-    String getUserName();
+    String getUsername();
     String getPassword();
     void setPassword(String password);
     int getAge();

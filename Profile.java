@@ -7,7 +7,7 @@
  * @version 28 March 2024
  */
 public class Profile implements ProfileInterface {
-    private String userName;
+    private String username;
     private String password;
     private int age;
     private String gender;
@@ -15,9 +15,9 @@ public class Profile implements ProfileInterface {
     private String job;
     private String hobby;
 
-    public Profile(String userName, String password, int age,
-                    String gender, String nationality, String job, String hobby) {
-        this.userName = userName;
+    public Profile(String username, String password, int age,
+                   String gender, String nationality, String job, String hobby) {
+        this.username = username;
         this.password = password;
         this.age = age;
         this.gender = gender;
@@ -25,8 +25,9 @@ public class Profile implements ProfileInterface {
         this.job = job;
         this.hobby = hobby;
     }
-    public String getUserName() {
-        return userName;
+
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -80,7 +81,7 @@ public class Profile implements ProfileInterface {
 
 
     public String toString() {
-        return this.userName + " " + this.password + " " + this.age + " " + this.gender
+        return this.username + " " + this.password + " " + this.age + " " + this.gender
                 + " " + this.nationality + " " + this.job + " " + this.hobby;
     }
 }
