@@ -349,7 +349,8 @@ public class Client extends JComponent implements Runnable {
                 if (e.getSource() == viewOtherProfileButton) {
 
                 }
-
+                //Buttons for view other profile
+                //Buttons for edit profile
                 //Buttons for message
             } catch (Exception ex) {
                 ex.printStackTrace();
