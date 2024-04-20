@@ -264,95 +264,48 @@ public class Server implements ServerInterface {
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("Send message")) {
-                                String userName = reader.readLine();
-                                System.out.println(userName);
-                                UserAccount currentUserAcc = null;
-                                boolean hasFriends = false;
-                                for (UserAccount userAccount: allUserAccount) {
-                                    if (userAccount.getUserProfile().getUsername().equals(userName)) {
-                                        currentUserAcc = userAccount;
-                                        if (!userAccount.getFriendList().isEmpty()) {
-                                            hasFriends = true;
-                                        }
-                                    }
-                                }
-                                writer.write(String.valueOf(hasFriends));
-                                writer.println();
-                                writer.flush();
-                                String ans = reader.readLine();
-                                System.out.println(ans);
-                                if (ans.equals("1")) {
-                                    //Send message to specific person
-                                    String receiver = reader.readLine();
-                                    String message = reader.readLine();
-                                    //Check if the receiver is a valid user
-                                    if (usernameInDatabase(receiver)) {
-                                        boolean isBlock = false;
-                                        for (UserAccount userAccount: allUserAccount) {
+                            if (choice.equals("Send Message")) {
+                                String messageOption = reader.readLine();
+                                if (messageOption.equals("Send Message to specific user")) {
+                                    boolean continueSending = true;
+                                    while (continueSending) {
+                                        String receiver = reader.readLine();
+                                        writer.write(printHistoryMessage(username, receiver));
+                                        boolean isBlocked = false;
+                                        for (UserAccount userAccount : allUserAccount) {
                                             if (userAccount.getUserProfile().getUsername().equals(receiver)) {
-                                                isBlock = userAccount.getBlockList().contains(userName);
+                                                isBlocked = userAccount.getBlockList().contains(username);
                                             }
                                         }
-                                        //Check if the sender not block the receiver
+                                        //add delete message feature here
+                                        String content = reader.readLine();
+                                        sendMessage(username, receiver, content, isBlocked);
+//                                        if (receivedCancelMessageFromClient) {
+//                                            continueSending = false;
+//                                        }
+                                    }
+                                } else if (messageOption.equals("Send Message to all friends")) {
+                                    boolean continueSending = true;
+                                    while (continueSending) {
+                                        ArrayList<String> friendList = null;
                                         for (UserAccount userAccount: allUserAccount) {
-                                            if (userAccount.getUserProfile().getUsername().equals(userName)) {
-                                                isBlock = userAccount.getBlockList().contains(receiver);
+                                            if (userAccount.getUserProfile().getUsername().equals(username)) {
+                                                friendList = userAccount.getFriendList();
                                             }
                                         }
-                                        if (sendMessage(userName, receiver, message, isBlock)) {
-                                            writer.write("Message sent successfully");
-                                            writer.println();
-                                            writer.flush();
-                                        }
-                                    } else {
-                                        writer.write("Message sent failed");
-                                        writer.println();
-                                        writer.flush();
-                                    }
-                                } else if (ans.equals("2")) {
-                                    //Send message to friends
-                                    String message = reader.readLine();
-                                   // System.out.println(message);
-                                    assert currentUserAcc != null;
-                                    ArrayList<String> friendList = currentUserAcc.getFriendList();
-                                    String result = restrictMessage(userName, friendList, message);
-                                    //System.out.println(result);
-                                    if (result == null) {
-                                        writer.write("Message sent successfully");
-                                        writer.println();
-                                        writer.flush();
-                                    } else {
-                                        writer.write(result);
-                                        writer.println();
-                                        writer.flush();
-                                    }
-
-                                } else if (ans.equals("3")) {
-                                    //View history Message
-                                    String name = reader.readLine();
-                                    String readMsg = printHistoryMessage(userName, name);
-                                    String[] messageResult = readMsg.split("\n");
-                                    //System.out.println(readMsg);
-                                    for (int i = 0; i < messageResult.length; i++) {
-                                        writer.write(messageResult[i]);
-                                        writer.println();
-                                        writer.flush();
-                                    }
-                                    writer.write("end");
-                                    writer.println();
-                                    writer.flush();
-                                    String ans1 = reader.readLine();
-                                    if (ans1.equals("1")) {
-                                        if (deleteMessage(Integer.parseInt(reader.readLine()))) {
-                                            writer.write("Message delete successfully");
-                                            writer.println();
-                                            writer.flush();
+                                        if (friendList.isEmpty()) {
+                                            writer.write("Add Friend first");
                                         } else {
-                                            writer.write("Message delete Failed");
-                                            writer.println();
-                                            writer.flush();
+                                            for (String friends: friendList) {
+                                                writer.write(printHistoryMessage(username, friends));
+                                            }
+                                            //Add deletmessage feature here
+                                            String message = reader.readLine();
+                                            restrictMessage(username, friendList, message);
                                         }
+//                                        if (receivedCancelMessageFromClient) {
+////                                            continueSending = false;
+////                                      }
                                     }
                                 }
                             }
@@ -418,50 +371,7 @@ public class Server implements ServerInterface {
                                 }
                             }
                             //Message
-                            if (choice.equals("Send Message")) {
-                                String messageOption = reader.readLine();
-                                if (messageOption.equals("Send Message to specific user")) {
-                                    boolean continueSending = true;
-                                    while (continueSending) {
-                                        String receiver = reader.readLine();
-                                        printHistoryMessage(username, receiver);
-                                        boolean isBlocked = false;
-                                        for (UserAccount userAccount : allUserAccount) {
-                                            if (userAccount.getUserProfile().getUsername().equals(receiver)) {
-                                                isBlocked = userAccount.getBlockList().contains(username);
-                                            }
-                                        }
-                                        String content = reader.readLine();
-                                        sendMessage(username, receiver, content, isBlocked);
-                                        printHistoryMessage(username, receiver);
-//                                        if (receivedCancelMessageFromClient) {
-//                                            continueSending = false;
-//                                        }
-                                    }
-                                } else if (messageOption.equals("Send Message to all friends")) {
-                                    boolean continueSending = true;
-                                    while (continueSending) {
-                                        ArrayList<String> friendList = null;
 
-                                        for (UserAccount userAccount: allUserAccount) {
-                                            if (userAccount.g)
-                                        }
-                                        printHistoryMessage(username, receiver);
-                                        boolean isBlocked = false;
-                                        for (UserAccount userAccount : allUserAccount) {
-                                            if (userAccount.getUserProfile().getUsername().equals(receiver)) {
-                                                isBlocked = userAccount.getBlockList().contains(username);
-                                            }
-                                        }
-                                        String content = reader.readLine();
-                                        sendMessage(username, receiver, content, isBlocked);
-                                        printHistoryMessage(username, receiver);
-//                                        if (receivedCancelMessageFromClient) {
-//                                            continueSending = false;
-//                                        }
-                                    }
-                                }
-                            }
                             //Log Out
                             if (choice.equals("Log out")) {
                                 break;
