@@ -69,6 +69,12 @@ public class NewClient extends JComponent implements Runnable {
 
     //JFrame and JButton in the frame of actions (Add, delete, block, remove, search?)
 
+    JFrame actionFrame;
+    JButton addFriendButton;
+    JButton deleteFriendButton;
+    JButton blockUserButton;
+    JButton unblockUserButton;
+
     //JFrame and JButton for the message frame
 
 
@@ -212,6 +218,19 @@ public class NewClient extends JComponent implements Runnable {
         }
         //Frame for specific actions
         {
+            actionFrame = new JFrame("Action");
+            Container content = actionFrame.getContentPane();
+            content.setLayout(null);
+            actionFrame.setSize(600, 400);
+            actionFrame.setLocationRelativeTo(null);
+            actionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Only set visible = true after client click the action button
+            actionFrame.setVisible(false);
+
+            addFriendButton.addActionListener(actionListener);
+            deleteFriendButton.addActionListener(actionListener);
+            blockUserButton.addActionListener(actionListener);
+            unblockUserButton.addActionListener(actionListener);
 
         }
         //Frame for the messages
@@ -292,6 +311,18 @@ public class NewClient extends JComponent implements Runnable {
 
 
                 //Buttons for specific action
+                if (e.getSource() == addFriendButton) {
+
+                }
+                if (e.getSource() == deleteFriendButton) {
+
+                }
+                if (e.getSource() == blockUserButton) {
+
+                }
+                if (e.getSource() == unblockUserButton) {
+
+                }
 
                 //Buttons for message
             } catch (Exception ex) {

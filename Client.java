@@ -238,7 +238,7 @@ public class Client {
                                 if (hasFriends) {
                                     System.out.println("Select your choice:");
                                     System.out.println("Send Message to specific user");
-                                    System.out.println("2. Send message only to friends");
+                                    System.out.println("Send message only to friends");
                                     System.out.println(" Print history message");
                                     ans = scanner.nextInt();
                                     scanner.nextLine();
