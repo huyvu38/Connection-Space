@@ -150,7 +150,7 @@ public class NewClient extends JComponent implements Runnable {
             hobbyLabel.setBounds(180, 231, 120, 25);
 
             enterButton1 = new JButton("Enter");
-            enterButton1.setBounds(240, 270, 140, 30);
+            enterButton1.setBounds(230, 270, 140, 30);
             enterButton1.addActionListener(actionListener);
 
             //returnButton = new JButton("Return");
@@ -180,30 +180,35 @@ public class NewClient extends JComponent implements Runnable {
             loginFrame = new JFrame("Log In");
             Container content = loginFrame.getContentPane();
             content.setLayout(null);
-            loginFrame.setSize(600, 400);
+            loginFrame.setSize(500, 300);
             loginFrame.setLocationRelativeTo(null);
             loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //Only set visible = true after client click the log in button
             loginFrame.setVisible(false);
             usernameText2 = new JTextField(10);
-            usernameText2.setBounds(300, 33, 120, 25);
+            usernameText2.setBounds(230, 50, 120, 25);
             usernameLabel2 = new JLabel("Username");
-            usernameLabel2.setBounds(180, 33, 120, 25);
+            usernameLabel2.setBounds(130, 50, 120, 25);
 
             passwordText2 = new JTextField(10);
-            passwordText2.setBounds(300, 66, 120, 25);
+            passwordText2.setBounds(230, 100, 120, 25);
             passwordLabel2 = new JLabel("Password");
-            passwordLabel2.setBounds(180, 66, 120, 25);
+            passwordLabel2.setBounds(130, 100, 120, 25);
+
+            enterButton2 = new JButton("Enter");
+            enterButton2.setBounds(180, 200, 140, 30);
+            enterButton2.addActionListener(actionListener);
 
             content.add(usernameText2);
             content.add(usernameLabel2);
             content.add(passwordText2);
             content.add(passwordLabel2);
+            content.add(enterButton2);
 
         }
         //Frame after log in successfully
         {
-
+            //loginFrame = new JFrame("Log In");
         }
         //Frame for specific actions
         {
@@ -220,8 +225,8 @@ public class NewClient extends JComponent implements Runnable {
             try {
                 //Buttons in main menu frame
                 if (e.getSource() == createAccountButton) {
-                    //Write 1 to server
-                    writer.write("1");
+                    //Write Create account to server
+                    writer.write("Create account");
                     writer.println();
                     writer.flush();
                     mainMenuFrame.setVisible(false);
@@ -229,7 +234,7 @@ public class NewClient extends JComponent implements Runnable {
                 }
                 if (e.getSource() == loginButton) {
                     //Write 2 to server
-                    writer.write("2");
+                    writer.write("Log in");
                     writer.println();
                     writer.flush();
                     mainMenuFrame.setVisible(false);
@@ -283,9 +288,11 @@ public class NewClient extends JComponent implements Runnable {
                         mainMenuFrame.setVisible(true);
                     }
                 }
-
                 //Buttons after log in successfully
+
+
                 //Buttons for specific action
+
                 //Buttons for message
             } catch (Exception ex) {
                 ex.printStackTrace();
