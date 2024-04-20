@@ -221,6 +221,23 @@ public class NewClient extends JComponent implements Runnable {
                 }
                 //Buttons in create account frame
                 if (e.getSource() == enterButton) {
+                    writer.println(usernameText.getText());
+                    writer.println(passwordText.getText());
+                    writer.println(ageText.getText());
+                    writer.println(genderType.getSelectedItem());
+                    writer.println(nationalityText.getText());
+                    writer.println(jobText.getText());
+                    writer.println(hobbyText.getText());
+                    writer.flush();
+                    String createAccountResult = reader.readLine();
+                    if (createAccountResult.equals("Create account successfully.")) {
+                        JOptionPane.showMessageDialog(null, createAccountResult, "Create Account", JOptionPane.INFORMATION_MESSAGE);
+                        //Return to the main menu so that user can log in
+                        createAccountFrame.setVisible(false);
+                        mainMenuFrame.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, createAccountResult, "Create Account", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 if (e.getSource() == returnButton) {
                     createAccountFrame.setVisible(false);

@@ -58,8 +58,7 @@ public class Server implements ServerInterface {
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
             while (true) {
                 String command = reader.readLine();
-                //Command 1 is create account
-                if (command.equals("1")) {
+                if (command.equals("Create account")) {
                     boolean result = true;
                     //Get all information for server
                     String username = reader.readLine();
@@ -100,11 +99,15 @@ public class Server implements ServerInterface {
                     UserAccount newUserAccount = new UserAccount(newUserProfile);
 
                     //if the result is still true -> send back to the client that account create successfully
-                    if (createAccount(database, newUserAccount, username, password)) {
-                        result = true;
+                    if (usernameInDatabase(username) == false) {
+                        if (createAccount(database, newUserAccount, username, password)) {
+                            result = true;
+                        }
+                    } else {
+                        result = false;
                     }
                     if (result) {
-                        writer.write("Create account successfully. You have to log in again.");
+                        writer.write("Create account successfully.");
                         writer.println();
                         writer.flush();
                     } else {
@@ -113,8 +116,7 @@ public class Server implements ServerInterface {
                         writer.flush();
                     }
                 }
-                //Command 2 is log in
-                if (command.equals("2")) {
+                if (command.equals("Log in")) {
                     String username = reader.readLine();
                     String password = reader.readLine();
                     //Log in success
@@ -125,24 +127,24 @@ public class Server implements ServerInterface {
                         while (true) {
                             String choice = reader.readLine();
                             //Choice 1 is view their own profile
-                            if (choice.equals("1")) {
+                            if (choice.equals("View your profile")) {
                                 //Get the information that user want to view
                                 String viewChoice = reader.readLine();
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        if (viewChoice.equals("1")) {
+                                        if (viewChoice.equals("Age")) {
                                             writer.write(userAccount.getUserProfile().getAge());
                                         }
-                                        if (viewChoice.equals("2")) {
+                                        if (viewChoice.equals("Gender")) {
                                             writer.write(userAccount.getUserProfile().getGender());
                                         }
-                                        if (viewChoice.equals("3")) {
+                                        if (viewChoice.equals("Nationality")) {
                                             writer.write(userAccount.getUserProfile().getNationality());
                                         }
-                                        if (viewChoice.equals("4")) {
+                                        if (viewChoice.equals("Job")) {
                                             writer.write(userAccount.getUserProfile().getJob());
                                         }
-                                        if (viewChoice.equals("5")) {
+                                        if (viewChoice.equals("Hobby")) {
                                             writer.write(userAccount.getUserProfile().getHobby());
                                         }
                                         writer.println();
@@ -150,12 +152,12 @@ public class Server implements ServerInterface {
                                     }
                                 }
                             }
-                            if (choice.equals("2")) {
+                            if (choice.equals("Edit your profile")) {
                                 String editChoice = reader.readLine();
                                 String editInformation = reader.readLine();
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        if (editChoice.equals("1")) {
+                                        if (editChoice.equals("Password")) {
                                             if (editInformation.contains(" ") || editInformation.contains(";")) {
                                                 writer.write("Can not edit your information");
                                             } else {
@@ -167,7 +169,7 @@ public class Server implements ServerInterface {
                                                 }
                                             }
                                         }
-                                        if (editChoice.equals("2")) {
+                                        if (editChoice.equals("Age")) {
                                             try {
                                                 int editAge = Integer.parseInt(editInformation);
                                                 if (editAge <= 0) {
@@ -182,12 +184,12 @@ public class Server implements ServerInterface {
                                                 writer.write("Can not edit your information");
                                             }
                                         }
-                                        if (editChoice.equals("3")) {
+                                        if (editChoice.equals("Gender")) {
                                             userAccount.getUserProfile().setGender(editInformation);
                                             writer.write("Edit successfully");
                                             //Assume that the client only choose from Male, Female, Other
                                         }
-                                        if (editChoice.equals("4")) {
+                                        if (editChoice.equals("Nationality")) {
                                             if (editInformation.contains(" ") || editInformation.contains(";")) {
                                                 writer.write("Can not edit your information");
                                             } else {
@@ -195,7 +197,7 @@ public class Server implements ServerInterface {
                                                 writer.write("Edit successfully");
                                             }
                                         }
-                                        if (editChoice.equals("5")) {
+                                        if (editChoice.equals("Job")) {
                                             if (editInformation.contains(" ") || editInformation.contains(";")) {
                                                 writer.write("Can not edit your information");
                                             } else {
@@ -203,7 +205,7 @@ public class Server implements ServerInterface {
                                                 writer.write("Edit successfully");
                                             }
                                         }
-                                        if (editChoice.equals("6")) {
+                                        if (editChoice.equals("Hobby")) {
                                             if (editInformation.contains(" ") || editInformation.contains(";")) {
                                                 writer.write("Can not edit your information");
                                             } else {
@@ -217,7 +219,7 @@ public class Server implements ServerInterface {
                                 writer.flush();
                                 database.saveAllUserAccount();
                             }
-                            if (choice.equals("3")) {
+                            if (choice.equals("Add friend")) {
                                 String addFriendUserName = reader.readLine();
                                 if (addFriend(username, addFriendUserName)) {
                                     database.saveAllUserAccount();
@@ -228,7 +230,7 @@ public class Server implements ServerInterface {
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("4")) {
+                            if (choice.equals("Delete friend")) {
                                 String unfriendUserName = reader.readLine();
                                 if (deleteFriend(username, unfriendUserName)) {
                                     database.saveAllUserAccount();
@@ -239,7 +241,7 @@ public class Server implements ServerInterface {
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("5")) {
+                            if (choice.equals("Block user")) {
                                 String blockUserName = reader.readLine();
                                 if (blockUser(username, blockUserName)) {
                                     database.saveAllUserAccount();
@@ -252,7 +254,7 @@ public class Server implements ServerInterface {
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("6")) {
+                            if (choice.equals("Unblock user")) {
                                 String unblockUserName = reader.readLine();
                                 if (unblockUser(username, unblockUserName)) {
                                     database.saveAllUserAccount();
@@ -263,7 +265,7 @@ public class Server implements ServerInterface {
                                 writer.println();
                                 writer.flush();
                             }
-                            if (choice.equals("7")) {
+                            if (choice.equals("Send message")) {
                                 String userName = reader.readLine();
                                 System.out.println(userName);
                                 UserAccount currentUserAcc = null;
@@ -356,7 +358,7 @@ public class Server implements ServerInterface {
                                 }
                             }
 
-                            if (choice.equals("8")) {
+                            if (choice.equals("Search other user")) {
                                 String word = reader.readLine();
                                 //username is the one who search other user
                                 ArrayList<String> findUserName = searchUser(username, word);
@@ -380,7 +382,7 @@ public class Server implements ServerInterface {
                                     writer.flush();
                                 }
                             }
-                            if (choice.equals("9")) {
+                            if (choice.equals("View other user profile")) {
                                 String userNameToViewProfile = reader.readLine();
                                 if (inBlockList(username, userNameToViewProfile) ||
                                         inBlockList(userNameToViewProfile, username) ||
@@ -417,7 +419,7 @@ public class Server implements ServerInterface {
                                 }
                             }
                             //Log Out
-                            if (choice.equals("10")) {
+                            if (choice.equals("Log out")) {
                                 break;
                             }
                         }
