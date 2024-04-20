@@ -1,9 +1,12 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Objects;
-import java.util.Scanner;
 
 /**
  * Team Project
@@ -13,351 +16,318 @@ import java.util.Scanner;
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Client {
+public class Client extends JComponent implements Runnable {
+    public Client() throws IOException {
 
-    public static void main(String[] args) {
+    }
 
-        Scanner scanner = new Scanner(System.in);
-        try {
-            Socket socket = new Socket("localhost", 5050);
-            //After connect to the server
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter writer = new PrintWriter(socket.getOutputStream());
-            System.out.println("Hi, welcome to the social media platform.");
-            while (true) {
-                System.out.println("What would you like to do?");
-                System.out.println("Create account");
-                System.out.println("Log in");
-                System.out.println("Exit the app");
-                String userInput = scanner.nextLine();
-                //User want to create account -> send 1 to the server
-                //User want to log in -> send 2 to the server
-                writer.write(userInput);
-                writer.println();
-                writer.flush();
-                if (userInput.equals("Create account")) {
-                    //Send username
-                    System.out.println("Once you create an account, you can not change your username.");
-                    System.out.println("User name should be at least 4 characters" +
-                            " and not contain any spaces or semicolon.");
-                    System.out.println("Enter your username:");
-                    String username = scanner.nextLine();
-                    writer.write(username);
-                    writer.println();
-                    writer.flush();
-                    //Send password
-                    System.out.println("Password should be at least 6 characters " +
-                            "and do not contain any spaces or semicolon.");
-                    System.out.println("Enter your password:");
-                    String password = scanner.nextLine();
-                    writer.write(password);
-                    writer.println();
-                    writer.flush();
-                    //Send age
-                    System.out.println("Age should be a positive number");
-                    System.out.println("Enter your age");
-                    String age = scanner.nextLine();
-                    writer.write(age);
-                    writer.println();
-                    writer.flush();
-                    //Send gender
-                    System.out.println("Enter your gender from these options:");
-                    System.out.println("Female");
-                    System.out.println("Male");
-                    System.out.println("Other");
-                    String gender = scanner.nextLine();
-                    writer.write(gender);
-                    writer.println();
-                    //Send nationality
-                    System.out.println("Nationality should not contain any spaces or semicolon.");
-                    System.out.println("Enter your nationality");
-                    String nationality = scanner.nextLine();
-                    writer.write(nationality);
-                    writer.println();
-                    writer.flush();
-                    //Send job
-                    System.out.println("Job should not contain any spaces or semicolon.");
-                    System.out.println("Enter your job");
-                    String job = scanner.nextLine();
-                    writer.write(job);
-                    writer.println();
-                    writer.flush();
-                    //Send hobby
-                    System.out.println("Hobby should not contain any spaces or semicolon.");
-                    System.out.println("Enter your hobby");
-                    String hobby = scanner.nextLine();
-                    writer.write(hobby);
-                    writer.println();
-                    writer.flush();
+    //Connect to the server
+    Socket socket = new Socket("localhost", 5050);
+    BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    PrintWriter writer = new PrintWriter(socket.getOutputStream());
 
-                    //Get the result from the server
-                    String createAccountResult = reader.readLine();
-                    System.out.println(createAccountResult);
-                }
-                if (userInput.equals("Log in")) {
-                    System.out.println("Enter your username");
-                    String username = scanner.nextLine();
-                    writer.write(username);
-                    writer.println();
-                    writer.flush();
+    public static void main(String[] args) throws IOException {
+        SwingUtilities.invokeLater(new Client());
+    }
 
-                    System.out.println("Enter your password");
-                    String password = scanner.nextLine();
-                    //Sent to the server
-                    writer.write(password);
-                    writer.println();
-                    writer.flush();
+    //JFrame and JButton for main menu
+    JFrame mainMenuFrame;
+    JButton createAccountButton;
+    JButton loginButton;
+    JButton exitAppButton;
 
-                    //Receive the result from the server
-                    String result = reader.readLine();
-                    System.out.println(result);
-                    if (result.equals("Log in successfully")) {
-                        while (true) {
-                            System.out.println("What would you like to do? ");
-                            System.out.println("View your profile");
-                            System.out.println("Edit your profile");
-                            System.out.println("Add friend");
-                            System.out.println("Delete friend");
-                            System.out.println("Block user");
-                            System.out.println("Unblock user");
-                            System.out.println("Send message");
-                            System.out.println("Search other user");
-                            System.out.println("View other user profile");
-                            System.out.println("Log out");
-                            String choice = scanner.nextLine();
-                            //Send choice to the server
-                            writer.write(choice);
-                            writer.println();
-                            writer.flush();
-                            if (choice.equals("View your profile")) {
-                                System.out.println("Which information do you want to see");
-                                System.out.println("Age");
-                                System.out.println("Gender");
-                                System.out.println("Nationality");
-                                System.out.println("Job");
-                                System.out.println("Hobby");
-                                //Send the information that want to view
-                                String viewInformationChoice = scanner.nextLine();
-                                writer.write(viewInformationChoice);
-                                writer.println();
-                                writer.flush();
+    //JFrame and JButton for create account
+    JFrame createAccountFrame;
+    JLabel usernameLabel1;
+    JTextField usernameText1;
+    JLabel passwordLabel1;
+    JTextField passwordText1;
+    JLabel ageLabel;
+    JTextField ageText;
+    JLabel genderLabel;
+    JComboBox<String> genderType;
+    JLabel nationalityLabel;
+    JTextField nationalityText;
+    JLabel jobLabel;
+    JTextField jobText;
+    JLabel hobbyLabel;
+    JTextField hobbyText;
 
-                                String viewResult = reader.readLine();
-                                System.out.println(viewResult);
-                            }
-                            if (choice.equals("Edit your profile")) {
-                                System.out.println("Which information do you want to edit");
-                                System.out.println("Password");
-                                System.out.println("Age");
-                                System.out.println("Gender");
-                                System.out.println("Nationality");
-                                System.out.println("Job");
-                                System.out.println("Hobby");
-                                String editChoice = scanner.nextLine();
+    JButton enterButton1;
 
-                                writer.write(editChoice);
-                                writer.println();
-                                writer.flush();
+    //JButton returnButton; //return to the main menu
 
-                                if (editChoice.equals("Password")) {
-                                    System.out.println("Enter new password");
-                                }
-                                if (editChoice.equals("Age")) {
-                                    System.out.println("Enter your age");
-                                }
-                                if (editChoice.equals("Gender")) {
-                                    System.out.println("Enter your gender from these options:");
-                                    System.out.println("Female");
-                                    System.out.println("Male");
-                                    System.out.println("Other");
-                                }
-                                if (editChoice.equals("Nationality")) {
-                                    System.out.println("Enter your nationality");
-                                }
-                                if (editChoice.equals("Job")) {
-                                    System.out.println("Enter your job");
-                                }
-                                if (editChoice.equals("Hobby")) {
-                                    System.out.println("Enter your hobby");
-                                }
-                                //Send information that want to edit to server
-                                String editInformation = scanner.nextLine();
-                                writer.write(editInformation);
-                                writer.println();
-                                writer.flush();
-                                //Get the result from the server
-                                String editResult = reader.readLine();
-                                System.out.println(editResult);
-                            }
-                            if (choice.equals("Add friend")) {
-                                System.out.println("Enter the user that you want to add friend");
-                                String addFriendUserName = scanner.nextLine();
-                                //Send username that want to add friend to server
-                                writer.write(addFriendUserName);
-                                writer.println();
-                                writer.flush();
-                                String addFriendResult = reader.readLine();
-                                System.out.println(addFriendResult);
-                            }
-                            if (choice.equals("Delete friend")) {
-                                System.out.println("Enter the user that you want to unfriend");
-                                String unfriendUserName = scanner.nextLine();
-                                //Send username that want to unfriend to server
-                                writer.write(unfriendUserName);
-                                writer.println();
-                                writer.flush();
-                                String unfriendResult = reader.readLine();
-                                System.out.println(unfriendResult);
-                            }
-                            if (choice.equals("Block user")) {
-                                System.out.println("Enter the user that you want to block");
-                                String blockUserName = scanner.nextLine();
-                                //Send username that want to block to server
-                                writer.write(blockUserName);
-                                writer.println();
-                                writer.flush();
-                                String blockResult = reader.readLine();
-                                System.out.println(blockResult);
-                            }
-                            if (choice.equals("Unblock user")) {
-                                System.out.println("Enter the user that you want to unblock");
-                                String unblockUserName = scanner.nextLine();
-                                //Send username that want to unblock to server
-                                writer.write(unblockUserName);
-                                writer.println();
-                                writer.flush();
-                                String unblockResult = reader.readLine();
-                                System.out.println(unblockResult);
-                            }
-                            if (choice.equals("Send message")) {
-                                writer.write(username);
-                                writer.println();
-                                writer.flush();
-                                int ans;
-                                boolean hasFriends = Boolean.parseBoolean(reader.readLine());
-                                if (hasFriends) {
-                                    System.out.println("Select your choice:");
-                                    System.out.println("Send Message to specific user");
-                                    System.out.println("2. Send message only to friends");
-                                    System.out.println(" Print history message");
-                                    ans = scanner.nextInt();
-                                    scanner.nextLine();
-                                    String converted = String.valueOf(ans);
-                                    writer.write(converted);
-                                    writer.println();
-                                    writer.flush();
-                                    if (ans == 1) {
-                                        System.out.println("Who you want to send message to?");
-                                        String receiver = scanner.nextLine();
-                                        writer.write(receiver);
-                                        writer.println();
-                                        writer.flush();
-                                        System.out.println("What message do you want to send?");
-                                        String message = scanner.nextLine();
-                                        writer.write(message);
-                                        writer.println();
-                                        writer.flush();
-                                        System.out.println(reader.readLine());
+    //JFrame and JButton for Log in
+    JFrame loginFrame;
+    JLabel usernameLabel2;
+    JTextField usernameText2;
+    JLabel passwordLabel2;
+    JTextField passwordText2;
+    JButton enterButton2;
 
-                                    } else if (ans == 2) {
-                                        System.out.println("What message do you want to send?");
-                                        String message = scanner.nextLine();
-                                        writer.write(message);
-                                        writer.println();
-                                        writer.flush();
-                                        String result1 = reader.readLine();
-                                        System.out.println(Objects.requireNonNullElse(result1,
-                                                "Message sent successfully"));
+    //JFrame and JButton after log in successfully
 
-                                    } else if (ans == 3) {
-                                        //String ans2;
+    //JFrame and JButton in the frame of actions (Add, delete, block, remove, search?)
 
-                                        System.out.println("Who do you want to print the conversation with?");
-                                        String name = scanner.nextLine();
-                                        writer.write(name);
-                                        writer.println();
-                                        writer.flush();
+    JFrame actionFrame;
+    JButton addFriendButton;
+    JButton deleteFriendButton;
+    JButton blockUserButton;
+    JButton unblockUserButton;
 
-                                        String sentMsg = reader.readLine();
-                                        while (!sentMsg.equals("end")) {
-                                            System.out.println(sentMsg); // Assuming that the response is a single line
-                                            sentMsg = reader.readLine();
-                                        }
+    //JFrame and JButton for the message frame
 
-                                        System.out.println("Do you want to delete any message?");
-                                        System.out.println("1. Yes");
-                                        System.out.println("2. No");
-                                        String ans1 = scanner.nextLine();
-                                        writer.write(ans1);
-                                        writer.println();
-                                        writer.flush();
-                                        if (ans1.equals("1")) {
-                                            System.out.println("Please enter the conversationID");
-                                            String conversationID = scanner.nextLine();
-                                            writer.write(conversationID);
-                                            writer.println();
-                                            writer.flush();
-                                            System.out.println(reader.readLine());
-                                        }
-                                    }
-                                } else {
-                                    System.out.println("Please add friend first");
-                                }
 
-                            }
-                            if (choice.equals("Search other user")) {
-                                System.out.println("Enter the word to search user");
-                                //Send the word to server so server check if any username contains that word
-                                String word = scanner.nextLine();
-                                writer.write(word);
-                                writer.println();
-                                writer.flush();
-                                //Get all the username that contain the word from the server
-                                String searchResult = reader.readLine();
-                                System.out.println(searchResult);
-                            }
-                            if (choice.equals("View other user profile")) {
-                                System.out.println("Enter the user that you want to view their profile");
-                                //The client only view user from the previous search result
-                                String userNameToViewProfile = scanner.nextLine();
-                                writer.write(userNameToViewProfile);
-                                writer.println();
-                                writer.flush();
-                                String viewResult = reader.readLine();
-                                System.out.println(viewResult);
-                                if (viewResult.equals("Which information do you want to see?")) {
-                                    System.out.println("1. Age");
-                                    System.out.println("2. Gender");
-                                    System.out.println("3. Nationality");
-                                    System.out.println("4. Job");
-                                    System.out.println("5. Hobby");
+    //All of the frames in run()
+    public void run() {
+        //First frame is the main menu after the client connect to the server
+        {
+            mainMenuFrame = new JFrame("Main Menu");
+            Container content = mainMenuFrame.getContentPane();
+            content.setLayout(null);
+            mainMenuFrame.setSize(600, 400);
+            mainMenuFrame.setLocationRelativeTo(null);
+            mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            mainMenuFrame.setVisible(true);
 
-                                    String viewOtherProfileChoice = scanner.nextLine();
-                                    writer.write(viewOtherProfileChoice);
-                                    writer.println();
-                                    writer.flush();
+            loginButton = new JButton("Login");
+            loginButton.setBounds(210, 50, 160, 70);
+            createAccountButton = new JButton("Create account");
+            createAccountButton.setBounds(210, 140, 160,70);
+            exitAppButton = new JButton("Exit the app");
+            exitAppButton.setBounds(210,230,160,70);
 
-                                    String viewOtherProfileResult = reader.readLine();
-                                    System.out.println(viewOtherProfileResult);
-                                }
-                            }
-                            if (choice.equals("Log out")) {
-                                break;
-                            }
-                        }
-                    }
-                }
-                //Exit
-                if (userInput.equals("Exit the app")) {
-                    writer.close();
-                    reader.close();
-                    socket.close();
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Can not connect to the server");
+            createAccountButton.addActionListener(actionListener);
+            loginButton.addActionListener(actionListener);
+            exitAppButton.addActionListener(actionListener);
+
+            content.add(loginButton);
+            content.add(createAccountButton);
+            content.add(exitAppButton);
+
+        }
+        //Frame for create account
+        {
+            createAccountFrame = new JFrame("Create Account");
+            Container content = createAccountFrame.getContentPane();
+            content.setLayout(null);
+            createAccountFrame.setSize(600, 400);
+            createAccountFrame.setLocationRelativeTo(null);
+            createAccountFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Only set visible = true after client click the create account button
+            createAccountFrame.setVisible(false);
+
+            usernameText1 = new JTextField(10);
+            usernameText1.setBounds(300, 33, 120, 25);
+            usernameLabel1 = new JLabel("Username");
+            usernameLabel1.setBounds(180, 33, 120, 25);
+
+            passwordText1 = new JTextField(10);
+            passwordText1.setBounds(300, 66, 120, 25);
+            passwordLabel1 = new JLabel("Password");
+            passwordLabel1.setBounds(180, 66, 120, 25);
+
+            ageText = new JTextField(10);
+            ageText.setBounds(300, 99, 120, 25);
+            ageLabel = new JLabel("Age");
+            ageLabel.setBounds(180, 99, 120, 25);
+
+            genderType = new JComboBox<>();
+            genderType.addItem("Male");
+            genderType.addItem("Female");
+            genderType.addItem("Other");
+            genderType.setBounds(300, 132, 120, 25);
+            genderLabel = new JLabel("Gender");
+            genderLabel.setBounds(180, 132, 120, 25);
+
+            nationalityText = new JTextField(10);
+            nationalityText.setBounds(300, 165, 120, 25);
+            nationalityLabel = new JLabel("Nationality");
+            nationalityLabel.setBounds(180, 165, 120, 25);
+
+            jobText = new JTextField(10);
+            jobText.setBounds(300, 198, 120, 25);
+            jobLabel = new JLabel("Job");
+            jobLabel.setBounds(180, 198, 120, 25);
+
+            hobbyText = new JTextField(10);
+            hobbyText.setBounds(300, 231, 120, 25);
+            hobbyLabel = new JLabel("Hobby");
+            hobbyLabel.setBounds(180, 231, 120, 25);
+
+            enterButton1 = new JButton("Enter");
+            enterButton1.setBounds(230, 270, 140, 30);
+            enterButton1.addActionListener(actionListener);
+
+            //returnButton = new JButton("Return");
+            //returnButton.setBounds(240, 320, 140, 30);
+            //returnButton.addActionListener(actionListener);
+
+            content.add(usernameText1);
+            content.add(usernameLabel1);
+            content.add(passwordText1);
+            content.add(passwordLabel1);
+            content.add(ageText);
+            content.add(ageLabel);
+            content.add(genderType);
+            content.add(genderLabel);
+            content.add(nationalityText);
+            content.add(nationalityLabel);
+            content.add(jobText);
+            content.add(jobLabel);
+            content.add(hobbyText);
+            content.add(hobbyLabel);
+            content.add(enterButton1);
+            //content.add(returnButton);
+
+        }
+        //Frame for log in account
+        {
+            loginFrame = new JFrame("Log In");
+            Container content = loginFrame.getContentPane();
+            content.setLayout(null);
+            loginFrame.setSize(500, 300);
+            loginFrame.setLocationRelativeTo(null);
+            loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Only set visible = true after client click the log in button
+            loginFrame.setVisible(false);
+            usernameText2 = new JTextField(10);
+            usernameText2.setBounds(230, 50, 120, 25);
+            usernameLabel2 = new JLabel("Username");
+            usernameLabel2.setBounds(130, 50, 120, 25);
+
+            passwordText2 = new JTextField(10);
+            passwordText2.setBounds(230, 100, 120, 25);
+            passwordLabel2 = new JLabel("Password");
+            passwordLabel2.setBounds(130, 100, 120, 25);
+
+            enterButton2 = new JButton("Enter");
+            enterButton2.setBounds(180, 200, 140, 30);
+            enterButton2.addActionListener(actionListener);
+
+            content.add(usernameText2);
+            content.add(usernameLabel2);
+            content.add(passwordText2);
+            content.add(passwordLabel2);
+            content.add(enterButton2);
+
+        }
+        //Frame after log in successfully
+        {
+            //loginFrame = new JFrame("Log In");
+        }
+        //Frame for specific actions
+        {
+            actionFrame = new JFrame("Action");
+            Container content = actionFrame.getContentPane();
+            content.setLayout(null);
+            actionFrame.setSize(600, 400);
+            actionFrame.setLocationRelativeTo(null);
+            actionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Only set visible = true after client click the action button
+            actionFrame.setVisible(false);
+
+            addFriendButton.addActionListener(actionListener);
+            deleteFriendButton.addActionListener(actionListener);
+            blockUserButton.addActionListener(actionListener);
+            unblockUserButton.addActionListener(actionListener);
+
+        }
+        //Frame for the messages
+        {
+
         }
     }
 
+    ActionListener actionListener = new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            try {
+                //Buttons in main menu frame
+                if (e.getSource() == createAccountButton) {
+                    //Write Create account to server
+                    writer.write("Create account");
+                    writer.println();
+                    writer.flush();
+                    mainMenuFrame.setVisible(false);
+                    createAccountFrame.setVisible(true);
+                }
+                if (e.getSource() == loginButton) {
+                    //Write 2 to server
+                    writer.write("Log in");
+                    writer.println();
+                    writer.flush();
+                    mainMenuFrame.setVisible(false);
+                    loginFrame.setVisible(true);
+                }
+                if (e.getSource() == exitAppButton) {
+                    //close
+                    mainMenuFrame.dispose();
+                }
+                //Buttons in create account frame
+                if (e.getSource() == enterButton1) {
+                    writer.println(usernameText1.getText());
+                    writer.println(passwordText1.getText());
+                    writer.println(ageText.getText());
+                    writer.println(genderType.getSelectedItem());
+                    writer.println(nationalityText.getText());
+                    writer.println(jobText.getText());
+                    writer.println(hobbyText.getText());
+                    writer.flush();
+                    String createAccountResult = reader.readLine();
+                    if (createAccountResult.equals("Create account successfully.")) {
+                        JOptionPane.showMessageDialog(null, createAccountResult, "Create Account", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, createAccountResult, "Create Account", JOptionPane.ERROR_MESSAGE);
+                    }
+                    //Return to the main menu so that user can log in
+                    createAccountFrame.setVisible(false);
+                    mainMenuFrame.setVisible(true);
+                }
+                /*
+                if (e.getSource() == returnButton) {
+                    createAccountFrame.setVisible(false);
+                    mainMenuFrame.setVisible(true);
+                }
+
+                 */
+                //Buttons in log in frame
+                if (e.getSource() == enterButton2) {
+                    writer.println(usernameText2.getText());
+                    writer.println(passwordText2.getText());
+                    writer.flush();
+                    String loginResult = reader.readLine();
+                    if (loginResult.equals("Log in successfully")) {
+                        JOptionPane.showMessageDialog(null, loginResult, "Log in", JOptionPane.INFORMATION_MESSAGE);
+                        //Go to another frame after log in
+                        loginFrame.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(null, loginResult, "Log in", JOptionPane.ERROR_MESSAGE);
+                        //return to the main menu frame
+                        loginFrame.setVisible(false);
+                        mainMenuFrame.setVisible(true);
+                    }
+                }
+                //Buttons after log in successfully
+
+
+                //Buttons for specific action
+                if (e.getSource() == addFriendButton) {
+
+                }
+                if (e.getSource() == deleteFriendButton) {
+
+                }
+                if (e.getSource() == blockUserButton) {
+
+                }
+                if (e.getSource() == unblockUserButton) {
+
+                }
+
+                //Buttons for message
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    };
 }

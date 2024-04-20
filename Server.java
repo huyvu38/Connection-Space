@@ -218,51 +218,54 @@ public class Server implements ServerInterface {
                                 writer.flush();
                                 database.saveAllUserAccount();
                             }
-                            if (choice.equals("Add friend")) {
-                                String addFriendUserName = reader.readLine();
-                                if (addFriend(username, addFriendUserName)) {
-                                    database.saveAllUserAccount();
-                                    writer.write("Add friend successfully");
-                                } else {
-                                    writer.write("You can not add that user");
+                            if (choice.equals("Action")) {
+                                String specificAction = reader.readLine();
+                                if (specificAction.equals("Add friend")) {
+                                    String addFriendUserName = reader.readLine();
+                                    if (addFriend(username, addFriendUserName)) {
+                                        database.saveAllUserAccount();
+                                        writer.write("Add friend successfully");
+                                    } else {
+                                        writer.write("You can not add that user");
+                                    }
+                                    writer.println();
+                                    writer.flush();
                                 }
-                                writer.println();
-                                writer.flush();
-                            }
-                            if (choice.equals("Delete friend")) {
-                                String unfriendUserName = reader.readLine();
-                                if (deleteFriend(username, unfriendUserName)) {
-                                    database.saveAllUserAccount();
-                                    writer.write("Unfriend successfully");
-                                } else {
-                                    writer.write("You can not unfriend that user");
+                                if (specificAction.equals("Delete friend")) {
+                                    String unfriendUserName = reader.readLine();
+                                    if (deleteFriend(username, unfriendUserName)) {
+                                        database.saveAllUserAccount();
+                                        writer.write("Unfriend successfully");
+                                    } else {
+                                        writer.write("You can not unfriend that user");
+                                    }
+                                    writer.println();
+                                    writer.flush();
                                 }
-                                writer.println();
-                                writer.flush();
-                            }
-                            if (choice.equals("Block user")) {
-                                String blockUserName = reader.readLine();
-                                if (blockUser(username, blockUserName)) {
-                                    database.saveAllUserAccount();
-                                    writer.write("Block successfully");
-                                    //If both users are friend then delete after block
-                                    deleteFriend(username, blockUserName);
-                                } else {
-                                    writer.write("You can not block that user");
+                                if (specificAction.equals("Block user")) {
+                                    String blockUserName = reader.readLine();
+                                    if (blockUser(username, blockUserName)) {
+                                        database.saveAllUserAccount();
+                                        writer.write("Block successfully");
+                                        //If both users are friend then delete after block
+                                        deleteFriend(username, blockUserName);
+                                    } else {
+                                        writer.write("You can not block that user");
+                                    }
+                                    writer.println();
+                                    writer.flush();
                                 }
-                                writer.println();
-                                writer.flush();
-                            }
-                            if (choice.equals("Unblock user")) {
-                                String unblockUserName = reader.readLine();
-                                if (unblockUser(username, unblockUserName)) {
-                                    database.saveAllUserAccount();
-                                    writer.write("Unblock successfully");
-                                } else {
-                                    writer.write("You can not unblock that user");
+                                if (specificAction.equals("Unblock user")) {
+                                    String unblockUserName = reader.readLine();
+                                    if (unblockUser(username, unblockUserName)) {
+                                        database.saveAllUserAccount();
+                                        writer.write("Unblock successfully");
+                                    } else {
+                                        writer.write("You can not unblock that user");
+                                    }
+                                    writer.println();
+                                    writer.flush();
                                 }
-                                writer.println();
-                                writer.flush();
                             }
                             if (choice.equals("Send Message")) {
                                 String messageOption = reader.readLine();
