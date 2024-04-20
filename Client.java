@@ -70,10 +70,13 @@ public class Client extends JComponent implements Runnable {
     //JFrame and JButton in the frame of actions (Add, delete, block, remove, search?)
 
     JFrame actionFrame;
+    JTextField otherUsernameText;
+    JLabel otherUsernameLabel;
     JButton addFriendButton;
     JButton deleteFriendButton;
     JButton blockUserButton;
     JButton unblockUserButton;
+    JButton viewOtherProfileButton;
 
     //JFrame and JButton for the message frame
 
@@ -231,6 +234,13 @@ public class Client extends JComponent implements Runnable {
             deleteFriendButton.addActionListener(actionListener);
             blockUserButton.addActionListener(actionListener);
             unblockUserButton.addActionListener(actionListener);
+            viewOtherProfileButton.addActionListener(actionListener);
+
+            content.add(addFriendButton);
+            content.add(deleteFriendButton);
+            content.add(blockUserButton);
+            content.add(unblockUserButton);
+            content.add(viewOtherProfileButton);
 
         }
         //Frame for the messages
@@ -321,6 +331,9 @@ public class Client extends JComponent implements Runnable {
 
                 }
                 if (e.getSource() == unblockUserButton) {
+
+                }
+                if (e.getSource() == viewOtherProfileButton) {
 
                 }
 

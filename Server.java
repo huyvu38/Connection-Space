@@ -267,10 +267,10 @@ public class Server implements ServerInterface {
                                     writer.flush();
                                 }
                                 if (specificAction.equals("View other user profile")) {
-                                    String userNameToViewProfile = reader.readLine();
-                                    if (inBlockList(username, userNameToViewProfile) ||
-                                            inBlockList(userNameToViewProfile, username) ||
-                                            (usernameInDatabase(userNameToViewProfile) == false)) {
+                                    String usernameToView = reader.readLine();
+                                    if (inBlockList(username, usernameToView) ||
+                                            inBlockList(usernameToView, username) ||
+                                            (usernameInDatabase(usernameToView) == false)) {
                                         writer.write("Can not view profile");
                                         writer.println();
                                         writer.flush();
@@ -280,7 +280,7 @@ public class Server implements ServerInterface {
                                         writer.flush();
                                         String viewOtherProfileChoice = reader.readLine();
                                         for (UserAccount userAccount : allUserAccount) {
-                                            if (userAccount.getUserProfile().getUsername().equals(userNameToViewProfile)) {
+                                            if (userAccount.getUserProfile().getUsername().equals(usernameToView)) {
                                                 if (viewOtherProfileChoice.equals("Age")) {
                                                     writer.write(userAccount.getUserProfile().getAge());
                                                 }
