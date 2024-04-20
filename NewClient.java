@@ -55,7 +55,7 @@ public class NewClient extends JComponent implements Runnable {
 
     JButton enterButton;
 
-    JButton returnButton; //return to the main menu
+    //JButton returnButton; //return to the main menu
 
     //JFrame and JButton for Log in
     JFrame loginFrame;
@@ -148,9 +148,9 @@ public class NewClient extends JComponent implements Runnable {
             enterButton.setBounds(240, 270, 140, 30);
             enterButton.addActionListener(actionListener);
 
-            returnButton = new JButton("Return");
-            returnButton.setBounds(240, 320, 140, 30);
-            returnButton.addActionListener(actionListener);
+            //returnButton = new JButton("Return");
+            //returnButton.setBounds(240, 320, 140, 30);
+            //returnButton.addActionListener(actionListener);
 
             content.add(usernameText);
             content.add(usernameLabel);
@@ -167,7 +167,7 @@ public class NewClient extends JComponent implements Runnable {
             content.add(hobbyText);
             content.add(hobbyLabel);
             content.add(enterButton);
-            content.add(returnButton);
+            //content.add(returnButton);
 
         }
         //Frame for log in account
@@ -232,17 +232,20 @@ public class NewClient extends JComponent implements Runnable {
                     String createAccountResult = reader.readLine();
                     if (createAccountResult.equals("Create account successfully.")) {
                         JOptionPane.showMessageDialog(null, createAccountResult, "Create Account", JOptionPane.INFORMATION_MESSAGE);
-                        //Return to the main menu so that user can log in
-                        createAccountFrame.setVisible(false);
-                        mainMenuFrame.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, createAccountResult, "Create Account", JOptionPane.ERROR_MESSAGE);
                     }
+                    //Return to the main menu so that user can log in
+                    createAccountFrame.setVisible(false);
+                    mainMenuFrame.setVisible(true);
                 }
+                /*
                 if (e.getSource() == returnButton) {
                     createAccountFrame.setVisible(false);
                     mainMenuFrame.setVisible(true);
                 }
+
+                 */
                 //Buttons in log in frame
                 //Buttons after log in successfully
                 //Buttons for specific action
