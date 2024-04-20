@@ -55,8 +55,6 @@ public class Client extends JComponent implements Runnable {
 
     JButton enterButton1;
 
-    //JButton returnButton; //return to the main menu
-
     //JFrame and JButton for Log in
     JFrame loginFrame;
     JLabel usernameLabel2;
@@ -67,7 +65,7 @@ public class Client extends JComponent implements Runnable {
 
     //JFrame and JButton after log in successfully
 
-    //JFrame and JButton in the frame of actions (Add, delete, block, remove, search?)
+    //JFrame and JButton in the frame of actions (Add, delete, block, remove, view other user prorile)
 
     JFrame actionFrame;
     JTextField otherUsernameText;
@@ -77,6 +75,10 @@ public class Client extends JComponent implements Runnable {
     JButton blockUserButton;
     JButton unblockUserButton;
     JButton viewOtherProfileButton;
+
+    //JFrame and JButton in the frame of view other user profile
+
+    //JFrame and JButton in edit that user profile
 
     //JFrame and JButton for the message frame
 
@@ -230,6 +232,9 @@ public class Client extends JComponent implements Runnable {
             //Only set visible = true after client click the action button
             actionFrame.setVisible(false);
 
+            otherUsernameLabel = new JLabel("Enter the username of other people");
+            //otherUsernameLabel.setBounds(230, 100, 120, 25);
+
             addFriendButton.addActionListener(actionListener);
             deleteFriendButton.addActionListener(actionListener);
             blockUserButton.addActionListener(actionListener);
@@ -241,6 +246,14 @@ public class Client extends JComponent implements Runnable {
             content.add(blockUserButton);
             content.add(unblockUserButton);
             content.add(viewOtherProfileButton);
+
+        }
+        //Frame for view other user profile
+        {
+
+        }
+        //Frame for edit that user profile
+        {
 
         }
         //Frame for the messages
@@ -262,7 +275,7 @@ public class Client extends JComponent implements Runnable {
                     createAccountFrame.setVisible(true);
                 }
                 if (e.getSource() == loginButton) {
-                    //Write 2 to server
+                    //Write Log in to the server
                     writer.write("Log in");
                     writer.println();
                     writer.flush();
@@ -270,7 +283,10 @@ public class Client extends JComponent implements Runnable {
                     loginFrame.setVisible(true);
                 }
                 if (e.getSource() == exitAppButton) {
-                    //close
+                    //close and write log out to the server
+                    writer.write("Log out");
+                    writer.println();
+                    writer.flush();
                     mainMenuFrame.dispose();
                 }
                 //Buttons in create account frame
@@ -285,21 +301,16 @@ public class Client extends JComponent implements Runnable {
                     writer.flush();
                     String createAccountResult = reader.readLine();
                     if (createAccountResult.equals("Create account successfully.")) {
-                        JOptionPane.showMessageDialog(null, createAccountResult, "Create Account", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, createAccountResult,
+                                "Create Account", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(null, createAccountResult, "Create Account", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, createAccountResult,
+                                "Create Account", JOptionPane.ERROR_MESSAGE);
                     }
                     //Return to the main menu so that user can log in
                     createAccountFrame.setVisible(false);
                     mainMenuFrame.setVisible(true);
                 }
-                /*
-                if (e.getSource() == returnButton) {
-                    createAccountFrame.setVisible(false);
-                    mainMenuFrame.setVisible(true);
-                }
-
-                 */
                 //Buttons in log in frame
                 if (e.getSource() == enterButton2) {
                     writer.println(usernameText2.getText());
@@ -307,11 +318,13 @@ public class Client extends JComponent implements Runnable {
                     writer.flush();
                     String loginResult = reader.readLine();
                     if (loginResult.equals("Log in successfully")) {
-                        JOptionPane.showMessageDialog(null, loginResult, "Log in", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, loginResult,
+                                "Log in", JOptionPane.INFORMATION_MESSAGE);
                         //Go to another frame after log in
                         loginFrame.setVisible(false);
                     } else {
-                        JOptionPane.showMessageDialog(null, loginResult, "Log in", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, loginResult,
+                                "Log in", JOptionPane.ERROR_MESSAGE);
                         //return to the main menu frame
                         loginFrame.setVisible(false);
                         mainMenuFrame.setVisible(true);
