@@ -8,7 +8,9 @@ import java.util.Scanner;
 /**
  * Team Project
  *
- * Client.java
+ * PreviousClient.java
+ *
+ * This is the Client.java in phase 2
  *
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
@@ -116,10 +118,7 @@ public class PreviousClient {
                             System.out.println("What would you like to do? ");
                             System.out.println("View your profile");
                             System.out.println("Edit your profile");
-                            System.out.println("Add friend");
-                            System.out.println("Delete friend");
-                            System.out.println("Block user");
-                            System.out.println("Unblock user");
+                            System.out.println("Action"); //Include add, delete, block, unblock
                             System.out.println("Send message");
                             System.out.println("Search other user");
                             System.out.println("View other user profile");
@@ -199,35 +198,46 @@ public class PreviousClient {
                                 String addFriendResult = reader.readLine();
                                 System.out.println(addFriendResult);
                             }
-                            if (choice.equals("Delete friend")) {
-                                System.out.println("Enter the user that you want to unfriend");
-                                String unfriendUserName = scanner.nextLine();
-                                //Send username that want to unfriend to server
-                                writer.write(unfriendUserName);
+                            if (choice.equals("Action")) {
+                                System.out.println("Enter the specific action");
+                                System.out.println("Add friend");
+                                System.out.println("Delete friend");
+                                System.out.println("Block user");
+                                System.out.println("Unblock user");
+                                String specificAction = scanner.nextLine();
+                                writer.write(specificAction);
                                 writer.println();
                                 writer.flush();
-                                String unfriendResult = reader.readLine();
-                                System.out.println(unfriendResult);
-                            }
-                            if (choice.equals("Block user")) {
-                                System.out.println("Enter the user that you want to block");
-                                String blockUserName = scanner.nextLine();
-                                //Send username that want to block to server
-                                writer.write(blockUserName);
-                                writer.println();
-                                writer.flush();
-                                String blockResult = reader.readLine();
-                                System.out.println(blockResult);
-                            }
-                            if (choice.equals("Unblock user")) {
-                                System.out.println("Enter the user that you want to unblock");
-                                String unblockUserName = scanner.nextLine();
-                                //Send username that want to unblock to server
-                                writer.write(unblockUserName);
-                                writer.println();
-                                writer.flush();
-                                String unblockResult = reader.readLine();
-                                System.out.println(unblockResult);
+                                if (specificAction.equals("Delete friend")) {
+                                    System.out.println("Enter the user that you want to unfriend");
+                                    String unfriendUserName = scanner.nextLine();
+                                    //Send username that want to unfriend to server
+                                    writer.write(unfriendUserName);
+                                    writer.println();
+                                    writer.flush();
+                                    String unfriendResult = reader.readLine();
+                                    System.out.println(unfriendResult);
+                                }
+                                if (specificAction.equals("Block user")) {
+                                    System.out.println("Enter the user that you want to block");
+                                    String blockUserName = scanner.nextLine();
+                                    //Send username that want to block to server
+                                    writer.write(blockUserName);
+                                    writer.println();
+                                    writer.flush();
+                                    String blockResult = reader.readLine();
+                                    System.out.println(blockResult);
+                                }
+                                if (specificAction.equals("Unblock user")) {
+                                    System.out.println("Enter the user that you want to unblock");
+                                    String unblockUserName = scanner.nextLine();
+                                    //Send username that want to unblock to server
+                                    writer.write(unblockUserName);
+                                    writer.println();
+                                    writer.flush();
+                                    String unblockResult = reader.readLine();
+                                    System.out.println(unblockResult);
+                                }
                             }
                             if (choice.equals("Send message")) {
                                 writer.write(username);
