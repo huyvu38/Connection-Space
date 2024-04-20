@@ -164,9 +164,6 @@ public class Client extends JComponent implements Runnable {
             enterButton1.setBounds(230, 270, 140, 30);
             enterButton1.addActionListener(actionListener);
 
-            //returnButton = new JButton("Return");
-            //returnButton.setBounds(240, 320, 140, 30);
-            //returnButton.addActionListener(actionListener);
 
             content.add(usernameText1);
             content.add(usernameLabel1);
@@ -222,6 +219,7 @@ public class Client extends JComponent implements Runnable {
             //loginFrame = new JFrame("Log In");
         }
         //Frame for specific actions
+        /*
         {
             actionFrame = new JFrame("Action");
             Container content = actionFrame.getContentPane();
@@ -234,6 +232,8 @@ public class Client extends JComponent implements Runnable {
 
             otherUsernameLabel = new JLabel("Enter the username of other people");
             //otherUsernameLabel.setBounds(230, 100, 120, 25);
+            otherUsernameText = new JTextField(10);
+            //otherUsernameText.setBounds(230, 100, 120, 25);
 
             addFriendButton.addActionListener(actionListener);
             deleteFriendButton.addActionListener(actionListener);
@@ -241,6 +241,8 @@ public class Client extends JComponent implements Runnable {
             unblockUserButton.addActionListener(actionListener);
             viewOtherProfileButton.addActionListener(actionListener);
 
+            content.add(otherUsernameLabel);
+            content.add(otherUsernameText);
             content.add(addFriendButton);
             content.add(deleteFriendButton);
             content.add(blockUserButton);
@@ -248,6 +250,8 @@ public class Client extends JComponent implements Runnable {
             content.add(viewOtherProfileButton);
 
         }
+
+         */
         //Frame for view other user profile
         {
 
