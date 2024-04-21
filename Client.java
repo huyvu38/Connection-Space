@@ -68,6 +68,11 @@ public class Client extends JComponent implements Runnable {
     JButton enterButton2;
 
     //JFrame and JButton after log in successfully
+
+    JFrame displayFrame;
+    JButton editProfileButton;
+    JButton messageButton;
+    JButton logOutButton;
     JButton actionButton;
 
     //JFrame and JButton in the frame of actions (Add, delete, block, remove, view other user prorile)
@@ -136,16 +141,18 @@ public class Client extends JComponent implements Runnable {
             exitAppButton.setBounds(210,230,160,70);
             actionButton = new JButton("action");
             actionButton.setBounds(210,280,160,70);
+            viewOtherProfileButton = new JButton("J");
+            viewOtherProfileButton.setBounds(210,300,160,70);
 
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
             exitAppButton.addActionListener(actionListener);
-            //viewOtherProfileButton.addActionListener(actionListener);
+            viewOtherProfileButton.addActionListener(actionListener);
 
             content.add(loginButton);
             content.add(createAccountButton);
             content.add(exitAppButton);
-            //content.add(viewOtherProfileButton);
+            content.add(viewOtherProfileButton);
 
         }
         //Frame for create account
@@ -217,7 +224,6 @@ public class Client extends JComponent implements Runnable {
             content.add(hobbyText);
             content.add(hobbyLabel);
             content.add(enterButton1);
-            //content.add(returnButton);
 
         }
         //Frame for log in account
@@ -253,7 +259,20 @@ public class Client extends JComponent implements Runnable {
         }
         //Frame after log in successfully
         {
-            //loginFrame = new JFrame("Log In");
+            displayFrame = new JFrame("Display");
+            Container content = displayFrame.getContentPane();
+            content.setLayout(null);
+            displayFrame.setSize(600, 400);
+            displayFrame.setLocationRelativeTo(null);
+            displayFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Only set visible = true after client log in successfully
+            displayFrame.setVisible(false);
+            editProfileButton = new JButton("Edit");
+            editProfileButton.setBounds(180, 200, 140, 30);
+            editProfileButton.addActionListener(actionListener);
+
+            content.add(editProfileButton);
+
         }
         //Frame for specific actions
         {
@@ -310,7 +329,7 @@ public class Client extends JComponent implements Runnable {
             viewOtherProfileFrame.setVisible(false);
 
             viewInformationLabel = new JLabel("Click to the information that you want to see");
-            //viewInformationLabel.setBounds();
+            viewInformationLabel.setBounds(400, 100,140,50);
             viewAgeButton = new JButton("Age");
             viewAgeButton.setBounds(400, 40, 140, 50);
             viewGenderButton = new JButton("Gender");
@@ -451,8 +470,8 @@ public class Client extends JComponent implements Runnable {
                     if (loginResult.equals("Log in successfully")) {
                         JOptionPane.showMessageDialog(null, loginResult,
                                 "Log in", JOptionPane.INFORMATION_MESSAGE);
-                        //Go to another frame after log in
                         loginFrame.setVisible(false);
+                        displayFrame.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, loginResult,
                                 "Log in", JOptionPane.ERROR_MESSAGE);
@@ -463,11 +482,13 @@ public class Client extends JComponent implements Runnable {
                 }
                 //Buttons after log in successfully
                 if (e.getSource() == actionButton) {
-                    mainMenuFrame.setVisible(false);
+                    displayFrame.setVisible(false);
                     actionFrame.setVisible(true);
                 }
-
-
+                if (e.getSource() == editProfileButton) {
+                    displayFrame.setVisible(false);
+                    editProfileFrame.setVisible(true);
+                }
                 //Buttons for specific action
                 if (e.getSource() == addFriendButton) {
                     writer.write("Add friend");
@@ -543,7 +564,7 @@ public class Client extends JComponent implements Runnable {
 
                 }
                 if (e.getSource() == viewOtherProfileButton) {
-                    actionFrame.setVisible(false);
+                    //actionFrame.setVisible(false);
                     writer.write("View other user profile");
                     writer.println();
                     writer.flush();
