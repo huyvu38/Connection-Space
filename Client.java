@@ -80,6 +80,7 @@ public class Client extends JComponent implements Runnable {
     //JFrame and JButton in the frame of view other user profile
 
     JFrame viewOtherProfileFrame;
+    JLabel viewInformationLabel;
     JButton viewAgeButton;
     JButton viewGenderButton;
     JButton viewNationalityButton;
@@ -116,12 +117,12 @@ public class Client extends JComponent implements Runnable {
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
             exitAppButton.addActionListener(actionListener);
-            viewOtherProfileButton.addActionListener(actionListener);
+            //viewOtherProfileButton.addActionListener(actionListener);
 
             content.add(loginButton);
             content.add(createAccountButton);
             content.add(exitAppButton);
-            content.add(viewOtherProfileButton);
+            //content.add(viewOtherProfileButton);
 
         }
         //Frame for create account
@@ -285,7 +286,8 @@ public class Client extends JComponent implements Runnable {
             //in action Frame
             viewOtherProfileFrame.setVisible(false);
 
-
+            viewInformationLabel = new JLabel("Click to the information that you want to see");
+            //viewInformationLabel.setBounds();
             viewAgeButton = new JButton("Age");
             viewAgeButton.setBounds(400, 40, 140, 50);
             viewGenderButton = new JButton("Delete friend");
@@ -519,10 +521,28 @@ public class Client extends JComponent implements Runnable {
                     //.setVisible(true);
                 }
                 if (e.getSource() == viewJobButton) {
-
+                    writer.write("Job");
+                    writer.println();
+                    writer.flush();
+                    String viewJobResult = reader.readLine();
+                    JOptionPane.showMessageDialog(null, "The job of that user is " +
+                                    viewJobResult,
+                            "View other profile", JOptionPane.INFORMATION_MESSAGE);
+                    viewOtherProfileFrame.setVisible(false);
+                    //set back to the frame after log in successfully
+                    //.setVisible(true);
                 }
                 if (e.getSource() == viewHobbyButton) {
-
+                    writer.write("Hobby");
+                    writer.println();
+                    writer.flush();
+                    String viewHobbyResult = reader.readLine();
+                    JOptionPane.showMessageDialog(null, "The hobby of that user is " +
+                                    viewHobbyResult,
+                            "View other profile", JOptionPane.INFORMATION_MESSAGE);
+                    viewOtherProfileFrame.setVisible(false);
+                    //set back to the frame after log in successfully
+                    //.setVisible(true);
                 }
                 //Buttons for edit profile
                 //Buttons for message
