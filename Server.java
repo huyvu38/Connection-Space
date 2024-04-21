@@ -231,7 +231,7 @@ public class Server implements ServerInterface {
                                     writer.println();
                                     writer.flush();
                                 }
-                                if (specificAction.equals("Delete friend")) {
+                                if (specificAction.equals("Unfriend")) {
                                     String unfriendUserName = reader.readLine();
                                     if (deleteFriend(username, unfriendUserName)) {
                                         database.saveAllUserAccount();
@@ -271,7 +271,7 @@ public class Server implements ServerInterface {
                                     if (inBlockList(username, usernameToView) ||
                                             inBlockList(usernameToView, username) ||
                                             (usernameInDatabase(usernameToView) == false)) {
-                                        writer.write("Can not view profile");
+                                        writer.write("Can not view that user profile");
                                         writer.println();
                                         writer.flush();
                                     } else {
