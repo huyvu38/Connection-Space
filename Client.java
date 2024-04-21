@@ -1,12 +1,17 @@
 import javax.swing.*;
+import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Team Project
@@ -76,7 +81,13 @@ public class Client extends JComponent implements Runnable {
     JButton unblockUserButton;
 
     //JFrame and JButton for the message frame
-
+    JTextArea messageTextArea;
+    JTextField recipientField;
+    JButton sendButton;
+    JButton cancelButton;
+    JTextArea messageDisplayArea;
+    Highlighter highlighter;
+    JButton deleteButton;
 
     //All of the frames in run()
     public void run() {
@@ -235,6 +246,8 @@ public class Client extends JComponent implements Runnable {
         }
         //Frame for the messages
         {
+            JFrame messageFrame = new JFrame("Message");
+
 
         }
     }
@@ -330,4 +343,106 @@ public class Client extends JComponent implements Runnable {
             }
         }
     };
+
 }
+
+class MessagingGUI extends JFrame {
+    private JTextArea messageTextArea;
+    private JTextField recipientField;
+    private JButton sendButton;
+    private JButton cancelButton;
+    private JButton deleteMessageButton;
+    private JTextArea messageDisplayArea;
+    private Highlighter highlighter;
+    private JButton deleteButton;
+
+    public MessagingGUI(String receiver) {
+        setTitle(receiver);
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Message composition area
+        JPanel composePanel = new JPanel(new BorderLayout());
+        messageTextArea = new JTextArea();
+        composePanel.add(new JScrollPane(messageTextArea), BorderLayout.CENTER);
+        sendButton = new JButton("Send");
+        composePanel.add(sendButton, BorderLayout.EAST);
+        add(composePanel, BorderLayout.NORTH);
+
+
+        // Recipient selection
+        JPanel recipientPanel = new JPanel(new BorderLayout());
+        recipientField = new JTextField();
+        recipientPanel.add(new JLabel("Recipient:"), BorderLayout.WEST);
+        recipientPanel.add(recipientField, BorderLayout.CENTER);
+        add(recipientPanel, BorderLayout.CENTER);
+
+        // Buttons
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        deleteButton = new JButton("Delete Selected Message"); // Initialize deleteButton here
+        JTextField conversationID = new JTextField();
+        conversationID.setText("Please enter the ID of the conversation you want to delete");
+        buttonPanel.add(deleteButton, BorderLayout.WEST);
+        buttonPanel.add(conversationID, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        // Message display area
+        messageDisplayArea = new JTextArea();
+        messageDisplayArea.setEditable(false);
+        add(new JScrollPane(messageDisplayArea), BorderLayout.CENTER);
+        highlighter = messageDisplayArea.getHighlighter();
+
+        // Action Listeners
+        sendButton.addActionListener(e -> sendMessage());
+        //cancelButton.addActionListener(e -> cancelMessage());
+        deleteButton.addActionListener(e -> deleteMessage());
+
+    }
+
+    private void sendMessage() {
+        String recipient = recipientField.getText();
+        String messageContent = messageTextArea.getText();
+
+        // Here, you would send the message to the server and handle the response
+
+        // For demonstration purposes, let's just display the sent message in the display area
+        displayMessage("You", messageContent);
+
+        // Clear the message composition area after sending
+        messageTextArea.setText("");
+    }
+
+    private void displayMessage(String sender, String messageContent) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        String timestamp = dateFormat.format(new Date());
+        String formattedMessage = "[" + timestamp + "] " + sender + ": " + messageContent + "\n";
+        messageDisplayArea.append(formattedMessage);
+    }
+
+
+    private void deleteMessage() {
+        // Here, you would send a message to the server to request deletion of the selected message
+        // You can get the selected message from the messageDisplayArea
+        String selectedMessage = messageDisplayArea.getSelectedText();
+        if (selectedMessage != null) {
+            // Implement logic to send deletion request to server
+            // Then remove the message from the display area
+            messageDisplayArea.replaceSelection("");
+            // Also remove the delete button
+            messageDisplayArea.remove(deleteButton);
+            messageDisplayArea.revalidate();
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            MessagingGUI gui = new MessagingGUI("Yanxin");
+            gui.setVisible(true);
+        });
+    }
+}
+
+
+
+
