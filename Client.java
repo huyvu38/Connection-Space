@@ -30,7 +30,6 @@ public class Client extends JComponent implements Runnable {
     Socket socket = new Socket("localhost", 5050);
     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     PrintWriter writer = new PrintWriter(socket.getOutputStream());
-
     public static void main(String[] args) throws IOException {
         SwingUtilities.invokeLater(new Client());
     }
@@ -94,6 +93,36 @@ public class Client extends JComponent implements Runnable {
 
 
     //JFrame and JButton in edit that user profile
+    JFrame editProfileFrame;
+
+    JLabel editInformationLabel;
+    JTextField editInformationText;
+    JButton editPasswordButton;
+    JButton editAgeButton;
+
+    JButton editGenderMaleButton;
+    JButton editGenderFemaleButton;
+    JButton editGenderToOtherButton;
+    JButton editNationalityButton;
+    JButton editJobButton;
+    JButton editHobbyButton;
+    /*
+    JTextField editPasswordText;
+    JLabel editPasswordLabel;
+    JTextField editAgeText;
+    JLabel editAgeLabel;
+    JComboBox<String> editGender;
+    JLabel editGenderLabel;
+    JTextField editNationalityText;
+    JLabel editNationalityLabel;
+    JTextField editJobText;
+    JLabel editJobLabel;
+    JTextField editHobbyText;
+    JLabel editHobbyLabel;
+
+    JButton enterButton3;
+
+     */
 
     //JFrame and JButton for the message frame
     JTextArea messageTextArea;
@@ -301,13 +330,13 @@ public class Client extends JComponent implements Runnable {
             //viewInformationLabel.setBounds();
             viewAgeButton = new JButton("Age");
             viewAgeButton.setBounds(400, 40, 140, 50);
-            viewGenderButton = new JButton("Delete friend");
+            viewGenderButton = new JButton("Gender");
             viewGenderButton.setBounds(400, 100,140,50);
-            viewNationalityButton = new JButton("Block user");
+            viewNationalityButton = new JButton("Nationality");
             viewNationalityButton.setBounds(400, 160,140,50);
-            viewJobButton = new JButton("Unblock user");
+            viewJobButton = new JButton("Job");
             viewJobButton.setBounds(400, 220,140,50);
-            viewHobbyButton = new JButton("View other profile");
+            viewHobbyButton = new JButton("Hobby");
             viewHobbyButton.setBounds(400, 280,140,50);
 
             viewAgeButton.addActionListener(actionListener);
@@ -324,7 +353,40 @@ public class Client extends JComponent implements Runnable {
         }
         //Frame for edit that user profile
         {
+            editProfileFrame = new JFrame("Edit profile");
+            Container content = editProfileFrame.getContentPane();
+            content.setLayout(null);
+            editProfileFrame.setSize(600, 400);
+            editProfileFrame.setLocationRelativeTo(null);
+            editProfileFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Only set visible = true after client click the edit profile button
+            editProfileFrame.setVisible(false);
 
+            editInformationLabel = new JLabel("Enter the information that you want to edit");
+            editInformationLabel.setBounds(400, 40, 140, 50);
+            editAgeButton = new JButton("Age");
+            editAgeButton.setBounds(400, 40, 140, 50);
+            editGenderMaleButton = new JButton("Male");
+            editGenderFemaleButton = new JButton("Female");
+            editGenderToOtherButton = new JButton("Other")
+            editNationalityButton = new JButton("Nationality");
+            editNationalityButton.setBounds(400, 160,140,50);
+            editJobButton = new JButton("Job");
+            editJobButton.setBounds(400, 220,140,50);
+            editHobbyButton = new JButton("Hobby");
+            editHobbyButton.setBounds(400, 280,140,50);
+
+            editAgeButton.addActionListener(actionListener);
+            editGenderButton.addActionListener(actionListener);
+            viewNationalityButton.addActionListener(actionListener);
+            viewJobButton.addActionListener(actionListener);
+            viewHobbyButton.addActionListener(actionListener);
+
+            content.add(viewAgeButton);
+            content.add(viewGenderButton);
+            content.add(viewNationalityButton);
+            content.add(viewJobButton);
+            content.add(viewHobbyButton);
         }
         //Frame for the messages
         {
