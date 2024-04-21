@@ -106,23 +106,6 @@ public class Client extends JComponent implements Runnable {
     JButton editNationalityButton;
     JButton editJobButton;
     JButton editHobbyButton;
-    /*
-    JTextField editPasswordText;
-    JLabel editPasswordLabel;
-    JTextField editAgeText;
-    JLabel editAgeLabel;
-    JComboBox<String> editGender;
-    JLabel editGenderLabel;
-    JTextField editNationalityText;
-    JLabel editNationalityLabel;
-    JTextField editJobText;
-    JLabel editJobLabel;
-    JTextField editHobbyText;
-    JLabel editHobbyLabel;
-
-    JButton enterButton3;
-
-     */
 
     //JFrame and JButton for the message frame
     JTextArea messageTextArea;
@@ -364,11 +347,18 @@ public class Client extends JComponent implements Runnable {
 
             editInformationLabel = new JLabel("Enter the information that you want to edit");
             editInformationLabel.setBounds(400, 40, 140, 50);
+            editInformationText = new JTextField(10);
+            editInformationText.setBounds(400, 40, 140, 50);
+            editPasswordButton = new JButton("Password");
+            editPasswordButton.setBounds(400, 40, 140, 50);
             editAgeButton = new JButton("Age");
             editAgeButton.setBounds(400, 40, 140, 50);
             editGenderMaleButton = new JButton("Male");
+            editGenderMaleButton.setBounds(400, 40, 140, 50);
             editGenderFemaleButton = new JButton("Female");
-            editGenderToOtherButton = new JButton("Other")
+            editGenderFemaleButton.setBounds(400, 40, 140, 50);
+            editGenderToOtherButton = new JButton("Other");
+            editGenderToOtherButton.setBounds(400, 40, 140, 50);
             editNationalityButton = new JButton("Nationality");
             editNationalityButton.setBounds(400, 160,140,50);
             editJobButton = new JButton("Job");
@@ -377,16 +367,23 @@ public class Client extends JComponent implements Runnable {
             editHobbyButton.setBounds(400, 280,140,50);
 
             editAgeButton.addActionListener(actionListener);
-            editGenderButton.addActionListener(actionListener);
-            viewNationalityButton.addActionListener(actionListener);
-            viewJobButton.addActionListener(actionListener);
-            viewHobbyButton.addActionListener(actionListener);
+            editGenderMaleButton.addActionListener(actionListener);
+            editGenderFemaleButton.addActionListener(actionListener);
+            editGenderToOtherButton.addActionListener(actionListener);
+            editNationalityButton.addActionListener(actionListener);
+            editJobButton.addActionListener(actionListener);
+            editHobbyButton.addActionListener(actionListener);
 
-            content.add(viewAgeButton);
-            content.add(viewGenderButton);
-            content.add(viewNationalityButton);
-            content.add(viewJobButton);
-            content.add(viewHobbyButton);
+            content.add(editInformationLabel);
+            content.add(editInformationText);
+            content.add(editPasswordButton);
+            content.add(editAgeButton);
+            content.add(editGenderMaleButton);
+            content.add(editGenderFemaleButton);
+            content.add(editGenderToOtherButton);
+            content.add(editNationalityButton);
+            content.add(editJobButton);
+            content.add(editHobbyButton);
         }
         //Frame for the messages
         {
@@ -620,6 +617,111 @@ public class Client extends JComponent implements Runnable {
                     //.setVisible(true);
                 }
                 //Buttons for edit profile
+                if (e.getSource() == editPasswordButton) {
+                    writer.write("Password");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editPasswordResult = reader.readLine();
+                    if (editPasswordResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editPasswordResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editPasswordResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                if (e.getSource() == editAgeButton) {
+                    writer.write("Age");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editAgeResult = reader.readLine();
+                    if (editAgeResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editAgeResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editAgeResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                if (e.getSource() == editGenderMaleButton) {
+                    writer.write("Gender");
+                    writer.println();
+                    writer.write("Male");
+                    writer.println();
+                    writer.flush();
+                    String editGenderResult = reader.readLine();
+                    JOptionPane.showMessageDialog(null, editGenderResult,
+                            "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (e.getSource() == editGenderFemaleButton) {
+                    writer.write("Gender");
+                    writer.println();
+                    writer.write("Female");
+                    writer.println();
+                    writer.flush();
+                    String editGenderResult = reader.readLine();
+                    JOptionPane.showMessageDialog(null, editGenderResult,
+                            "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (e.getSource() == editGenderToOtherButton) {
+                    writer.write("Gender");
+                    writer.println();
+                    writer.write("Other");
+                    writer.println();
+                    writer.flush();
+                    String editGenderResult = reader.readLine();
+                    JOptionPane.showMessageDialog(null, editGenderResult,
+                            "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (e.getSource() == editNationalityButton) {
+                    writer.write("Nationality");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editNationalityResult = reader.readLine();
+                    if (editNationalityResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editNationalityResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editNationalityResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                if (e.getSource() == editJobButton) {
+                    writer.write("Job");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editJobResult = reader.readLine();
+                    if (editJobResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editJobResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editJobResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                if (e.getSource() == editHobbyButton) {
+                    writer.write("Hobby");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editHobbyResult = reader.readLine();
+                    if (editHobbyResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editHobbyResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editHobbyResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
                 //Buttons for message
             } catch (Exception ex) {
                 ex.printStackTrace();
