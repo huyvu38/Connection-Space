@@ -12,6 +12,13 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.*;
+import javax.swing.text.Highlighter;
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Team Project
@@ -94,15 +101,23 @@ public class Client extends JComponent implements Runnable {
 
 
     //JFrame and JButton in edit that user profile
+    //JFrame and JButton in User frame
+    JFrame userFrame;
+
+
+
 
     //JFrame and JButton for the message frame
-    JTextArea messageTextArea;
-    JTextField recipientField;
-    JButton sendButton;
-    JButton cancelButton;
-    JTextArea messageDisplayArea;
-    Highlighter highlighter;
-    JButton deleteButton;
+    private JTextArea messageTextArea;
+    private JTextField recipientField;
+    private JButton sendButton;
+    private JTextArea messageDisplayArea;
+    private Highlighter highlighter;
+    private JButton deleteButton;
+    private final String conversationIDMessage = "Please enter conversationID to delete the message";
+    private String receiver;
+    JFrame messageFrame;
+    JTextField conversationID;
 
     //All of the frames in run()
     public void run() {
@@ -239,7 +254,7 @@ public class Client extends JComponent implements Runnable {
             content.add(enterButton2);
 
         }
-        //Frame after log in successfully
+        //Frame after log in successfully - UserFrame
         {
             //loginFrame = new JFrame("Log In");
         }
@@ -328,11 +343,68 @@ public class Client extends JComponent implements Runnable {
         }
         //Frame for the messages
         {
-            JFrame messageFrame = new JFrame("Message");
+            messageFrame = new JFrame("Message");
+            messageFrame.setTitle(receiver);
+            messageFrame.setSize(600, 400);
+            messageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            messageFrame.setLayout(new BorderLayout());
+
+            // Message composition area
+            JPanel composePanel = new JPanel(new BorderLayout());
+            messageTextArea = new JTextArea();
+            composePanel.add(new JScrollPane(messageTextArea), BorderLayout.CENTER);
+            sendButton = new JButton("Send");
+            composePanel.add(sendButton, BorderLayout.EAST);
+            messageFrame.add(composePanel, BorderLayout.NORTH);
+
+
+            // Recipient selection
+            JPanel recipientPanel = new JPanel(new BorderLayout());
+            recipientField = new JTextField();
+            recipientPanel.add(new JLabel("Recipient:"), BorderLayout.WEST);
+            recipientPanel.add(recipientField, BorderLayout.CENTER);
+            messageFrame.add(recipientPanel, BorderLayout.CENTER);
+
+            // Buttons
+            JPanel buttonPanel = new JPanel(new BorderLayout());
+            deleteButton = new JButton("Delete Selected Message"); // Initialize deleteButton here
+            conversationID = new JTextField(conversationIDMessage);
+            conversationID.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    if (conversationID.getText().equals(conversationIDMessage)) {
+                        conversationID.setText("");
+                    }
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    if (conversationID.getText().isEmpty()) {
+                        conversationID.setText(conversationIDMessage);
+                    }
+                }
+            });
+            conversationID.setForeground(Color.lightGray);
+
+            buttonPanel.add(deleteButton, BorderLayout.WEST);
+            buttonPanel.add(conversationID, BorderLayout.CENTER);
+            messageFrame.add(buttonPanel, BorderLayout.SOUTH);
+
+            // Message display area
+            messageDisplayArea = new JTextArea();
+            messageDisplayArea.setEditable(false);
+            add(new JScrollPane(messageDisplayArea), BorderLayout.CENTER);
+            highlighter = messageDisplayArea.getHighlighter();
+
+            // Action Listeners
+            sendButton.addActionListener(actionListener);
+            //cancelButton.addActionListener(e -> cancelMessage());
+            deleteButton.addActionListener(actionListener);
 
 
         }
     }
+
 
     ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -559,6 +631,45 @@ public class Client extends JComponent implements Runnable {
                 }
                 //Buttons for edit profile
                 //Buttons for message
+                if (e.getSource() == sendButton) {
+                    writer.write("Send Message");
+                    writer.println();
+                    writer.flush();
+                    writer.write(messageTextArea.getText());
+                    writer.println();
+                    writer.flush();
+                    writer.write(messageFrame.getTitle());
+                    writer.println();
+                    writer.flush();
+                    messageDisplayArea.setText(reader.readLine());
+                }
+                if (e.getSource() == deleteButton) {
+                    writer.write("Delete Message");
+                    writer.println();
+                    writer.flush();
+                    String ID = conversationID.getText();
+                    if (ID.isEmpty()) {
+                        JOptionPane.showMessageDialog(Client.this,
+                                "Error: ID cannot be empty. Please enter a valid ID.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                    try {
+                        int conversationID = Integer.parseInt(ID);
+                        writer.write(String.valueOf(conversationID));
+                        writer.println();
+                        writer.flush();
+                        writer.write(messageFrame.getTitle());
+                        writer.println();
+                        writer.flush();
+                        messageDisplayArea.setText(reader.readLine());
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(Client.this,
+                                "Error: ID must be number. Please enter a valid ID.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -567,102 +678,19 @@ public class Client extends JComponent implements Runnable {
 
 }
 
-class MessagingGUI extends JFrame {
-    private JTextArea messageTextArea;
-    private JTextField recipientField;
-    private JButton sendButton;
-    private JButton cancelButton;
-    private JButton deleteMessageButton;
-    private JTextArea messageDisplayArea;
-    private Highlighter highlighter;
-    private JButton deleteButton;
-
-    public MessagingGUI(String receiver) {
-        setTitle(receiver);
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
-
-        // Message composition area
-        JPanel composePanel = new JPanel(new BorderLayout());
-        messageTextArea = new JTextArea();
-        composePanel.add(new JScrollPane(messageTextArea), BorderLayout.CENTER);
-        sendButton = new JButton("Send");
-        composePanel.add(sendButton, BorderLayout.EAST);
-        add(composePanel, BorderLayout.NORTH);
 
 
-        // Recipient selection
-        JPanel recipientPanel = new JPanel(new BorderLayout());
-        recipientField = new JTextField();
-        recipientPanel.add(new JLabel("Recipient:"), BorderLayout.WEST);
-        recipientPanel.add(recipientField, BorderLayout.CENTER);
-        add(recipientPanel, BorderLayout.CENTER);
-
-        // Buttons
-        JPanel buttonPanel = new JPanel(new BorderLayout());
-        deleteButton = new JButton("Delete Selected Message"); // Initialize deleteButton here
-        JTextField conversationID = new JTextField();
-        conversationID.setText("Please enter the ID of the conversation you want to delete");
-        buttonPanel.add(deleteButton, BorderLayout.WEST);
-        buttonPanel.add(conversationID, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
-
-        // Message display area
-        messageDisplayArea = new JTextArea();
-        messageDisplayArea.setEditable(false);
-        add(new JScrollPane(messageDisplayArea), BorderLayout.CENTER);
-        highlighter = messageDisplayArea.getHighlighter();
-
-        // Action Listeners
-        sendButton.addActionListener(e -> sendMessage());
-        //cancelButton.addActionListener(e -> cancelMessage());
-        deleteButton.addActionListener(e -> deleteMessage());
-
-    }
-
-    private void sendMessage() {
-        String recipient = recipientField.getText();
-        String messageContent = messageTextArea.getText();
-
-        // Here, you would send the message to the server and handle the response
-
-        // For demonstration purposes, let's just display the sent message in the display area
-        displayMessage("You", messageContent);
-
-        // Clear the message composition area after sending
-        messageTextArea.setText("");
-    }
-
-    private void displayMessage(String sender, String messageContent) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        String timestamp = dateFormat.format(new Date());
-        String formattedMessage = "[" + timestamp + "] " + sender + ": " + messageContent + "\n";
-        messageDisplayArea.append(formattedMessage);
-    }
 
 
-    private void deleteMessage() {
-        // Here, you would send a message to the server to request deletion of the selected message
-        // You can get the selected message from the messageDisplayArea
-        String selectedMessage = messageDisplayArea.getSelectedText();
-        if (selectedMessage != null) {
-            // Implement logic to send deletion request to server
-            // Then remove the message from the display area
-            messageDisplayArea.replaceSelection("");
-            // Also remove the delete button
-            messageDisplayArea.remove(deleteButton);
-            messageDisplayArea.revalidate();
-        }
-    }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            MessagingGUI gui = new MessagingGUI("Yanxin");
-            gui.setVisible(true);
-        });
-    }
-}
+
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            MessagingGUI gui = new MessagingGUI("Yanxin");
+//            gui.setVisible(true);
+//        });
+//    }
+
 
 
 
