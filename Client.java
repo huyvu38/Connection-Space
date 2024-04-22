@@ -103,7 +103,7 @@ public class Client extends JComponent implements Runnable {
 
 
     //JFrame and JButton in edit that user profile
-    
+
     JFrame editProfileFrame;
 
     JLabel editInformationLabel;
