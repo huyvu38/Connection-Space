@@ -132,7 +132,9 @@ public class Server implements ServerInterface {
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {
                                         if (viewChoice.equals("Age")) {
-                                            writer.write(userAccount.getUserProfile().getAge());
+                                            int age = userAccount.getUserProfile().getAge();
+                                            String newAge = Integer.toString(age);
+                                            writer.write(newAge);
                                         }
                                         if (viewChoice.equals("Gender")) {
                                             writer.write(userAccount.getUserProfile().getGender());
@@ -275,14 +277,16 @@ public class Server implements ServerInterface {
                                         writer.println();
                                         writer.flush();
                                     } else {
-                                        writer.write("Which information do you want to see?");
+                                        writer.write("Click to the information that you want to see");
                                         writer.println();
                                         writer.flush();
                                         String viewOtherProfileChoice = reader.readLine();
                                         for (UserAccount userAccount : allUserAccount) {
                                             if (userAccount.getUserProfile().getUsername().equals(usernameToView)) {
                                                 if (viewOtherProfileChoice.equals("Age")) {
-                                                    writer.write(userAccount.getUserProfile().getAge());
+                                                    int age = userAccount.getUserProfile().getAge();
+                                                    String newAge = Integer.toString(age);
+                                                    writer.write(newAge);
                                                 }
                                                 if (viewOtherProfileChoice.equals("Gender")) {
                                                     writer.write(userAccount.getUserProfile().getGender());

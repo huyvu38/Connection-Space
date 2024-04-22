@@ -495,8 +495,23 @@ public class Client extends JComponent implements Runnable {
                     actionFrame.setVisible(true);
                 }
                 if (e.getSource() == editProfileButton) {
+                    writer.write("Edit your profile");
+                    writer.println();
+                    writer.flush();
                     userFrame.setVisible(false);
                     editProfileFrame.setVisible(true);
+                }
+                if (e.getSource() == logOutButton) {
+                    writer.write("Log out");
+                    writer.println();
+                    writer.flush();
+                    userFrame.setVisible(false);
+                    mainMenuFrame.setVisible(true);
+                }
+                //go to messege frame later
+                if (e.getSource() == messageButton) {
+                    userFrame.setVisible(false);
+                    //.setVisible(true);
                 }
                 //Buttons for specific action
                 if (e.getSource() == addFriendButton) {
@@ -573,8 +588,9 @@ public class Client extends JComponent implements Runnable {
 
                 }
                 if (e.getSource() == viewOtherProfileButton) {
-                    actionFrame.setVisible(false);
                     writer.write("View other user profile");
+                    writer.println();
+                    writer.write(otherUsernameText.getText());
                     writer.println();
                     writer.flush();
                     String viewOtherProfileResult = reader.readLine();
@@ -584,7 +600,7 @@ public class Client extends JComponent implements Runnable {
                         actionFrame.setVisible(false);
                         userFrame.setVisible(true);
                     } else {
-                        actionFrame.setVisible(true);
+                        actionFrame.setVisible(false);
                         viewOtherProfileFrame.setVisible(true);
                     }
                 }

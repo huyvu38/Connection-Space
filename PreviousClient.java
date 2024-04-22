@@ -247,7 +247,7 @@ public class PreviousClient {
                                     writer.flush();
                                     String viewResult = reader.readLine();
                                     System.out.println(viewResult);
-                                    if (viewResult.equals("Which information do you want to see?")) {
+                                    if (viewResult.equals("Click to the information that you want to see")) {
                                         System.out.println("Age");
                                         System.out.println("Gender");
                                         System.out.println("Nationality");
