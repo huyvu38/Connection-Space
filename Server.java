@@ -485,6 +485,9 @@ public class Server implements ServerInterface {
     public synchronized boolean addFriend(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
+            if (userNameOne.equals(userNameTwo)) {
+                return false; //can not add their own account
+            }
             if (inBlockList(userNameOne, userNameTwo)) {
                 return false; //User1 block user2
             }
@@ -543,6 +546,9 @@ public class Server implements ServerInterface {
     public synchronized boolean blockUser(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
+            if (userNameOne.equals(userNameTwo)) {
+                return false; //can not block their own account
+            }
             if (inBlockList(userNameOne, userNameTwo)) {
                 return false; //User1 already block user2
             }

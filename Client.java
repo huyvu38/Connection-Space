@@ -466,6 +466,13 @@ public class Client extends JComponent implements Runnable {
                     //Return to the main menu so that user can log in
                     createAccountFrame.setVisible(false);
                     mainMenuFrame.setVisible(true);
+                    //Reset text
+                    usernameText1.setText("");
+                    passwordText1.setText("");
+                    ageText.setText("");
+                    nationalityText.setText("");
+                    jobText.setText("");
+                    hobbyText.setText("");
                 }
                 //Buttons in log in frame
                 if (e.getSource() == enterButton2) {
@@ -485,6 +492,8 @@ public class Client extends JComponent implements Runnable {
                         loginFrame.setVisible(false);
                         mainMenuFrame.setVisible(true);
                     }
+                    usernameText2.setText("");
+                    passwordText2.setText("");
                 }
                 //Buttons after log in successfully
                 if (e.getSource() == actionButton) {
@@ -528,6 +537,7 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, addFriendResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
                     }
+                    otherUsernameText.setText("");
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
                     userFrame.setVisible(true);
@@ -546,6 +556,7 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, deleteFriendResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
                     }
+                    otherUsernameText.setText("");
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
                     userFrame.setVisible(true);
@@ -564,6 +575,7 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, blockUserResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
                     }
+                    otherUsernameText.setText("");
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
                     userFrame.setVisible(true);
@@ -582,6 +594,7 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, unblockUserResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
                     }
+                    otherUsernameText.setText("");
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
                     userFrame.setVisible(true);
@@ -597,9 +610,11 @@ public class Client extends JComponent implements Runnable {
                     if (viewOtherProfileResult.equals("Can not view that user profile")) {
                         JOptionPane.showMessageDialog(null, viewOtherProfileResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
+                        otherUsernameText.setText("");
                         actionFrame.setVisible(false);
                         userFrame.setVisible(true);
                     } else {
+                        otherUsernameText.setText("");
                         actionFrame.setVisible(false);
                         viewOtherProfileFrame.setVisible(true);
                     }
