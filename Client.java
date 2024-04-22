@@ -67,7 +67,7 @@ public class Client extends JComponent implements Runnable {
 
     //JFrame and JButton after log in successfully
 
-    JFrame displayFrame;
+    JFrame userFrame;
     JButton editProfileButton;
     JButton messageButton;
     JButton logOutButton;
@@ -254,14 +254,17 @@ public class Client extends JComponent implements Runnable {
         }
         //Frame after log in successfully
         {
-            displayFrame = new JFrame("Display");
-            Container content = displayFrame.getContentPane();
+            userFrame = new JFrame("User");
+            Container content = userFrame.getContentPane();
             content.setLayout(null);
-            displayFrame.setSize(600, 400);
-            displayFrame.setLocationRelativeTo(null);
-            displayFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            userFrame.setSize(600, 400);
+            userFrame.setLocationRelativeTo(null);
+            userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //Only set visible = true after client log in successfully
-            displayFrame.setVisible(false);
+            userFrame.setVisible(false);
+
+            //I just add some button just to check another frame
+            //Still have to fix a lot
             editProfileButton = new JButton("Edit");
             editProfileButton.setBounds(180, 200, 140, 30);
             editProfileButton.addActionListener(actionListener);
@@ -470,7 +473,7 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, loginResult,
                                 "Log in", JOptionPane.INFORMATION_MESSAGE);
                         loginFrame.setVisible(false);
-                        displayFrame.setVisible(true);
+                        userFrame.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, loginResult,
                                 "Log in", JOptionPane.ERROR_MESSAGE);
@@ -481,11 +484,11 @@ public class Client extends JComponent implements Runnable {
                 }
                 //Buttons after log in successfully
                 if (e.getSource() == actionButton) {
-                    displayFrame.setVisible(false);
+                    userFrame.setVisible(false);
                     actionFrame.setVisible(true);
                 }
                 if (e.getSource() == editProfileButton) {
-                    displayFrame.setVisible(false);
+                    userFrame.setVisible(false);
                     editProfileFrame.setVisible(true);
                 }
                 //Buttons for specific action
