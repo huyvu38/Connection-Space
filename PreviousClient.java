@@ -127,6 +127,7 @@ public class PreviousClient {
                             writer.write(choice);
                             writer.println();
                             writer.flush();
+                            //We should Make choice to get access FriendList and Blocklist
                             if (choice.equals("View your profile")) {
                                 System.out.println("Which information do you want to see");
                                 System.out.println("Age");

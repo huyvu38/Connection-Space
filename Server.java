@@ -126,6 +126,7 @@ public class Server implements ServerInterface {
                         writer.flush();
                         while (true) {
                             String choice = reader.readLine();
+                            //We should Make choice to get access FriendList and Blocklist
                             if (choice.equals("View your profile")) {
                                 //Get the information that user want to view
                                 String viewChoice = reader.readLine();

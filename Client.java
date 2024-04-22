@@ -263,6 +263,8 @@ public class Client extends JComponent implements Runnable {
             //Only set visible = true after client log in successfully
             userFrame.setVisible(false);
 
+            /*
+
             //I just add some button just to check another frame
             //Still have to fix a lot
             editProfileButton = new JButton("Edit");
@@ -274,6 +276,21 @@ public class Client extends JComponent implements Runnable {
             actionButton.addActionListener(actionListener);
             content.add(editProfileButton);
             content.add(actionButton);
+
+             */
+
+            /*
+            JButton editProfileButton;
+            JButton messageButton;
+            JButton logOutButton;
+            JButton actionButton;
+            also include a way to access friend list and block list ->>
+            Option 1 : create a button
+            Option 2 : display in that user frame
+            For both option, probably need to create a choice often in both PreviousClient and Server.java
+
+            view that user profile (should we also display in that user frame ?? )
+             */
 
         }
         //Frame for specific actions
@@ -331,17 +348,17 @@ public class Client extends JComponent implements Runnable {
             viewOtherProfileFrame.setVisible(false);
 
             viewInformationLabel = new JLabel("Click to the information that you want to see");
-            viewInformationLabel.setBounds(400, 100,140,50);
+            viewInformationLabel.setBounds(170, 60,300,30);
             viewAgeButton = new JButton("Age");
-            viewAgeButton.setBounds(400, 40, 140, 50);
+            viewAgeButton.setBounds(20, 180, 90, 32);
             viewGenderButton = new JButton("Gender");
-            viewGenderButton.setBounds(400, 100,140,50);
+            viewGenderButton.setBounds(130, 180,90,32);
             viewNationalityButton = new JButton("Nationality");
-            viewNationalityButton.setBounds(400, 160,140,50);
+            viewNationalityButton.setBounds(240, 180,90,32);
             viewJobButton = new JButton("Job");
-            viewJobButton.setBounds(400, 220,140,50);
+            viewJobButton.setBounds(350, 180,90,32);
             viewHobbyButton = new JButton("Hobby");
-            viewHobbyButton.setBounds(400, 280,140,50);
+            viewHobbyButton.setBounds(460, 180,90,32);
 
             viewAgeButton.addActionListener(actionListener);
             viewGenderButton.addActionListener(actionListener);
@@ -349,6 +366,7 @@ public class Client extends JComponent implements Runnable {
             viewJobButton.addActionListener(actionListener);
             viewHobbyButton.addActionListener(actionListener);
 
+            content.add(viewInformationLabel);
             content.add(viewAgeButton);
             content.add(viewGenderButton);
             content.add(viewNationalityButton);
