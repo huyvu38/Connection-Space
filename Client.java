@@ -3,8 +3,6 @@ import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -75,7 +73,7 @@ public class Client extends JComponent implements Runnable {
     JButton logOutButton;
     JButton actionButton;
 
-    //JFrame and JButton in the frame of actions (Add, delete, block, remove, view other user prorile)
+    //JFrame and JButton in the frame of actions (Add, delete, block, remove, view other user profile)
 
     JFrame actionFrame;
     JTextField otherUsernameText;
@@ -104,6 +102,7 @@ public class Client extends JComponent implements Runnable {
     JTextField editInformationText;
     JButton editPasswordButton;
     JButton editAgeButton;
+    JLabel editGenderLabel;
 
     JButton editGenderMaleButton;
     JButton editGenderFemaleButton;
@@ -141,18 +140,14 @@ public class Client extends JComponent implements Runnable {
             exitAppButton.setBounds(210,230,160,70);
             actionButton = new JButton("action");
             actionButton.setBounds(210,280,160,70);
-            viewOtherProfileButton = new JButton("J");
-            viewOtherProfileButton.setBounds(210,300,160,70);
 
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
             exitAppButton.addActionListener(actionListener);
-            viewOtherProfileButton.addActionListener(actionListener);
 
             content.add(loginButton);
             content.add(createAccountButton);
             content.add(exitAppButton);
-            content.add(viewOtherProfileButton);
 
         }
         //Frame for create account
@@ -364,45 +359,49 @@ public class Client extends JComponent implements Runnable {
             //Only set visible = true after client click the edit profile button
             editProfileFrame.setVisible(false);
 
-            editInformationLabel = new JLabel("Enter the information that you want to edit");
-            editInformationLabel.setBounds(400, 40, 140, 50);
+            editInformationLabel = new JLabel("Enter the new information");
+            editInformationLabel.setBounds(130, 70, 200, 25);
             editInformationText = new JTextField(10);
-            editInformationText.setBounds(400, 40, 140, 50);
+            editInformationText.setBounds(330, 70, 150, 25);
             editPasswordButton = new JButton("Password");
-            editPasswordButton.setBounds(400, 40, 140, 50);
+            editPasswordButton.setBounds(20, 150, 100, 30);
             editAgeButton = new JButton("Age");
-            editAgeButton.setBounds(400, 40, 140, 50);
-            editGenderMaleButton = new JButton("Male");
-            editGenderMaleButton.setBounds(400, 40, 140, 50);
-            editGenderFemaleButton = new JButton("Female");
-            editGenderFemaleButton.setBounds(400, 40, 140, 50);
-            editGenderToOtherButton = new JButton("Other");
-            editGenderToOtherButton.setBounds(400, 40, 140, 50);
+            editAgeButton.setBounds(130, 150, 100, 30);
             editNationalityButton = new JButton("Nationality");
-            editNationalityButton.setBounds(400, 160,140,50);
+            editNationalityButton.setBounds(240, 150,100,30);
             editJobButton = new JButton("Job");
-            editJobButton.setBounds(400, 220,140,50);
+            editJobButton.setBounds(350, 150,100,30);
             editHobbyButton = new JButton("Hobby");
-            editHobbyButton.setBounds(400, 280,140,50);
+            editHobbyButton.setBounds(460, 150,100,30);
+            editGenderLabel = new JLabel("Edit the gender by clicking on one of the following options");
+            editGenderLabel.setBounds(130, 200, 400, 30);
+            editGenderMaleButton = new JButton("Male");
+            editGenderMaleButton.setBounds(75, 260, 100, 30);
+            editGenderFemaleButton = new JButton("Female");
+            editGenderFemaleButton.setBounds(240, 260, 100, 30);
+            editGenderToOtherButton = new JButton("Other");
+            editGenderToOtherButton.setBounds(405, 260, 100, 30);
 
+            editPasswordButton.addActionListener(actionListener);
             editAgeButton.addActionListener(actionListener);
-            editGenderMaleButton.addActionListener(actionListener);
-            editGenderFemaleButton.addActionListener(actionListener);
-            editGenderToOtherButton.addActionListener(actionListener);
             editNationalityButton.addActionListener(actionListener);
             editJobButton.addActionListener(actionListener);
             editHobbyButton.addActionListener(actionListener);
+            editGenderMaleButton.addActionListener(actionListener);
+            editGenderFemaleButton.addActionListener(actionListener);
+            editGenderToOtherButton.addActionListener(actionListener);
 
             content.add(editInformationLabel);
             content.add(editInformationText);
             content.add(editPasswordButton);
             content.add(editAgeButton);
-            content.add(editGenderMaleButton);
-            content.add(editGenderFemaleButton);
-            content.add(editGenderToOtherButton);
             content.add(editNationalityButton);
             content.add(editJobButton);
             content.add(editHobbyButton);
+            content.add(editGenderLabel);
+            content.add(editGenderMaleButton);
+            content.add(editGenderFemaleButton);
+            content.add(editGenderToOtherButton);
         }
         //Frame for the messages
         {
