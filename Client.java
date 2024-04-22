@@ -269,7 +269,11 @@ public class Client extends JComponent implements Runnable {
             editProfileButton.setBounds(180, 200, 140, 30);
             editProfileButton.addActionListener(actionListener);
 
+            actionButton = new JButton("Action");
+            actionButton.setBounds(100, 100, 140, 30);
+            actionButton.addActionListener(actionListener);
             content.add(editProfileButton);
+            content.add(actionButton);
 
         }
         //Frame for specific actions
@@ -484,6 +488,9 @@ public class Client extends JComponent implements Runnable {
                 }
                 //Buttons after log in successfully
                 if (e.getSource() == actionButton) {
+                    writer.write("Action");
+                    writer.println();
+                    writer.flush();
                     userFrame.setVisible(false);
                     actionFrame.setVisible(true);
                 }
@@ -508,7 +515,7 @@ public class Client extends JComponent implements Runnable {
                     }
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true)
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == deleteFriendButton) {
                     writer.write("Unfriend");
@@ -526,7 +533,7 @@ public class Client extends JComponent implements Runnable {
                     }
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == blockUserButton) {
                     writer.write("Block user");
@@ -544,7 +551,7 @@ public class Client extends JComponent implements Runnable {
                     }
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == unblockUserButton) {
                     writer.write("Unblock user");
@@ -562,11 +569,11 @@ public class Client extends JComponent implements Runnable {
                     }
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
 
                 }
                 if (e.getSource() == viewOtherProfileButton) {
-                    //actionFrame.setVisible(false);
+                    actionFrame.setVisible(false);
                     writer.write("View other user profile");
                     writer.println();
                     writer.flush();
@@ -574,7 +581,10 @@ public class Client extends JComponent implements Runnable {
                     if (viewOtherProfileResult.equals("Can not view that user profile")) {
                         JOptionPane.showMessageDialog(null, viewOtherProfileResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
+                        actionFrame.setVisible(false);
+                        userFrame.setVisible(true);
                     } else {
+                        actionFrame.setVisible(true);
                         viewOtherProfileFrame.setVisible(true);
                     }
                 }
@@ -589,7 +599,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewGenderButton) {
                     writer.write("Gender");
@@ -601,7 +611,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewNationalityButton) {
                     writer.write("Nationality");
@@ -613,7 +623,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewJobButton) {
                     writer.write("Job");
@@ -625,7 +635,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewHobbyButton) {
                     writer.write("Hobby");
@@ -637,7 +647,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 //Buttons for edit profile
                 if (e.getSource() == editPasswordButton) {
@@ -654,6 +664,8 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, editPasswordResult,
                                 "Edit profile", JOptionPane.ERROR_MESSAGE);
                     }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == editAgeButton) {
                     writer.write("Age");
@@ -669,6 +681,8 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, editAgeResult,
                                 "Edit profile", JOptionPane.ERROR_MESSAGE);
                     }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == editGenderMaleButton) {
                     writer.write("Gender");
@@ -679,6 +693,8 @@ public class Client extends JComponent implements Runnable {
                     String editGenderResult = reader.readLine();
                     JOptionPane.showMessageDialog(null, editGenderResult,
                             "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == editGenderFemaleButton) {
                     writer.write("Gender");
@@ -689,6 +705,8 @@ public class Client extends JComponent implements Runnable {
                     String editGenderResult = reader.readLine();
                     JOptionPane.showMessageDialog(null, editGenderResult,
                             "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == editGenderToOtherButton) {
                     writer.write("Gender");
@@ -699,6 +717,8 @@ public class Client extends JComponent implements Runnable {
                     String editGenderResult = reader.readLine();
                     JOptionPane.showMessageDialog(null, editGenderResult,
                             "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == editNationalityButton) {
                     writer.write("Nationality");
@@ -714,6 +734,8 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, editNationalityResult,
                                 "Edit profile", JOptionPane.ERROR_MESSAGE);
                     }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == editJobButton) {
                     writer.write("Job");
@@ -729,6 +751,8 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, editJobResult,
                                 "Edit profile", JOptionPane.ERROR_MESSAGE);
                     }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == editHobbyButton) {
                     writer.write("Hobby");
@@ -744,6 +768,8 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, editHobbyResult,
                                 "Edit profile", JOptionPane.ERROR_MESSAGE);
                     }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
                 }
                 //Buttons for message
             } catch (Exception ex) {
