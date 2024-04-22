@@ -3,8 +3,6 @@ import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +35,6 @@ public class Client extends JComponent implements Runnable {
     Socket socket = new Socket("localhost", 5050);
     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     PrintWriter writer = new PrintWriter(socket.getOutputStream());
-
     public static void main(String[] args) throws IOException {
         SwingUtilities.invokeLater(new Client());
     }
@@ -76,9 +73,14 @@ public class Client extends JComponent implements Runnable {
     JButton enterButton2;
 
     //JFrame and JButton after log in successfully
+
+    JFrame userFrame;
+    JButton editProfileButton;
+    JButton messageButton;
+    JButton logOutButton;
     JButton actionButton;
 
-    //JFrame and JButton in the frame of actions (Add, delete, block, remove, view other user prorile)
+    //JFrame and JButton in the frame of actions (Add, delete, block, remove, view other user profile)
 
     JFrame actionFrame;
     JTextField otherUsernameText;
@@ -101,11 +103,21 @@ public class Client extends JComponent implements Runnable {
 
 
     //JFrame and JButton in edit that user profile
-    //JFrame and JButton in User frame
-    JFrame userFrame;
+    
+    JFrame editProfileFrame;
 
+    JLabel editInformationLabel;
+    JTextField editInformationText;
+    JButton editPasswordButton;
+    JButton editAgeButton;
+    JLabel editGenderLabel;
 
-
+    JButton editGenderMaleButton;
+    JButton editGenderFemaleButton;
+    JButton editGenderToOtherButton;
+    JButton editNationalityButton;
+    JButton editJobButton;
+    JButton editHobbyButton;
 
     //JFrame and JButton for the message frame
     private JTextArea messageTextArea;
@@ -143,12 +155,10 @@ public class Client extends JComponent implements Runnable {
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
             exitAppButton.addActionListener(actionListener);
-            //viewOtherProfileButton.addActionListener(actionListener);
 
             content.add(loginButton);
             content.add(createAccountButton);
             content.add(exitAppButton);
-            //content.add(viewOtherProfileButton);
 
         }
         //Frame for create account
@@ -220,7 +230,6 @@ public class Client extends JComponent implements Runnable {
             content.add(hobbyText);
             content.add(hobbyLabel);
             content.add(enterButton1);
-            //content.add(returnButton);
 
         }
         //Frame for log in account
@@ -256,7 +265,44 @@ public class Client extends JComponent implements Runnable {
         }
         //Frame after log in successfully - UserFrame
         {
-            //loginFrame = new JFrame("Log In");
+            userFrame = new JFrame("User");
+            Container content = userFrame.getContentPane();
+            content.setLayout(null);
+            userFrame.setSize(600, 400);
+            userFrame.setLocationRelativeTo(null);
+            userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Only set visible = true after client log in successfully
+            userFrame.setVisible(false);
+
+            /*
+
+            //I just add some button just to check another frame
+            //Still have to fix a lot
+            editProfileButton = new JButton("Edit");
+            editProfileButton.setBounds(180, 200, 140, 30);
+            editProfileButton.addActionListener(actionListener);
+
+            actionButton = new JButton("Action");
+            actionButton.setBounds(100, 100, 140, 30);
+            actionButton.addActionListener(actionListener);
+            content.add(editProfileButton);
+            content.add(actionButton);
+
+             */
+
+            /*
+            JButton editProfileButton;
+            JButton messageButton;
+            JButton logOutButton;
+            JButton actionButton;
+            also include a way to access friend list and block list ->>
+            Option 1 : create a button
+            Option 2 : display in that user frame
+            For both option, probably need to create a choice often in both PreviousClient and Server.java
+
+            view that user profile (should we also display in that user frame ?? )
+             */
+
         }
         //Frame for specific actions
         {
@@ -313,17 +359,17 @@ public class Client extends JComponent implements Runnable {
             viewOtherProfileFrame.setVisible(false);
 
             viewInformationLabel = new JLabel("Click to the information that you want to see");
-            //viewInformationLabel.setBounds();
+            viewInformationLabel.setBounds(170, 60,300,30);
             viewAgeButton = new JButton("Age");
-            viewAgeButton.setBounds(400, 40, 140, 50);
-            viewGenderButton = new JButton("Delete friend");
-            viewGenderButton.setBounds(400, 100,140,50);
-            viewNationalityButton = new JButton("Block user");
-            viewNationalityButton.setBounds(400, 160,140,50);
-            viewJobButton = new JButton("Unblock user");
-            viewJobButton.setBounds(400, 220,140,50);
-            viewHobbyButton = new JButton("View other profile");
-            viewHobbyButton.setBounds(400, 280,140,50);
+            viewAgeButton.setBounds(20, 180, 90, 32);
+            viewGenderButton = new JButton("Gender");
+            viewGenderButton.setBounds(130, 180,90,32);
+            viewNationalityButton = new JButton("Nationality");
+            viewNationalityButton.setBounds(240, 180,90,32);
+            viewJobButton = new JButton("Job");
+            viewJobButton.setBounds(350, 180,90,32);
+            viewHobbyButton = new JButton("Hobby");
+            viewHobbyButton.setBounds(460, 180,90,32);
 
             viewAgeButton.addActionListener(actionListener);
             viewGenderButton.addActionListener(actionListener);
@@ -331,6 +377,7 @@ public class Client extends JComponent implements Runnable {
             viewJobButton.addActionListener(actionListener);
             viewHobbyButton.addActionListener(actionListener);
 
+            content.add(viewInformationLabel);
             content.add(viewAgeButton);
             content.add(viewGenderButton);
             content.add(viewNationalityButton);
@@ -339,7 +386,58 @@ public class Client extends JComponent implements Runnable {
         }
         //Frame for edit that user profile
         {
+            editProfileFrame = new JFrame("Edit profile");
+            Container content = editProfileFrame.getContentPane();
+            content.setLayout(null);
+            editProfileFrame.setSize(600, 400);
+            editProfileFrame.setLocationRelativeTo(null);
+            editProfileFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //Only set visible = true after client click the edit profile button
+            editProfileFrame.setVisible(false);
 
+            editInformationLabel = new JLabel("Enter the new information");
+            editInformationLabel.setBounds(130, 70, 200, 25);
+            editInformationText = new JTextField(10);
+            editInformationText.setBounds(330, 70, 150, 25);
+            editPasswordButton = new JButton("Password");
+            editPasswordButton.setBounds(20, 150, 100, 30);
+            editAgeButton = new JButton("Age");
+            editAgeButton.setBounds(130, 150, 100, 30);
+            editNationalityButton = new JButton("Nationality");
+            editNationalityButton.setBounds(240, 150,100,30);
+            editJobButton = new JButton("Job");
+            editJobButton.setBounds(350, 150,100,30);
+            editHobbyButton = new JButton("Hobby");
+            editHobbyButton.setBounds(460, 150,100,30);
+            editGenderLabel = new JLabel("Edit the gender by clicking on one of the following options");
+            editGenderLabel.setBounds(130, 200, 400, 30);
+            editGenderMaleButton = new JButton("Male");
+            editGenderMaleButton.setBounds(75, 260, 100, 30);
+            editGenderFemaleButton = new JButton("Female");
+            editGenderFemaleButton.setBounds(240, 260, 100, 30);
+            editGenderToOtherButton = new JButton("Other");
+            editGenderToOtherButton.setBounds(405, 260, 100, 30);
+
+            editPasswordButton.addActionListener(actionListener);
+            editAgeButton.addActionListener(actionListener);
+            editNationalityButton.addActionListener(actionListener);
+            editJobButton.addActionListener(actionListener);
+            editHobbyButton.addActionListener(actionListener);
+            editGenderMaleButton.addActionListener(actionListener);
+            editGenderFemaleButton.addActionListener(actionListener);
+            editGenderToOtherButton.addActionListener(actionListener);
+
+            content.add(editInformationLabel);
+            content.add(editInformationText);
+            content.add(editPasswordButton);
+            content.add(editAgeButton);
+            content.add(editNationalityButton);
+            content.add(editJobButton);
+            content.add(editHobbyButton);
+            content.add(editGenderLabel);
+            content.add(editGenderMaleButton);
+            content.add(editGenderFemaleButton);
+            content.add(editGenderToOtherButton);
         }
         //Frame for the messages
         {
@@ -454,6 +552,13 @@ public class Client extends JComponent implements Runnable {
                     //Return to the main menu so that user can log in
                     createAccountFrame.setVisible(false);
                     mainMenuFrame.setVisible(true);
+                    //Reset text
+                    usernameText1.setText("");
+                    passwordText1.setText("");
+                    ageText.setText("");
+                    nationalityText.setText("");
+                    jobText.setText("");
+                    hobbyText.setText("");
                 }
                 //Buttons in log in frame
                 if (e.getSource() == enterButton2) {
@@ -464,8 +569,8 @@ public class Client extends JComponent implements Runnable {
                     if (loginResult.equals("Log in successfully")) {
                         JOptionPane.showMessageDialog(null, loginResult,
                                 "Log in", JOptionPane.INFORMATION_MESSAGE);
-                        //Go to another frame after log in
                         loginFrame.setVisible(false);
+                        userFrame.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, loginResult,
                                 "Log in", JOptionPane.ERROR_MESSAGE);
@@ -473,14 +578,36 @@ public class Client extends JComponent implements Runnable {
                         loginFrame.setVisible(false);
                         mainMenuFrame.setVisible(true);
                     }
+                    usernameText2.setText("");
+                    passwordText2.setText("");
                 }
                 //Buttons after log in successfully
                 if (e.getSource() == actionButton) {
-                    mainMenuFrame.setVisible(false);
+                    writer.write("Action");
+                    writer.println();
+                    writer.flush();
+                    userFrame.setVisible(false);
                     actionFrame.setVisible(true);
                 }
-
-
+                if (e.getSource() == editProfileButton) {
+                    writer.write("Edit your profile");
+                    writer.println();
+                    writer.flush();
+                    userFrame.setVisible(false);
+                    editProfileFrame.setVisible(true);
+                }
+                if (e.getSource() == logOutButton) {
+                    writer.write("Log out");
+                    writer.println();
+                    writer.flush();
+                    userFrame.setVisible(false);
+                    mainMenuFrame.setVisible(true);
+                }
+                //go to messege frame later
+                if (e.getSource() == messageButton) {
+                    userFrame.setVisible(false);
+                    //.setVisible(true);
+                }
                 //Buttons for specific action
                 if (e.getSource() == addFriendButton) {
                     writer.write("Add friend");
@@ -496,9 +623,10 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, addFriendResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
                     }
+                    otherUsernameText.setText("");
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true)
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == deleteFriendButton) {
                     writer.write("Unfriend");
@@ -514,9 +642,10 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, deleteFriendResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
                     }
+                    otherUsernameText.setText("");
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == blockUserButton) {
                     writer.write("Block user");
@@ -532,9 +661,10 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, blockUserResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
                     }
+                    otherUsernameText.setText("");
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == unblockUserButton) {
                     writer.write("Unblock user");
@@ -550,21 +680,28 @@ public class Client extends JComponent implements Runnable {
                         JOptionPane.showMessageDialog(null, unblockUserResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
                     }
+                    otherUsernameText.setText("");
                     actionFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
 
                 }
                 if (e.getSource() == viewOtherProfileButton) {
-                    actionFrame.setVisible(false);
                     writer.write("View other user profile");
+                    writer.println();
+                    writer.write(otherUsernameText.getText());
                     writer.println();
                     writer.flush();
                     String viewOtherProfileResult = reader.readLine();
                     if (viewOtherProfileResult.equals("Can not view that user profile")) {
                         JOptionPane.showMessageDialog(null, viewOtherProfileResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
+                        otherUsernameText.setText("");
+                        actionFrame.setVisible(false);
+                        userFrame.setVisible(true);
                     } else {
+                        otherUsernameText.setText("");
+                        actionFrame.setVisible(false);
                         viewOtherProfileFrame.setVisible(true);
                     }
                 }
@@ -579,7 +716,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewGenderButton) {
                     writer.write("Gender");
@@ -591,7 +728,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewNationalityButton) {
                     writer.write("Nationality");
@@ -603,7 +740,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewJobButton) {
                     writer.write("Job");
@@ -615,7 +752,7 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewHobbyButton) {
                     writer.write("Hobby");
@@ -627,9 +764,130 @@ public class Client extends JComponent implements Runnable {
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
                     viewOtherProfileFrame.setVisible(false);
                     //set back to the frame after log in successfully
-                    //.setVisible(true);
+                    userFrame.setVisible(true);
                 }
                 //Buttons for edit profile
+                if (e.getSource() == editPasswordButton) {
+                    writer.write("Password");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editPasswordResult = reader.readLine();
+                    if (editPasswordResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editPasswordResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editPasswordResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
+                }
+                if (e.getSource() == editAgeButton) {
+                    writer.write("Age");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editAgeResult = reader.readLine();
+                    if (editAgeResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editAgeResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editAgeResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
+                }
+                if (e.getSource() == editGenderMaleButton) {
+                    writer.write("Gender");
+                    writer.println();
+                    writer.write("Male");
+                    writer.println();
+                    writer.flush();
+                    String editGenderResult = reader.readLine();
+                    JOptionPane.showMessageDialog(null, editGenderResult,
+                            "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
+                }
+                if (e.getSource() == editGenderFemaleButton) {
+                    writer.write("Gender");
+                    writer.println();
+                    writer.write("Female");
+                    writer.println();
+                    writer.flush();
+                    String editGenderResult = reader.readLine();
+                    JOptionPane.showMessageDialog(null, editGenderResult,
+                            "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
+                }
+                if (e.getSource() == editGenderToOtherButton) {
+                    writer.write("Gender");
+                    writer.println();
+                    writer.write("Other");
+                    writer.println();
+                    writer.flush();
+                    String editGenderResult = reader.readLine();
+                    JOptionPane.showMessageDialog(null, editGenderResult,
+                            "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
+                }
+                if (e.getSource() == editNationalityButton) {
+                    writer.write("Nationality");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editNationalityResult = reader.readLine();
+                    if (editNationalityResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editNationalityResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editNationalityResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
+                }
+                if (e.getSource() == editJobButton) {
+                    writer.write("Job");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editJobResult = reader.readLine();
+                    if (editJobResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editJobResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editJobResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
+                }
+                if (e.getSource() == editHobbyButton) {
+                    writer.write("Hobby");
+                    writer.println();
+                    writer.write(editInformationText.getText());
+                    writer.println();
+                    writer.flush();
+                    String editHobbyResult = reader.readLine();
+                    if (editHobbyResult.equals("Edit successfully")) {
+                        JOptionPane.showMessageDialog(null, editHobbyResult,
+                                "Edit profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, editHobbyResult,
+                                "Edit profile", JOptionPane.ERROR_MESSAGE);
+                    }
+                    editProfileFrame.setVisible(false);
+                    userFrame.setVisible(true);
+                }
                 //Buttons for message
                 if (e.getSource() == sendButton) {
                     writer.write("Send Message");

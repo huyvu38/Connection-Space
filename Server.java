@@ -126,13 +126,16 @@ public class Server implements ServerInterface {
                         writer.flush();
                         while (true) {
                             String choice = reader.readLine();
+                            //We should Make choice to get access FriendList and Blocklist
                             if (choice.equals("View your profile")) {
                                 //Get the information that user want to view
                                 String viewChoice = reader.readLine();
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {
                                         if (viewChoice.equals("Age")) {
-                                            writer.write(userAccount.getUserProfile().getAge());
+                                            int age = userAccount.getUserProfile().getAge();
+                                            String newAge = Integer.toString(age);
+                                            writer.write(newAge);
                                         }
                                         if (viewChoice.equals("Gender")) {
                                             writer.write(userAccount.getUserProfile().getGender());
@@ -275,14 +278,16 @@ public class Server implements ServerInterface {
                                         writer.println();
                                         writer.flush();
                                     } else {
-                                        writer.write("Which information do you want to see?");
+                                        writer.write("Click to the information that you want to see");
                                         writer.println();
                                         writer.flush();
                                         String viewOtherProfileChoice = reader.readLine();
                                         for (UserAccount userAccount : allUserAccount) {
                                             if (userAccount.getUserProfile().getUsername().equals(usernameToView)) {
                                                 if (viewOtherProfileChoice.equals("Age")) {
-                                                    writer.write(userAccount.getUserProfile().getAge());
+                                                    int age = userAccount.getUserProfile().getAge();
+                                                    String newAge = Integer.toString(age);
+                                                    writer.write(newAge);
                                                 }
                                                 if (viewOtherProfileChoice.equals("Gender")) {
                                                     writer.write(userAccount.getUserProfile().getGender());
@@ -495,6 +500,9 @@ public class Server implements ServerInterface {
     public synchronized boolean addFriend(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
+            if (userNameOne.equals(userNameTwo)) {
+                return false; //can not add their own account
+            }
             if (inBlockList(userNameOne, userNameTwo)) {
                 return false; //User1 block user2
             }
@@ -553,6 +561,9 @@ public class Server implements ServerInterface {
     public synchronized boolean blockUser(String userNameOne, String userNameTwo) {
         //Check if the two usernames is in the SocialMedia database
         if (usernameInDatabase(userNameOne) && usernameInDatabase(userNameTwo)) {
+            if (userNameOne.equals(userNameTwo)) {
+                return false; //can not block their own account
+            }
             if (inBlockList(userNameOne, userNameTwo)) {
                 return false; //User1 already block user2
             }
