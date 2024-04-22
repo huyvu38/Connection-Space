@@ -1,4 +1,3 @@
-import org.junit.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;

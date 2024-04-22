@@ -276,8 +276,7 @@ public class Client extends JComponent implements Runnable {
 
             /*
 
-            //I just add some button just to check another frame
-            //Still have to fix a lot
+
             editProfileButton = new JButton("Edit");
             editProfileButton.setBounds(180, 200, 140, 30);
             editProfileButton.addActionListener(actionListener);
@@ -295,6 +294,8 @@ public class Client extends JComponent implements Runnable {
             JButton messageButton;
             JButton logOutButton;
             JButton actionButton;
+
+            some label
             also include a way to access friend list and block list ->>
             Option 1 : create a button
             Option 2 : display in that user frame
