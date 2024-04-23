@@ -126,7 +126,32 @@ public class Server implements ServerInterface {
                         writer.flush();
                         while (true) {
                             String choice = reader.readLine();
-                            //We should Make choice to get access FriendList and Blocklist
+                            if (choice.equals("Get friend list")) {
+                                for (UserAccount userAccount : allUserAccount) {
+                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
+                                        ArrayList<String> friendlist = userAccount.getFriendList();
+                                        if (friendlist.size() == 0) {
+                                            writer.write("Your friend list is empty");
+                                            writer.println();
+                                        } else {
+                                            writer.write("Find the following friends");
+                                            writer.println();
+                                            for (String friend : friendlist) {
+                                                writer.write(friend);
+                                                writer.println();
+                                                System.out.println(friend);
+                                            }
+                                            writer.write(" ");
+                                            writer.println();
+                                        }
+                                        writer.flush();
+                                        break;
+                                    }
+                                }
+                            }
+                            if (choice.equals("Get block list")) {
+
+                            }
                             if (choice.equals("View your profile")) {
                                 //Get the information that user want to view
                                 String viewChoice = reader.readLine();
@@ -248,10 +273,10 @@ public class Server implements ServerInterface {
                                 if (specificAction.equals("Block user")) {
                                     String blockUserName = reader.readLine();
                                     if (blockUser(username, blockUserName)) {
-                                        database.saveAllUserAccount();
                                         writer.write("Block successfully");
                                         //If both users are friend then delete after block
                                         deleteFriend(username, blockUserName);
+                                        database.saveAllUserAccount();
                                     } else {
                                         writer.write("You can not block that user");
                                     }

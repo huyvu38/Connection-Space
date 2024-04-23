@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -116,6 +117,8 @@ public class PreviousClient {
                     if (result.equals("Log in successfully")) {
                         while (true) {
                             System.out.println("What would you like to do? ");
+                            System.out.println("Get friend list");
+                            System.out.println("Get block list");
                             System.out.println("View your profile");
                             System.out.println("Edit your profile");
                             System.out.println("Action"); //Include add, delete, block, unblock
@@ -127,7 +130,26 @@ public class PreviousClient {
                             writer.write(choice);
                             writer.println();
                             writer.flush();
-                            //We should Make choice to get access FriendList and Blocklist
+                            if (choice.equals("Get friend list")) {
+                                String getFriendListResult = reader.readLine();
+                                System.out.println(getFriendListResult);
+                                if (getFriendListResult.equals("Find the following friends")) {
+                                    //Get the result
+                                    //ArrayList<String> friendList = new ArrayList<>();
+                                    String friend = "";
+                                    while ((friend = reader.readLine()) != null) {
+                                        //get all the information from the server
+                                        //Break through space because no users contain spaces
+                                        if (friend.equals(" ")) {
+                                            break;
+                                        }
+                                        System.out.println(friend);
+                                    }
+                                }
+                            }
+                            if (choice.equals("Get block list")) {
+
+                            }
                             if (choice.equals("View your profile")) {
                                 System.out.println("Which information do you want to see");
                                 System.out.println("Age");
@@ -201,7 +223,7 @@ public class PreviousClient {
                             if (choice.equals("Action")) {
                                 System.out.println("Enter the specific action");
                                 System.out.println("Add friend");
-                                System.out.println("Delete friend");
+                                System.out.println("Unfriend");
                                 System.out.println("Block user");
                                 System.out.println("Unblock user");
                                 System.out.println("View other user profile");
@@ -209,7 +231,17 @@ public class PreviousClient {
                                 writer.write(specificAction);
                                 writer.println();
                                 writer.flush();
-                                if (specificAction.equals("Delete friend")) {
+                                if (specificAction.equals("Add friend")) {
+                                    System.out.println("Enter the user that you want to addfriend");
+                                    String addfriendUserName = scanner.nextLine();
+                                    //Send username that want to addfriend to server
+                                    writer.write(addfriendUserName);
+                                    writer.println();
+                                    writer.flush();
+                                    String addfriendResult = reader.readLine();
+                                    System.out.println(addfriendResult);
+                                }
+                                if (specificAction.equals("Unfriend")) {
                                     System.out.println("Enter the user that you want to unfriend");
                                     String unfriendUserName = scanner.nextLine();
                                     //Send username that want to unfriend to server

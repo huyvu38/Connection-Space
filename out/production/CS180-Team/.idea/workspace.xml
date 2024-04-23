@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="" />
+    <list default="true" id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/PreviousClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/PreviousClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/Client$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/Client$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/Client$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$DatabaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$DatabaseTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$DeclarationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$DeclarationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$ProfileTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$ProfileTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$ServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$ServerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$UserAccountTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$UserAccountTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -299,15 +311,7 @@
       <workItem from="1713741396713" duration="2540000" />
       <workItem from="1713748803983" duration="6278000" />
       <workItem from="1713764332638" duration="428000" />
-      <workItem from="1713798547111" duration="2107000" />
-    </task>
-    <task id="LOCAL-00240" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713192726749</created>
-      <option name="number" value="00240" />
-      <option name="presentableId" value="LOCAL-00240" />
-      <option name="project" value="LOCAL" />
-      <updated>1713192726749</updated>
+      <workItem from="1713798547111" duration="6053000" />
     </task>
     <task id="LOCAL-00241" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
       <option name="closed" value="true" />
@@ -693,7 +697,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713764752191</updated>
     </task>
-    <option name="localTasksCounter" value="289" />
+    <task id="LOCAL-00289" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+      <option name="closed" value="true" />
+      <created>1713828921503</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
+      <option name="project" value="LOCAL" />
+      <updated>1713828921503</updated>
+    </task>
+    <option name="localTasksCounter" value="290" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +741,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/RunLocalTest.java</url>
-          <line>398</line>
+          <line>397</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -747,7 +759,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/RunLocalTest.java</url>
-          <line>151</line>
+          <line>150</line>
           <properties class="RunLocalTest.DeclarationTest" method="DatabaseDeclarationTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
