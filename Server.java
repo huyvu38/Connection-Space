@@ -462,9 +462,7 @@ public class Server implements ServerInterface {
                     break;
                 }
             }
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-    } catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("A client is disconnected");
         }
     }
