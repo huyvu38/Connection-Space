@@ -116,7 +116,7 @@ public class Server implements ServerInterface {
                         writer.println();
                         writer.flush();
                     } else {
-                        writer.write("The account is already exist or you enter wrong information.");
+                        writer.write("The username is already exist or you enter wrong information.");
                         writer.println();
                         writer.flush();
                     }
