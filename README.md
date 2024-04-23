@@ -1,7 +1,10 @@
 # CS180-L22-Team 3
 
-Huy Vu <Submitted Vocareum Work Phase 2>
+Huy Vu <Submitted Vocareum Work Phase 3>
 
+<Submitted Presentation Phase 3>
+
+<Submitted Report Phase 3>
 ### Instruction on how to compile and run the program
 
 The server in Server.java needs to be run first so that the client can connect to the server and using the app.
@@ -125,12 +128,12 @@ Message Operations: Send individual or group messages, with options to delete an
 Privacy Controls: Block specific users, hiding their messages from the recipient while still logging them.<br/>
 Persistent Logging: Use a buffered reader to timestamp and store messages, ensuring a reliable historical record.<br/>
 
-### Client.java <br>
+### Client.java <br> //Fix that
 Acts as the user interface for the social media platform. Utilizes java socket for client-server connections. See above section on how to run program
 for instructions on using client.
 
 ### RunLocalTest.java <br>
-Tests each file's methods utilizing junit 4. Tests include: Decleration test, Profile test, User account test, Database test and server test.
+Tests each file's methods utilizing junit 4. Tests include: Decleration test, Profile test, User account test, Database test and functions in server.
 
 ### AllUserAccount.txt <br/>
 The file that store profile, friendlist, blocklist of each user.
@@ -145,11 +148,11 @@ Age must be a positive number.
 
 User only choose gender from the following options : Male, Female, Other.
 
-Every information in the Profile of the user can not contain any spaces or semicolon.
+Every information in the Profile of the user can not contain any spaces or semicolons.
 
 ### Message.txt <br/>
 The file that store every message between each user.
 
-Format: [conversationID],[ConversationTime],[Sender username],[Receiver username],[if message blocked],[message content]
+Format: [conversationID],[DeletedMessage],[ConversationTime],[Sender username],[Receiver username],[if message blocked],[message content]
 
 
