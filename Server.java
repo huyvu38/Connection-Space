@@ -93,18 +93,23 @@ public class Server implements ServerInterface {
                     if (newAge <= 0) {
                         result = false;
                     }
+
                     //If the user enter all valid information -> the result still true
                     //Then check if the username is valid to create a new Profile
                     Profile newUserProfile = new Profile(username, password, newAge, gender, nationality, job, hobby);
                     UserAccount newUserAccount = new UserAccount(newUserProfile);
 
                     //if the result is still true -> send back to the client that account create successfully
-                    if (usernameInDatabase(username) == false) {
-                        if (createAccount(database, newUserAccount, username, password)) {
-                            result = true;
+                    if (result) {
+                        if (usernameInDatabase(username) == false) {
+                            if (createAccount(database, newUserAccount, username, password)) {
+                                result = true;
+                            } else {
+                                result = false;
+                            }
+                        } else {
+                            result = false;
                         }
-                    } else {
-                        result = false;
                     }
                     if (result) {
                         writer.write("Create account successfully.");
@@ -126,6 +131,8 @@ public class Server implements ServerInterface {
                         writer.flush();
                         while (true) {
                             String choice = reader.readLine();
+                            //This one can use to display friendlist in the User frame
+                            //Or we can make a button to display friend list for easier.
                             if (choice.equals("Get friend list")) {
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {

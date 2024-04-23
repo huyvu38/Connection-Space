@@ -289,7 +289,7 @@ public class RunLocalTest {
             Server.database = new Database("AllUserAccount.txt");
             Server.database.readAllUserAccount();
             Server.allUserAccount = Server.database.getAllUserAccount();
-            assertTrue(server.loginAccount("vu28", "12345678"));
+            assertTrue(server.loginAccount("Archie", "ArchieBaldo"));
         }
 
         @Test
@@ -347,6 +347,7 @@ public class RunLocalTest {
             Server.allUserAccount = Server.database.getAllUserAccount();
             assertFalse(server.unblockUser("george23", "vu28"));
         }
+
         private static final String TEST_FILE_PATH = "Messages.txt"; // How does this filepath work?? Is it stored on each of our computers or on github?
 
         @Before
@@ -356,8 +357,6 @@ public class RunLocalTest {
                 if (!Files.exists(path)) {
                     Files.createFile(path);
                     System.out.println("Created new test file--did not exist.");
-                } else {
-                    System.out.println("File already exists.");
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
@@ -369,11 +368,12 @@ public class RunLocalTest {
             try {
                 server.sendMessage("sender", "receiver", "Test message", false);
                 List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("File should contain the send message", lines.get(0).contains("Test message"));
+                assertTrue("File should contain the send message", lines.contains("1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message"));
             } catch (Exception e) {
                 System.out.println("Message failed to send.");
             }
         }
+
 
         @Test
         public void RemovesMessage() {
@@ -391,7 +391,6 @@ public class RunLocalTest {
                 System.out.println("Failed to append or verify message: " + e.getMessage());
             }
         }
-
 
     }
 
