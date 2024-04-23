@@ -148,7 +148,21 @@ public class PreviousClient {
                                 }
                             }
                             if (choice.equals("Get block list")) {
-
+                                String getBlockListResult = reader.readLine();
+                                System.out.println(getBlockListResult);
+                                if (getBlockListResult.equals("Find the following block users")) {
+                                    //Get the result
+                                    //ArrayList<String> blockList = new ArrayList<>();
+                                    String blockUser = "";
+                                    while ((blockUser = reader.readLine()) != null) {
+                                        //get all the information from the server
+                                        //Break through space because no users contain spaces
+                                        if (blockUser.equals(" ")) {
+                                            break;
+                                        }
+                                        System.out.println(blockUser);
+                                    }
+                                }
                             }
                             if (choice.equals("View your profile")) {
                                 System.out.println("Which information do you want to see");

@@ -139,7 +139,6 @@ public class Server implements ServerInterface {
                                             for (String friend : friendlist) {
                                                 writer.write(friend);
                                                 writer.println();
-                                                System.out.println(friend);
                                             }
                                             writer.write(" ");
                                             writer.println();
@@ -150,7 +149,26 @@ public class Server implements ServerInterface {
                                 }
                             }
                             if (choice.equals("Get block list")) {
-
+                                for (UserAccount userAccount : allUserAccount) {
+                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
+                                        ArrayList<String> blockList = userAccount.getBlockList();
+                                        if (blockList.size() == 0) {
+                                            writer.write("Your block list is empty");
+                                            writer.println();
+                                        } else {
+                                            writer.write("Find the following block users");
+                                            writer.println();
+                                            for (String blockUser : blockList) {
+                                                writer.write(blockUser);
+                                                writer.println();
+                                            }
+                                            writer.write(" ");
+                                            writer.println();
+                                        }
+                                        writer.flush();
+                                        break;
+                                    }
+                                }
                             }
                             if (choice.equals("View your profile")) {
                                 //Get the information that user want to view
