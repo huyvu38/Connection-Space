@@ -11,62 +11,51 @@ The server in Server.java needs to be run first so that the client can connect t
 
 First, the user clicks the Run button in Client.java.
 
-After the user connects with the server, the Main Menu will appear with 2 options:
+After the user connects with the server, the Main Menu Frame will appear with 2 options:
 
 1. Create an account
 2. Log in
 
-Main Menu Option 1: user wants to create an account
-
-Write 1 to the program.
+Main Menu Option 1: User clicks to the "Create account" button
 
 Then the user is prompted to enter username, password, age, gender, nationality, job, and hobby.
 
-The server will then check every information of the user is in the right format and the username is valid. After that, the client will receive the message if they create account successfully.
+The server will then check every information of the user is in the right format and the username is unique. After that, the client will receive the message if they create account successfully or not. Then the program goes back to the Main Menu Frame.
 
-If the user create account successfully, they cannot edit their username later.
+If the user creates account successfully, they cannot edit their username later.
 
-Then the program goes back to the main menu to let the user create account or log in.
 
 Main Menu Option 2: User wants to log in
 
-Write 2 to the program.
-
 Then the user is prompted to enter username and password for log in.
 
-If the user login fail, the program will go back to the Main Menu.
+If the user login fail, the program will go back to the Main Menu Frame.
 
-If the user login successfully, the program will show the Option Menu with 9 options:
+If the user login successfully, the program will show the User Frame.
 
-1. View that user profile (probably already display in the frame??)
+The top left corner will display the friend list and the top right corner will display the block list.
 
-2. Edit that user profile
+The user can have some following option:
 
-3. Action
+1. Edit profile
+
+   After click to the edit profile button, the editProfile Frame will appear and the user is not allowed to change their username.
+
+2. Action
+
+   After click the "Action" button, the Action Frame will appear with 5 buttons : Add friend, Delete friend, Block user, Unblock user, view other user profile.
+
+   The client first need to type the username of other people and click to the any button that they want. The server then will check if that client can do that action and update to the database.
+
+   For the view other user profile, if the client enter the username that in the database and not in the block list, another Frame will appear and let them view another user's information like age, gender, nationality, job, hobby.
+
+3. Search user
 
 4. Send message
 
-5. Search user
+5. Log out
 
-6. Log out
-
-If the user writes down 1 the program will prompt the user to enter the information that they want to view from their profile. (probably delete)
-
-If the user writes down 2 the program will prompt the user to enter the information that the user is allowed to edit and let the user enter the new information. The server will check if the new information is in the right format and send the edit result to the client.
-
-If the user writes down 4, the program will prompt the user to enter the word for searching and the server will send back a list of username that contains the word to the user.
-
-
-If the user writes down 3, 4, 5, 6, 9 the program will prompt the user to enter the username of other account and send the result of the specifc action to the client.
-
-If the user writes down 4, the program will allow user to choose 1 of these 3 options :
-
-1. Send Message to specific user
-2. Send message only to friends
-3. Print history message
-   Then the user can delete any messages that they want.
-
-If the user writes down 6, the program will exit from the Option Menu and goes to the Main Menu where user can create account or log in or exit the app.
+   The client will go back to the Main Menu Frame where they can log in or create account.
 
 ### UserAccount.java <br/>
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependent on Profile.java.
