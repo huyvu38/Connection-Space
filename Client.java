@@ -308,7 +308,7 @@ public class Client extends JComponent implements Runnable {
             also include a way to access friend list and block list ->>
             Option 1 : create a button
             Option 2 : display in that user frame
-            For both option, probably need to create a choice often in both PreviousClient and Server.java
+            For both option, probably need to create a choice option in both PreviousClient and Server.java
 
             view that user profile (should we also display in that user frame ?? )
              */
