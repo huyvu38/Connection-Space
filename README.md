@@ -11,11 +11,10 @@ The server in Server.java needs to be run first so that the client can connect t
 
 First, the user clicks the Run button in Client.java.
 
-After the user connects with the server, the Main Menu will appear with 3 options:
+After the user connects with the server, the Main Menu will appear with 2 options:
 
 1. Create an account
 2. Log in
-3. Exit the app.
 
 Main Menu Option 1: user wants to create an account
 
@@ -27,7 +26,7 @@ The server will then check every information of the user is in the right format 
 
 If the user create account successfully, they cannot edit their username later.
 
-Then the program goes back to the main menu to let the user create account or log in or exit the app.
+Then the program goes back to the main menu to let the user create account or log in.
 
 Main Menu Option 2: User wants to log in
 
@@ -39,46 +38,35 @@ If the user login fail, the program will go back to the Main Menu.
 
 If the user login successfully, the program will show the Option Menu with 9 options:
 
-1. View that user profile
+1. View that user profile (probably already display in the frame??)
 
 2. Edit that user profile
 
-3. Add friend
+3. Action
 
-4. Delete friend
+4. Send message
 
-5. Block user
+5. Search user
 
-6. Unblock user
+6. Log out
 
-7. Send message
-
-8. Search user
-
-9. View other user profile
-
-10. Log out
-
-If the user writes down 1 the program will prompt the user to enter the information that they want to view from their profile.
+If the user writes down 1 the program will prompt the user to enter the information that they want to view from their profile. (probably delete)
 
 If the user writes down 2 the program will prompt the user to enter the information that the user is allowed to edit and let the user enter the new information. The server will check if the new information is in the right format and send the edit result to the client.
 
+If the user writes down 4, the program will prompt the user to enter the word for searching and the server will send back a list of username that contains the word to the user.
+
+
 If the user writes down 3, 4, 5, 6, 9 the program will prompt the user to enter the username of other account and send the result of the specifc action to the client.
 
-If the user writes down 7, the program will allow user to choose 1 of these 3 options :
+If the user writes down 4, the program will allow user to choose 1 of these 3 options :
 
 1. Send Message to specific user
 2. Send message only to friends
 3. Print history message
    Then the user can delete any messages that they want.
 
-If the user writes down 8, the program will prompt the user to enter the word for searching and the server will send back a list of username that contains the word to the user.
-
-If the user writes down 10, the program will exit from the Option Menu and goes to the Main Menu where user can create account or log in or exit the app.
-
-Main Menu Option 3: User wants to exit the app
-
-Write 3 to the program. The program will stop.
+If the user writes down 6, the program will exit from the Option Menu and goes to the Main Menu where user can create account or log in or exit the app.
 
 ### UserAccount.java <br/>
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependent on Profile.java.
