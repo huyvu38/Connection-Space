@@ -600,6 +600,7 @@ public class Client extends JComponent implements Runnable {
                 }
 
                  */
+                //The search is good
                 if (e.getSource() == searchButton) {
                     writer.writeObject("Search user");
                     writer.flush();
@@ -609,16 +610,23 @@ public class Client extends JComponent implements Runnable {
                     allUsernames = (ArrayList<String>) reader.readObject();
                     updateComboBox1(allUsernames);
                 }
+                //The server still send the correct result but the client still got the original friendlist and blocklist
                 if (e.getSource() == getFriendListButton) {
                     writer.writeObject("Get friend list");
                     writer.flush();
                     allFriendList = (ArrayList<String>) reader.readObject();
+                    for (String yay : allFriendList) {
+                        System.out.println(yay);
+                    }
                     updateComboBox2(allFriendList);
                 }
                 if (e.getSource() == getBlockUserButton) {
                     writer.writeObject("Get block list");
                     writer.flush();
                     allBlockList = (ArrayList<String>) reader.readObject();
+                    for (String yay : allBlockList) {
+                        System.out.println(yay);
+                    }
                     updateComboBox3(allBlockList);
                 }
                 //Buttons in main menu frame
@@ -743,6 +751,7 @@ public class Client extends JComponent implements Runnable {
                     writer.writeObject("Log out");
                     writer.flush();
                     inputField.setText("Search the user here");
+                    //Reset
                     ArrayList<String> emptyString = new ArrayList<>();
                     updateComboBox1(emptyString);
                     updateComboBox2(emptyString);
@@ -910,7 +919,6 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == deleteButton) {
                     writer.writeObject("Delete Message");
-                    //writer.println();
                     writer.flush();
                     String ID = conversationID.getText();
                     if (ID.isEmpty()) {

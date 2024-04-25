@@ -374,7 +374,6 @@ public class Server implements ServerInterface {
                                 String receiver = (String) reader.readObject();
                                 deleteMessage(Integer.parseInt(conversationID));
                                 writer.writeObject(printHistoryMessage(username, receiver));
-                                //writer.println();
                                 writer.flush();
                             }
                             //Log Out
