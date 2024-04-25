@@ -59,8 +59,6 @@ public class Server implements ServerInterface {
     //Start whenever a user connect
     public void run() {
         try {
-            System.out.println("we here");
-
             while (true) {
 
                 String command = (String) reader.readObject();
@@ -94,6 +92,9 @@ public class Server implements ServerInterface {
                     try {
                         newAge = Integer.parseInt(age);
                     } catch (NumberFormatException e) {
+                        result = false;
+                    }
+                    if (newAge <= 0) {
                         result = false;
                     }
                     //If the user enter all valid information -> the result still true
@@ -144,7 +145,7 @@ public class Server implements ServerInterface {
                             String choice = (String) reader.readObject();
                             //This one can use to display friendlist in the User frame
                             //Or we can make a button to display friend list for easier.
-                            if (choice.equals("looking for all possible user")) {
+                            if (choice.equals("Search user")) {
                                 String word = (String) reader.readObject();
                                 ArrayList<String> allUserName = searchUser(username, word);
                                 writer.writeObject(allUserName);
@@ -308,27 +309,53 @@ public class Server implements ServerInterface {
                                 }
                             }
                             if (choice.equals("Edit profile")) {
-
-                                String newUserName = (String) reader.readObject();
-                                String newPassWord = (String) reader.readObject();
-                                String newAge = (String) reader.readObject();
-                                String newGender = (String) reader.readObject();
-                                String newNationality = (String) reader.readObject();
-                                String newJob = (String) reader.readObject();
-                                String newHobby = (String) reader.readObject();
-                                for (UserAccount userAccount: allUserAccount) {
-                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        userAccount.getUserProfile().setPassword(newPassWord);
-                                        userAccount.getUserProfile().setAge(Integer.parseInt(newAge));
-                                        userAccount.getUserProfile().setGender(newGender);
-                                        userAccount.getUserProfile().setNationality(newNationality);
-                                        userAccount.getUserProfile().setJob(newJob);
-                                        userAccount.getUserProfile().setHobby(newHobby);
-                                        writer.writeObject("success");
-                                        writer.flush();
-                                    }
+                                boolean result = true;
+                                String passWord = (String) reader.readObject();
+                                String age = (String) reader.readObject();
+                                String gender = (String) reader.readObject();
+                                String nationality = (String) reader.readObject();
+                                String job = (String) reader.readObject();
+                                String hobby = (String) reader.readObject();
+                                if (password.contains(" ") || password.contains(";")) {
+                                    result = false;
                                 }
-
+                                if (nationality.contains(" ") || nationality.contains(";")) {
+                                    result = false;
+                                }
+                                if (job.contains(" ") || job.contains(";")) {
+                                    result = false;
+                                }
+                                if (hobby.contains(" ") || hobby.contains(";")) {
+                                    result = false;
+                                }
+                                int newAge = 0;
+                                try {
+                                    newAge = Integer.parseInt(age);
+                                } catch (NumberFormatException e) {
+                                    result = false;
+                                }
+                                if (newAge <= 0) {
+                                    result = false;
+                                }
+                                if (result) {
+                                    for (UserAccount userAccount: allUserAccount) {
+                                        if (userAccount.getUserProfile().getUsername().equals(username)) {
+                                            writer.writeObject(userAccount);
+                                            userAccount.getUserProfile().setPassword(passWord);
+                                            userAccount.getUserProfile().setAge(newAge);
+                                            userAccount.getUserProfile().setGender(gender);
+                                            userAccount.getUserProfile().setNationality(nationality);
+                                            userAccount.getUserProfile().setJob(job);
+                                            userAccount.getUserProfile().setHobby(hobby);
+                                            database.saveAllUserAccount();
+                                            writer.writeObject("success");
+                                            writer.flush();
+                                        }
+                                    }
+                                } else {
+                                    writer.writeObject("failure");
+                                    writer.flush();
+                                }
                             }
                             if (choice.equals("Action")) {
                                 String specificAction = (String) reader.readObject();
@@ -473,34 +500,6 @@ public class Server implements ServerInterface {
                                 //writer.println();
                                 writer.flush();
                             }
-
-
-                            if (choice.equals("Search other user")) {
-                                String word = (String) reader.readObject();
-                                //username is the one who search other user
-                                ArrayList<String> findUserName = searchUser(username, word);
-                                if (findUserName.size() == 0) {
-                                    writer.writeObject("Can not find any user");
-                                    //writer.println();
-                                    writer.flush();
-                                } else {
-                                    String allFindUser = "";
-                                    for (int i = 0; i < findUserName.size(); i++) {
-                                        String findUser = findUserName.get(i);
-                                        if (findUser != null && !findUser.isEmpty()) {
-                                            allFindUser += findUser;
-                                            if (i < (findUserName.size() - 1)) {
-                                                allFindUser += " ";
-                                            }
-                                        }
-                                    }
-                                    writer.writeObject(allFindUser);
-                                    //writer.println();
-                                    writer.flush();
-                                }
-                            }
-                            //Message
-
                             //Log Out
                             if (choice.equals("Log out")) {
                                 break;

@@ -157,11 +157,12 @@ public class Client extends JComponent implements Runnable {
     JMenuItem menuItem2;
 
     //for user own profile
-    private JTextField usernameText3, passwordText3, ageText3, nationalityText3, jobText3, hobbyText3;
+    private JTextField passwordText3, ageText3, nationalityText3, jobText3, hobbyText3;
 
     private JButton saveButton;
     private JComboBox genderType3;
-    private JLabel usernameLabel3, passwordLabel3, genderLabel3, ageLabel3, nationalityLabel3, jobLabel3, hobbyLabel3;
+    private JLabel usernameLabel3, usernameLabel4, passwordLabel3, genderLabel3,
+            ageLabel3, nationalityLabel3, jobLabel3, hobbyLabel3;
 
     //elements for eastPanel
     private JTextField inputField;
@@ -169,7 +170,7 @@ public class Client extends JComponent implements Runnable {
     private JButton viewProfileButton;
 
     private JComboBox<String> resultCombo;
-    private List<String> allUsernames;  // This would be fetched from your database
+    private ArrayList<String> allUsernames;  // This would be fetched from your database
     private String selectedUser;
 
     //element for view other profile
@@ -580,7 +581,7 @@ public class Client extends JComponent implements Runnable {
             JPanel formPanel = new JPanel(new GridLayout(8, 2));
             // Initializing all components
             usernameLabel3 = new JLabel("Username");
-            usernameText3 = new JTextField(10);
+            usernameLabel4 = new JLabel("");
             passwordLabel3 = new JLabel("Password");
             passwordText3 = new JTextField(10);
 
@@ -600,7 +601,7 @@ public class Client extends JComponent implements Runnable {
 
             // Adding components to form panel
             formPanel.add(usernameLabel3);
-            formPanel.add(usernameText3);
+            formPanel.add(usernameLabel4);
             formPanel.add(passwordLabel3);
             formPanel.add(passwordText3);
             formPanel.add(ageLabel3);
@@ -653,13 +654,13 @@ public class Client extends JComponent implements Runnable {
             // Initialize the search button
             searchButton = new JButton("Search");
             searchButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Ensure the button is center-aligned
-            searchButton.setActionCommand("looking for all possible user");
+            //searchButton.setActionCommand("looking for all possible user");
             searchButton.addActionListener(actionListener);
 
             // Initialize the viewProfile button
             viewProfileButton = new JButton("View Profile");
             viewProfileButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            viewProfileButton.setActionCommand("View selected user profile");
+            //viewProfileButton.setActionCommand("View selected user profile");
             viewProfileButton.addActionListener(actionListener);
 
             eastPanel.add(inputField);
@@ -795,12 +796,13 @@ public class Client extends JComponent implements Runnable {
 
                 }
 
-                if (e.getActionCommand().equals("looking for all possible user")) {
-                    writer.writeObject("looking for all possible user");
+                if (e.getSource() == searchButton) {
+                    writer.writeObject("Search user");
                     writer.flush();
-                    String searchText = inputField.getText().toLowerCase();
+                    String searchText = inputField.getText();
                     writer.writeObject(searchText);
-                    allUsernames = (List<String>) reader.readObject();
+                    writer.flush();
+                    allUsernames = (ArrayList<String>) reader.readObject();
                     resultCombo.removeAllItems();
                     updateComboBox(allUsernames);
                 }
@@ -876,14 +878,11 @@ public class Client extends JComponent implements Runnable {
                     String loginResult =(String) reader.readObject();
                     if (loginResult.equals("Log in successfully")) {
                         UserAccount currentUserAcc = (UserAccount) reader.readObject();
-
-                        writer.writeObject("Log in successfully");
-                        writer.flush();
 //                        JOptionPane.showMessageDialog(null, loginResult,
 //                                "Log in", JOptionPane.INFORMATION_MESSAGE);
                         currentUserAcc.getFriendList().forEach(friendsModel::addElement);
                         currentUserAcc.getBlockList().forEach(blockModel::addElement);
-                        usernameText3.setText(currentUserAcc.getUserProfile().getUsername());
+                        usernameLabel4.setText(currentUserAcc.getUserProfile().getUsername());
                         passwordText3.setText(currentUserAcc.getUserProfile().getPassword());
                         ageText3.setText(String.valueOf(currentUserAcc.getUserProfile().getAge()));
                         genderType.setSelectedItem(currentUserAcc.getUserProfile().getGender());
@@ -906,7 +905,6 @@ public class Client extends JComponent implements Runnable {
                 if (e.getActionCommand().equals("Edit profile")) {
                     writer.writeObject("Edit profile");
                     writer.flush();
-                    writer.writeObject(usernameText3.getText());
                     writer.writeObject(passwordText3.getText());
                     writer.writeObject(ageText3.getText());
                     writer.writeObject(genderType3.getSelectedItem());
@@ -914,9 +912,19 @@ public class Client extends JComponent implements Runnable {
                     writer.writeObject(jobText3.getText());
                     writer.writeObject(hobbyText3.getText());
                     writer.flush();
+                    UserAccount currentUserAcc = (UserAccount) reader.readObject();
                     if (reader.readObject().equals("success")) {
                         JOptionPane.showMessageDialog(null, "Edit Profile successful",
                                 "Edit Profile", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Edit Profile failure",
+                                "Edit Profile", JOptionPane.ERROR_MESSAGE);
+                        passwordText3.setText(currentUserAcc.getUserProfile().getPassword());
+                        ageText3.setText(String.valueOf(currentUserAcc.getUserProfile().getAge()));
+                        genderType.setSelectedItem(currentUserAcc.getUserProfile().getGender());
+                        nationalityText3.setText(currentUserAcc.getUserProfile().getNationality());
+                        jobText3.setText(currentUserAcc.getUserProfile().getJob());
+                        hobbyText3.setText(currentUserAcc.getUserProfile().getHobby());
                     }
                 }
                 //Buttons after log in successfully
