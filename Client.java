@@ -206,13 +206,15 @@ public class Client extends JComponent implements Runnable {
             loginButton = new JButton("Login");
             loginButton.setBounds(220, 80, 160, 70);
             createAccountButton = new JButton("Create account");
-            createAccountButton.setBounds(220, 180, 160,70);
-//           actionButton = new JButton("action");
-//           actionButton.setBounds(210,280,160,70);
 
+            loginButton = new JButton("Login");
+            loginButton.setBounds(220, 80, 160, 70);
+            createAccountButton = new JButton("Create account");
+            createAccountButton.setBounds(220, 180, 160,70);
 
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
+
 
             content.add(loginButton);
             content.add(createAccountButton);
@@ -797,12 +799,10 @@ public class Client extends JComponent implements Runnable {
                     writer.writeObject("looking for all possible user");
                     writer.flush();
                     String searchText = inputField.getText().toLowerCase();
+                    writer.writeObject(searchText);
                     allUsernames = (List<String>) reader.readObject();
-                    List<String> filtered = allUsernames.stream()
-                            .filter(name -> name.toLowerCase().contains(searchText))
-                            .collect(Collectors.toList());
                     resultCombo.removeAllItems();
-                    updateComboBox(filtered);
+                    updateComboBox(allUsernames);
                 }
                 if (e.getSource() == menuItem1) {
 
@@ -988,9 +988,9 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == blockUserButton) {
                     writer.writeObject("Block user");
-                   // writer.println();
+                    // writer.println();
                     writer.writeObject(otherUsernameText.getText());
-                   // writer.println();
+                    // writer.println();
                     writer.flush();
                     String blockUserResult = (String) reader.readObject();
                     if (blockUserResult.equals("Block user successfully")) {
@@ -1071,7 +1071,7 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == viewNationalityButton) {
                     writer.writeObject("Nationality");
-                   // writer.println();
+                    // writer.println();
                     writer.flush();
                     String viewNationalityResult = (String) reader.readObject();
                     JOptionPane.showMessageDialog(null, "The nationality of that user is " +
@@ -1156,7 +1156,7 @@ public class Client extends JComponent implements Runnable {
                     writer.writeObject("Gender");
                     //writer.println();
                     writer.writeObject("Female");
-                   // writer.println();
+                    // writer.println();
                     writer.flush();
                     String editGenderResult = (String) reader.readObject();
                     JOptionPane.showMessageDialog(null, editGenderResult,
@@ -1233,7 +1233,7 @@ public class Client extends JComponent implements Runnable {
                     //writer.println();
                     writer.flush();
                     writer.writeObject(messageTextArea.getText());
-                   // writer.println();
+                    // writer.println();
                     writer.flush();
                     writer.writeObject(messageFrame.getTitle());
                     //writer.println();
@@ -1350,5 +1350,4 @@ public class Client extends JComponent implements Runnable {
     }
 
 }
-
 

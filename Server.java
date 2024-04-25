@@ -145,10 +145,8 @@ public class Server implements ServerInterface {
                             //This one can use to display friendlist in the User frame
                             //Or we can make a button to display friend list for easier.
                             if (choice.equals("looking for all possible user")) {
-                                List<String> allUserName = new ArrayList<>();
-                                for (UserAccount userAccount: allUserAccount) {
-                                    allUserName.add(userAccount.getUserProfile().getUsername());
-                                }
+                                String word = (String) reader.readObject();
+                                ArrayList<String> allUserName = searchUser(username, word);
                                 writer.writeObject(allUserName);
                                 writer.flush();
                             }
@@ -386,7 +384,7 @@ public class Server implements ServerInterface {
                                             inBlockList(usernameToView, username) ||
                                             (usernameInDatabase(usernameToView) == false)) {
                                         writer.writeObject("Can not view that user profile");
-                                       // writer.println();
+                                        // writer.println();
                                         writer.flush();
                                     } else {
                                         writer.writeObject("Click to the information that you want to see");
@@ -750,7 +748,7 @@ public class Server implements ServerInterface {
         return findUserName;
     }
 
-    public synchronized boolean sendMessage(String sendUserName, String receiverUserName, 
+    public synchronized boolean sendMessage(String sendUserName, String receiverUserName,
                                             String content, boolean isBlocked) {
         // Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
