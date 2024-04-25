@@ -20,10 +20,11 @@ public class Client extends JComponent implements Runnable {
     public Client() throws IOException {
 
     }
+
     //Connect to the server
     Socket socket = new Socket("localhost", 5050);
-    ObjectInputStream reader = new ObjectInputStream(socket.getInputStream());
-    ObjectOutputStream writer = new ObjectOutputStream(socket.getOutputStream());
+    BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    PrintWriter writer = new PrintWriter(socket.getOutputStream());
     public static void main(String[] args) throws IOException {
         SwingUtilities.invokeLater(new Client());
     }
@@ -99,9 +100,9 @@ public class Client extends JComponent implements Runnable {
     JTextField passwordText3, ageText3, nationalityText3, jobText3, hobbyText3;
 
     JButton saveButton;
-    JComboBox<String> genderType3;
+    //JComboBox<String> genderType3;
     JLabel usernameLabel3, usernameLabel4, passwordLabel3, genderLabel3,
-            ageLabel3, nationalityLabel3, jobLabel3, hobbyLabel3;
+            ageLabel3, nationalityLabel3, jobLabel3, hobbyLabel3, genderLabel4;
 
     //elements for westPanel
 
@@ -430,7 +431,8 @@ public class Client extends JComponent implements Runnable {
             ageLabel3 = new JLabel("Age");
             ageText3 = new JTextField(10);
             genderLabel3 = new JLabel("Gender");
-            genderType3 = new JComboBox<>(new String[]{"Male", "Female", "Other"});
+            genderLabel4 = new JLabel("");
+            //genderType3 = new JComboBox<>(new String[]{"Male", "Female", "Other"});
             nationalityLabel3 = new JLabel("Nationality");
             nationalityText3 = new JTextField(10);
             jobLabel3 = new JLabel("Job");
@@ -449,7 +451,7 @@ public class Client extends JComponent implements Runnable {
             formPanel.add(ageLabel3);
             formPanel.add(ageText3);
             formPanel.add(genderLabel3);
-            formPanel.add(genderType3);
+            formPanel.add(genderLabel4);
             formPanel.add(nationalityLabel3);
             formPanel.add(nationalityText3);
             formPanel.add(jobLabel3);
@@ -600,47 +602,73 @@ public class Client extends JComponent implements Runnable {
                 }
 
                  */
-                //The search is good
                 if (e.getSource() == searchButton) {
-                    writer.writeObject("Search user");
-                    writer.flush();
+                    writer.write("Search user");
+                    writer.println();
                     String searchText = inputField.getText();
-                    writer.writeObject(searchText);
+                    writer.write(searchText);
+                    writer.println();
                     writer.flush();
-                    allUsernames = (ArrayList<String>) reader.readObject();
+                    allUsernames = new ArrayList<>();
+                    String searchResult = reader.readLine();
+                    if (searchResult.equals("Find the following users")) {
+                        String user = "";
+                        while ((user = reader.readLine()) != null) { //get all the information from the server
+                            if (user.equals(" ")) {
+                                break;
+                            }
+                            allUsernames.add(user);
+                        }
+                    }
                     updateComboBox1(allUsernames);
                 }
-                //The server still send the correct result but the client still got the original friendlist and blocklist
                 if (e.getSource() == getFriendListButton) {
-                    writer.writeObject("Get friend list");
+                    writer.write("Get friend list");
+                    writer.println();
                     writer.flush();
-                    allFriendList = (ArrayList<String>) reader.readObject();
-                    for (String yay : allFriendList) {
-                        System.out.println(yay);
+                    allFriendList = new ArrayList<>();
+                    String getFriendResult = reader.readLine();
+                    if (getFriendResult.equals("Find the following friends")) {
+                        String friend = "";
+                        while ((friend = reader.readLine()) != null) { //get all the information from the server
+                            if (friend.equals(" ")) {
+                                break;
+                            }
+                            allFriendList.add(friend);
+                        }
                     }
                     updateComboBox2(allFriendList);
                 }
                 if (e.getSource() == getBlockUserButton) {
-                    writer.writeObject("Get block list");
+                    writer.write("Get block list");
+                    writer.println();
                     writer.flush();
-                    allBlockList = (ArrayList<String>) reader.readObject();
-                    for (String yay : allBlockList) {
-                        System.out.println(yay);
+                    allBlockList = new ArrayList<>();
+                    String getBlockResult = reader.readLine();
+                    if (getBlockResult.equals("Find the following block user")) {
+                        String block = "";
+                        while ((block = reader.readLine()) != null) { //get all the information from the server
+                            if (block.equals(" ")) {
+                                break;
+                            }
+                            allBlockList.add(block);
+                        }
                     }
                     updateComboBox3(allBlockList);
                 }
                 //Buttons in main menu frame
                 if (e.getSource() == createAccountButton) {
                     //Write Create account to server
-                    writer.writeObject("Create account");
+                    writer.write("Create account");
+                    writer.println();
                     writer.flush();
                     mainMenuFrame.setVisible(false);
                     createAccountFrame.setVisible(true);
                 }
                 if (e.getSource() == loginButton) {
                     //Write Log in to the server
-                    String command = "Log in";
-                    writer.writeObject(command);
+                    writer.write("Log in");
+                    writer.println();
                     writer.flush();
 
                     mainMenuFrame.setVisible(false);
@@ -648,15 +676,15 @@ public class Client extends JComponent implements Runnable {
                 }
                 //Buttons in create account frame
                 if (e.getSource() == enterButton1) {
-                    writer.writeObject(usernameText1.getText());
-                    writer.writeObject(passwordText1.getText());
-                    writer.writeObject(ageText.getText());
-                    writer.writeObject(genderType.getSelectedItem());
-                    writer.writeObject(nationalityText.getText());
-                    writer.writeObject(jobText.getText());
-                    writer.writeObject(hobbyText.getText());
+                    writer.println(usernameText1.getText());
+                    writer.println(passwordText1.getText());
+                    writer.println(ageText.getText());
+                    writer.println(genderType.getSelectedItem());
+                    writer.println(nationalityText.getText());
+                    writer.println(jobText.getText());
+                    writer.println(hobbyText.getText());
                     writer.flush();
-                    String createAccountResult = (String) reader.readObject();
+                    String createAccountResult = reader.readLine();
                     if (createAccountResult.equals("Create account successfully.")) {
                         JOptionPane.showMessageDialog(null, createAccountResult,
                                 "Create Account", JOptionPane.INFORMATION_MESSAGE);
@@ -679,22 +707,24 @@ public class Client extends JComponent implements Runnable {
                 if (e.getSource() == enterButton2) {
                     String userName = usernameText2.getText();
                     String password = passwordText2.getText();
-                    writer.writeObject(userName);
-                    writer.writeObject(password);
+                    writer.write(userName);
+                    writer.println();
+                    writer.write(password);
+                    writer.println();
                     writer.flush();
-                    String loginResult =(String) reader.readObject();
+                    String loginResult = reader.readLine();
                     if (loginResult.equals("Log in successfully")) {
-                        String username = (String) reader.readObject();
-                        String passWord = (String) reader.readObject();
-                        int age = (int) reader.readObject();
-                        String gender = (String) reader.readObject();
-                        String nationality = (String) reader.readObject();
-                        String job = (String) reader.readObject();
-                        String hobby = (String) reader.readObject();
+                        String username = reader.readLine();
+                        String passWord = reader.readLine();
+                        String age = reader.readLine();
+                        String gender = reader.readLine();
+                        String nationality = reader.readLine();
+                        String job = reader.readLine();
+                        String hobby = reader.readLine();
                         usernameLabel4.setText(username);
                         passwordText3.setText(passWord);
-                        ageText3.setText(String.valueOf(age));
-                        genderType.setSelectedItem(gender);
+                        ageText3.setText(age);
+                        genderLabel4.setText(gender);
                         nationalityText3.setText(nationality);
                         jobText3.setText(job);
                         hobbyText3.setText(hobby);
@@ -711,30 +741,33 @@ public class Client extends JComponent implements Runnable {
                     passwordText2.setText("");
                 }
                 if (e.getActionCommand().equals("Edit profile")) {
-                    writer.writeObject("Edit profile");
+                    writer.write("Edit profile");
+                    writer.println();
+                    writer.write(passwordText3.getText());
+                    writer.println();
+                    writer.write(ageText3.getText());
+                    writer.println();
+                    writer.write(nationalityText3.getText());
+                    writer.println();
+                    writer.write(jobText3.getText());
+                    writer.println();
+                    writer.write(hobbyText3.getText());
+                    writer.println();
                     writer.flush();
-                    writer.writeObject(passwordText3.getText());
-                    writer.writeObject(ageText3.getText());
-                    writer.writeObject(genderType3.getSelectedItem());
-                    writer.writeObject(nationalityText3.getText());
-                    writer.writeObject(jobText3.getText());
-                    writer.writeObject(hobbyText3.getText());
-                    writer.flush();
-                    if (reader.readObject().equals("success")) {
+                    String editResult = reader.readLine();
+                    if (editResult.equals("success")) {
                         JOptionPane.showMessageDialog(null, "Edit Profile successful",
                                 "Edit Profile", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Edit Profile failure",
                                 "Edit Profile", JOptionPane.ERROR_MESSAGE);
-                        String password = (String) reader.readObject();
-                        int age = (int) reader.readObject();
-                        String gender = (String) reader.readObject();
-                        String nationality = (String) reader.readObject();
-                        String job = (String) reader.readObject();
-                        String hobby = (String) reader.readObject();
+                        String password = reader.readLine();
+                        String age = reader.readLine();
+                        String nationality = reader.readLine();
+                        String job = reader.readLine();
+                        String hobby = reader.readLine();
                         passwordText3.setText(password);
-                        ageText3.setText(String.valueOf(age));
-                        genderType.setSelectedItem(gender);
+                        ageText3.setText(age);
                         nationalityText3.setText(nationality);
                         jobText3.setText(job);
                         hobbyText3.setText(hobby);
@@ -742,13 +775,15 @@ public class Client extends JComponent implements Runnable {
                 }
                 //Buttons after log in successfully
                 if (e.getSource() == actionButton) {
-                    writer.writeObject("Action");
+                    writer.write("Action");
+                    writer.println();
                     writer.flush();
                     userFrame.setVisible(false);
                     actionFrame.setVisible(true);
                 }
                 if (e.getSource() == logOutButton) {
-                    writer.writeObject("Log out");
+                    writer.write("Log out");
+                    writer.println();
                     writer.flush();
                     inputField.setText("Search the user here");
                     //Reset
@@ -766,10 +801,12 @@ public class Client extends JComponent implements Runnable {
 //                }
                 //Buttons for specific action
                 if (e.getSource() == addFriendButton) {
-                    writer.writeObject("Add friend");
-                    writer.writeObject(otherUsernameText.getText());
+                    writer.write("Add friend");
+                    writer.println();
+                    writer.write(otherUsernameText.getText());
+                    writer.println();
                     writer.flush();
-                    String addFriendResult = (String) reader.readObject();
+                    String addFriendResult = reader.readLine();
                     if (addFriendResult.equals("Add friend successfully")) {
                         JOptionPane.showMessageDialog(null, addFriendResult,
                                 "Actions", JOptionPane.INFORMATION_MESSAGE);
@@ -783,10 +820,12 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(true);
                 }
                 if (e.getSource() == deleteFriendButton) {
-                    writer.writeObject("Unfriend");
-                    writer.writeObject(otherUsernameText.getText());
+                    writer.write("Unfriend");
+                    writer.println();
+                    writer.write(otherUsernameText.getText());
+                    writer.println();
                     writer.flush();
-                    String deleteFriendResult = (String) reader.readObject();
+                    String deleteFriendResult = reader.readLine();
                     if (deleteFriendResult.equals("Unfriend successfully")) {
                         JOptionPane.showMessageDialog(null, deleteFriendResult,
                                 "Actions", JOptionPane.INFORMATION_MESSAGE);
@@ -800,10 +839,12 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(true);
                 }
                 if (e.getSource() == blockUserButton) {
-                    writer.writeObject("Block user");
-                    writer.writeObject(otherUsernameText.getText());
+                    writer.write("Block user");
+                    writer.println();
+                    writer.write(otherUsernameText.getText());
+                    writer.println();
                     writer.flush();
-                    String blockUserResult = (String) reader.readObject();
+                    String blockUserResult = reader.readLine();
                     if (blockUserResult.equals("Block successfully")) {
                         JOptionPane.showMessageDialog(null, blockUserResult,
                                 "Actions", JOptionPane.INFORMATION_MESSAGE);
@@ -817,10 +858,12 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(true);
                 }
                 if (e.getSource() == unblockUserButton) {
-                    writer.writeObject("Unblock user");
-                    writer.writeObject(otherUsernameText.getText());
+                    writer.write("Unblock user");
+                    writer.println();
+                    writer.write(otherUsernameText.getText());
+                    writer.println();
                     writer.flush();
-                    String unblockUserResult = (String) reader.readObject();
+                    String unblockUserResult = reader.readLine();
                     if (unblockUserResult.equals("Unblock successfully")) {
                         JOptionPane.showMessageDialog(null, unblockUserResult,
                                 "Actions", JOptionPane.INFORMATION_MESSAGE);
@@ -835,10 +878,12 @@ public class Client extends JComponent implements Runnable {
 
                 }
                 if (e.getSource() == viewOtherProfileButton) {
-                    writer.writeObject("View other user profile");
-                    writer.writeObject(otherUsernameText.getText());
+                    writer.write("View other user profile");
+                    writer.println();
+                    writer.write(otherUsernameText.getText());
+                    writer.println();
                     writer.flush();
-                    String viewOtherProfileResult = (String) reader.readObject();
+                    String viewOtherProfileResult = reader.readLine();
                     if (viewOtherProfileResult.equals("Can not view that user profile")) {
                         JOptionPane.showMessageDialog(null, viewOtherProfileResult,
                                 "Actions", JOptionPane.ERROR_MESSAGE);
@@ -853,9 +898,10 @@ public class Client extends JComponent implements Runnable {
                 }
                 //Buttons for view other profile
                 if (e.getSource() == viewAgeButton) {
-                    writer.writeObject("Age");
+                    writer.write("Age");
+                    writer.println();
                     writer.flush();
-                    String viewAgeResult = (String) reader.readObject();
+                    String viewAgeResult = reader.readLine();
                     JOptionPane.showMessageDialog(null, "The age of that user is " +
                                     viewAgeResult,
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
@@ -864,9 +910,10 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewGenderButton) {
-                    writer.writeObject("Gender");
+                    writer.write("Gender");
+                    writer.println();
                     writer.flush();
-                    String viewGenderResult = (String) reader.readObject();
+                    String viewGenderResult = reader.readLine();
                     JOptionPane.showMessageDialog(null, "The gender of that user is " +
                                     viewGenderResult,
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
@@ -875,9 +922,10 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewNationalityButton) {
-                    writer.writeObject("Nationality");
+                    writer.write("Nationality");
+                    writer.println();
                     writer.flush();
-                    String viewNationalityResult = (String) reader.readObject();
+                    String viewNationalityResult = reader.readLine();
                     JOptionPane.showMessageDialog(null, "The nationality of that user is " +
                                     viewNationalityResult,
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
@@ -886,9 +934,10 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewJobButton) {
-                    writer.writeObject("Job");
+                    writer.write("Job");
+                    writer.println();
                     writer.flush();
-                    String viewJobResult = (String) reader.readObject();
+                    String viewJobResult = reader.readLine();
                     JOptionPane.showMessageDialog(null, "The job of that user is " +
                                     viewJobResult,
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
@@ -897,9 +946,10 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(true);
                 }
                 if (e.getSource() == viewHobbyButton) {
-                    writer.writeObject("Hobby");
+                    writer.write("Hobby");
+                    writer.println();
                     writer.flush();
-                    String viewHobbyResult = (String) reader.readObject();
+                    String viewHobbyResult = reader.readLine();
                     JOptionPane.showMessageDialog(null, "The hobby of that user is " +
                                     viewHobbyResult,
                             "View other profile", JOptionPane.INFORMATION_MESSAGE);
@@ -909,16 +959,18 @@ public class Client extends JComponent implements Runnable {
                 }
                 //Buttons for message
                 if (e.getSource() == sendButton) {
-                    writer.writeObject("Send Message");
+                    writer.write("Send Message");
+                    writer.println();
+                    writer.write(messageTextArea.getText());
+                    writer.println();
+                    writer.write(messageFrame.getTitle());
+                    writer.println();
                     writer.flush();
-                    writer.writeObject(messageTextArea.getText());
-                    writer.flush();
-                    writer.writeObject(messageFrame.getTitle());
-                    writer.flush();
-                    messageDisplayArea.setText((String) reader.readObject());
+                    messageDisplayArea.setText(reader.readLine());
                 }
                 if (e.getSource() == deleteButton) {
-                    writer.writeObject("Delete Message");
+                    writer.write("Delete Message");
+                    writer.println();
                     writer.flush();
                     String ID = conversationID.getText();
                     if (ID.isEmpty()) {
@@ -929,11 +981,13 @@ public class Client extends JComponent implements Runnable {
                     }
                     try {
                         int conversationID = Integer.parseInt(ID);
-                        writer.writeObject(String.valueOf(conversationID));
+                        writer.write(String.valueOf(conversationID));
+                        writer.println();
                         writer.flush();
-                        writer.writeObject(messageFrame.getTitle());
+                        writer.write(messageFrame.getTitle());
+                        writer.println();
                         writer.flush();
-                        messageDisplayArea.setText((String) reader.readObject());
+                        messageDisplayArea.setText(reader.readLine());
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(Client.this,
                                 "Error: ID must be number. Please enter a valid ID.",

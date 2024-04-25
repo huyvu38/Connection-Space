@@ -28,14 +28,9 @@ public class Server implements ServerInterface {
     // Using thread pool for better performance
     public static Database database;
     public static ArrayList<UserAccount> allUserAccount;
-    private ObjectInputStream reader;
-    private ObjectOutputStream writer;
 
-    public Server(Socket socket) throws IOException {
+    public Server(Socket socket) {
         this.socket = socket;
-        writer = new ObjectOutputStream(socket.getOutputStream());
-        //writer.flush();
-        reader = new ObjectInputStream(socket.getInputStream());
     }
 
     public static void main(String[] args) throws IOException {
@@ -59,18 +54,20 @@ public class Server implements ServerInterface {
     //Start whenever a user connect
     public void run() {
         try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter writer = new PrintWriter(socket.getOutputStream());
             while (true) {
-                String command = (String) reader.readObject();
+                String command = reader.readLine();
                 if (command.equals("Create account")) {
                     boolean result = true;
                     //Get all information for server
-                    String username = (String) reader.readObject();
-                    String password = (String) reader.readObject();
-                    String age = (String) reader.readObject();
-                    String gender = (String) reader.readObject();
-                    String nationality = (String) reader.readObject();
-                    String job = (String) reader.readObject();
-                    String hobby = (String) reader.readObject();
+                    String username = reader.readLine();
+                    String password = reader.readLine();
+                    String age = reader.readLine();
+                    String gender = reader.readLine();
+                    String nationality = reader.readLine();
+                    String job = reader.readLine();
+                    String hobby = reader.readLine();
                     //Check information
                     if (username.contains(" ") || username.contains(";") ) {
                         result = false;
@@ -114,81 +111,113 @@ public class Server implements ServerInterface {
                         }
                     }
                     if (result) {
-                        writer.writeObject("Create account successfully.");
-                        //writer.println();
+                        writer.write("Create account successfully.");
+                        writer.println();
                         writer.flush();
                     } else {
-                        writer.writeObject("The account is already exist or you enter wrong information.");
-                        //writer.println();
-
+                        writer.write("The account is already exist or you enter wrong information.");
+                        writer.println();
                         writer.flush();
                     }
                 }
                 if (command.equals("Log in")) {
-                    String username = (String) reader.readObject();
-                    String password = (String) reader.readObject();
+                    String username = reader.readLine();
+                    String password = reader.readLine();
                     //Log in success
                     if (loginAccount(username, password)) {
-                        writer.writeObject("Log in successfully");
-                        //writer.println();
+                        writer.write("Log in successfully");
+                        writer.println();
                         writer.flush();
                         for (UserAccount userAccount: allUserAccount) {
                             if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                writer.writeObject(userAccount.getUserProfile().getUsername());
-                                writer.writeObject(userAccount.getUserProfile().getPassword());
-                                writer.writeObject(userAccount.getUserProfile().getAge());
-                                writer.writeObject(userAccount.getUserProfile().getGender());
-                                writer.writeObject(userAccount.getUserProfile().getNationality());
-                                writer.writeObject(userAccount.getUserProfile().getJob());
-                                writer.writeObject(userAccount.getUserProfile().getHobby());
-                                //writer.println();
+                                writer.write(userAccount.getUserProfile().getUsername());
+                                writer.println();
+                                writer.write(userAccount.getUserProfile().getPassword());
+                                writer.println();
+                                int age = userAccount.getUserProfile().getAge();
+                                writer.write(String.valueOf(age));
+                                writer.println();
+                                writer.write(userAccount.getUserProfile().getGender());
+                                writer.println();
+                                writer.write(userAccount.getUserProfile().getNationality());
+                                writer.println();
+                                writer.write(userAccount.getUserProfile().getJob());
+                                writer.println();
+                                writer.write(userAccount.getUserProfile().getHobby());
+                                writer.println();
                                 writer.flush();
                             }
                         }
                         while (true) {
-                            String choice = (String) reader.readObject();
+                            String choice = reader.readLine();
                             if (choice.equals("Search user")) {
-                                String word = (String) reader.readObject();
-                                ArrayList<String> allUserName = searchUser(username, word);
-                                writer.writeObject(allUserName);
-                                writer.flush();
-                                for (String yay : allUserName) {
-                                    System.out.println(yay);
+                                String word = reader.readLine();
+                                ArrayList<String> allFindUser = searchUser(username, word);
+                                if (allFindUser.isEmpty()) {
+                                    writer.write("Can not find anyone");
+                                    writer.println();
+                                } else {
+                                    writer.write("Find the following users");
+                                    writer.println();
+                                    for (String user : allFindUser) {
+                                        writer.write(user);
+                                        writer.println();
+                                        System.out.println(user);
+                                    }
+                                    writer.write(" ");
+                                    writer.println();
                                 }
+                                writer.flush();
+                                break;
                             }
                             if (choice.equals("Get friend list")) {
                                 for (UserAccount userAccount : allUserAccount) {
-                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        ArrayList<String> friendList = userAccount.getFriendList();
-                                        writer.writeObject(friendList);
-                                        writer.flush();
-                                        for (String yay : friendList) {
-                                            System.out.println(yay);
+                                    ArrayList<String> friendlist = userAccount.getFriendList();
+                                    if (friendlist.size() == 0) {
+                                        writer.write("Your friend list is empty");
+                                        writer.println();
+                                    } else {
+                                        writer.write("Find the following friends");
+                                        writer.println();
+                                        for (String friend : friendlist) {
+                                            writer.write(friend);
+                                            writer.println();
                                         }
+                                        writer.write(" ");
+                                        writer.println();
                                     }
+                                    writer.flush();
+                                    break;
                                 }
                             }
                             if (choice.equals("Get block list")) {
                                 for (UserAccount userAccount : allUserAccount) {
-                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        ArrayList<String> blockList = userAccount.getBlockList();
-                                        writer.writeObject(blockList);
-                                        writer.flush();
-                                        for (String yay : blockList) {
-                                            System.out.println(yay);
+                                    ArrayList<String> blocklist = userAccount.getBlockList();
+                                    if (blocklist.size() == 0) {
+                                        writer.write("Your block list is empty");
+                                        writer.println();
+                                    } else {
+                                        writer.write("Find the following block user");
+                                        writer.println();
+                                        for (String block : blocklist) {
+                                            writer.write(block);
+                                            writer.println();
                                         }
+                                        writer.write(" ");
+                                        writer.println();
                                     }
+                                    writer.flush();
+                                    break;
                                 }
                             }
                             if (choice.equals("Edit profile")) {
                                 boolean result = true;
-                                String passWord = (String) reader.readObject();
-                                String age = (String) reader.readObject();
-                                String gender = (String) reader.readObject();
-                                String nationality = (String) reader.readObject();
-                                String job = (String) reader.readObject();
-                                String hobby = (String) reader.readObject();
-                                if (password.contains(" ") || password.contains(";")) {
+                                String passWord = reader.readLine();
+                                String age = reader.readLine();
+                                String nationality = reader.readLine();
+                                String job = reader.readLine();
+                                String hobby = reader.readLine();
+                                if (passWord.contains(" ") || passWord.contains(";")) {
                                     result = false;
                                 }
                                 if (nationality.contains(" ") || nationality.contains(";") || (nationality.isEmpty())) {
@@ -217,104 +246,116 @@ public class Server implements ServerInterface {
                                         if (userAccount.getUserProfile().getUsername().equals(username)) {
                                             userAccount.getUserProfile().setPassword(passWord);
                                             userAccount.getUserProfile().setAge(newAge);
-                                            userAccount.getUserProfile().setGender(gender);
                                             userAccount.getUserProfile().setNationality(nationality);
                                             userAccount.getUserProfile().setJob(job);
                                             userAccount.getUserProfile().setHobby(hobby);
                                             database.saveAllUserAccount();
-                                            writer.writeObject("success");
+                                            writer.write("success");
+                                            writer.println();
                                             writer.flush();
                                         }
                                     }
                                 } else {
                                     for (UserAccount userAccount: allUserAccount) {
                                         if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                            writer.writeObject("failure");
+                                            writer.write("failure");
+                                            writer.println();
+                                            writer.write(userAccount.getUserProfile().getPassword());
+                                            writer.println();
+                                            writer.write(Integer.toString(userAccount.getUserProfile().getAge()));
+                                            writer.println();
+                                            writer.write(userAccount.getUserProfile().getNationality());
+                                            writer.println();
+                                            writer.write(userAccount.getUserProfile().getJob());
+                                            writer.println();
+                                            writer.write(userAccount.getUserProfile().getHobby());
+                                            writer.println();
                                             writer.flush();
-                                            writer.writeObject(userAccount.getUserProfile().getPassword());
-                                            writer.writeObject(userAccount.getUserProfile().getAge());
-                                            writer.writeObject(userAccount.getUserProfile().getGender());
-                                            writer.writeObject(userAccount.getUserProfile().getNationality());
-                                            writer.writeObject(userAccount.getUserProfile().getJob());
-                                            writer.writeObject(userAccount.getUserProfile().getHobby());
                                         }
                                     }
                                 }
                             }
                             if (choice.equals("Action")) {
-                                String specificAction = (String) reader.readObject();
+                                String specificAction = reader.readLine();
                                 if (specificAction.equals("Add friend")) {
-                                    String addFriendUserName = (String) reader.readObject();
+                                    String addFriendUserName = reader.readLine();
                                     if (addFriend(username, addFriendUserName)) {
                                         database.saveAllUserAccount();
-                                        writer.writeObject("Add friend successfully");
+                                        writer.write("Add friend successfully");
                                     } else {
-                                        writer.writeObject("You can not add that user");
+                                        writer.write("You can not add that user");
                                     }
+                                    writer.println();
                                     writer.flush();
                                 }
                                 if (specificAction.equals("Unfriend")) {
-                                    String unfriendUserName = (String) reader.readObject();
+                                    String unfriendUserName = reader.readLine();
                                     if (deleteFriend(username, unfriendUserName)) {
                                         database.saveAllUserAccount();
-                                        writer.writeObject("Unfriend successfully");
+                                        writer.write("Unfriend successfully");
                                     } else {
-                                        writer.writeObject("You can not unfriend that user");
+                                        writer.write("You can not unfriend that user");
                                     }
+                                    writer.println();
                                     writer.flush();
                                 }
                                 if (specificAction.equals("Block user")) {
-                                    String blockUserName = (String) reader.readObject();
+                                    String blockUserName = reader.readLine();
                                     if (blockUser(username, blockUserName)) {
-                                        writer.writeObject("Block successfully");
+                                        writer.write("Block successfully");
                                         //If both users are friend then delete after block
                                         deleteFriend(username, blockUserName);
                                         database.saveAllUserAccount();
                                     } else {
-                                        writer.writeObject("You can not block that user");
+                                        writer.write("You can not block that user");
                                     }
+                                    writer.println();
                                     writer.flush();
                                 }
                                 if (specificAction.equals("Unblock user")) {
-                                    String unblockUserName = (String) reader.readObject();
+                                    String unblockUserName = reader.readLine();
                                     if (unblockUser(username, unblockUserName)) {
                                         database.saveAllUserAccount();
-                                        writer.writeObject("Unblock successfully");
+                                        writer.write("Unblock successfully");
                                     } else {
-                                        writer.writeObject("You can not unblock that user");
+                                        writer.write("You can not unblock that user");
                                     }
+                                    writer.println();
                                     writer.flush();
                                 }
                                 if (specificAction.equals("View other user profile")) {
-                                    String usernameToView = (String) reader.readObject();
+                                    String usernameToView = reader.readLine();
                                     if (inBlockList(username, usernameToView) ||
                                             inBlockList(usernameToView, username) ||
                                             (usernameInDatabase(usernameToView) == false)) {
-                                        writer.writeObject("Can not view that user profile");
+                                        writer.write("Can not view that user profile");
+                                        writer.println();
                                         writer.flush();
                                     } else {
-                                        writer.writeObject("Click to the information that you want to see");
+                                        writer.write("Click to the information that you want to see");
+                                        writer.println();
                                         writer.flush();
-                                        String viewOtherProfileChoice = (String) reader.readObject();
+                                        String viewOtherProfileChoice = reader.readLine();
                                         for (UserAccount userAccount : allUserAccount) {
                                             if (userAccount.getUserProfile().getUsername().equals(usernameToView)) {
                                                 if (viewOtherProfileChoice.equals("Age")) {
                                                     int age = userAccount.getUserProfile().getAge();
                                                     String newAge = Integer.toString(age);
-                                                    writer.writeObject(newAge);
+                                                    writer.write(newAge);
                                                 }
                                                 if (viewOtherProfileChoice.equals("Gender")) {
-                                                    writer.writeObject(userAccount.getUserProfile().getGender());
+                                                    writer.write(userAccount.getUserProfile().getGender());
                                                 }
                                                 if (viewOtherProfileChoice.equals("Nationality")) {
-                                                    writer.writeObject(userAccount.getUserProfile().getNationality());
+                                                    writer.write(userAccount.getUserProfile().getNationality());
                                                 }
                                                 if (viewOtherProfileChoice.equals("Job")) {
-                                                    writer.writeObject(userAccount.getUserProfile().getJob());
+                                                    writer.write(userAccount.getUserProfile().getJob());
                                                 }
                                                 if (viewOtherProfileChoice.equals("Hobby")) {
-                                                    writer.writeObject(userAccount.getUserProfile().getHobby());
+                                                    writer.write(userAccount.getUserProfile().getHobby());
                                                 }
+                                                writer.println();
                                                 writer.flush();
                                             }
                                         }
@@ -322,9 +363,9 @@ public class Server implements ServerInterface {
                                 }
                             }
                             if (choice.equals("Send Message")) {
-                                String messageContent = (String) reader.readObject();
-                                String receiver = (String) reader.readObject();
-                                writer.writeObject(printHistoryMessage(username, receiver));
+                                String messageContent = reader.readLine();
+                                String receiver = reader.readLine();
+                                writer.write(printHistoryMessage(username, receiver));
 //                                String messageOption = reader.readLine();
 //                                if (messageOption.equals("Send Message to specific user")) {
 //                                    boolean continueSending = true;
@@ -370,10 +411,11 @@ public class Server implements ServerInterface {
 //                                }
                             }
                             if (choice.equals("Delete Message")) {
-                                String conversationID = (String) reader.readObject();
-                                String receiver = (String) reader.readObject();
+                                String conversationID = reader.readLine();
+                                String receiver = reader.readLine();
                                 deleteMessage(Integer.parseInt(conversationID));
-                                writer.writeObject(printHistoryMessage(username, receiver));
+                                writer.write(printHistoryMessage(username, receiver));
+                                writer.println();
                                 writer.flush();
                             }
                             //Log Out
@@ -382,7 +424,8 @@ public class Server implements ServerInterface {
                             }
                         }
                     } else {
-                        writer.writeObject("Log in failure");
+                        writer.write("Log in failure");
+                        writer.println();
                         writer.flush();
                     }
                 }
@@ -396,6 +439,7 @@ public class Server implements ServerInterface {
                 }
             }
         } catch (Exception f) {
+            f.printStackTrace();
             System.out.println("A client is disconnected");
 
         }
