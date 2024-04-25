@@ -130,11 +130,7 @@ public class Client extends JComponent implements Runnable {
     private String selectedUser;
 
     //element for view other profile
-    JFrame viewProfileFrame;
-
-
-
-
+    //JFrame viewProfileFrame;
 
     //JFrame and JButton for the message frame
     private JTextArea messageTextArea;
@@ -627,6 +623,7 @@ public class Client extends JComponent implements Runnable {
     ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             try {
+                /*
                 if (e.getSource() == backButton) {
                     viewProfileFrame.setVisible(false);
                 }
@@ -636,6 +633,8 @@ public class Client extends JComponent implements Runnable {
                     messageFrame.setVisible(true);
 
                 }
+
+                 */
                 /*
                 if (e.getSource() == viewProfileButton) {
                     writer.writeObject("View selected user profile");
