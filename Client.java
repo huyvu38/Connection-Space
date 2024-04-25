@@ -878,8 +878,6 @@ public class Client extends JComponent implements Runnable {
                     String loginResult =(String) reader.readObject();
                     if (loginResult.equals("Log in successfully")) {
                         UserAccount currentUserAcc = (UserAccount) reader.readObject();
-//                        JOptionPane.showMessageDialog(null, loginResult,
-//                                "Log in", JOptionPane.INFORMATION_MESSAGE);
                         currentUserAcc.getFriendList().forEach(friendsModel::addElement);
                         currentUserAcc.getBlockList().forEach(blockModel::addElement);
                         usernameLabel4.setText(currentUserAcc.getUserProfile().getUsername());
@@ -912,13 +910,13 @@ public class Client extends JComponent implements Runnable {
                     writer.writeObject(jobText3.getText());
                     writer.writeObject(hobbyText3.getText());
                     writer.flush();
-                    UserAccount currentUserAcc = (UserAccount) reader.readObject();
                     if (reader.readObject().equals("success")) {
                         JOptionPane.showMessageDialog(null, "Edit Profile successful",
                                 "Edit Profile", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Edit Profile failure",
                                 "Edit Profile", JOptionPane.ERROR_MESSAGE);
+                        UserAccount currentUserAcc = (UserAccount) reader.readObject();
                         passwordText3.setText(currentUserAcc.getUserProfile().getPassword());
                         ageText3.setText(String.valueOf(currentUserAcc.getUserProfile().getAge()));
                         genderType.setSelectedItem(currentUserAcc.getUserProfile().getGender());

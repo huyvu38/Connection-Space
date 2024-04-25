@@ -140,7 +140,6 @@ public class Server implements ServerInterface {
                                 writer.flush();
                             }
                         }
-
                         while (true) {
                             String choice = (String) reader.readObject();
                             //This one can use to display friendlist in the User frame
@@ -204,108 +203,12 @@ public class Server implements ServerInterface {
                                     }
                                 }
                             }
-                            if (choice.equals("View your profile")) {
-                                //Get the information that user want to view
-                                String viewChoice = (String) reader.readObject();
-                                for (UserAccount userAccount : allUserAccount) {
-                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        if (viewChoice.equals("Age")) {
-                                            int age = userAccount.getUserProfile().getAge();
-                                            String newAge = Integer.toString(age);
-                                            writer.writeObject(newAge);
-                                        }
-                                        if (viewChoice.equals("Gender")) {
-                                            writer.writeObject(userAccount.getUserProfile().getGender());
-                                        }
-                                        if (viewChoice.equals("Nationality")) {
-                                            writer.writeObject(userAccount.getUserProfile().getNationality());
-                                        }
-                                        if (viewChoice.equals("Job")) {
-                                            writer.writeObject(userAccount.getUserProfile().getJob());
-                                        }
-                                        if (viewChoice.equals("Hobby")) {
-                                            writer.writeObject(userAccount.getUserProfile().getHobby());
-                                        }
-                                        //writer.println();
-                                        writer.flush();
-                                    }
-                                }
-                            }
-                            if (choice.equals("Edit your profile")) {
-                                String editChoice = (String) reader.readObject();
-                                String editInformation = (String) reader.readObject();
-                                for (UserAccount userAccount : allUserAccount) {
-                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        if (editChoice.equals("Password")) {
-                                            if (editInformation.contains(" ") || editInformation.contains(";")) {
-                                                writer.writeObject("Can not edit your information");
-                                            } else {
-                                                if (checkPasswordLength(editInformation)) {
-                                                    userAccount.getUserProfile().setPassword(editInformation);
-                                                    writer.writeObject("Edit successfully");
-                                                } else {
-                                                    writer.writeObject("Can not edit your information");
-                                                }
-                                            }
-                                        }
-                                        if (editChoice.equals("Age")) {
-                                            try {
-                                                int editAge = Integer.parseInt(editInformation);
-                                                if (editAge <= 0) {
-                                                    writer.writeObject("Can not edit your information");
-                                                    userAccount.getUserProfile().setAge(editAge);
-                                                    writer.writeObject("Edit successfully");
-
-                                                } else {
-                                                    userAccount.getUserProfile().setAge(editAge);
-                                                    writer.writeObject("Edit successfully");
-                                                }
-                                            } catch (Exception e) {
-                                                writer.writeObject("Can not edit your information");
-                                            }
-                                        }
-                                        if (editChoice.equals("Gender")) {
-                                            userAccount.getUserProfile().setGender(editInformation);
-                                            writer.writeObject("Edit successfully");
-                                            //Assume that the client only choose from Male, Female, Other
-                                        }
-                                        if (editChoice.equals("Nationality")) {
-                                            if (editInformation.contains(" ") || editInformation.contains(";")) {
-                                                writer.writeObject("Can not edit your information");
-                                            } else {
-                                                userAccount.getUserProfile().setNationality(editInformation);
-                                                writer.writeObject("Edit successfully");
-                                            }
-                                        }
-                                        if (editChoice.equals("Job")) {
-                                            if (editInformation.contains(" ") || editInformation.contains(";")) {
-                                                writer.writeObject("Can not edit your information");
-                                            } else {
-                                                userAccount.getUserProfile().setJob(editInformation);
-                                                writer.writeObject("Edit successfully");
-                                            }
-                                        }
-                                        if (editChoice.equals("Hobby")) {
-                                            if (editInformation.contains(" ") || editInformation.contains(";")) {
-                                                writer.writeObject("Can not edit your information");
-                                            } else {
-                                                userAccount.getUserProfile().setHobby(editInformation);
-                                                writer.writeObject("Edit successfully");
-                                            }
-                                        }
-                                    }
-                                }
-                                //writer.println();
-                                writer.flush();
-                                database.saveAllUserAccount();
-                            }
                             if (choice.equals("Log in successfully")) {
                                 for (UserAccount userAccount: allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {
                                         writer.writeObject(userAccount);
                                         writer.flush();
                                     }
-
                                 }
                             }
                             if (choice.equals("Edit profile")) {
@@ -337,10 +240,12 @@ public class Server implements ServerInterface {
                                 if (newAge <= 0) {
                                     result = false;
                                 }
+                                if (checkPasswordLength(passWord) == false) {
+                                    result = false;
+                                }
                                 if (result) {
                                     for (UserAccount userAccount: allUserAccount) {
                                         if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                            writer.writeObject(userAccount);
                                             userAccount.getUserProfile().setPassword(passWord);
                                             userAccount.getUserProfile().setAge(newAge);
                                             userAccount.getUserProfile().setGender(gender);
@@ -353,8 +258,14 @@ public class Server implements ServerInterface {
                                         }
                                     }
                                 } else {
-                                    writer.writeObject("failure");
-                                    writer.flush();
+                                    for (UserAccount userAccount: allUserAccount) {
+                                        if (userAccount.getUserProfile().getUsername().equals(username)) {
+                                            writer.writeObject("failure");
+                                            writer.flush();
+                                            writer.writeObject(userAccount);
+                                            writer.flush();
+                                        }
+                                    }
                                 }
                             }
                             if (choice.equals("Action")) {
