@@ -654,13 +654,11 @@ public class Client extends JComponent implements Runnable {
             // Initialize the search button
             searchButton = new JButton("Search");
             searchButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Ensure the button is center-aligned
-            //searchButton.setActionCommand("looking for all possible user");
             searchButton.addActionListener(actionListener);
 
             // Initialize the viewProfile button
             viewProfileButton = new JButton("View Profile");
             viewProfileButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            //viewProfileButton.setActionCommand("View selected user profile");
             viewProfileButton.addActionListener(actionListener);
 
             eastPanel.add(inputField);
@@ -785,15 +783,13 @@ public class Client extends JComponent implements Runnable {
 
                 }
 
-                if (e.getActionCommand().equals("View selected user profile")) {
-
+                if (e.getSource() == viewProfileButton) {
                     writer.writeObject("View selected user profile");
                     writer.flush();
                     writer.writeObject(selectedUser);
                     writer.flush();
                     Profile selectedUserProfile = (Profile) reader.readObject();
                     displayUserDetailsWindow(selectedUserProfile);
-
                 }
 
                 if (e.getSource() == searchButton) {

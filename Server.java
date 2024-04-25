@@ -73,19 +73,19 @@ public class Server implements ServerInterface {
                     String job = (String) reader.readObject();
                     String hobby = (String) reader.readObject();
                     //Check information
-                    if (username.contains(" ") || username.contains(";")) {
+                    if (username.contains(" ") || username.contains(";") ) {
                         result = false;
                     }
                     if (password.contains(" ") || password.contains(";")) {
                         result = false;
                     }
-                    if (nationality.contains(" ") || nationality.contains(";")) {
+                    if (nationality.contains(" ") || nationality.contains(";") || (nationality.isEmpty())) {
                         result = false;
                     }
-                    if (job.contains(" ") || job.contains(";")) {
+                    if (job.contains(" ") || job.contains(";") || (job.isEmpty())) {
                         result = false;
                     }
-                    if (hobby.contains(" ") || hobby.contains(";")) {
+                    if (hobby.contains(" ") || hobby.contains(";") || (hobby.isEmpty())) {
                         result = false;
                     }
                     int newAge = 0;
@@ -222,13 +222,13 @@ public class Server implements ServerInterface {
                                 if (password.contains(" ") || password.contains(";")) {
                                     result = false;
                                 }
-                                if (nationality.contains(" ") || nationality.contains(";")) {
+                                if (nationality.contains(" ") || nationality.contains(";") || (nationality.isEmpty())) {
                                     result = false;
                                 }
-                                if (job.contains(" ") || job.contains(";")) {
+                                if (job.contains(" ") || job.contains(";") || (job.isEmpty())) {
                                     result = false;
                                 }
-                                if (hobby.contains(" ") || hobby.contains(";")) {
+                                if (hobby.contains(" ") || hobby.contains(";") || (hobby.isEmpty())) {
                                     result = false;
                                 }
                                 int newAge = 0;
@@ -278,7 +278,6 @@ public class Server implements ServerInterface {
                                     } else {
                                         writer.writeObject("You can not add that user");
                                     }
-                                    //writer.println();
                                     writer.flush();
                                 }
                                 if (specificAction.equals("Unfriend")) {
@@ -289,7 +288,6 @@ public class Server implements ServerInterface {
                                     } else {
                                         writer.writeObject("You can not unfriend that user");
                                     }
-                                    //writer.println();
                                     writer.flush();
                                 }
                                 if (specificAction.equals("Block user")) {
@@ -302,7 +300,6 @@ public class Server implements ServerInterface {
                                     } else {
                                         writer.writeObject("You can not block that user");
                                     }
-                                    //writer.println();
                                     writer.flush();
                                 }
                                 if (specificAction.equals("Unblock user")) {
@@ -313,7 +310,6 @@ public class Server implements ServerInterface {
                                     } else {
                                         writer.writeObject("You can not unblock that user");
                                     }
-                                    //writer.println();
                                     writer.flush();
                                 }
                                 if (specificAction.equals("View other user profile")) {
