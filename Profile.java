@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * Team Project
  *
@@ -6,7 +8,7 @@
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Profile implements ProfileInterface {
+public class Profile implements Serializable, ProfileInterface {
     private String username;
     private String password;
     private int age;

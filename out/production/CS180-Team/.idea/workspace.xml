@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PreviousClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/PreviousClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/Client$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/Client$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/Client$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$DatabaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$DatabaseTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$DeclarationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$DeclarationTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$ProfileTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$ProfileTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$ServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$ServerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$UserAccountTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest$UserAccountTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS180-Team/RunLocalTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="91a71d3d-553c-4d0e-baff-575972578bef" name="Changes" comment="11" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,42 +13,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;huyvu38&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="c5cd7498-332c-4fbb-9963-7f6059808bd6" />
-        <option name="url" value="https://github.com/huyvu38/CS180-Team.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/RunLocalTest.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2eG3wBB1U4TvSIF29GK82Haxd9q" />
+  <component name="ProjectId" id="2eF51xAqYbzfTKgvPEMOiVc6omW" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -70,703 +36,82 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Application.ApplicationControlFlow.executor&quot;: &quot;Run&quot;,
     &quot;Application.Client.executor&quot;: &quot;Run&quot;,
     &quot;Application.Client2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Message.executor&quot;: &quot;Run&quot;,
     &quot;Application.MessagingGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NewClient.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PreviousClient.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RunLocalTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.RunLocalTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.Server.executor&quot;: &quot;Run&quot;,
     &quot;Application.Server1.executor&quot;: &quot;Run&quot;,
     &quot;Application.SocialMedia.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UpdatedClient.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Yay.executor&quot;: &quot;Run&quot;,
-    &quot;Application.tempRunLocalTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$DatabaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$DatabaseTest.getAllUserAccountTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.RunLocalTest$DatabaseTest.readAllUserAccountTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$DatabaseTest.readAndGetAllUserAccountTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$DeclarationTest.DatabaseDeclarationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$DeclarationTest.ProfileDeclarationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$DeclarationTest.ServerDeclarationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$DeclarationTest.UserAccountDeclarationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$DeclarationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ProfileTest.ProfileDeclarationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ProfileTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ProfileTest.profileSetterTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ProfileTest.profileTestGettersAndConstructor.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ProfileTest.toStringTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.RemovesMessage.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.addFriendTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.blockUserTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.deleteFriendTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.inBlockListTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.inFriendListTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.logInAccountTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.messageSuccessful.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.unblockUserTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$ServerTest.userNameInDataBaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$UserAccountTest.UserAccountDeclarationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$UserAccountTest.UserSetterTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$UserAccountTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$UserAccountTest.getUserAccountTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest$UserAccountTest.toStringTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RunLocalTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestCase.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.tempRunLocalTest.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;
-    ]
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Message" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Message" />
+      <module name="CS180-Team" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SocialMedia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SocialMedia" />
+      <module name="CS180-Team" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Message" />
+        <item itemvalue="Application.SocialMedia" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+        <option value="jdk-11.0.22-corretto-11.0.22-3183f394aec4-fdae186d" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7578635f-0cb7-4eb5-9f95-e63e10e62200" name="Changes" comment="" />
-      <created>1711517324129</created>
+      <changelist id="91a71d3d-553c-4d0e-baff-575972578bef" name="Changes" comment="" />
+      <created>1711487273416</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1711517324129</updated>
-      <workItem from="1711517326258" duration="320000" />
-      <workItem from="1711551970576" duration="625000" />
-      <workItem from="1711570203436" duration="2371000" />
-      <workItem from="1711586808741" duration="545000" />
-      <workItem from="1711590811369" duration="897000" />
-      <workItem from="1711599781927" duration="1232000" />
-      <workItem from="1711637623397" duration="1174000" />
-      <workItem from="1711643904127" duration="188000" />
-      <workItem from="1711651039476" duration="620000" />
-      <workItem from="1711656283047" duration="2189000" />
-      <workItem from="1711663930998" duration="3103000" />
-      <workItem from="1711668426542" duration="989000" />
-      <workItem from="1711679060250" duration="9462000" />
-      <workItem from="1711691054546" duration="615000" />
-      <workItem from="1711719095622" duration="3259000" />
-      <workItem from="1711725742090" duration="1967000" />
-      <workItem from="1711731779166" duration="136000" />
-      <workItem from="1711731941524" duration="2935000" />
-      <workItem from="1711745153565" duration="2164000" />
-      <workItem from="1711754026808" duration="2082000" />
-      <workItem from="1711758451533" duration="1034000" />
-      <workItem from="1711759738996" duration="3323000" />
-      <workItem from="1711771554646" duration="3009000" />
-      <workItem from="1711774582144" duration="3987000" />
-      <workItem from="1711778751315" duration="193000" />
-      <workItem from="1711803869702" duration="264000" />
-      <workItem from="1711804451319" duration="3010000" />
-      <workItem from="1711807775848" duration="639000" />
-      <workItem from="1711812458134" duration="2629000" />
-      <workItem from="1711815463621" duration="215000" />
-      <workItem from="1711815690982" duration="895000" />
-      <workItem from="1711816609771" duration="4946000" />
-      <workItem from="1711831957958" duration="1573000" />
-      <workItem from="1711833575824" duration="4299000" />
-      <workItem from="1711837905111" duration="8000" />
-      <workItem from="1711837926965" duration="113000" />
-      <workItem from="1711838051397" duration="145000" />
-      <workItem from="1711838208467" duration="1367000" />
-      <workItem from="1711846725136" duration="1686000" />
-      <workItem from="1711852180225" duration="7509000" />
-      <workItem from="1711864357152" duration="14000" />
-      <workItem from="1711898140370" duration="20000" />
-      <workItem from="1711898168672" duration="997000" />
-      <workItem from="1711899182130" duration="573000" />
-      <workItem from="1711899781387" duration="201000" />
-      <workItem from="1711899998567" duration="39000" />
-      <workItem from="1711900046043" duration="1803000" />
-      <workItem from="1711901906641" duration="32000" />
-      <workItem from="1711901954893" duration="3973000" />
-      <workItem from="1711905970924" duration="221000" />
-      <workItem from="1711906252195" duration="269000" />
-      <workItem from="1711906688289" duration="127000" />
-      <workItem from="1711906933003" duration="35000" />
-      <workItem from="1711907077105" duration="218000" />
-      <workItem from="1711907315426" duration="1046000" />
-      <workItem from="1711908383871" duration="132000" />
-      <workItem from="1711908557220" duration="19184000" />
-      <workItem from="1711938650758" duration="9471000" />
-      <workItem from="1711978384518" duration="5528000" />
-      <workItem from="1711996602421" duration="194000" />
-      <workItem from="1711998065754" duration="915000" />
-      <workItem from="1712000767674" duration="6623000" />
-      <workItem from="1712175339434" duration="1335000" />
-      <workItem from="1712258703277" duration="2014000" />
-      <workItem from="1712261237857" duration="3031000" />
-      <workItem from="1712351405030" duration="1999000" />
-      <workItem from="1712413902771" duration="6000" />
-      <workItem from="1712555282116" duration="1814000" />
-      <workItem from="1712587555992" duration="5496000" />
-      <workItem from="1712594902547" duration="1652000" />
-      <workItem from="1712610026202" duration="6656000" />
-      <workItem from="1712624582050" duration="806000" />
-      <workItem from="1712690968688" duration="310000" />
-      <workItem from="1712691305102" duration="2565000" />
-      <workItem from="1712694076047" duration="1182000" />
-      <workItem from="1712802098422" duration="2261000" />
-      <workItem from="1712812248005" duration="95000" />
-      <workItem from="1712812381921" duration="2166000" />
-      <workItem from="1712814584975" duration="498000" />
-      <workItem from="1712847928085" duration="3836000" />
-      <workItem from="1712864561866" duration="287000" />
-      <workItem from="1712864877537" duration="32000" />
-      <workItem from="1712864921994" duration="497000" />
-      <workItem from="1712865462486" duration="10635000" />
-      <workItem from="1712890444745" duration="1284000" />
-      <workItem from="1712891830668" duration="4899000" />
-      <workItem from="1712897170167" duration="1787000" />
-      <workItem from="1712899224224" duration="590000" />
-      <workItem from="1712900145527" duration="86000" />
-      <workItem from="1712900327327" duration="1024000" />
-      <workItem from="1712901378321" duration="244000" />
-      <workItem from="1712901642054" duration="181000" />
-      <workItem from="1712901867067" duration="419000" />
-      <workItem from="1712928614948" duration="72000" />
-      <workItem from="1712929072583" duration="165000" />
-      <workItem from="1712929474721" duration="588000" />
-      <workItem from="1712930107039" duration="50000" />
-      <workItem from="1712930214382" duration="82000" />
-      <workItem from="1712930331517" duration="86000" />
-      <workItem from="1712930451957" duration="797000" />
-      <workItem from="1712931446381" duration="6440000" />
-      <workItem from="1712950572129" duration="953000" />
-      <workItem from="1712953566769" duration="150000" />
-      <workItem from="1712954833107" duration="636000" />
-      <workItem from="1712966538855" duration="1498000" />
-      <workItem from="1712968182010" duration="370000" />
-      <workItem from="1712968640464" duration="985000" />
-      <workItem from="1712969935983" duration="267000" />
-      <workItem from="1712981607761" duration="4518000" />
-      <workItem from="1712987499218" duration="634000" />
-      <workItem from="1713017153042" duration="9145000" />
-      <workItem from="1713026435507" duration="5318000" />
-      <workItem from="1713050151756" duration="2155000" />
-      <workItem from="1713060478291" duration="4776000" />
-      <workItem from="1713072882029" duration="784000" />
-      <workItem from="1713107379882" duration="3377000" />
-      <workItem from="1713110793208" duration="3304000" />
-      <workItem from="1713118445381" duration="19000" />
-      <workItem from="1713118500653" duration="5877000" />
-      <workItem from="1713134854562" duration="285000" />
-      <workItem from="1713136869232" duration="7178000" />
-      <workItem from="1713147124467" duration="143000" />
-      <workItem from="1713147332785" duration="2845000" />
-      <workItem from="1713150209708" duration="29000" />
-      <workItem from="1713150282287" duration="438000" />
-      <workItem from="1713150893095" duration="6772000" />
-      <workItem from="1713187612820" duration="1374000" />
-      <workItem from="1713190999137" duration="2693000" />
-      <workItem from="1713201089011" duration="6463000" />
-      <workItem from="1713212294522" duration="377000" />
-      <workItem from="1713215247902" duration="1252000" />
-      <workItem from="1713234661132" duration="17000" />
-      <workItem from="1713368014148" duration="2000" />
-      <workItem from="1713377141360" duration="92000" />
-      <workItem from="1713379249849" duration="2948000" />
-      <workItem from="1713466394244" duration="2196000" />
-      <workItem from="1713471068465" duration="3326000" />
-      <workItem from="1713488607356" duration="2886000" />
-      <workItem from="1713498969284" duration="408000" />
-      <workItem from="1713499391724" duration="12000" />
-      <workItem from="1713499430449" duration="946000" />
-      <workItem from="1713502447134" duration="56000" />
-      <workItem from="1713502556883" duration="487000" />
-      <workItem from="1713503086557" duration="1816000" />
-      <workItem from="1713505426527" duration="69000" />
-      <workItem from="1713505540105" duration="479000" />
-      <workItem from="1713506056849" duration="133000" />
-      <workItem from="1713506231902" duration="627000" />
-      <workItem from="1713537314319" duration="628000" />
-      <workItem from="1713538015495" duration="7369000" />
-      <workItem from="1713623326716" duration="6233000" />
-      <workItem from="1713637076006" duration="12831000" />
-      <workItem from="1713726780864" duration="7602000" />
-      <workItem from="1713741396713" duration="2540000" />
-      <workItem from="1713748803983" duration="6278000" />
-      <workItem from="1713764332638" duration="428000" />
-      <workItem from="1713798547111" duration="6053000" />
+      <updated>1711487273416</updated>
     </task>
-    <task id="LOCAL-00241" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
+    <task id="LOCAL-00001" summary="11">
       <option name="closed" value="true" />
-      <created>1713192800386</created>
-      <option name="number" value="00241" />
-      <option name="presentableId" value="LOCAL-00241" />
+      <created>1711816252216</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1713192800387</updated>
+      <updated>1711816252216</updated>
     </task>
-    <task id="LOCAL-00242" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713201217896</created>
-      <option name="number" value="00242" />
-      <option name="presentableId" value="LOCAL-00242" />
-      <option name="project" value="LOCAL" />
-      <updated>1713201217897</updated>
-    </task>
-    <task id="LOCAL-00243" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713201377132</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
-      <option name="project" value="LOCAL" />
-      <updated>1713201377132</updated>
-    </task>
-    <task id="LOCAL-00244" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713207374241</created>
-      <option name="number" value="00244" />
-      <option name="presentableId" value="LOCAL-00244" />
-      <option name="project" value="LOCAL" />
-      <updated>1713207374241</updated>
-    </task>
-    <task id="LOCAL-00245" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713207646003</created>
-      <option name="number" value="00245" />
-      <option name="presentableId" value="LOCAL-00245" />
-      <option name="project" value="LOCAL" />
-      <updated>1713207646003</updated>
-    </task>
-    <task id="LOCAL-00246" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713207675029</created>
-      <option name="number" value="00246" />
-      <option name="presentableId" value="LOCAL-00246" />
-      <option name="project" value="LOCAL" />
-      <updated>1713207675029</updated>
-    </task>
-    <task id="LOCAL-00247" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713468115995</created>
-      <option name="number" value="00247" />
-      <option name="presentableId" value="LOCAL-00247" />
-      <option name="project" value="LOCAL" />
-      <updated>1713468115996</updated>
-    </task>
-    <task id="LOCAL-00248" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713498442644</created>
-      <option name="number" value="00248" />
-      <option name="presentableId" value="LOCAL-00248" />
-      <option name="project" value="LOCAL" />
-      <updated>1713498442644</updated>
-    </task>
-    <task id="LOCAL-00249" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713499144878</created>
-      <option name="number" value="00249" />
-      <option name="presentableId" value="LOCAL-00249" />
-      <option name="project" value="LOCAL" />
-      <updated>1713499144878</updated>
-    </task>
-    <task id="LOCAL-00250" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713502587902</created>
-      <option name="number" value="00250" />
-      <option name="presentableId" value="LOCAL-00250" />
-      <option name="project" value="LOCAL" />
-      <updated>1713502587902</updated>
-    </task>
-    <task id="LOCAL-00251" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713506669321</created>
-      <option name="number" value="00251" />
-      <option name="presentableId" value="LOCAL-00251" />
-      <option name="project" value="LOCAL" />
-      <updated>1713506669321</updated>
-    </task>
-    <task id="LOCAL-00252" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713506847240</created>
-      <option name="number" value="00252" />
-      <option name="presentableId" value="LOCAL-00252" />
-      <option name="project" value="LOCAL" />
-      <updated>1713506847240</updated>
-    </task>
-    <task id="LOCAL-00253" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713540818454</created>
-      <option name="number" value="00253" />
-      <option name="presentableId" value="LOCAL-00253" />
-      <option name="project" value="LOCAL" />
-      <updated>1713540818454</updated>
-    </task>
-    <task id="LOCAL-00254" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713623685524</created>
-      <option name="number" value="00254" />
-      <option name="presentableId" value="LOCAL-00254" />
-      <option name="project" value="LOCAL" />
-      <updated>1713623685525</updated>
-    </task>
-    <task id="LOCAL-00255" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713623725383</created>
-      <option name="number" value="00255" />
-      <option name="presentableId" value="LOCAL-00255" />
-      <option name="project" value="LOCAL" />
-      <updated>1713623725383</updated>
-    </task>
-    <task id="LOCAL-00256" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713623767279</created>
-      <option name="number" value="00256" />
-      <option name="presentableId" value="LOCAL-00256" />
-      <option name="project" value="LOCAL" />
-      <updated>1713623767279</updated>
-    </task>
-    <task id="LOCAL-00257" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713623875725</created>
-      <option name="number" value="00257" />
-      <option name="presentableId" value="LOCAL-00257" />
-      <option name="project" value="LOCAL" />
-      <updated>1713623875725</updated>
-    </task>
-    <task id="LOCAL-00258" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713623888139</created>
-      <option name="number" value="00258" />
-      <option name="presentableId" value="LOCAL-00258" />
-      <option name="project" value="LOCAL" />
-      <updated>1713623888139</updated>
-    </task>
-    <task id="LOCAL-00259" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713624114752</created>
-      <option name="number" value="00259" />
-      <option name="presentableId" value="LOCAL-00259" />
-      <option name="project" value="LOCAL" />
-      <updated>1713624114752</updated>
-    </task>
-    <task id="LOCAL-00260" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713624198942</created>
-      <option name="number" value="00260" />
-      <option name="presentableId" value="LOCAL-00260" />
-      <option name="project" value="LOCAL" />
-      <updated>1713624198942</updated>
-    </task>
-    <task id="LOCAL-00261" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713630306795</created>
-      <option name="number" value="00261" />
-      <option name="presentableId" value="LOCAL-00261" />
-      <option name="project" value="LOCAL" />
-      <updated>1713630306795</updated>
-    </task>
-    <task id="LOCAL-00262" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713636030283</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
-      <option name="project" value="LOCAL" />
-      <updated>1713636030283</updated>
-    </task>
-    <task id="LOCAL-00263" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713636136652</created>
-      <option name="number" value="00263" />
-      <option name="presentableId" value="LOCAL-00263" />
-      <option name="project" value="LOCAL" />
-      <updated>1713636136652</updated>
-    </task>
-    <task id="LOCAL-00264" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713636930157</created>
-      <option name="number" value="00264" />
-      <option name="presentableId" value="LOCAL-00264" />
-      <option name="project" value="LOCAL" />
-      <updated>1713636930157</updated>
-    </task>
-    <task id="LOCAL-00265" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713638426943</created>
-      <option name="number" value="00265" />
-      <option name="presentableId" value="LOCAL-00265" />
-      <option name="project" value="LOCAL" />
-      <updated>1713638426943</updated>
-    </task>
-    <task id="LOCAL-00266" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713639025351</created>
-      <option name="number" value="00266" />
-      <option name="presentableId" value="LOCAL-00266" />
-      <option name="project" value="LOCAL" />
-      <updated>1713639025351</updated>
-    </task>
-    <task id="LOCAL-00267" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713639113121</created>
-      <option name="number" value="00267" />
-      <option name="presentableId" value="LOCAL-00267" />
-      <option name="project" value="LOCAL" />
-      <updated>1713639113121</updated>
-    </task>
-    <task id="LOCAL-00268" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713639208636</created>
-      <option name="number" value="00268" />
-      <option name="presentableId" value="LOCAL-00268" />
-      <option name="project" value="LOCAL" />
-      <updated>1713639208636</updated>
-    </task>
-    <task id="LOCAL-00269" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713639779656</created>
-      <option name="number" value="00269" />
-      <option name="presentableId" value="LOCAL-00269" />
-      <option name="project" value="LOCAL" />
-      <updated>1713639779656</updated>
-    </task>
-    <task id="LOCAL-00270" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713639804956</created>
-      <option name="number" value="00270" />
-      <option name="presentableId" value="LOCAL-00270" />
-      <option name="project" value="LOCAL" />
-      <updated>1713639804956</updated>
-    </task>
-    <task id="LOCAL-00271" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713640359563</created>
-      <option name="number" value="00271" />
-      <option name="presentableId" value="LOCAL-00271" />
-      <option name="project" value="LOCAL" />
-      <updated>1713640359563</updated>
-    </task>
-    <task id="LOCAL-00272" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713640589782</created>
-      <option name="number" value="00272" />
-      <option name="presentableId" value="LOCAL-00272" />
-      <option name="project" value="LOCAL" />
-      <updated>1713640589782</updated>
-    </task>
-    <task id="LOCAL-00273" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713641156791</created>
-      <option name="number" value="00273" />
-      <option name="presentableId" value="LOCAL-00273" />
-      <option name="project" value="LOCAL" />
-      <updated>1713641156791</updated>
-    </task>
-    <task id="LOCAL-00274" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713641765994</created>
-      <option name="number" value="00274" />
-      <option name="presentableId" value="LOCAL-00274" />
-      <option name="project" value="LOCAL" />
-      <updated>1713641765994</updated>
-    </task>
-    <task id="LOCAL-00275" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713643134815</created>
-      <option name="number" value="00275" />
-      <option name="presentableId" value="LOCAL-00275" />
-      <option name="project" value="LOCAL" />
-      <updated>1713643134815</updated>
-    </task>
-    <task id="LOCAL-00276" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713644570294</created>
-      <option name="number" value="00276" />
-      <option name="presentableId" value="LOCAL-00276" />
-      <option name="project" value="LOCAL" />
-      <updated>1713644570294</updated>
-    </task>
-    <task id="LOCAL-00277" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713677749733</created>
-      <option name="number" value="00277" />
-      <option name="presentableId" value="LOCAL-00277" />
-      <option name="project" value="LOCAL" />
-      <updated>1713677749734</updated>
-    </task>
-    <task id="LOCAL-00278" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713678059328</created>
-      <option name="number" value="00278" />
-      <option name="presentableId" value="LOCAL-00278" />
-      <option name="project" value="LOCAL" />
-      <updated>1713678059328</updated>
-    </task>
-    <task id="LOCAL-00279" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713738070863</created>
-      <option name="number" value="00279" />
-      <option name="presentableId" value="LOCAL-00279" />
-      <option name="project" value="LOCAL" />
-      <updated>1713738070863</updated>
-    </task>
-    <task id="LOCAL-00280" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713741005089</created>
-      <option name="number" value="00280" />
-      <option name="presentableId" value="LOCAL-00280" />
-      <option name="project" value="LOCAL" />
-      <updated>1713741005089</updated>
-    </task>
-    <task id="LOCAL-00281" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713742179907</created>
-      <option name="number" value="00281" />
-      <option name="presentableId" value="LOCAL-00281" />
-      <option name="project" value="LOCAL" />
-      <updated>1713742179908</updated>
-    </task>
-    <task id="LOCAL-00282" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713748529365</created>
-      <option name="number" value="00282" />
-      <option name="presentableId" value="LOCAL-00282" />
-      <option name="project" value="LOCAL" />
-      <updated>1713748529366</updated>
-    </task>
-    <task id="LOCAL-00283" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713748915274</created>
-      <option name="number" value="00283" />
-      <option name="presentableId" value="LOCAL-00283" />
-      <option name="project" value="LOCAL" />
-      <updated>1713748915274</updated>
-    </task>
-    <task id="LOCAL-00284" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713755733561</created>
-      <option name="number" value="00284" />
-      <option name="presentableId" value="LOCAL-00284" />
-      <option name="project" value="LOCAL" />
-      <updated>1713755733562</updated>
-    </task>
-    <task id="LOCAL-00285" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713758049804</created>
-      <option name="number" value="00285" />
-      <option name="presentableId" value="LOCAL-00285" />
-      <option name="project" value="LOCAL" />
-      <updated>1713758049805</updated>
-    </task>
-    <task id="LOCAL-00286" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713758482449</created>
-      <option name="number" value="00286" />
-      <option name="presentableId" value="LOCAL-00286" />
-      <option name="project" value="LOCAL" />
-      <updated>1713758482449</updated>
-    </task>
-    <task id="LOCAL-00287" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713761906983</created>
-      <option name="number" value="00287" />
-      <option name="presentableId" value="LOCAL-00287" />
-      <option name="project" value="LOCAL" />
-      <updated>1713761906983</updated>
-    </task>
-    <task id="LOCAL-00288" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713764752191</created>
-      <option name="number" value="00288" />
-      <option name="presentableId" value="LOCAL-00288" />
-      <option name="project" value="LOCAL" />
-      <updated>1713764752191</updated>
-    </task>
-    <task id="LOCAL-00289" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java">
-      <option name="closed" value="true" />
-      <created>1713828921503</created>
-      <option name="number" value="00289" />
-      <option name="presentableId" value="LOCAL-00289" />
-      <option name="project" value="LOCAL" />
-      <updated>1713828921503</updated>
-    </task>
-    <option name="localTasksCounter" value="290" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update change" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class&#10;" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/.idea/misc.xml&#10;#&#9;out/production/CS180-Team/.idea/workspace.xml&#10;#&#9;out/production/CS180-Team/AllUserAccount.txt&#10;#&#9;out/production/CS180-Team/Database.class&#10;#&#9;out/production/CS180-Team/LogInInterface.class&#10;#&#9;out/production/CS180-Team/Message.class&#10;#&#9;out/production/CS180-Team/MessageInterface.class&#10;#&#9;out/production/CS180-Team/Method.class&#10;#&#9;out/production/CS180-Team/README.md&#10;#&#9;out/production/CS180-Team/SocialMedia.class" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java&#10;" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;SocialMedia.java" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Profile.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RunLocalTest.java</url>
-          <line>397</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <breakpoint enabled="true" suspend="THREAD" type="java-exception">
-          <properties class="java.net.SocketException" package="java.net" />
-          <option name="timeStamp" value="9" />
-        </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.net.BindException" package="java.net" />
-          <option name="timeStamp" value="10" />
-        </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/RunLocalTest.java</url>
-          <line>150</line>
-          <properties class="RunLocalTest.DeclarationTest" method="DatabaseDeclarationTest">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="1" />
+    <MESSAGE value="11" />
+    <option name="LAST_COMMIT_MESSAGE" value="11" />
   </component>
 </project>

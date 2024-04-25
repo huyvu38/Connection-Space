@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class UserAccount implements UserAccountInterface {
+public class UserAccount implements Serializable, UserAccountInterface {
 
     private Profile userProfile;
     private ArrayList<String> friendList;
