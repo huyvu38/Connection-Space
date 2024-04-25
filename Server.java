@@ -60,7 +60,6 @@ public class Server implements ServerInterface {
     public void run() {
         try {
             while (true) {
-
                 String command = (String) reader.readObject();
                 if (command.equals("Create account")) {
                     boolean result = true;
@@ -135,20 +134,30 @@ public class Server implements ServerInterface {
                         writer.flush();
                         for (UserAccount userAccount: allUserAccount) {
                             if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                writer.writeObject(userAccount);
+                                //Send friend list
+                                writer.writeObject(userAccount.getFriendList());
+                                writer.writeObject(userAccount.getBlockList());
+                                writer.writeObject(userAccount.getUserProfile().getUsername());
+                                writer.writeObject(userAccount.getUserProfile().getPassword());
+                                writer.writeObject(userAccount.getUserProfile().getAge());
+                                writer.writeObject(userAccount.getUserProfile().getGender());
+                                writer.writeObject(userAccount.getUserProfile().getNationality());
+                                writer.writeObject(userAccount.getUserProfile().getJob());
+                                writer.writeObject(userAccount.getUserProfile().getHobby());
                                 //writer.println();
                                 writer.flush();
                             }
                         }
                         while (true) {
                             String choice = (String) reader.readObject();
-                            //This one can use to display friendlist in the User frame
-                            //Or we can make a button to display friend list for easier.
                             if (choice.equals("Search user")) {
                                 String word = (String) reader.readObject();
                                 ArrayList<String> allUserName = searchUser(username, word);
                                 writer.writeObject(allUserName);
                                 writer.flush();
+                                for (String yay : allUserName) {
+                                    System.out.println(yay);
+                                }
                             }
                             if (choice.equals("View selected user profile")) {
                                 String selectedUser = (String) reader.readObject();
@@ -187,16 +196,12 @@ public class Server implements ServerInterface {
                                         ArrayList<String> blockList = userAccount.getBlockList();
                                         if (blockList.size() == 0) {
                                             writer.writeObject("Your block list is empty");
-                                            //writer.println();
                                         } else {
                                             writer.writeObject("Find the following block users");
-                                            //writer.println();
                                             for (String blockUser : blockList) {
                                                 writer.writeObject(blockUser);
-                                                //writer.println();
                                             }
                                             writer.writeObject(" ");
-                                            //writer.println();
                                         }
                                         writer.flush();
                                         break;
@@ -262,8 +267,12 @@ public class Server implements ServerInterface {
                                         if (userAccount.getUserProfile().getUsername().equals(username)) {
                                             writer.writeObject("failure");
                                             writer.flush();
-                                            writer.writeObject(userAccount);
-                                            writer.flush();
+                                            writer.writeObject(userAccount.getUserProfile().getPassword());
+                                            writer.writeObject(userAccount.getUserProfile().getAge());
+                                            writer.writeObject(userAccount.getUserProfile().getGender());
+                                            writer.writeObject(userAccount.getUserProfile().getNationality());
+                                            writer.writeObject(userAccount.getUserProfile().getJob());
+                                            writer.writeObject(userAccount.getUserProfile().getHobby());
                                         }
                                     }
                                 }
@@ -318,11 +327,9 @@ public class Server implements ServerInterface {
                                             inBlockList(usernameToView, username) ||
                                             (usernameInDatabase(usernameToView) == false)) {
                                         writer.writeObject("Can not view that user profile");
-                                        // writer.println();
                                         writer.flush();
                                     } else {
                                         writer.writeObject("Click to the information that you want to see");
-                                        //writer.println();
                                         writer.flush();
                                         String viewOtherProfileChoice = (String) reader.readObject();
                                         for (UserAccount userAccount : allUserAccount) {
@@ -344,7 +351,6 @@ public class Server implements ServerInterface {
                                                 if (viewOtherProfileChoice.equals("Hobby")) {
                                                     writer.writeObject(userAccount.getUserProfile().getHobby());
                                                 }
-                                                //writer.println();
                                                 writer.flush();
                                             }
                                         }
@@ -414,7 +420,6 @@ public class Server implements ServerInterface {
                         }
                     } else {
                         writer.writeObject("Log in failure");
-                        //writer.println();
                         writer.flush();
                     }
                 }
@@ -428,6 +433,7 @@ public class Server implements ServerInterface {
                 }
             }
         } catch (Exception f) {
+            f.printStackTrace();
             System.out.println("A client is disconnected");
 
         }
@@ -641,11 +647,7 @@ public class Server implements ServerInterface {
         for (UserAccount userAccount : allUserAccount) {
             if (userAccount.getUserProfile().getUsername().equals(userNameOne)) {
                 for (String eachBlockUserOfUserOne : userAccount.getBlockList()) {
-                    for (String eachUser : findUserName) {
-                        if (eachUser.equals(eachBlockUserOfUserOne)) {
-                            findUserName.remove(eachUser);
-                        }
-                    }
+                    findUserName.remove(eachBlockUserOfUserOne);
                 }
                 findUserName.remove(userNameOne);
                 //DO NOT INCLUDE THAT USERNAME IN SEARCH
