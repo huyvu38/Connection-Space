@@ -888,7 +888,7 @@ public class Client extends JComponent implements Runnable {
                         currentUserAcc.getBlockList().forEach(blockModel::addElement);
                         usernameText3.setText(currentUserAcc.getUserProfile().getUsername());
                         passwordText3.setText(currentUserAcc.getUserProfile().getPassword());
-                        ageText3.setText(currentUserAcc.getUserProfile().getPassword());
+                        ageText3.setText(String.valueOf(currentUserAcc.getUserProfile().getAge()));
                         genderType.setSelectedItem(currentUserAcc.getUserProfile().getGender());
                         nationalityText3.setText(currentUserAcc.getUserProfile().getNationality());
                         jobText3.setText(currentUserAcc.getUserProfile().getJob());
