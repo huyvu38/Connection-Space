@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class UserAccount implements Serializable, UserAccountInterface {
+public class UserAccount implements UserAccountInterface {
 
     private Profile userProfile;
     private ArrayList<String> friendList;
