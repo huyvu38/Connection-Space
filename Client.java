@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.*;
@@ -97,16 +96,6 @@ public class Client extends JComponent implements Runnable {
 
     JButton logOutButton;
 
-    DefaultListModel<String> friendsModel;
-    DefaultListModel<String> blockModel;
-
-    JList<String> stringList;
-    JScrollPane friendScrollPane;
-
-
-    JList<String> blockList;
-    JScrollPane blockScrollPane;
-
     // Create and configure the popup menu
     JPopupMenu popupMenu;
     JMenuItem menuItem1;
@@ -122,12 +111,27 @@ public class Client extends JComponent implements Runnable {
 
     //elements for eastPanel
     private JTextField inputField;
-    private JButton searchButton;
-    private JButton actionButton;
 
-    private JComboBox<String> resultCombo;
-    private ArrayList<String> allUsernames;  // This would be fetched from your database
-    private String selectedUser;
+    String selectedUser2;
+
+    String selectedUser3;
+
+    JButton getFriendListButton;
+    JButton getBlockUserButton;
+
+    JComboBox<String> resultCombo2;
+
+    JComboBox<String> resultCombo3;
+
+    ArrayList<String> allFriendList;
+    ArrayList<String> allBlockList;
+
+    JButton searchButton;
+    JButton actionButton;
+
+    JComboBox<String> resultCombo1;
+    ArrayList<String> allUsernames;  // This would be fetched from your database
+    String selectedUser;
 
     //element for view other profile
     //JFrame viewProfileFrame;
@@ -380,34 +384,36 @@ public class Client extends JComponent implements Runnable {
             userFrame.setLayout(new BorderLayout());
 
             // West side panel
-            westPanel = new JPanel(new GridLayout(2, 1));
-            friendsModel = new DefaultListModel<>();
-            //friendsData.forEach(friendsModel::addElement);
-            blockModel = new DefaultListModel<>();
-            //blockData.forEach(blockModel::addElement);
+            westPanel = new JPanel(new GridLayout(4, 1));
 
-            // Set up the friends JList
-            stringList = new JList<>(friendsModel);
-            stringList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            friendScrollPane = new JScrollPane(stringList);
-            friendScrollPane.setBorder(new TitledBorder("Friends List"));
-            westPanel.add(friendScrollPane);
+            resultCombo2 = new JComboBox<>();
+            resultCombo2.setMaximumSize(new Dimension(Integer.MAX_VALUE, resultCombo2.getPreferredSize().height));
+            resultCombo2.addActionListener(e -> {
+                selectedUser2 = (String) resultCombo2.getSelectedItem();
+            });
 
-            // Set up the block JList
-            blockList = new JList<>(blockModel);
-            blockList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            blockScrollPane = new JScrollPane(blockList);
-            blockScrollPane.setBorder(new TitledBorder("Blocked Users"));
-            westPanel.add(blockScrollPane);
+            resultCombo3 = new JComboBox<>();
+            resultCombo3.setMaximumSize(new Dimension(Integer.MAX_VALUE, resultCombo3.getPreferredSize().height));
+            resultCombo3.addActionListener(e -> {
+                selectedUser3 = (String) resultCombo3.getSelectedItem();
+            });
 
-            // Create and configure the popup menu
-            popupMenu = new JPopupMenu();
-            menuItem1 = new JMenuItem("Delete Friend");
-            menuItem1.addActionListener(actionListener);
-            popupMenu.add(menuItem1);
-            menuItem2 = new JMenuItem("Block Friend");
-            menuItem2.addActionListener(actionListener);
-            popupMenu.add(menuItem2);
+            // Initialize the get friend button
+            getFriendListButton = new JButton("Get friend list");
+            getFriendListButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Ensure the button is center-aligned
+            getFriendListButton.addActionListener(actionListener);
+
+            // Initialize the get block user button
+            getBlockUserButton = new JButton("Get block list");
+            getBlockUserButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            getBlockUserButton.addActionListener(actionListener);
+
+            westPanel.add(getFriendListButton);
+            westPanel.add(resultCombo2);
+            westPanel.add(getBlockUserButton);
+            westPanel.add(resultCombo3);
+
+            /*
 
             // Add mouse listener to the stringList for showing the popup menu
             stringList.addMouseListener(new MouseAdapter() {
@@ -420,6 +426,8 @@ public class Client extends JComponent implements Runnable {
                     }
                 }
             });
+
+             */
 
             westPanel.setPreferredSize(new Dimension(150, getHeight()));  // Adjust width as needed
             userFrame.getContentPane().add(westPanel, BorderLayout.WEST);
@@ -501,11 +509,10 @@ public class Client extends JComponent implements Runnable {
             });
 
             // Initialize the combo box
-            resultCombo = new JComboBox<>();
-            resultCombo.setMaximumSize(new Dimension(Integer.MAX_VALUE, resultCombo.getPreferredSize().height));
-//            allUsernames = new ArrayList<String>();  // Simulate fetching all usernames
-            resultCombo.addActionListener(e -> {
-                selectedUser = (String) resultCombo.getSelectedItem();
+            resultCombo1 = new JComboBox<>();
+            resultCombo1.setMaximumSize(new Dimension(Integer.MAX_VALUE, resultCombo1.getPreferredSize().height));
+            resultCombo1.addActionListener(e -> {
+                selectedUser = (String) resultCombo1.getSelectedItem();
             });
 
             // Initialize the search button
@@ -513,14 +520,14 @@ public class Client extends JComponent implements Runnable {
             searchButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Ensure the button is center-aligned
             searchButton.addActionListener(actionListener);
 
-            // Initialize the viewProfile button
+            // Initialize the action button
             actionButton = new JButton("Action");
             actionButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             actionButton.addActionListener(actionListener);
 
             eastPanel.add(inputField);
             eastPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add space between components
-            eastPanel.add(resultCombo);
+            eastPanel.add(resultCombo1);
             eastPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add space between components
             eastPanel.add(searchButton);
             eastPanel.add(actionButton);
@@ -531,25 +538,6 @@ public class Client extends JComponent implements Runnable {
             userFrame.pack();
 
         }
-//        private void deleteFriend(ActionEvent e) {
-//            String selectedValue = stringList.getSelectedValue();
-//            JOptionPane.showMessageDialog(panel,
-//                    "Delete Friend: " + selectedValue,
-//                    "Delete Action",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//            friendsModel.removeElement(selectedValue);
-//        }
-//
-//        private void blockFriend(ActionEvent e) {
-//            String selectedValue = stringList.getSelectedValue();
-//            JOptionPane.showMessageDialog(panel,
-//                    "Block Friend: " + selectedValue,
-//                    "Block Action",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//            blockModel.addElement(selectedValue);
-//            friendsModel.removeElement(selectedValue);
-//        }
-
 
         //Frame for the messages
         {
@@ -635,18 +623,6 @@ public class Client extends JComponent implements Runnable {
                 }
 
                  */
-                /*
-                if (e.getSource() == viewProfileButton) {
-                    writer.writeObject("View selected user profile");
-                    writer.flush();
-                    writer.writeObject(selectedUser);
-                    writer.flush();
-                    Profile selectedUserProfile = (Profile) reader.readObject();
-                    displayUserDetailsWindow(selectedUserProfile);
-                }
-
-                 */
-
                 if (e.getSource() == searchButton) {
                     writer.writeObject("Search user");
                     writer.flush();
@@ -654,8 +630,22 @@ public class Client extends JComponent implements Runnable {
                     writer.writeObject(searchText);
                     writer.flush();
                     allUsernames = (ArrayList<String>) reader.readObject();
-                    resultCombo.removeAllItems();
-                    updateComboBox(allUsernames);
+                    resultCombo1.removeAllItems();
+                    updateComboBox1(allUsernames);
+                }
+                if (e.getSource() == getFriendListButton) {
+                    writer.writeObject("Get friend list");
+                    writer.flush();
+                    allFriendList = (ArrayList<String>) reader.readObject();
+                    resultCombo2.removeAllItems();
+                    updateComboBox2(allFriendList);
+                }
+                if (e.getSource() == getBlockUserButton) {
+                    writer.writeObject("Get block list");
+                    writer.flush();
+                    allBlockList = (ArrayList<String>) reader.readObject();
+                    resultCombo3.removeAllItems();
+                    updateComboBox3(allBlockList);
                 }
                 if (e.getSource() == menuItem1) {
 
@@ -675,7 +665,6 @@ public class Client extends JComponent implements Runnable {
                     //Write Log in to the server
                     String command = "Log in";
                     writer.writeObject(command);
-                    //writer.println();
                     writer.flush();
 
                     mainMenuFrame.setVisible(false);
@@ -719,10 +708,6 @@ public class Client extends JComponent implements Runnable {
                     writer.flush();
                     String loginResult =(String) reader.readObject();
                     if (loginResult.equals("Log in successfully")) {
-                        ArrayList<String> friendList = (ArrayList<String>) reader.readObject();
-                        friendList.forEach(friendsModel::addElement);
-                        ArrayList<String> blockList = (ArrayList<String>) reader.readObject();
-                        blockList.forEach(blockModel::addElement);
                         String username = (String) reader.readObject();
                         String passWord = (String) reader.readObject();
                         int age = (int) reader.readObject();
@@ -791,11 +776,6 @@ public class Client extends JComponent implements Runnable {
                 if (e.getSource() == logOutButton) {
                     writer.writeObject("Log out");
                     writer.flush();
-                    //Set everything to null
-                    //ArrayList<String> FriendList = new ArrayList<>();
-                    //FriendList.forEach(friendsModel::addElement);
-
-                    // Set up the friends JList
                     userFrame.setVisible(false);
                     mainMenuFrame.setVisible(true);
                 }
@@ -807,9 +787,7 @@ public class Client extends JComponent implements Runnable {
                 //Buttons for specific action
                 if (e.getSource() == addFriendButton) {
                     writer.writeObject("Add friend");
-                    //writer.println();
                     writer.writeObject(otherUsernameText.getText());
-                    //writer.println();
                     writer.flush();
                     String addFriendResult = (String) reader.readObject();
                     if (addFriendResult.equals("Add friend successfully")) {
@@ -826,9 +804,7 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == deleteFriendButton) {
                     writer.writeObject("Unfriend");
-                    //writer.println();
                     writer.writeObject(otherUsernameText.getText());
-                    //writer.println();
                     writer.flush();
                     String deleteFriendResult = (String) reader.readObject();
                     if (deleteFriendResult.equals("Unfriend successfully")) {
@@ -845,9 +821,7 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == blockUserButton) {
                     writer.writeObject("Block user");
-                    // writer.println();
                     writer.writeObject(otherUsernameText.getText());
-                    // writer.println();
                     writer.flush();
                     String blockUserResult = (String) reader.readObject();
                     if (blockUserResult.equals("Block successfully")) {
@@ -864,9 +838,7 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == unblockUserButton) {
                     writer.writeObject("Unblock user");
-                    //writer.println();
                     writer.writeObject(otherUsernameText.getText());
-                    //writer.println();
                     writer.flush();
                     String unblockUserResult = (String) reader.readObject();
                     if (unblockUserResult.equals("Unblock successfully")) {
@@ -884,9 +856,7 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == viewOtherProfileButton) {
                     writer.writeObject("View other user profile");
-                    //writer.println();
                     writer.writeObject(otherUsernameText.getText());
-                    //writer.println();
                     writer.flush();
                     String viewOtherProfileResult = (String) reader.readObject();
                     if (viewOtherProfileResult.equals("Can not view that user profile")) {
@@ -904,7 +874,6 @@ public class Client extends JComponent implements Runnable {
                 //Buttons for view other profile
                 if (e.getSource() == viewAgeButton) {
                     writer.writeObject("Age");
-                    //writer.println();
                     writer.flush();
                     String viewAgeResult = (String) reader.readObject();
                     JOptionPane.showMessageDialog(null, "The age of that user is " +
@@ -916,7 +885,6 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == viewGenderButton) {
                     writer.writeObject("Gender");
-                    //writer.println();
                     writer.flush();
                     String viewGenderResult = (String) reader.readObject();
                     JOptionPane.showMessageDialog(null, "The gender of that user is " +
@@ -928,7 +896,6 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == viewNationalityButton) {
                     writer.writeObject("Nationality");
-                    // writer.println();
                     writer.flush();
                     String viewNationalityResult = (String) reader.readObject();
                     JOptionPane.showMessageDialog(null, "The nationality of that user is " +
@@ -940,7 +907,6 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == viewJobButton) {
                     writer.writeObject("Job");
-                    //writer.println();
                     writer.flush();
                     String viewJobResult = (String) reader.readObject();
                     JOptionPane.showMessageDialog(null, "The job of that user is " +
@@ -952,7 +918,6 @@ public class Client extends JComponent implements Runnable {
                 }
                 if (e.getSource() == viewHobbyButton) {
                     writer.writeObject("Hobby");
-                    //writer.println();
                     writer.flush();
                     String viewHobbyResult = (String) reader.readObject();
                     JOptionPane.showMessageDialog(null, "The hobby of that user is " +
@@ -1003,78 +968,32 @@ public class Client extends JComponent implements Runnable {
         }
     };
 
-    private void updateComboBox(List<String> usernames) {
-        resultCombo.removeAllItems();
+    private void updateComboBox1(List<String> usernames) {
+        resultCombo1.removeAllItems();
         for (String username : usernames) {
-            resultCombo.addItem(username);
+            resultCombo1.addItem(username);
         }
-        if (resultCombo.getItemCount() > 0) {
-            resultCombo.setSelectedIndex(0);
+        if (resultCombo1.getItemCount() > 0) {
+            resultCombo1.setSelectedIndex(0);
         }
     }
-    /*
-    private void displayUserDetailsWindow(Profile selectedUserProfile) {
-
-        viewProfileFrame = new JFrame();
-        viewProfileFrame.setTitle(selectedUserProfile.getUsername());
-        viewProfileFrame.setSize(200, 300);
-        viewProfileFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        viewProfileFrame.setLocationRelativeTo(null);
-
-
-        // Right panel for form fields
-        JPanel formPanel = new JPanel(new GridLayout(9, 2));  // Adjust grid layout rows and columns as needed
-
-        // Initializing all components
-        JLabel usernameLabel = new JLabel("Username");
-        JTextField usernameText = new JTextField(10);
-        usernameText.setText(selectedUserProfile.getUsername());
-
-        JLabel ageLabel = new JLabel("Age");
-        JTextField ageText = new JTextField(10);
-        ageText.setText(String.valueOf(selectedUserProfile.getAge()));
-
-        JLabel genderLabel = new JLabel("Gender");
-        JTextField gendertype = new JTextField(10);
-        gendertype.setText(selectedUserProfile.getGender());
-
-        JLabel nationalityLabel = new JLabel("Nationality");
-        JTextField nationalityText = new JTextField(10);
-        nationalityText.setText(selectedUserProfile.getNationality());
-
-        JLabel jobLabel = new JLabel("Job");
-        JTextField jobText = new JTextField(10);
-        jobText.setText(selectedUserProfile.getJob());
-        JLabel hobbyLabel = new JLabel("Hobby");
-        JTextField hobbyText = new JTextField(10);
-        hobbyText.setText(selectedUserProfile.getHobby());
-
-        backButton = new JButton("Back");
-        contactButton = new JButton("Contact");
-        backButton.addActionListener(actionListener);
-        contactButton.addActionListener(actionListener);
-
-
-        // Adding components to form panel
-        formPanel.add(usernameLabel);
-        formPanel.add(usernameText);
-        formPanel.add(ageLabel);
-        formPanel.add(ageText);
-        formPanel.add(genderLabel);
-        formPanel.add(gendertype);
-        formPanel.add(nationalityLabel);
-        formPanel.add(nationalityText);
-        formPanel.add(jobLabel);
-        formPanel.add(jobText);
-        formPanel.add(hobbyLabel);
-        formPanel.add(hobbyText);
-        formPanel.add(backButton);
-        formPanel.add(contactButton);
-
-        viewProfileFrame.getContentPane().add(formPanel);
+    private void updateComboBox2(List<String> usernames) {
+        resultCombo2.removeAllItems();
+        for (String username : usernames) {
+            resultCombo2.addItem(username);
+        }
+        if (resultCombo2.getItemCount() > 0) {
+            resultCombo2.setSelectedIndex(0);
+        }
     }
-
-     */
-
+    private void updateComboBox3(List<String> usernames) {
+        resultCombo3.removeAllItems();
+        for (String username : usernames) {
+            resultCombo3.addItem(username);
+        }
+        if (resultCombo3.getItemCount() > 0) {
+            resultCombo3.setSelectedIndex(0);
+        }
+    }
 }
 

@@ -134,9 +134,6 @@ public class Server implements ServerInterface {
                         writer.flush();
                         for (UserAccount userAccount: allUserAccount) {
                             if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                //Send friend list
-                                writer.writeObject(userAccount.getFriendList());
-                                writer.writeObject(userAccount.getBlockList());
                                 writer.writeObject(userAccount.getUserProfile().getUsername());
                                 writer.writeObject(userAccount.getUserProfile().getPassword());
                                 writer.writeObject(userAccount.getUserProfile().getAge());
@@ -156,21 +153,15 @@ public class Server implements ServerInterface {
                                 writer.writeObject(allUserName);
                                 writer.flush();
                             }
-                            if (choice.equals("View selected user profile")) {
-                                String selectedUser = (String) reader.readObject();
-                                for (UserAccount userAccount: allUserAccount) {
-                                    if (userAccount.getUserProfile().getUsername().equals(selectedUser)) {
-                                        writer.writeObject(userAccount.getUserProfile());
-                                        writer.flush();
-                                    }
-                                }
-                            }
                             if (choice.equals("Get friend list")) {
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {
                                         ArrayList<String> friendList = userAccount.getFriendList();
                                         writer.writeObject(friendList);
                                         writer.flush();
+                                        for (String yay : friendList) {
+                                            System.out.println(yay);
+                                        }
                                     }
                                 }
                             }
@@ -180,14 +171,9 @@ public class Server implements ServerInterface {
                                         ArrayList<String> blockList = userAccount.getBlockList();
                                         writer.writeObject(blockList);
                                         writer.flush();
-                                    }
-                                }
-                            }
-                            if (choice.equals("Log in successfully")) {
-                                for (UserAccount userAccount: allUserAccount) {
-                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        writer.writeObject(userAccount);
-                                        writer.flush();
+                                        for (String yay : blockList) {
+                                            System.out.println(yay);
+                                        }
                                     }
                                 }
                             }
@@ -408,7 +394,6 @@ public class Server implements ServerInterface {
                 }
             }
         } catch (Exception f) {
-            f.printStackTrace();
             System.out.println("A client is disconnected");
 
         }
