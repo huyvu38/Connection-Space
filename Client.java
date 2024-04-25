@@ -61,10 +61,13 @@ public class Client extends JComponent implements Runnable {
     JFrame createAccountFrame;
     JLabel usernameLabel1;
     JTextField usernameText1;
+    JLabel usernameFormatLabel;
     JLabel passwordLabel1;
     JTextField passwordText1;
+    JLabel passwordFormatLabel;
     JLabel ageLabel;
     JTextField ageText;
+    JLabel ageFormatLabel;
     JLabel genderLabel;
     JComboBox<String> genderType;
     JLabel nationalityLabel;
@@ -73,8 +76,8 @@ public class Client extends JComponent implements Runnable {
     JTextField jobText;
     JLabel hobbyLabel;
     JTextField hobbyText;
-
     JButton enterButton1;
+    JLabel informationFormatLabel;
 
     //JFrame and JButton for Log in
     JFrame loginFrame;
@@ -201,21 +204,21 @@ public class Client extends JComponent implements Runnable {
             mainMenuFrame.setVisible(true);
 
             loginButton = new JButton("Login");
-            loginButton.setBounds(210, 50, 160, 70);
+            loginButton.setBounds(220, 80, 160, 70);
             createAccountButton = new JButton("Create account");
+
             createAccountButton.setBounds(210, 140, 160,70);
             exitAppButton = new JButton("Exit the app");
             exitAppButton.setBounds(210,230,160,70);
 //            actionButton = new JButton("action");
 //            actionButton.setBounds(210,280,160,70);
 
+
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
-            exitAppButton.addActionListener(actionListener);
 
             content.add(loginButton);
             content.add(createAccountButton);
-            content.add(exitAppButton);
 
         }
         //Frame for create account
@@ -230,54 +233,66 @@ public class Client extends JComponent implements Runnable {
             createAccountFrame.setVisible(false);
 
             usernameText1 = new JTextField(10);
-            usernameText1.setBounds(300, 33, 120, 25);
+            usernameText1.setBounds(280, 33, 120, 25);
             usernameLabel1 = new JLabel("Username");
-            usernameLabel1.setBounds(180, 33, 120, 25);
+            usernameLabel1.setBounds(160, 33, 120, 25);
+            usernameFormatLabel = new JLabel("At least 4 characters");
+            usernameFormatLabel.setBounds(420, 33, 120,25);
 
             passwordText1 = new JTextField(10);
-            passwordText1.setBounds(300, 66, 120, 25);
+            passwordText1.setBounds(280, 66, 120, 25);
             passwordLabel1 = new JLabel("Password");
-            passwordLabel1.setBounds(180, 66, 120, 25);
+            passwordLabel1.setBounds(160, 66, 120, 25);
+            passwordFormatLabel = new JLabel("At least 6 characters");
+            passwordFormatLabel.setBounds(420, 66, 120,25);
 
             ageText = new JTextField(10);
-            ageText.setBounds(300, 99, 120, 25);
+            ageText.setBounds(280, 99, 120, 25);
             ageLabel = new JLabel("Age");
-            ageLabel.setBounds(180, 99, 120, 25);
+            ageLabel.setBounds(160, 99, 120, 25);
+            ageFormatLabel = new JLabel("Greater than 0");
+            ageFormatLabel.setBounds(420, 99, 120, 25);
 
             genderType = new JComboBox<>();
             genderType.addItem("Male");
             genderType.addItem("Female");
             genderType.addItem("Other");
-            genderType.setBounds(300, 132, 120, 25);
+            genderType.setBounds(280, 132, 120, 25);
             genderLabel = new JLabel("Gender");
-            genderLabel.setBounds(180, 132, 120, 25);
+            genderLabel.setBounds(160, 132, 120, 25);
 
             nationalityText = new JTextField(10);
-            nationalityText.setBounds(300, 165, 120, 25);
+            nationalityText.setBounds(280, 165, 120, 25);
             nationalityLabel = new JLabel("Nationality");
-            nationalityLabel.setBounds(180, 165, 120, 25);
+            nationalityLabel.setBounds(160, 165, 120, 25);
 
             jobText = new JTextField(10);
-            jobText.setBounds(300, 198, 120, 25);
+            jobText.setBounds(280, 198, 120, 25);
             jobLabel = new JLabel("Job");
-            jobLabel.setBounds(180, 198, 120, 25);
+            jobLabel.setBounds(160, 198, 120, 25);
 
             hobbyText = new JTextField(10);
-            hobbyText.setBounds(300, 231, 120, 25);
+            hobbyText.setBounds(280, 231, 120, 25);
             hobbyLabel = new JLabel("Hobby");
-            hobbyLabel.setBounds(180, 231, 120, 25);
+            hobbyLabel.setBounds(160, 231, 120, 25);
+
+            informationFormatLabel = new JLabel("*** Do not contain any spaces or semicolons in any information");
+            informationFormatLabel.setBounds(120, 320, 400,30);
 
             enterButton1 = new JButton("Enter");
-            enterButton1.setBounds(230, 270, 140, 30);
+            enterButton1.setBounds(230, 280, 140, 30);
             enterButton1.addActionListener(actionListener);
 
 
             content.add(usernameText1);
             content.add(usernameLabel1);
+            content.add(usernameFormatLabel);
             content.add(passwordText1);
             content.add(passwordLabel1);
+            content.add(passwordFormatLabel);
             content.add(ageText);
             content.add(ageLabel);
+            content.add(ageFormatLabel);
             content.add(genderType);
             content.add(genderLabel);
             content.add(nationalityText);
@@ -286,6 +301,7 @@ public class Client extends JComponent implements Runnable {
             content.add(jobLabel);
             content.add(hobbyText);
             content.add(hobbyLabel);
+            content.add(informationFormatLabel);
             content.add(enterButton1);
 
         }
@@ -357,7 +373,7 @@ public class Client extends JComponent implements Runnable {
             also include a way to access friend list and block list ->>
             Option 1 : create a button
             Option 2 : display in that user frame
-            For both option, probably need to create a choice often in both PreviousClient and Server.java
+            For both option, probably need to create a choice option in both PreviousClient and Server.java
 
             view that user profile (should we also display in that user frame ?? )
              */
@@ -823,6 +839,7 @@ public class Client extends JComponent implements Runnable {
                     writer.flush();
                     mainMenuFrame.dispose();
                 }
+
                 //Buttons in create account frame
                 if (e.getSource() == enterButton1) {
                     writer.writeObject(usernameText1.getText());

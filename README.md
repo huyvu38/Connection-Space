@@ -1,81 +1,61 @@
 # CS180-L22-Team 3
 
-Huy Vu <Submitted Vocareum Work Phase 2>
+Huy Vu <Submitted Vocareum Work Phase 3>
 
+<Submitted Presentation Phase 3>
+
+<Submitted Report Phase 3>
 ### Instruction on how to compile and run the program
 
 The server in Server.java needs to be run first so that the client can connect to the server and using the app.
 
 First, the user clicks the Run button in Client.java.
 
-After the user connects with the server, the Main Menu will appear with 3 options:
+After the user connects with the server, the Main Menu Frame will appear with 2 options:
 
 1. Create an account
 2. Log in
-3. Exit the app.
 
-Main Menu Option 1: user wants to create an account
-
-Write 1 to the program.
+Main Menu Option 1: User clicks to the "Create account" button
 
 Then the user is prompted to enter username, password, age, gender, nationality, job, and hobby.
 
-The server will then check every information of the user is in the right format and the username is valid. After that, the client will receive the message if they create account successfully.
+The server will then check every information of the user is in the right format and the username is unique. After that, the client will receive the message if they create account successfully or not. Then the program goes back to the Main Menu Frame.
 
-If the user create account successfully, they cannot edit their username later.
+If the user creates account successfully, they cannot edit their username later.
 
-Then the program goes back to the main menu to let the user create account or log in or exit the app.
 
 Main Menu Option 2: User wants to log in
 
-Write 2 to the program.
-
 Then the user is prompted to enter username and password for log in.
 
-If the user login fail, the program will go back to the Main Menu.
+If the user login fail, the program will go back to the Main Menu Frame.
 
-If the user login successfully, the program will show the Option Menu with 9 options:
+If the user login successfully, the program will show the User Frame.
 
-1. View that user profile
+The top left corner will display the friend list and the top right corner will display the block list.
 
-2. Edit that user profile
+The user can have some following option:
 
-3. Add friend
+1. Edit profile
 
-4. Delete friend
+   After click to the edit profile button, the editProfile Frame will appear and the user is not allowed to change their username.
 
-5. Block user
+2. Action
 
-6. Unblock user
+   After click the "Action" button, the Action Frame will appear with 5 buttons : Add friend, Delete friend, Block user, Unblock user, view other user profile.
 
-7. Send message
+   The client first need to type the username of other people and click to the any button that they want. The server then will check if that client can do that action and update to the database.
 
-8. Search user
+   For the view other user profile, if the client enter the username that in the database and not in the block list, another Frame will appear and let them view another user's information like age, gender, nationality, job, hobby.
 
-9. View other user profile
+3. Search user
 
-10. Log out
+4. Send message
 
-If the user writes down 1 the program will prompt the user to enter the information that they want to view from their profile.
+5. Log out
 
-If the user writes down 2 the program will prompt the user to enter the information that the user is allowed to edit and let the user enter the new information. The server will check if the new information is in the right format and send the edit result to the client.
-
-If the user writes down 3, 4, 5, 6, 9 the program will prompt the user to enter the username of other account and send the result of the specifc action to the client.
-
-If the user writes down 7, the program will allow user to choose 1 of these 3 options :
-
-1. Send Message to specific user
-2. Send message only to friends
-3. Print history message
-   Then the user can delete any messages that they want.
-
-If the user writes down 8, the program will prompt the user to enter the word for searching and the server will send back a list of username that contains the word to the user.
-
-If the user writes down 10, the program will exit from the Option Menu and goes to the Main Menu where user can create account or log in or exit the app.
-
-Main Menu Option 3: User wants to exit the app
-
-Write 3 to the program. The program will stop.
+   The client will go back to the Main Menu Frame where they can log in or create account.
 
 ### UserAccount.java <br/>
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependent on Profile.java.
@@ -125,12 +105,12 @@ Message Operations: Send individual or group messages, with options to delete an
 Privacy Controls: Block specific users, hiding their messages from the recipient while still logging them.<br/>
 Persistent Logging: Use a buffered reader to timestamp and store messages, ensuring a reliable historical record.<br/>
 
-### Client.java <br>
+### Client.java <br> //Fix that
 Acts as the user interface for the social media platform. Utilizes java socket for client-server connections. See above section on how to run program
 for instructions on using client.
 
 ### RunLocalTest.java <br>
-Tests each file's methods utilizing junit 4. Tests include: Decleration test, Profile test, User account test, Database test and server test.
+Tests each file's methods utilizing junit 4. Tests include: Decleration test, Profile test, User account test, Database test and functions in server.
 
 ### AllUserAccount.txt <br/>
 The file that store profile, friendlist, blocklist of each user.
@@ -145,11 +125,13 @@ Age must be a positive number.
 
 User only choose gender from the following options : Male, Female, Other.
 
-Every information in the Profile of the user can not contain any spaces or semicolon.
+Every information in the Profile of the user can not contain any spaces or semicolons.
 
 ### Message.txt <br/>
 The file that store every message between each user.
 
-Format: [conversationID],[ConversationTime],[Sender username],[Receiver username],[if message blocked],[message content]
+Format: [conversationID],[DeletedMessage],[ConversationTime],[Sender username],[Receiver username],[if message blocked],[message content]
+
+### Test case <br/>
 
 

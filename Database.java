@@ -67,7 +67,6 @@ public class Database implements DatabaseInterface {
             }
             pw.flush();
             pw.close();
-
         } catch (Exception e) {
             return false;
         }

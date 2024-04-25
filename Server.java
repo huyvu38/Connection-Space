@@ -96,10 +96,6 @@ public class Server implements ServerInterface {
                     } catch (NumberFormatException e) {
                         result = false;
                     }
-                    if (newAge <= 0) {
-                        result = false;
-                    }
-
                     //If the user enter all valid information -> the result still true
                     //Then check if the username is valid to create a new Profile
                     Profile newUserProfile = new Profile(username, password, newAge, gender, nationality, job, hobby);
@@ -124,6 +120,7 @@ public class Server implements ServerInterface {
                     } else {
                         writer.writeObject("The account is already exist or you enter wrong information.");
                         //writer.println();
+
                         writer.flush();
                     }
                 }
@@ -259,6 +256,7 @@ public class Server implements ServerInterface {
                                                     writer.writeObject("Can not edit your information");
                                                     userAccount.getUserProfile().setAge(editAge);
                                                     writer.writeObject("Edit successfully");
+
                                                 } else {
                                                     userAccount.getUserProfile().setAge(editAge);
                                                     writer.writeObject("Edit successfully");
@@ -525,9 +523,7 @@ public class Server implements ServerInterface {
                     break;
                 }
             }
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-    } catch (Exception e) {
+        } catch (Exception f) {
             System.out.println("A client is disconnected");
 
         }
