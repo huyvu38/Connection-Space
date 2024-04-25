@@ -155,9 +155,6 @@ public class Server implements ServerInterface {
                                 ArrayList<String> allUserName = searchUser(username, word);
                                 writer.writeObject(allUserName);
                                 writer.flush();
-                                for (String yay : allUserName) {
-                                    System.out.println(yay);
-                                }
                             }
                             if (choice.equals("View selected user profile")) {
                                 String selectedUser = (String) reader.readObject();
@@ -171,22 +168,9 @@ public class Server implements ServerInterface {
                             if (choice.equals("Get friend list")) {
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {
-                                        ArrayList<String> friendlist = userAccount.getFriendList();
-                                        if (friendlist.size() == 0) {
-                                            writer.writeObject("Your friend list is empty");
-                                            //writer.println();
-                                        } else {
-                                            writer.writeObject("Find the following friends");
-                                            //writer.println();
-                                            for (String friend : friendlist) {
-                                                writer.writeObject(friend);
-                                                //writer.println();
-                                            }
-                                            writer.writeObject(" ");
-                                            //writer.println();
-                                        }
+                                        ArrayList<String> friendList = userAccount.getFriendList();
+                                        writer.writeObject(friendList);
                                         writer.flush();
-                                        break;
                                     }
                                 }
                             }
@@ -194,17 +178,8 @@ public class Server implements ServerInterface {
                                 for (UserAccount userAccount : allUserAccount) {
                                     if (userAccount.getUserProfile().getUsername().equals(username)) {
                                         ArrayList<String> blockList = userAccount.getBlockList();
-                                        if (blockList.size() == 0) {
-                                            writer.writeObject("Your block list is empty");
-                                        } else {
-                                            writer.writeObject("Find the following block users");
-                                            for (String blockUser : blockList) {
-                                                writer.writeObject(blockUser);
-                                            }
-                                            writer.writeObject(" ");
-                                        }
+                                        writer.writeObject(blockList);
                                         writer.flush();
-                                        break;
                                     }
                                 }
                             }
