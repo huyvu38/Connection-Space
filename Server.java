@@ -153,7 +153,7 @@ public class Server implements ServerInterface {
                             if (choice.equals("Search user")) {
                                 String word = reader.readLine();
                                 ArrayList<String> allFindUser = searchUser(username, word);
-                                if (allFindUser.isEmpty()) {
+                                if (allFindUser.size() == 0) {
                                     writer.write("Can not find anyone");
                                     writer.println();
                                 } else {
@@ -168,7 +168,6 @@ public class Server implements ServerInterface {
                                     writer.println();
                                 }
                                 writer.flush();
-                                break;
                             }
                             if (choice.equals("Get friend list")) {
                                 for (UserAccount userAccount : allUserAccount) {
