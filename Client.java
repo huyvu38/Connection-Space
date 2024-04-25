@@ -206,12 +206,9 @@ public class Client extends JComponent implements Runnable {
             loginButton = new JButton("Login");
             loginButton.setBounds(220, 80, 160, 70);
             createAccountButton = new JButton("Create account");
-
-            createAccountButton.setBounds(210, 140, 160,70);
-            exitAppButton = new JButton("Exit the app");
-            exitAppButton.setBounds(210,230,160,70);
-//            actionButton = new JButton("action");
-//            actionButton.setBounds(210,280,160,70);
+            createAccountButton.setBounds(220, 180, 160,70);
+//           actionButton = new JButton("action");
+//           actionButton.setBounds(210,280,160,70);
 
 
             createAccountButton.addActionListener(actionListener);
