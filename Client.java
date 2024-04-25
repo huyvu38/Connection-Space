@@ -20,7 +20,6 @@ public class Client extends JComponent implements Runnable {
     public Client() throws IOException {
 
     }
-
     //Connect to the server
     Socket socket = new Socket("localhost", 5050);
     ObjectInputStream reader = new ObjectInputStream(socket.getInputStream());
@@ -96,25 +95,15 @@ public class Client extends JComponent implements Runnable {
 
     JButton logOutButton;
 
-    // Create and configure the popup menu
-    JPopupMenu popupMenu;
-    JMenuItem menuItem1;
-    JMenuItem menuItem2;
-
     //for user own profile
-    private JTextField passwordText3, ageText3, nationalityText3, jobText3, hobbyText3;
+    JTextField passwordText3, ageText3, nationalityText3, jobText3, hobbyText3;
 
-    private JButton saveButton;
-    private JComboBox genderType3;
-    private JLabel usernameLabel3, usernameLabel4, passwordLabel3, genderLabel3,
+    JButton saveButton;
+    JComboBox<String> genderType3;
+    JLabel usernameLabel3, usernameLabel4, passwordLabel3, genderLabel3,
             ageLabel3, nationalityLabel3, jobLabel3, hobbyLabel3;
 
-    //elements for eastPanel
-    private JTextField inputField;
-
-    String selectedUser2;
-
-    String selectedUser3;
+    //elements for westPanel
 
     JButton getFriendListButton;
     JButton getBlockUserButton;
@@ -126,6 +115,13 @@ public class Client extends JComponent implements Runnable {
     ArrayList<String> allFriendList;
     ArrayList<String> allBlockList;
 
+    String selectedUser2;
+
+    String selectedUser3;
+
+    //elements for eastPanel
+    JTextField inputField;
+
     JButton searchButton;
     JButton actionButton;
 
@@ -133,16 +129,13 @@ public class Client extends JComponent implements Runnable {
     ArrayList<String> allUsernames;  // This would be fetched from your database
     String selectedUser;
 
-    //element for view other profile
-    //JFrame viewProfileFrame;
-
     //JFrame and JButton for the message frame
-    private JTextArea messageTextArea;
-    private JTextField recipientField;
-    private JButton sendButton;
-    private JTextArea messageDisplayArea;
-    private Highlighter highlighter;
-    private JButton deleteButton;
+    JTextArea messageTextArea;
+    JTextField recipientField;
+    JButton sendButton;
+    JTextArea messageDisplayArea;
+    Highlighter highlighter;
+    JButton deleteButton;
     private final String conversationIDMessage = "Please enter conversationID to delete the message";
     private String receiver;
     JFrame messageFrame;
@@ -413,22 +406,6 @@ public class Client extends JComponent implements Runnable {
             westPanel.add(getBlockUserButton);
             westPanel.add(resultCombo3);
 
-            /*
-
-            // Add mouse listener to the stringList for showing the popup menu
-            stringList.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (SwingUtilities.isRightMouseButton(e)) {
-                        int index = stringList.locationToIndex(e.getPoint());
-                        stringList.setSelectedIndex(index);
-                        popupMenu.show(stringList, e.getX(), e.getY());
-                    }
-                }
-            });
-
-             */
-
             westPanel.setPreferredSize(new Dimension(150, getHeight()));  // Adjust width as needed
             userFrame.getContentPane().add(westPanel, BorderLayout.WEST);
 
@@ -630,28 +607,19 @@ public class Client extends JComponent implements Runnable {
                     writer.writeObject(searchText);
                     writer.flush();
                     allUsernames = (ArrayList<String>) reader.readObject();
-                    resultCombo1.removeAllItems();
                     updateComboBox1(allUsernames);
                 }
                 if (e.getSource() == getFriendListButton) {
                     writer.writeObject("Get friend list");
                     writer.flush();
                     allFriendList = (ArrayList<String>) reader.readObject();
-                    resultCombo2.removeAllItems();
                     updateComboBox2(allFriendList);
                 }
                 if (e.getSource() == getBlockUserButton) {
                     writer.writeObject("Get block list");
                     writer.flush();
                     allBlockList = (ArrayList<String>) reader.readObject();
-                    resultCombo3.removeAllItems();
                     updateComboBox3(allBlockList);
-                }
-                if (e.getSource() == menuItem1) {
-
-                }
-                if (e.getSource() == menuItem2) {
-
                 }
                 //Buttons in main menu frame
                 if (e.getSource() == createAccountButton) {
@@ -724,7 +692,6 @@ public class Client extends JComponent implements Runnable {
                         hobbyText3.setText(hobby);
                         loginFrame.setVisible(false);
                         userFrame.setVisible(true);
-                        //MainFrame mainFrame = new MainFrame();
                     } else {
                         JOptionPane.showMessageDialog(null, loginResult,
                                 "Log in", JOptionPane.ERROR_MESSAGE);
@@ -751,7 +718,6 @@ public class Client extends JComponent implements Runnable {
                     } else {
                         JOptionPane.showMessageDialog(null, "Edit Profile failure",
                                 "Edit Profile", JOptionPane.ERROR_MESSAGE);
-                        //UserAccount currentUserAcc = (UserAccount) reader.readObject();
                         String password = (String) reader.readObject();
                         int age = (int) reader.readObject();
                         String gender = (String) reader.readObject();
@@ -776,6 +742,11 @@ public class Client extends JComponent implements Runnable {
                 if (e.getSource() == logOutButton) {
                     writer.writeObject("Log out");
                     writer.flush();
+                    inputField.setText("Search the user here");
+                    ArrayList<String> emptyString = new ArrayList<>();
+                    updateComboBox1(emptyString);
+                    updateComboBox2(emptyString);
+                    updateComboBox3(emptyString);
                     userFrame.setVisible(false);
                     mainMenuFrame.setVisible(true);
                 }
@@ -977,18 +948,18 @@ public class Client extends JComponent implements Runnable {
             resultCombo1.setSelectedIndex(0);
         }
     }
-    private void updateComboBox2(List<String> usernames) {
+    private void updateComboBox2(List<String> friendList) {
         resultCombo2.removeAllItems();
-        for (String username : usernames) {
+        for (String username : friendList) {
             resultCombo2.addItem(username);
         }
         if (resultCombo2.getItemCount() > 0) {
             resultCombo2.setSelectedIndex(0);
         }
     }
-    private void updateComboBox3(List<String> usernames) {
+    private void updateComboBox3(List<String> blockList) {
         resultCombo3.removeAllItems();
-        for (String username : usernames) {
+        for (String username : blockList) {
             resultCombo3.addItem(username);
         }
         if (resultCombo3.getItemCount() > 0) {

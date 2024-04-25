@@ -152,6 +152,9 @@ public class Server implements ServerInterface {
                                 ArrayList<String> allUserName = searchUser(username, word);
                                 writer.writeObject(allUserName);
                                 writer.flush();
+                                for (String yay : allUserName) {
+                                    System.out.println(yay);
+                                }
                             }
                             if (choice.equals("Get friend list")) {
                                 for (UserAccount userAccount : allUserAccount) {
