@@ -23,7 +23,7 @@ public class Client extends JComponent implements Runnable {
     }
 
     //Connect to the server
-    Socket socket = new Socket("localhost", 5050);
+    Socket socket = new Socket("localhost", 4242);
     ObjectInputStream reader = new ObjectInputStream(socket.getInputStream());
     ObjectOutputStream writer = new ObjectOutputStream(socket.getOutputStream());
     public static void main(String[] args) throws IOException {
@@ -374,11 +374,10 @@ public class Client extends JComponent implements Runnable {
         //The title is the name of the app??
         {
             userFrame = new JFrame("Connection Space");
-            userFrame.setSize(800, 300);
+            userFrame.setSize(800, 400);
             userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             userFrame.setLocationRelativeTo(null);
             userFrame.setLayout(new BorderLayout());
-
             // West side panel
             westPanel = new JPanel(new GridLayout(2, 1));
             friendsModel = new DefaultListModel<>();
@@ -514,16 +513,42 @@ public class Client extends JComponent implements Runnable {
             searchButton.addActionListener(actionListener);
 
             // Initialize the viewProfile button
-            actionButton = new JButton("Action");
-            actionButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            actionButton.addActionListener(actionListener);
+//            actionButton = new JButton("Action");
+//            actionButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//            actionButton.addActionListener(actionListener);
+            addFriendButton = new JButton("Add friend");
+            addFriendButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            deleteFriendButton = new JButton("Delete friend");
+            deleteFriendButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            blockUserButton = new JButton("Block user");
+            blockUserButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            unblockUserButton = new JButton("Unblock user");
+            unblockUserButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            viewOtherProfileButton = new JButton("View other profile");
+            viewOtherProfileButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            contactButton = new JButton("Contact");
+            contactButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            addFriendButton.addActionListener(actionListener);
+            deleteFriendButton.addActionListener(actionListener);
+            blockUserButton.addActionListener(actionListener);
+            unblockUserButton.addActionListener(actionListener);
+            viewOtherProfileButton.addActionListener(actionListener);
+            contactButton.addActionListener(actionListener);
+
 
             eastPanel.add(inputField);
             eastPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add space between components
             eastPanel.add(resultCombo);
             eastPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add space between components
             eastPanel.add(searchButton);
-            eastPanel.add(actionButton);
+            //eastPanel.add(actionButton);
+            eastPanel.add(viewOtherProfileButton);
+            eastPanel.add(addFriendButton);
+            eastPanel.add(deleteFriendButton);
+            eastPanel.add(blockUserButton);
+            eastPanel.add(unblockUserButton);
+            eastPanel.add(contactButton);
 
             eastPanel.setBackground(Color.WHITE);  // Set the background color to white
             eastPanel.setPreferredSize(new Dimension(150, getHeight()));  // Adjust width as needed
@@ -717,7 +742,7 @@ public class Client extends JComponent implements Runnable {
                     writer.writeObject(userName);
                     writer.writeObject(password);
                     writer.flush();
-                    String loginResult =(String) reader.readObject();
+                    String loginResult = (String) reader.readObject();
                     if (loginResult.equals("Log in successfully")) {
                         ArrayList<String> friendList = (ArrayList<String>) reader.readObject();
                         friendList.forEach(friendsModel::addElement);
@@ -808,7 +833,8 @@ public class Client extends JComponent implements Runnable {
                 if (e.getSource() == addFriendButton) {
                     writer.writeObject("Add friend");
                     //writer.println();
-                    writer.writeObject(otherUsernameText.getText());
+                    //writer.writeObject(otherUsernameText.getText());
+                    writer.writeObject(resultCombo.getSelectedItem());
                     //writer.println();
                     writer.flush();
                     String addFriendResult = (String) reader.readObject();
@@ -827,7 +853,8 @@ public class Client extends JComponent implements Runnable {
                 if (e.getSource() == deleteFriendButton) {
                     writer.writeObject("Unfriend");
                     //writer.println();
-                    writer.writeObject(otherUsernameText.getText());
+                    //writer.writeObject(otherUsernameText.getText());
+                    writer.writeObject(resultCombo.getSelectedItem());
                     //writer.println();
                     writer.flush();
                     String deleteFriendResult = (String) reader.readObject();
@@ -885,9 +912,10 @@ public class Client extends JComponent implements Runnable {
                 if (e.getSource() == viewOtherProfileButton) {
                     writer.writeObject("View other user profile");
                     //writer.println();
-                    writer.writeObject(otherUsernameText.getText());
+                    writer.writeObject(resultCombo.getSelectedItem());
                     //writer.println();
                     writer.flush();
+
                     String viewOtherProfileResult = (String) reader.readObject();
                     if (viewOtherProfileResult.equals("Can not view that user profile")) {
                         JOptionPane.showMessageDialog(null, viewOtherProfileResult,
