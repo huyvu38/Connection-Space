@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 
 public class Server implements ServerInterface {
-    private static final int PORT = 4242;
+    private static final int PORT = 5050;
     private Socket socket;
     private static ExecutorService threadPool = Executors.newCachedThreadPool();
     // Using thread pool for better performance
@@ -422,9 +422,7 @@ public class Server implements ServerInterface {
                                                 break;
                                             }
                                         }
-
                                     }
-
                                 }
                             }
 

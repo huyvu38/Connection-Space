@@ -4,17 +4,12 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.RunWith;
-import java.nio.file.StandardOpenOption;
 import org.junit.runner.notification.Failure;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.net.Socket;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.Assert;
 import static org.junit.Assert.*;
 
@@ -297,7 +292,7 @@ public class RunLocalTest {
             Server.database = new Database("AllUserAccount.txt");
             Server.database.readAllUserAccount();
             Server.allUserAccount = Server.database.getAllUserAccount();
-            assertTrue(server.usernameInDatabase("vu28"));
+            assertTrue(server.usernameInDatabase("Archie"));
         }
 
         @Test
@@ -321,7 +316,7 @@ public class RunLocalTest {
             Server.database = new Database("AllUserAccount.txt");
             Server.database.readAllUserAccount();
             Server.allUserAccount = Server.database.getAllUserAccount();
-            assertTrue(server.addFriend("george333", "alvin23"));
+            assertTrue(server.addFriend("Archie", "Yanxin171"));
         }
 
         @Test
@@ -347,53 +342,6 @@ public class RunLocalTest {
             Server.allUserAccount = Server.database.getAllUserAccount();
             assertFalse(server.unblockUser("george23", "vu28"));
         }
-        /*
-        private static final String TEST_FILE_PATH = "Messages.txt";
-
-        @Before
-        public void setUp() {
-            try {
-                Path path = Paths.get(TEST_FILE_PATH);
-                if (!Files.exists(path)) {
-                    Files.createFile(path);
-                    System.out.println("Created new test file--did not exist.");
-                }
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
-            }
-        }
-
-        @Test
-        public void messageSuccessful() {
-            try {
-                server.sendMessage("sender", "receiver", "Test message", false);
-                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("File should contain the send message", lines.contains("1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message"));
-            } catch (Exception e) {
-                System.out.println("Message failed to send.");
-            }
-        }
-
-
-        @Test
-        public void RemovesMessage() {
-            try {
-                // Append to the file instead of overwriting it
-                Files.write(Paths.get(TEST_FILE_PATH),
-                        ("1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message" + System.lineSeparator()).getBytes(),
-                        StandardOpenOption.CREATE,  // Create the file if it doesn't exist
-                        StandardOpenOption.APPEND); // Append to the file, do not overwrite
-
-                // Assuming you want to verify content after appending
-                List<String> lines = Files.readAllLines(Paths.get(TEST_FILE_PATH));
-                assertTrue("Appended message should be present", lines.contains("1,1,2024-03-31 12:00:00,sender,receiver,notBlocked,Test message"));
-            } catch (Exception e) {
-                System.out.println("Failed to append or verify message: " + e.getMessage());
-            }
-        }
-
-         */
-
     }
 
     public static class DatabaseTest {
@@ -404,4 +352,6 @@ public class RunLocalTest {
             assertTrue(read);
         }
     }
+
+
 } // end of class

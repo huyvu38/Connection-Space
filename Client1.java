@@ -10,14 +10,14 @@ import java.util.List;
 /**
  * Team Project
  *
- * Client.java
+ * Client.java - test client for presentation
  *
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
  */
-public class Client extends JComponent implements Runnable {
+public class Client1 extends JComponent implements Runnable {
 
-    public Client() throws IOException {
+    public Client1() throws IOException {
 
     }
 
@@ -27,7 +27,7 @@ public class Client extends JComponent implements Runnable {
     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     PrintWriter writer = new PrintWriter(socket.getOutputStream());
     public static void main(String[] args) throws IOException {
-        SwingUtilities.invokeLater(new Client());
+        SwingUtilities.invokeLater(new Client1());
     }
 
     //JFrame and JButton for main menu
@@ -995,7 +995,7 @@ public class Client extends JComponent implements Runnable {
                     writer.flush();
                     String ID = conversationID.getText();
                     if (ID.isEmpty()) {
-                        JOptionPane.showMessageDialog(Client.this,
+                        JOptionPane.showMessageDialog(Client1.this,
                                 "Error: ID cannot be empty. Please enter a valid ID.",
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
@@ -1019,7 +1019,7 @@ public class Client extends JComponent implements Runnable {
                         messageDisplayArea.setText("");
                         messageDisplayArea.append(history.toString());
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(Client.this,
+                        JOptionPane.showMessageDialog(Client1.this,
                                 "Error: ID must be number. Please enter a valid ID.",
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
