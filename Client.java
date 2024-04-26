@@ -74,6 +74,8 @@ public class Client extends JComponent implements Runnable {
     JButton blockUserButton;
     JButton unblockUserButton;
     JButton viewOtherProfileButton;
+
+    JButton messageButton;
     JButton backButton;
     JButton contactButton;
 
@@ -300,21 +302,24 @@ public class Client extends JComponent implements Runnable {
             otherUsernameText.setBounds(220, 170, 140, 25);
 
             addFriendButton = new JButton("Add friend");
-            addFriendButton.setBounds(400, 40, 140, 50);
+            addFriendButton.setBounds(400, 20, 140, 40);
             deleteFriendButton = new JButton("Delete friend");
-            deleteFriendButton.setBounds(400, 100,140,50);
+            deleteFriendButton.setBounds(400, 80,140,40);
             blockUserButton = new JButton("Block user");
-            blockUserButton.setBounds(400, 160,140,50);
+            blockUserButton.setBounds(400, 140,140,40);
             unblockUserButton = new JButton("Unblock user");
-            unblockUserButton.setBounds(400, 220,140,50);
+            unblockUserButton.setBounds(400, 200,140,40);
             viewOtherProfileButton = new JButton("View other profile");
-            viewOtherProfileButton.setBounds(400, 280,140,50);
+            viewOtherProfileButton.setBounds(400, 260,140,40);
+            messageButton = new JButton("Send message");
+            messageButton.setBounds(400, 320,140,40);
 
             addFriendButton.addActionListener(actionListener);
             deleteFriendButton.addActionListener(actionListener);
             blockUserButton.addActionListener(actionListener);
             unblockUserButton.addActionListener(actionListener);
             viewOtherProfileButton.addActionListener(actionListener);
+            messageButton.addActionListener(actionListener);
 
             content.add(otherUsernameLabel);
             content.add(otherUsernameText);
@@ -323,6 +328,7 @@ public class Client extends JComponent implements Runnable {
             content.add(blockUserButton);
             content.add(unblockUserButton);
             content.add(viewOtherProfileButton);
+            content.add(messageButton);
 
         }
         //Frame for view other user profile
@@ -576,26 +582,12 @@ public class Client extends JComponent implements Runnable {
         }
     }
 
-    private void addMenuItem(String title, ActionListener listener) {
-
-    }
-
-
     ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             try {
-                /*
-                if (e.getSource() == backButton) {
-                    viewProfileFrame.setVisible(false);
-                }
-                if (e.getSource() == contactButton) {
-                    messageFrame.setTitle(viewProfileFrame.getTitle());
-                    viewProfileFrame.setVisible(false);
-                    messageFrame.setVisible(true);
+                if (e.getSource() == messageButton) {
 
                 }
-
-                 */
                 if (e.getSource() == searchButton) {
                     writer.write("Search user");
                     writer.println();
