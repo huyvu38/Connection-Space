@@ -132,7 +132,7 @@ The user will see some of the following buttons
 
    The client writes to the text field about the new information, then clicks on the "Save" button and the server will check if the new information is in the correct format.
 
-   If the client enters the wrong format of information, their profile will be set back to the information of that client in the database.
+   If the client enters the wrong format of information, their profile details will be set back to the previous information.
 
 
 2. Get friend list
