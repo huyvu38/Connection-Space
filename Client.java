@@ -100,7 +100,6 @@ public class Client extends JComponent implements Runnable {
     JTextField passwordText3, ageText3, nationalityText3, jobText3, hobbyText3;
 
     JButton saveButton;
-    //JComboBox<String> genderType3;
     JLabel usernameLabel3, usernameLabel4, passwordLabel3, genderLabel3,
             ageLabel3, nationalityLabel3, jobLabel3, hobbyLabel3, genderLabel4;
 
@@ -428,7 +427,6 @@ public class Client extends JComponent implements Runnable {
             ageText3 = new JTextField(10);
             genderLabel3 = new JLabel("Gender");
             genderLabel4 = new JLabel("");
-            //genderType3 = new JComboBox<>(new String[]{"Male", "Female", "Other"});
             nationalityLabel3 = new JLabel("Nationality");
             nationalityText3 = new JTextField(10);
             jobLabel3 = new JLabel("Job");

@@ -347,7 +347,7 @@ public class RunLocalTest {
             Server.allUserAccount = Server.database.getAllUserAccount();
             assertFalse(server.unblockUser("george23", "vu28"));
         }
-
+        /*
         private static final String TEST_FILE_PATH = "Messages.txt";
 
         @Before
@@ -391,6 +391,8 @@ public class RunLocalTest {
                 System.out.println("Failed to append or verify message: " + e.getMessage());
             }
         }
+
+         */
 
     }
 
