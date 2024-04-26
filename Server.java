@@ -718,7 +718,8 @@ public class Server implements ServerInterface {
             // Create a message row
             String messageRow = id + ",1," + formattedDateTime + "," + sendUserName + "," + receiverUserName;
             if (isBlocked) {
-                messageRow += ",blocked," + content;
+                //messageRow += ",blocked," + content;
+                return false;
 
             } else {
                 messageRow += ",notBlocked," + content;
