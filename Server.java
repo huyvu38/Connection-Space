@@ -393,6 +393,14 @@ public class Server implements ServerInterface {
                                                         isBlocked = userAccount.getBlockList().contains(username);
                                                     }
                                                 }
+                                                if (!isBlocked) {
+                                                    for (UserAccount userAccount : allUserAccount) {
+                                                        Profile profile = userAccount.getUserProfile();
+                                                        if (profile.getUsername().equals(username)) {
+                                                            isBlocked = userAccount.getBlockList().contains(receiver1);
+                                                        }
+                                                    }
+                                                }
                                                 sendMessage(username, receiver1, messageContent, isBlocked);
                                                 writer.write(printHistoryMessage(username, receiver1));
                                                 writer.println();

@@ -802,11 +802,6 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(false);
                     mainMenuFrame.setVisible(true);
                 }
-                //go to messege frame later
-//                if (e.getSource() == messageButton) {
-//                    userFrame.setVisible(false);
-//                    //.setVisible(true);
-//                }
                 //Buttons for specific action
                 if (e.getSource() == messageButton) {
                     writer.write("Message");
@@ -822,8 +817,8 @@ public class Client extends JComponent implements Runnable {
                     } else if (checkReceiver.equals("the User exist")){
                         messageFrame.setTitle(receiver);
                         messageFrame.setVisible(true);
+                        actionFrame.setVisible(false);
                     }
-
                 }
                 if (e.getSource() == addFriendButton) {
 
@@ -1075,4 +1070,5 @@ public class Client extends JComponent implements Runnable {
         }
     }
 }
+
 
