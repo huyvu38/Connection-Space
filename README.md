@@ -190,26 +190,58 @@ The user will see some of the following buttons
 
 Test 1 : Create account
 
+ 1. Click to the "Create Account" button
+
+   <img width="435" alt="Screenshot 2024-04-26 014752" src="https://github.com/huyvu38/CS180-Team/assets/144382505/21d29efc-1798-4548-ab6d-5409decee84f">
+
+ 2.  Write the following information and click "Enter"
+
+   Expected result :
+   
+   <img width="196" alt="Screenshot 2024-04-26 014800" src="https://github.com/huyvu38/CS180-Team/assets/144382505/37f19095-a113-4930-b4e0-73060335525f">
+
+
 Test 2 : Log in failure
+
+1. Click to the "Log in" button
+
+   <img width="365" alt="Screenshot 2024-04-26 015124" src="https://github.com/huyvu38/CS180-Team/assets/144382505/22bf6bdf-2bd4-4bf5-aff7-e36f1a0ccb7d">
+
+2. Write the following information and click "Enter"
+
+   Expected result:
+
+   <img width="194" alt="Screenshot 2024-04-26 015132" src="https://github.com/huyvu38/CS180-Team/assets/144382505/a3c5d608-7b0d-4eff-ba11-24537fffcdc8">
+
 
 Test 3:  Log in successful
 
+1. Click to the "Log in" button
+
+   <img width="364" alt="Screenshot 2024-04-26 020215" src="https://github.com/huyvu38/CS180-Team/assets/144382505/8e066b44-2b1c-485a-8f01-dd0c551afb74">
+
+
+2. Write the following information and click "Enter"
+
+   Expected result: The User Frame will appear.
+
+   <img width="504" alt="Screenshot 2024-04-26 020230" src="https://github.com/huyvu38/CS180-Team/assets/144382505/3e02d9de-6261-40c5-9c80-eddc1d014574">
+
+
 Test 4: Edit profile failure
 
-Test 5: Edit profile successful
+Test 5: Add friend 
 
-Test 6: Add friend 
+Test 6: Unfriend
 
-Test 7: Unfriend
+Test 7: Block friend
 
-Test 8: Block friend
+Test 8: Unblock friend
 
-Test 9: Unblock friend
+Test 9: Search user
 
-Test 10: Search user
+Test 10: View other user profile
 
-Test 11: View other user profile
-
-Test 12: Send message
+Test 11: Send message
 
 
