@@ -11,21 +11,30 @@ The server in Server.java needs to be run first so that the client can connect t
 
 First, the user clicks the Run button in Client.java.
 
-After the user connects with the server, the Main Menu Frame will appear with 2 options:
+After the user connects with the server, the "Main Menu Frame" will appear with 2 options:
 
 1. Create an account
+
 2. Log in
+
+<img width="438" alt="Screenshot 2024-04-25 225322" src="https://github.com/huyvu38/CS180-Team/assets/144382505/b50cb020-0917-4b63-beb3-2605eb8310c4">
+
 
 Main Menu Option 1: User clicks to the "Create account" button
 
-Then the user is prompted to enter username, password, age, gender, nationality, job, and hobby.
+<img width="438" alt="Screenshot 2024-04-25 225322" src="https://github.com/huyvu38/CS180-Team/assets/144382505/b2ebe12c-e5f1-4b83-921c-a55c4fc58fde">
 
-The server will then check every information of the user is in the right format and the username is unique. After that, the client will receive the message if they create account successfully or not. Then the program goes back to the Main Menu Frame.
+
+The "Create Account Frame" will appear and the user is prompted to enter username, password, age, gender, nationality, job, and hobby.
+
+The server will then check every information of the user is in the right format and the username is unique. After that, the client will receive the message if they create account successfully or not. Then the program goes back to the "Main Menu Frame".
 
 If the user creates account successfully, they cannot edit their username later.
 
 
-Main Menu Option 2: User wants to log in
+Main Menu Option 2: User clicks to the "Log in" button
+
+
 
 Then the user is prompted to enter username and password for log in.
 
@@ -105,12 +114,11 @@ Message Operations: Send individual or group messages, with options to delete an
 Privacy Controls: Block specific users, hiding their messages from the recipient while still logging them.<br/>
 Persistent Logging: Use a buffered reader to timestamp and store messages, ensuring a reliable historical record.<br/>
 
-### Client.java <br> //Fix that
-Acts as the user interface for the social media platform. Utilizes java socket for client-server connections. See above section on how to run program
-for instructions on using client.
+### Client.java <br> 
+Acts as the user interface for the social media platform. Utilizes java socket for client-server connections and invokes the Main Menu Frame when the client connects to the server.
 
 ### RunLocalTest.java <br>
-Tests each file's methods utilizing junit 4. Tests include: Decleration test, Profile test, User account test, Database test and functions in server.
+Tests each file's methods utilizing junit 4. Tests include: Decleration test, Profile test, User account test, Database test and functions in Server.
 
 ### AllUserAccount.txt <br/>
 The file that store profile, friendlist, blocklist of each user.
@@ -133,5 +141,29 @@ The file that store every message between each user.
 Format: [conversationID],[DeletedMessage],[ConversationTime],[Sender username],[Receiver username],[if message blocked],[message content]
 
 ### Test case <br/>
+
+Test 1 : Create account
+
+Test 2 : Log in failure
+
+Test 3:  Log in successful
+
+Test 4: Edit profile failure
+
+Test 5: Edit profile successful
+
+Test 6: Add friend 
+
+Test 7: Unfriend
+
+Test 8: Block friend
+
+Test 9: Unblock friend
+
+Test 10: Search user
+
+Test 11: View other user profile
+
+Test 12: Send message
 
 
