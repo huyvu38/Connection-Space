@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 
 public class Server implements ServerInterface {
-    private static final int PORT = 5050;
+    private static final int PORT = 4242;
     private Socket socket;
     private static ExecutorService threadPool = Executors.newCachedThreadPool();
     // Using thread pool for better performance
@@ -162,7 +162,6 @@ public class Server implements ServerInterface {
                                     for (String user : allFindUser) {
                                         writer.write(user);
                                         writer.println();
-                                        System.out.println(user);
                                     }
                                     writer.write(" ");
                                     writer.println();
@@ -171,42 +170,46 @@ public class Server implements ServerInterface {
                             }
                             if (choice.equals("Get friend list")) {
                                 for (UserAccount userAccount : allUserAccount) {
-                                    ArrayList<String> friendlist = userAccount.getFriendList();
-                                    if (friendlist.size() == 0) {
-                                        writer.write("Your friend list is empty");
-                                        writer.println();
-                                    } else {
-                                        writer.write("Find the following friends");
-                                        writer.println();
-                                        for (String friend : friendlist) {
-                                            writer.write(friend);
+                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
+                                        ArrayList<String> friendlist = userAccount.getFriendList();
+                                        if (friendlist.size() == 0) {
+                                            writer.write("Your friend list is empty");
+                                            writer.println();
+                                        } else {
+                                            writer.write("Find the following friends");
+                                            writer.println();
+                                            for (String friend : friendlist) {
+                                                writer.write(friend);
+                                                writer.println();
+                                            }
+                                            writer.write(" ");
                                             writer.println();
                                         }
-                                        writer.write(" ");
-                                        writer.println();
+                                        writer.flush();
+                                        break;
                                     }
-                                    writer.flush();
-                                    break;
                                 }
                             }
                             if (choice.equals("Get block list")) {
                                 for (UserAccount userAccount : allUserAccount) {
-                                    ArrayList<String> blocklist = userAccount.getBlockList();
-                                    if (blocklist.size() == 0) {
-                                        writer.write("Your block list is empty");
-                                        writer.println();
-                                    } else {
-                                        writer.write("Find the following block user");
-                                        writer.println();
-                                        for (String block : blocklist) {
-                                            writer.write(block);
+                                    if (userAccount.getUserProfile().getUsername().equals(username)) {
+                                        ArrayList<String> blocklist = userAccount.getBlockList();
+                                        if (blocklist.size() == 0) {
+                                            writer.write("Your block list is empty");
+                                            writer.println();
+                                        } else {
+                                            writer.write("Find the following block user");
+                                            writer.println();
+                                            for (String block : blocklist) {
+                                                writer.write(block);
+                                                writer.println();
+                                            }
+                                            writer.write(" ");
                                             writer.println();
                                         }
-                                        writer.write(" ");
-                                        writer.println();
+                                        writer.flush();
+                                        break;
                                     }
-                                    writer.flush();
-                                    break;
                                 }
                             }
                             if (choice.equals("Edit profile")) {

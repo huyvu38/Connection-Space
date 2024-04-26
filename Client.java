@@ -22,7 +22,7 @@ public class Client extends JComponent implements Runnable {
     }
 
     //Connect to the server
-    Socket socket = new Socket("localhost", 5050);
+    Socket socket = new Socket("localhost", 4242);
     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     PrintWriter writer = new PrintWriter(socket.getOutputStream());
     public static void main(String[] args) throws IOException {
@@ -113,9 +113,6 @@ public class Client extends JComponent implements Runnable {
 
     JComboBox<String> resultCombo3;
 
-    ArrayList<String> allFriendList;
-    ArrayList<String> allBlockList;
-
     String selectedUser2;
 
     String selectedUser3;
@@ -127,7 +124,6 @@ public class Client extends JComponent implements Runnable {
     JButton actionButton;
 
     JComboBox<String> resultCombo1;
-    ArrayList<String> allUsernames;  // This would be fetched from your database
     String selectedUser;
 
     //JFrame and JButton for the message frame
@@ -609,7 +605,7 @@ public class Client extends JComponent implements Runnable {
                     writer.write(searchText);
                     writer.println();
                     writer.flush();
-                    allUsernames = new ArrayList<>();
+                    ArrayList<String> allUsernames = new ArrayList<>();
                     String searchResult = reader.readLine();
                     if (searchResult.equals("Find the following users")) {
                         String user = "";
@@ -626,7 +622,7 @@ public class Client extends JComponent implements Runnable {
                     writer.write("Get friend list");
                     writer.println();
                     writer.flush();
-                    allFriendList = new ArrayList<>();
+                    ArrayList<String> allFriendList = new ArrayList<>();
                     String getFriendResult = reader.readLine();
                     if (getFriendResult.equals("Find the following friends")) {
                         String friend = "";
@@ -643,7 +639,7 @@ public class Client extends JComponent implements Runnable {
                     writer.write("Get block list");
                     writer.println();
                     writer.flush();
-                    allBlockList = new ArrayList<>();
+                    ArrayList<String> allBlockList = new ArrayList<>();
                     String getBlockResult = reader.readLine();
                     if (getBlockResult.equals("Find the following block user")) {
                         String block = "";
@@ -1009,6 +1005,7 @@ public class Client extends JComponent implements Runnable {
         if (resultCombo1.getItemCount() > 0) {
             resultCombo1.setSelectedIndex(0);
         }
+
     }
     private void updateComboBox2(List<String> friendList) {
         resultCombo2.removeAllItems();
