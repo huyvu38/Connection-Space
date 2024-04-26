@@ -512,13 +512,13 @@ public class Client extends JComponent implements Runnable {
             eastPanel.add(resultCombo1);
             eastPanel.add(Box.createRigidArea(new Dimension(0, 5))); // Add space between components
             eastPanel.add(searchButton);
-            //eastPanel.add(actionButton);
-            eastPanel.add(viewOtherProfileButton);
-            eastPanel.add(addFriendButton);
-            eastPanel.add(deleteFriendButton);
-            eastPanel.add(blockUserButton);
-            eastPanel.add(unblockUserButton);
-            eastPanel.add(contactButton);
+            eastPanel.add(actionButton);
+//            eastPanel.add(viewOtherProfileButton);
+//            eastPanel.add(addFriendButton);
+//            eastPanel.add(deleteFriendButton);
+//            eastPanel.add(blockUserButton);
+//            eastPanel.add(unblockUserButton);
+//            eastPanel.add(contactButton);
 
             eastPanel.setBackground(Color.WHITE);  // Set the background color to white
             eastPanel.setPreferredSize(new Dimension(150, getHeight()));  // Adjust width as needed
@@ -549,7 +549,26 @@ public class Client extends JComponent implements Runnable {
             recipientField = new JTextField();
             recipientPanel.add(new JLabel("Recipient:"), BorderLayout.WEST);
             recipientPanel.add(recipientField, BorderLayout.CENTER);
+            // Message display area
+            messageDisplayArea = new JTextArea();
+            //messageDisplayArea.setEditable(false);
+            recipientPanel.add(new JScrollPane(messageDisplayArea), BorderLayout.CENTER);
+            //highlighter = messageDisplayArea.getHighlighter();
             messageFrame.add(recipientPanel, BorderLayout.CENTER);
+            messageFrame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    // Notify the server about the closing event
+
+                    writer.write("Message Frame is closing");
+                    writer.println();
+                    writer.flush();
+
+                    // Close the frame after sending the notification
+                    messageFrame.dispose();  // Dispose of the frame if you initially set DO_NOTHING_ON_CLOSE
+
+                }
+            });
 
             // Buttons
             JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -576,11 +595,6 @@ public class Client extends JComponent implements Runnable {
             buttonPanel.add(conversationID, BorderLayout.CENTER);
             messageFrame.add(buttonPanel, BorderLayout.SOUTH);
 
-            // Message display area
-            messageDisplayArea = new JTextArea();
-            messageDisplayArea.setEditable(false);
-            add(new JScrollPane(messageDisplayArea), BorderLayout.CENTER);
-            highlighter = messageDisplayArea.getHighlighter();
 
             // Action Listeners
             sendButton.addActionListener(actionListener);
@@ -594,9 +608,7 @@ public class Client extends JComponent implements Runnable {
     ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             try {
-                if (e.getSource() == messageButton) {
 
-                }
                 if (e.getSource() == searchButton) {
                     writer.write("Search user");
                     writer.println();
@@ -707,7 +719,7 @@ public class Client extends JComponent implements Runnable {
                     writer.write(password);
                     writer.println();
                     writer.flush();
-\
+
                     String loginResult = reader.readLine();
                     if (loginResult.equals("Log in successfully")) {
                         String username = reader.readLine();
@@ -796,6 +808,23 @@ public class Client extends JComponent implements Runnable {
 //                    //.setVisible(true);
 //                }
                 //Buttons for specific action
+                if (e.getSource() == messageButton) {
+                    writer.write("Message");
+                    writer.println();
+                    String receiver = otherUsernameText.getText();
+                    writer.write(receiver);
+                    writer.println();
+                    writer.flush();
+                    String checkReceiver = reader.readLine();
+                    if (checkReceiver.equals("the User not exist")) {
+                        JOptionPane.showMessageDialog(null, "Please enter a valid user name.",
+                                "User Not Exist", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (checkReceiver.equals("the User exist")){
+                        messageFrame.setTitle(receiver);
+                        messageFrame.setVisible(true);
+                    }
+
+                }
                 if (e.getSource() == addFriendButton) {
 
                     writer.write("Add friend");
@@ -817,7 +846,6 @@ public class Client extends JComponent implements Runnable {
                     userFrame.setVisible(true);
                 }
                 if (e.getSource() == deleteFriendButton) {
-<
                     writer.write("Unfriend");
                     writer.println();
                     writer.write(otherUsernameText.getText());
@@ -965,7 +993,16 @@ public class Client extends JComponent implements Runnable {
                     writer.write(messageFrame.getTitle());
                     writer.println();
                     writer.flush();
-                    messageDisplayArea.setText(reader.readLine());
+                    messageTextArea.setText("");
+                    // Read all lines until the end-of-message marker
+                    StringBuilder history = new StringBuilder();
+                    String line;
+                    while (!(line = reader.readLine()).equals("END_OF_MESSAGE")) {
+                        history.append(line).append("\n");
+                    }
+
+                    messageDisplayArea.setText("");
+                    messageDisplayArea.append(history.toString());
                 }
                 if (e.getSource() == deleteButton) {
                     writer.write("Delete Message");
@@ -979,14 +1016,23 @@ public class Client extends JComponent implements Runnable {
                                 JOptionPane.ERROR_MESSAGE);
                     }
                     try {
-                        int conversationID = Integer.parseInt(ID);
-                        writer.write(String.valueOf(conversationID));
+                        int conversaID = Integer.parseInt(ID);
+                        writer.write(String.valueOf(conversaID));
                         writer.println();
                         writer.flush();
                         writer.write(messageFrame.getTitle());
                         writer.println();
                         writer.flush();
-                        messageDisplayArea.setText(reader.readLine());
+                        conversationID.setText("");
+
+                        // Read all lines until the end-of-message marker
+                        StringBuilder history = new StringBuilder();
+                        String line;
+                        while (!(line = reader.readLine()).equals("END_OF_MESSAGE")) {
+                            history.append(line).append("\n");
+                        }
+                        messageDisplayArea.setText("");
+                        messageDisplayArea.append(history.toString());
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(Client.this,
                                 "Error: ID must be number. Please enter a valid ID.",
