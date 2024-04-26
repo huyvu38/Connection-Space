@@ -102,7 +102,7 @@ public class Client extends JComponent implements Runnable {
     JTextField passwordText3, ageText3, nationalityText3, jobText3, hobbyText3;
 
     JButton saveButton;
-    JLabel usernameLabel3, usernameLabel4, passwordLabel3, genderLabel3,
+    JLabel usernameLabel3, usernameLabel4, passwordLabel3, genderLabel3, emptyLabel,
             ageLabel3, nationalityLabel3, jobLabel3, hobbyLabel3, genderLabel4;
 
     //elements for westPanel
@@ -439,6 +439,7 @@ public class Client extends JComponent implements Runnable {
             jobText3 = new JTextField(10);
             hobbyLabel3 = new JLabel("Hobby");
             hobbyText3 = new JTextField(10);
+            emptyLabel = new JLabel("");
             saveButton = new JButton("Save");
             saveButton.setActionCommand("Edit profile");
             saveButton.addActionListener(actionListener);
@@ -458,6 +459,7 @@ public class Client extends JComponent implements Runnable {
             formPanel.add(jobText3);
             formPanel.add(hobbyLabel3);
             formPanel.add(hobbyText3);
+            formPanel.add(emptyLabel);
             formPanel.add(saveButton);
             centerPanel.add(formPanel);
             userFrame.getContentPane().add(centerPanel, BorderLayout.CENTER);
