@@ -34,37 +34,69 @@ If the user creates account successfully, they cannot edit their username later.
 
 Main Menu Option 2: User clicks to the "Log in" button
 
+<img width="362" alt="image" src="https://github.com/huyvu38/CS180-Team/assets/144382505/50994271-352d-439b-aa56-9f91e3380a45">
+
+The "Log in Frame" will appear the user is prompted to enter username and password for log in. The server will check if the username and password match the database and the client will receive the message if they log in successfully or not.
+
+If the user login fail, the program will go back to the "Main Menu Frame".
+
+If the user login successfully, the program will display the "User Frame" with the title is "Connection Space".
+
+<img width="504" alt="Screenshot 2024-04-25 233412" src="https://github.com/huyvu38/CS180-Team/assets/144382505/b08a8f39-0a7c-4543-905f-e2a741a95e23">
+
+The user will see some following buttons
+
+1. Save
+
+   <img width="141" alt="Screenshot 2024-04-25 233612" src="https://github.com/huyvu38/CS180-Team/assets/144382505/eb2ccc2b-a436-4e7a-8d69-87bdedcd640e">
+
+   The client write to the text field about the new information then click to the "Save" button and the server will check if the new information is in the correct format.
+
+   If the client enter wrong format of the information, their profile will be set back to the information of that client in the database.
 
 
-Then the user is prompted to enter username and password for log in.
+2. Get Friend List
 
-If the user login fail, the program will go back to the Main Menu Frame.
+   <img width="113" alt="Screenshot 2024-04-25 234151" src="https://github.com/huyvu38/CS180-Team/assets/144382505/caa893d4-f587-44b2-8f00-76150c81d963">
 
-If the user login successfully, the program will show the User Frame.
+   After clicking that button, the client can see all of their friends in the drop-down list.
 
-The top left corner will display the friend list and the top right corner will display the block list.
 
-The user can have some following option:
+3. Get Block List
 
-1. Edit profile
+   <img width="112" alt="Screenshot 2024-04-25 234200" src="https://github.com/huyvu38/CS180-Team/assets/144382505/98adbeb8-285b-4901-b5f0-41a0a041a75c">
 
-   After click to the edit profile button, the editProfile Frame will appear and the user is not allowed to change their username.
+   After clicking that button, the client can see all the users that have been blocked in the drop-down list.
 
-2. Action
+4. Search
 
-   After click the "Action" button, the Action Frame will appear with 5 buttons : Add friend, Delete friend, Block user, Unblock user, view other user profile.
+  <img width="112" alt="Screenshot 2024-04-26 000129" src="https://github.com/huyvu38/CS180-Team/assets/144382505/e5089ddc-644a-449c-98ed-42140b2459b2">
 
-   The client first need to type the username of other people and click to the any button that they want. The server then will check if that client can do that action and update to the database.
+  The client writes the text and the server will find all of the username that contain the text. 
 
-   For the view other user profile, if the client enter the username that in the database and not in the block list, another Frame will appear and let them view another user's information like age, gender, nationality, job, hobby.
+  <img width="110" alt="Screenshot 2024-04-26 000148" src="https://github.com/huyvu38/CS180-Team/assets/144382505/7a3bd78c-4b89-41e9-b15a-ffd9d5f62a87">
 
-3. Search user
+  The result will appear in the drop-down list.
 
-4. Send message
 
-5. Log out
 
-   The client will go back to the Main Menu Frame where they can log in or create account.
+5. Action
+
+   After clicking to the "Action" button, the Action Frame will appear with some following buttons :
+
+   1. Add friend/Delete friend/Block user/Unblock user
+
+   The client first need to type the username of other people and click to the any button that they want. The server then will check if that client can do that action and update any important change to the database.
+    
+   2. View other user profile
+  
+   If the client write the username that in the database and not in the block list, another Frame will appear and let them view another user's information like age, gender, nationality, job, hobby.
+
+   3. Send Message
+
+6. Log out
+
+   The client will go back to the "Main Menu Frame" where they can log in or create account.
 
 ### UserAccount.java <br/>
 Creates a new account object with given profile object with a list of friends and blocked users. UserAccount is dependent on Profile.java.
