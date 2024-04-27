@@ -794,7 +794,7 @@ public class Client1 extends JComponent implements Runnable {
                     String checkReceiver = reader.readLine();
                     if (checkReceiver.equals("the User not exist")) {
                         JOptionPane.showMessageDialog(null, "Please enter a valid user name.",
-                                "User Not Exist", JOptionPane.INFORMATION_MESSAGE);
+                                "User Not Exist", JOptionPane.ERROR_MESSAGE);
                         actionFrame.setVisible(false);
                         userFrame.setVisible(true);
                         otherUsernameText.setText("");
