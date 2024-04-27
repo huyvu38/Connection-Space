@@ -277,7 +277,6 @@ public class Server implements ServerInterface {
                                     }
                                 }
                             }
-
                             if (choice.equals("Action")) {
                                 String specificAction = reader.readLine();
                                 if (specificAction.equals("Add friend")) {
@@ -361,7 +360,6 @@ public class Server implements ServerInterface {
                                                 writer.println();
                                                 writer.flush();
                                             }
-
                                         }
                                     }
                                 }
@@ -425,7 +423,6 @@ public class Server implements ServerInterface {
                                     }
                                 }
                             }
-
                             //Log Out
                             if (choice.equals("Log out")) {
                                 break;
@@ -447,9 +444,7 @@ public class Server implements ServerInterface {
                 }
             }
         } catch (Exception f) {
-            f.printStackTrace();
             System.out.println("A client is disconnected");
-
         }
     }
 
@@ -676,7 +671,6 @@ public class Server implements ServerInterface {
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = currentDateTime.format(formatter);
-
         //
         String lastLine = null;
         BufferedReader reader = null;
@@ -691,9 +685,7 @@ public class Server implements ServerInterface {
             while ((line = reader.readLine()) != null) {
                 lastLine = line;
             }
-
             // Print the last line
-
             if (lastLine != null) {
                 String[] rowInfo = lastLine.split(",");
                 id = Integer.parseInt(rowInfo[0]) + 1;
@@ -711,29 +703,24 @@ public class Server implements ServerInterface {
                 e.printStackTrace();
             }
         }
-
         if (isGetId) {
             // Create a message row
             String messageRow = id + ",1," + formattedDateTime + "," + sendUserName + "," + receiverUserName;
             if (isBlocked) {
                 //messageRow += ",blocked," + content;
                 return false;
-
             } else {
                 messageRow += ",notBlocked," + content;
             }
-
             //Write the message to the bottom of the Message.txt
             BufferedWriter wr = null;
             try {
                 wr = new BufferedWriter(new FileWriter("Messages.txt", true));
                 wr.write(messageRow);
                 wr.newLine();
-
                 // Flush the data to the file
                 wr.flush();
                 return true;
-
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -747,12 +734,8 @@ public class Server implements ServerInterface {
                 }
             }
         }
-
-
         return false;
     }
-
-
     public synchronized boolean deleteMessage(int messageID) {
         Path path = Paths.get("Messages.txt");
 
