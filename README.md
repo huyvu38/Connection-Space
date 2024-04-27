@@ -181,7 +181,7 @@ The user will see some of the following buttons
 
    
 
-6. Log out
+   4. Log out
 
    The client will go back to the "Main Menu Frame" where they can log in or create account.
 
@@ -227,12 +227,53 @@ Test 3:  Log in successful
 
    <img width="504" alt="Screenshot 2024-04-26 020230" src="https://github.com/huyvu38/CS180-Team/assets/144382505/3e02d9de-6261-40c5-9c80-eddc1d014574">
 
+Test 4 to 11 is after the clien "vu28" log in successfully
 
 Test 4: Edit profile failure
 
+   1. Write "abc" in the text field next to "Age"
+
+   2. Click "Save" button
+
+   3. Expected result:
+
+   <img width="197" alt="Screenshot 2024-04-27 011622" src="https://github.com/huyvu38/CS180-Team/assets/144382505/c52406f1-c5d1-4da2-8e31-3bec9a12e4eb">
+
+   Can not edit age because age must be a positive number.
+
+
 Test 5: Add friend 
 
+   1. Click to "Action" button
+
+   2. Write "Yanxin171" to the text field
+
+   3. Click to "Add friend" button
+
+   Expected result:
+   
+   <img width="196" alt="Screenshot 2024-04-27 011807" src="https://github.com/huyvu38/CS180-Team/assets/144382505/916136a4-5bed-4491-b9cc-3e4d2fd7b98d">
+
+   4. Click "Get friend list" button
+
+   <img width="111" alt="Screenshot 2024-04-27 011923" src="https://github.com/huyvu38/CS180-Team/assets/144382505/eb671238-cd68-4bf3-afff-5791c43e348c">
+
+   The new friend list should include "Yanxin171".
+
 Test 6: Unfriend
+
+   1. Click to "Action" button
+
+   2. Write "josh12" to the text field
+
+   3. Click to "Delete friend" button
+
+   Expected result:
+   
+   <img width="198" alt="Screenshot 2024-04-27 012032" src="https://github.com/huyvu38/CS180-Team/assets/144382505/4553a458-be35-4ccd-a6bd-f8a7a1f84120">
+
+   Can not add "josh12" because that user does not appear in the database.
+
 
 Test 7: Block friend
 
@@ -242,6 +283,6 @@ Test 9: Search user
 
 Test 10: View other user profile
 
-Test 11: Send message
+Test 11: Send message and delete message.
 
 
