@@ -277,6 +277,23 @@ Test 6: Unfriend
 
 Test 7: Block friend
 
+   1. Click to "Action" button
+
+   2. Write "george34" to the text field
+
+   3. Click to "Block user" button
+
+   Expected result:
+
+   <img width="196" alt="Screenshot 2024-04-27 012233" src="https://github.com/huyvu38/CS180-Team/assets/144382505/d8aef68b-9d80-4448-a196-440b5badf498">
+
+   4. Click "Get block list" button
+
+   <img width="110" alt="Screenshot 2024-04-27 012247" src="https://github.com/huyvu38/CS180-Team/assets/144382505/6ce85e83-2c7b-4f77-974c-7103ac65f992">
+
+   The new block list should include "george34".
+
+
 Test 8: Unblock friend
 
 Test 9: Search user
