@@ -22,7 +22,7 @@ public class Client extends JComponent implements Runnable {
     }
 
     //Connect to the server
-    Socket socket = new Socket("localhost", 5051);
+    Socket socket = new Socket("localhost", 5050);
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     PrintWriter writer = new PrintWriter(socket.getOutputStream());
