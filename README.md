@@ -18,13 +18,8 @@ After the user connects with the server, the "Main Menu Frame" will appear with 
 
 2. Log in
 
-<img width="438" alt="Screenshot 2024-04-25 225322" src="https://github.com/huyvu38/CS180-Team/assets/144382505/b50cb020-0917-4b63-beb3-2605eb8310c4">
-
 
 Main Menu Option 1: The user clicks on the "Create account" button.
-
-<img width="438" alt="Screenshot 2024-04-25 225322" src="https://github.com/huyvu38/CS180-Team/assets/144382505/b2ebe12c-e5f1-4b83-921c-a55c4fc58fde">
-
 
 The "Create Account Frame" will appear, and the user is prompted to enter username, password, age, gender, nationality, job, and hobby.
 
@@ -35,21 +30,15 @@ If the user creates an account successfully, they cannot edit their username lat
 
 Main Menu Option 2: The user clicks on the "Log in" button.
 
-<img width="362" alt="image" src="https://github.com/huyvu38/CS180-Team/assets/144382505/50994271-352d-439b-aa56-9f91e3380a45">
-
 The "Log in Frame" will appear, and the user will be prompted to enter username and password to log in. The server will check if the username and password match the database, and the client will receive the message if they log in successfully or not.
 
 If the user logs in fail, the program will go back to the "Main Menu Frame".
 
 If the user logs in successfully, the program will display the "User Frame" with the title "Connection Space".
 
-<img width="504" alt="Screenshot 2024-04-25 233412" src="https://github.com/huyvu38/CS180-Team/assets/144382505/b08a8f39-0a7c-4543-905f-e2a741a95e23">
-
 The user will see some of the following buttons
 
 1. Save
-
-   <img width="141" alt="Screenshot 2024-04-25 233612" src="https://github.com/huyvu38/CS180-Team/assets/144382505/eb2ccc2b-a436-4e7a-8d69-87bdedcd640e">
 
    The client writes to the text field about the new information, then clicks on the "Save" button and the server will check if the new information is in the correct format.
 
@@ -58,28 +47,16 @@ The user will see some of the following buttons
 
 2. Get friend list
 
-   <img width="113" alt="Screenshot 2024-04-25 234151" src="https://github.com/huyvu38/CS180-Team/assets/144382505/caa893d4-f587-44b2-8f00-76150c81d963">
-
    After clicking that button, the client can see all of their friends in the drop-down list.
 
 
 3. Get block list
 
-   <img width="112" alt="Screenshot 2024-04-25 234200" src="https://github.com/huyvu38/CS180-Team/assets/144382505/98adbeb8-285b-4901-b5f0-41a0a041a75c">
-
    After clicking that button, the client can see all the users that have been blocked in the drop-down list.
 
 4. Search
 
-  <img width="112" alt="Screenshot 2024-04-26 000129" src="https://github.com/huyvu38/CS180-Team/assets/144382505/e5089ddc-644a-449c-98ed-42140b2459b2">
-
-  The client writes the text and the server will find all of the username that contain the text. 
-
-  <img width="110" alt="Screenshot 2024-04-26 000148" src="https://github.com/huyvu38/CS180-Team/assets/144382505/7a3bd78c-4b89-41e9-b15a-ffd9d5f62a87">
-
-  The result will appear in the drop-down list.
-
-
+  The client writes the text and the server will find all of the username that contain the text. The result will appear in the drop-down list.
 
 5. Action
 
@@ -87,17 +64,12 @@ The user will see some of the following buttons
 
    1. Add friend/Delete friend/Block user/Unblock user
    
-
     The client first needs to type the username of other people and click to the any button that they want. The server will then check if that client can do that action and update any important changes to the database.
 
-   
-    
    2. View other user profile
    
-  
-   If the client writes the username in the database and not in the block list, another Frame will appear and let them view another user's information like age, gender, nationality, job, or hobby.
+   The client first needs to type the username, and another Frame will appear if no users block each other. Then the client can view another user's information, like age, gender, nationality, job, or hobby.
    
-
    3. Send Message
 
    
@@ -113,13 +85,23 @@ Test 1 : Create account
 
  1. Click to the "Create Account" button
 
-   <img width="435" alt="Screenshot 2024-04-26 014752" src="https://github.com/huyvu38/CS180-Team/assets/144382505/21d29efc-1798-4548-ab6d-5409decee84f">
+ 2. Write "george34" to the text field next to username
 
- 2.  Write the following information and click "Enter"
+ 3. Write "abcdef" to the text field next to password
 
-   Expected result :
-   
-   <img width="196" alt="Screenshot 2024-04-26 014800" src="https://github.com/huyvu38/CS180-Team/assets/144382505/37f19095-a113-4930-b4e0-73060335525f">
+ 4. write "20" to the text field next to age
+
+ 5. Choose "Male"
+
+ 6. Write "China" to the text field next to nationality
+
+ 7. Write "student" to the text field next to job
+
+ 8. Write "food" to the text field next to hobby
+
+ 9. Click "Enter" button
+
+   Expected result : Message "Create account successfully" and return back to the "Main Menu Frame"
 
 
 Test 2 : Log in failure
