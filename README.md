@@ -315,9 +315,23 @@ Test 8: Unblock friend
 
 Test 9: Search user
 
-   The searc
+   1. Write "e" to the text field
+
+   2. Click to the "Search" button
+
+   Expected result : 
+
+   <img width="110" alt="Screenshot 2024-04-27 013502" src="https://github.com/huyvu38/CS180-Team/assets/144382505/bd5b87ed-02dd-43bd-9002-d4930ffd1b9c">
 
 Test 10: View other user profile
+
+   1. Click to the "Action" button
+
+   2. Write "Archie" in the text field
+
+   3. Click to the "View other user prorfile"
+
+   4. Click to the "
 
 Test 11: Send message and delete message.
 
