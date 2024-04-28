@@ -315,10 +315,53 @@ Test 8: Unblock friend
 
 Test 9: Search user
 
-   The searc
+   1. Write "e" to the text field
+
+   2. Click to the "Search" button
+
+   Expected result : 
+
+   <img width="110" alt="Screenshot 2024-04-27 013502" src="https://github.com/huyvu38/CS180-Team/assets/144382505/bd5b87ed-02dd-43bd-9002-d4930ffd1b9c">
 
 Test 10: View other user profile
 
+   1. Click to the "Action" button
+
+   2. Write "Archie" to the text field
+
+   3. Click to the "View other user prorfile"
+
+   4. Click to the "Hobby" button
+
+   Expected result:
+
+   <img width="195" alt="Screenshot 2024-04-27 014412" src="https://github.com/huyvu38/CS180-Team/assets/144382505/43485bdf-a550-496b-8cb8-63fcc1c5bb12">
+
+
 Test 11: Send message and delete message.
+
+   1. Click to the "Action" button
+
+   2. Write "Yanxin171" in the text field
+
+   3. Click to the "Send message" button
+
+   4. Write "How are you?" to the text filed next to "Exit message" button
+
+   5. Click to the "Send" button
+
+   Expected result for send message:
+
+   <img width="392" alt="Screenshot 2024-04-27 015451" src="https://github.com/huyvu38/CS180-Team/assets/144382505/2f6740b4-c2e3-45f2-bbd6-072e10c24c61">
+
+   6. Write "28" to the text field next to the "Delete selected message" button
+
+   7.Click to the "Delete selected message" button
+
+   Expected result for delete message:
+
+   <img width="435" alt="Screenshot 2024-04-27 015725" src="https://github.com/huyvu38/CS180-Team/assets/144382505/31bfdbbf-8380-40fe-bf21-63c022adf424">
+
+   
 
 
