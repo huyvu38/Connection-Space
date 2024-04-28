@@ -85,19 +85,19 @@ Test 1 : Create account
 
  1. Click to the "Create Account" button
 
- 2. Write "george34" to the text field next to username
+ 2. For username, write "george34" 
 
- 3. Write "abcdef" to the text field next to password
+ 3. For password, write "abcdef"
 
- 4. write "20" to the text field next to age
+ 4. For age, write "20" 
 
- 5. Choose "Male"
+ 5. For gender, choose "Male"
 
- 6. Write "China" to the text field next to nationality
+ 6. For nationality, write "China"
 
- 7. Write "student" to the text field next to job
+ 7. For job, write "student" 
 
- 8. Write "food" to the text field next to hobby
+ 8. For hobby, Write "food"
 
  9. Click "Enter" button
 
@@ -108,29 +108,28 @@ Test 2 : Log in failure
 
 1. Click to the "Log in" button
 
-   <img width="365" alt="Screenshot 2024-04-26 015124" src="https://github.com/huyvu38/CS180-Team/assets/144382505/22bf6bdf-2bd4-4bf5-aff7-e36f1a0ccb7d">
+2. For username, write "vu33"
 
-2. Write the following information and click "Enter"
+3. For password, write "111111"
 
-   Expected result:
+4. Write the following information and click "Enter"
 
-   <img width="194" alt="Screenshot 2024-04-26 015132" src="https://github.com/huyvu38/CS180-Team/assets/144382505/a3c5d608-7b0d-4eff-ba11-24537fffcdc8">
+   Expected result: Message "Log in failure" and return back to the "Main Menu Frame"
 
 
 Test 3:  Log in successful
 
 1. Click to the "Log in" button
 
-   <img width="364" alt="Screenshot 2024-04-26 020215" src="https://github.com/huyvu38/CS180-Team/assets/144382505/8e066b44-2b1c-485a-8f01-dd0c551afb74">
+2. For username, write "vu28"
 
+3. For password, write "123456"
 
-2. Write the following information and click "Enter"
+4. Click "Enter" button
 
-   Expected result: The User Frame will appear.
+  Expected result : The "User Frame" will appear
 
-   <img width="504" alt="Screenshot 2024-04-26 020230" src="https://github.com/huyvu38/CS180-Team/assets/144382505/3e02d9de-6261-40c5-9c80-eddc1d014574">
-
-Test 4 to 11 is after the clien "vu28" log in successfully
+Test 4 to 11 is after the user "vu28" log in successfully and the user "george34" create account successfully.
 
 Test 4: Edit profile failure
 
@@ -138,11 +137,7 @@ Test 4: Edit profile failure
 
    2. Click "Save" button
 
-   3. Expected result:
-
-   <img width="197" alt="Screenshot 2024-04-27 011622" src="https://github.com/huyvu38/CS180-Team/assets/144382505/c52406f1-c5d1-4da2-8e31-3bec9a12e4eb">
-
-   Can not edit age because age must be a positive number.
+    Expected result: Message "Edit profile failure"
 
 
 Test 5: Add friend 
@@ -153,15 +148,11 @@ Test 5: Add friend
 
    3. Click to "Add friend" button
 
-   Expected result:
-   
-   <img width="196" alt="Screenshot 2024-04-27 011807" src="https://github.com/huyvu38/CS180-Team/assets/144382505/916136a4-5bed-4491-b9cc-3e4d2fd7b98d">
+   Expected result: Message "Add friend successfully" and return to "User Frame"
 
    4. Click "Get friend list" button
 
-   <img width="111" alt="Screenshot 2024-04-27 011923" src="https://github.com/huyvu38/CS180-Team/assets/144382505/eb671238-cd68-4bf3-afff-5791c43e348c">
-
-   The new friend list should include "Yanxin171".
+   Expected result: The new friend list should include "Yanxin171".
 
 Test 6: Unfriend
 
@@ -171,12 +162,7 @@ Test 6: Unfriend
 
    3. Click to "Delete friend" button
 
-   Expected result:
-   
-   <img width="198" alt="Screenshot 2024-04-27 012032" src="https://github.com/huyvu38/CS180-Team/assets/144382505/4553a458-be35-4ccd-a6bd-f8a7a1f84120">
-
-   Can not add "josh12" because that user does not appear in the database.
-
+   Expected result: "You can not unfriend that user" and return back to "User Frame" (Can not add "josh12" because that user does not appear in the database.)
 
 Test 7: Block friend
 
@@ -186,13 +172,9 @@ Test 7: Block friend
 
    3. Click to "Block user" button
 
-   Expected result:
-
-   <img width="196" alt="Screenshot 2024-04-27 012233" src="https://github.com/huyvu38/CS180-Team/assets/144382505/d8aef68b-9d80-4448-a196-440b5badf498">
+   Expected result: Message "Block successfully" and return to "User Frame"
 
    4. Click "Get block list" button
-
-   <img width="110" alt="Screenshot 2024-04-27 012247" src="https://github.com/huyvu38/CS180-Team/assets/144382505/6ce85e83-2c7b-4f77-974c-7103ac65f992">
 
    The new block list should include "george34".
 
@@ -205,16 +187,11 @@ Test 8: Unblock friend
 
    3. Click to "Unblock user" button
 
-   Expected result:
-
-   <img width="195" alt="Screenshot 2024-04-27 012524" src="https://github.com/huyvu38/CS180-Team/assets/144382505/5f13fe04-897c-4917-a23c-e5ec81b6f2fb">
-
+   Expected result: Message "Unblock successfully" and return to "User Frame"
 
    4. Click "Get block list" button
 
-   <img width="112" alt="Screenshot 2024-04-27 012537" src="https://github.com/huyvu38/CS180-Team/assets/144382505/4bea9fef-8c01-4e41-9caa-4b33a5e2a8a6">
-
-   The new block list should not include "george34".
+   Expected result: The new block list should not include "george34".
 
 Test 9: Search user
 
@@ -222,9 +199,7 @@ Test 9: Search user
 
    2. Click to the "Search" button
 
-   Expected result : 
-
-   <img width="110" alt="Screenshot 2024-04-27 013502" src="https://github.com/huyvu38/CS180-Team/assets/144382505/bd5b87ed-02dd-43bd-9002-d4930ffd1b9c">
+   Expected result : Find the following usernames : "george23", "Archie", "george34"
 
 Test 10: View other user profile
 
@@ -236,11 +211,8 @@ Test 10: View other user profile
 
    4. Click to the "Hobby" button
 
-   Expected result:
-
-   <img width="195" alt="Screenshot 2024-04-27 014412" src="https://github.com/huyvu38/CS180-Team/assets/144382505/43485bdf-a550-496b-8cb8-63fcc1c5bb12">
-
-
+   Expected result: Message "The hobby of that user is Polo"
+   
 Test 11: Send message and delete message.
 
    1. Click to the "Action" button
@@ -253,18 +225,15 @@ Test 11: Send message and delete message.
 
    5. Click to the "Send" button
 
-   Expected result for send message:
-
-   <img width="392" alt="Screenshot 2024-04-27 015451" src="https://github.com/huyvu38/CS180-Team/assets/144382505/2f6740b4-c2e3-45f2-bbd6-072e10c24c61">
+   Expected result for send message: Display the conversationID 27 and 28
 
    6. Write "28" to the text field next to the "Delete selected message" button
 
    7.Click to the "Delete selected message" button
 
-   Expected result for delete message:
+   Expected result for delete message : Only display the conversationID 27 
 
-   <img width="435" alt="Screenshot 2024-04-27 015725" src="https://github.com/huyvu38/CS180-Team/assets/144382505/31bfdbbf-8380-40fe-bf21-63c022adf424">
-
+   8. Click "Exit message" button and return to "User Frame"
 
 ### Profile.java <br/>
 Creates a new profile object with username, password, age, gender, nationality, job and hobby. Includes get/set methods to modify or return given attributes.
