@@ -2,9 +2,9 @@
 
 Huy Vu <Submitted Vocareum Work Phase 3>
 
-<Submitted Presentation Phase 3>
+Yanxin Yu <Submitted Presentation Phase 3>
 
-<Submitted Report Phase 3>
+Huy Vu <Submitted Report Phase 3>
 
 ### Profile.java <br/>
 Creates a new profile object with username, password, age, gender, nationality, job and hobby. Includes get/set methods to modify or return given attributes.
@@ -277,9 +277,45 @@ Test 6: Unfriend
 
 Test 7: Block friend
 
+   1. Click to "Action" button
+
+   2. Write "george34" to the text field
+
+   3. Click to "Block user" button
+
+   Expected result:
+
+   <img width="196" alt="Screenshot 2024-04-27 012233" src="https://github.com/huyvu38/CS180-Team/assets/144382505/d8aef68b-9d80-4448-a196-440b5badf498">
+
+   4. Click "Get block list" button
+
+   <img width="110" alt="Screenshot 2024-04-27 012247" src="https://github.com/huyvu38/CS180-Team/assets/144382505/6ce85e83-2c7b-4f77-974c-7103ac65f992">
+
+   The new block list should include "george34".
+
+
 Test 8: Unblock friend
 
+   1. Click to "Action" button
+
+   2. Write "george34" to the text field
+
+   3. Click to "Unblock user" button
+
+   Expected result:
+
+   <img width="195" alt="Screenshot 2024-04-27 012524" src="https://github.com/huyvu38/CS180-Team/assets/144382505/5f13fe04-897c-4917-a23c-e5ec81b6f2fb">
+
+
+   4. Click "Get block list" button
+
+   <img width="112" alt="Screenshot 2024-04-27 012537" src="https://github.com/huyvu38/CS180-Team/assets/144382505/4bea9fef-8c01-4e41-9caa-4b33a5e2a8a6">
+
+   The new block list should not include "george34".
+
 Test 9: Search user
+
+   The searc
 
 Test 10: View other user profile
 

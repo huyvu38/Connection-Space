@@ -22,7 +22,7 @@ public class Client extends JComponent implements Runnable {
     }
 
     //Connect to the server
-    Socket socket = new Socket("localhost", 5050);
+    Socket socket = new Socket("localhost", 5051);
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     PrintWriter writer = new PrintWriter(socket.getOutputStream());
@@ -794,7 +794,7 @@ public class Client extends JComponent implements Runnable {
                     String checkReceiver = reader.readLine();
                     if (checkReceiver.equals("the User not exist")) {
                         JOptionPane.showMessageDialog(null, "Please enter a valid user name.",
-                                "User Not Exist", JOptionPane.INFORMATION_MESSAGE);
+                                "User Not Exist", JOptionPane.ERROR_MESSAGE);
                         actionFrame.setVisible(false);
                         userFrame.setVisible(true);
                         otherUsernameText.setText("");
@@ -967,6 +967,7 @@ public class Client extends JComponent implements Runnable {
                     writer.write("Message Frame is closing");
                     writer.println();
                     writer.flush();
+                    messageDisplayArea.setText("");
                     messageFrame.setVisible(false);
                     userFrame.setVisible(true);
                 }

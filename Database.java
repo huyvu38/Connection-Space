@@ -73,11 +73,11 @@ public class Database implements DatabaseInterface {
         return true;
     }
 
-    public synchronized ArrayList<UserAccount> getAllUserAccount() {
+    public ArrayList<UserAccount> getAllUserAccount() {
         return allUserAccount;
     }
 
-    public synchronized void setAllUserAccount(ArrayList<UserAccount> allUserAccount) {
+    public void setAllUserAccount(ArrayList<UserAccount> allUserAccount) {
         this.allUserAccount = allUserAccount;
     }
 }

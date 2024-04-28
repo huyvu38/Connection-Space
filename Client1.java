@@ -413,7 +413,7 @@ public class Client1 extends JComponent implements Runnable {
             centerPanel = new JPanel(new GridLayout(1,2));
             JPanel photoPanel = new JPanel(new BorderLayout());
             JLabel photoLabel = new JLabel();
-            ImageIcon photo = new ImageIcon("images2.jpeg");  // Adjust the path accordingly
+            ImageIcon photo = new ImageIcon("images.jpeg");  // Adjust the path accordingly
             photoLabel.setIcon(photo);
             photoPanel.add(photoLabel, BorderLayout.CENTER);
             logOutButton = new JButton("Log out");
@@ -967,6 +967,7 @@ public class Client1 extends JComponent implements Runnable {
                     writer.write("Message Frame is closing");
                     writer.println();
                     writer.flush();
+                    messageDisplayArea.setText("");
                     messageFrame.setVisible(false);
                     userFrame.setVisible(true);
                 }
