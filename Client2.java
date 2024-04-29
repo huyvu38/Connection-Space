@@ -997,7 +997,7 @@ public class Client2 extends JComponent implements Runnable {
                     writer.flush();
                     String ID = conversationID.getText();
                     if (ID.isEmpty()) {
-                        JOptionPane.showMessageDialog(Client2.this,
+                        JOptionPane.showMessageDialog(null,
                                 "Error: ID cannot be empty. Please enter a valid ID.",
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
@@ -1021,7 +1021,7 @@ public class Client2 extends JComponent implements Runnable {
                         messageDisplayArea.setText("");
                         messageDisplayArea.append(history.toString());
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(Client2.this,
+                        JOptionPane.showMessageDialog(null,
                                 "Error: ID must be number. Please enter a valid ID.",
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
