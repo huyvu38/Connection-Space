@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * PreviousClient.java
  *
- * This is the Client.java in phase 2
+ * This is the Client.java in phase 2 (not submit to vocareum)
  *
  * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
  * @version 28 March 2024
