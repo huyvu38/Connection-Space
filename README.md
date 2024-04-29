@@ -71,7 +71,10 @@ The user will see some of the following buttons
    The client first needs to type the username, and another Frame will appear if no users block each other. Then the client can view another user's information, like age, gender, nationality, job, or hobby.
    
    3. Send Message
+   
+   In the messaging system, a user types their message into the message bar and clicks the "send" button. The sent message, along with any previous messages, is displayed in the message display area. Each message has an associated conversation ID, which is also displayed. If a user enters a specific conversation ID, they will no longer be able to see the messages from that conversation.
 
+If a user attempts to send a message to another user who is on their block list, the message will not be sent. Instead, the message display area will show "No message yet." Users can exit the messaging dialog by clicking the "exit" button, which will return them to the main user frame.
    
 
    4. Log out
