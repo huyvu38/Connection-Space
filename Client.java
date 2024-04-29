@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -96,11 +95,23 @@ public class Client extends JComponent implements Runnable {
     JButton logOutButton;
 
     //for user own profile
-    JTextField passwordText3, ageText3, nationalityText3, jobText3, hobbyText3;
+    JTextField passwordText3;
+    JTextField ageText3;
+    JTextField nationalityText3;
+    JTextField jobText3;
+    JTextField hobbyText3;
 
     JButton saveButton;
-    JLabel usernameLabel3, usernameLabel4, passwordLabel3, genderLabel3, emptyLabel,
-            ageLabel3, nationalityLabel3, jobLabel3, hobbyLabel3, genderLabel4;
+    JLabel usernameLabel3;
+    JLabel usernameLabel4;
+    JLabel passwordLabel3;
+    JLabel genderLabel3;
+    JLabel emptyLabel;
+    JLabel ageLabel3;
+    JLabel nationalityLabel3;
+    JLabel jobLabel3;
+    JLabel hobbyLabel3;
+    JLabel genderLabel4;
 
     //elements for westPanel
 
@@ -131,7 +142,6 @@ public class Client extends JComponent implements Runnable {
 
     JButton exitMessageButton;
     JTextArea messageDisplayArea;
-    Highlighter highlighter;
     JButton deleteButton;
     private final String conversationIDMessage = "Please enter conversationID to delete the message";
     private String receiver;
@@ -157,7 +167,7 @@ public class Client extends JComponent implements Runnable {
             loginButton = new JButton("Login");
             loginButton.setBounds(220, 80, 160, 70);
             createAccountButton = new JButton("Create account");
-            createAccountButton.setBounds(220, 180, 160,70);
+            createAccountButton.setBounds(220, 180, 160, 70);
 
             createAccountButton.addActionListener(actionListener);
             loginButton.addActionListener(actionListener);
@@ -183,14 +193,14 @@ public class Client extends JComponent implements Runnable {
             usernameLabel1 = new JLabel("Username");
             usernameLabel1.setBounds(160, 33, 120, 25);
             usernameFormatLabel = new JLabel("At least 4 characters");
-            usernameFormatLabel.setBounds(420, 33, 120,25);
+            usernameFormatLabel.setBounds(420, 33, 120, 25);
 
             passwordText1 = new JTextField(10);
             passwordText1.setBounds(280, 66, 120, 25);
             passwordLabel1 = new JLabel("Password");
             passwordLabel1.setBounds(160, 66, 120, 25);
             passwordFormatLabel = new JLabel("At least 6 characters");
-            passwordFormatLabel.setBounds(420, 66, 120,25);
+            passwordFormatLabel.setBounds(420, 66, 120, 25);
 
             ageText = new JTextField(10);
             ageText.setBounds(280, 99, 120, 25);
@@ -223,7 +233,7 @@ public class Client extends JComponent implements Runnable {
             hobbyLabel.setBounds(160, 231, 120, 25);
 
             informationFormatLabel = new JLabel("*** Do not contain any spaces or semicolons in any information");
-            informationFormatLabel.setBounds(120, 320, 400,30);
+            informationFormatLabel.setBounds(120, 320, 400, 30);
 
             enterButton1 = new JButton("Enter");
             enterButton1.setBounds(230, 280, 140, 30);
@@ -303,15 +313,15 @@ public class Client extends JComponent implements Runnable {
             addFriendButton = new JButton("Add friend");
             addFriendButton.setBounds(400, 20, 140, 40);
             deleteFriendButton = new JButton("Delete friend");
-            deleteFriendButton.setBounds(400, 80,140,40);
+            deleteFriendButton.setBounds(400, 80, 140, 40);
             blockUserButton = new JButton("Block user");
-            blockUserButton.setBounds(400, 140,140,40);
+            blockUserButton.setBounds(400, 140, 140, 40);
             unblockUserButton = new JButton("Unblock user");
-            unblockUserButton.setBounds(400, 200,140,40);
+            unblockUserButton.setBounds(400, 200, 140, 40);
             viewOtherProfileButton = new JButton("View other profile");
-            viewOtherProfileButton.setBounds(400, 260,140,40);
+            viewOtherProfileButton.setBounds(400, 260, 140, 40);
             messageButton = new JButton("Send message");
-            messageButton.setBounds(400, 320,140,40);
+            messageButton.setBounds(400, 320, 140, 40);
 
             addFriendButton.addActionListener(actionListener);
             deleteFriendButton.addActionListener(actionListener);
@@ -343,17 +353,17 @@ public class Client extends JComponent implements Runnable {
             viewOtherProfileFrame.setVisible(false);
 
             viewInformationLabel = new JLabel("Click to the information that you want to see");
-            viewInformationLabel.setBounds(170, 60,300,30);
+            viewInformationLabel.setBounds(170, 60, 300, 30);
             viewAgeButton = new JButton("Age");
             viewAgeButton.setBounds(20, 180, 100, 32);
             viewGenderButton = new JButton("Gender");
-            viewGenderButton.setBounds(130, 180,100,32);
+            viewGenderButton.setBounds(130, 180, 100, 32);
             viewNationalityButton = new JButton("Nationality");
-            viewNationalityButton.setBounds(240, 180,100,32);
+            viewNationalityButton.setBounds(240, 180, 100, 32);
             viewJobButton = new JButton("Job");
-            viewJobButton.setBounds(350, 180,100,32);
+            viewJobButton.setBounds(350, 180, 100, 32);
             viewHobbyButton = new JButton("Hobby");
-            viewHobbyButton.setBounds(460, 180,100,32);
+            viewHobbyButton.setBounds(460, 180, 100, 32);
 
             viewAgeButton.addActionListener(actionListener);
             viewGenderButton.addActionListener(actionListener);
@@ -410,7 +420,7 @@ public class Client extends JComponent implements Runnable {
             userFrame.getContentPane().add(westPanel, BorderLayout.WEST);
 
             // Center panel
-            centerPanel = new JPanel(new GridLayout(1,2));
+            centerPanel = new JPanel(new GridLayout(1, 2));
             JPanel photoPanel = new JPanel(new BorderLayout());
             JLabel photoLabel = new JLabel();
             ImageIcon photo = new ImageIcon("images.jpeg");  // Adjust the path accordingly
@@ -787,7 +797,7 @@ public class Client extends JComponent implements Runnable {
                 if (e.getSource() == messageButton) {
                     writer.write("Message");
                     writer.println();
-                    String receiver = otherUsernameText.getText();
+                    receiver = otherUsernameText.getText();
                     writer.write(receiver);
                     writer.println();
                     writer.flush();
@@ -983,7 +993,10 @@ public class Client extends JComponent implements Runnable {
                     // Read all lines until the end-of-message marker
                     StringBuilder history = new StringBuilder();
                     String line;
-                    while (!(line = reader.readLine()).equals("END_OF_MESSAGE")) {
+                    while ((line = reader.readLine()) != null) {
+                        if (line.equals("END_OF_MESSAGE")) {
+                            break;
+                        }
                         history.append(line).append("\n");
                     }
 
@@ -994,15 +1007,15 @@ public class Client extends JComponent implements Runnable {
                     writer.write("Delete Message");
                     writer.println();
                     writer.flush();
-                    String ID = conversationID.getText();
-                    if (ID.isEmpty()) {
+                    String id = conversationID.getText();
+                    if (id.isEmpty()) {
                         JOptionPane.showMessageDialog(null,
                                 "Error: ID cannot be empty. Please enter a valid ID.",
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
                     }
                     try {
-                        int conversaID = Integer.parseInt(ID);
+                        int conversaID = Integer.parseInt(id);
                         writer.write(String.valueOf(conversaID));
                         writer.println();
                         writer.flush();
@@ -1014,7 +1027,10 @@ public class Client extends JComponent implements Runnable {
                         // Read all lines until the end-of-message marker
                         StringBuilder history = new StringBuilder();
                         String line;
-                        while (!(line = reader.readLine()).equals("END_OF_MESSAGE")) {
+                        while ((line = reader.readLine()) != null) {
+                            if (line.equals("END_OF_MESSAGE")) {
+                                break;
+                            }
                             history.append(line).append("\n");
                         }
                         messageDisplayArea.setText("");
