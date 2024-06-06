@@ -7,7 +7,7 @@ import java.io.File;
  *
  * Database.java
  *
- * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Huy Vu, Yanxin Yu - CS180 - L22
  * @version 28 March 2024
  */
 public class Database implements DatabaseInterface {
@@ -18,13 +18,13 @@ public class Database implements DatabaseInterface {
         this.allUserAccountFile = allUserAccountFile;
         this.allUserAccount = new ArrayList<>();
     }
-
     public synchronized boolean readAllUserAccount() {
         // read from file and make array of account objects
         try {
             File f = new File(allUserAccountFile);
             FileReader fr = new FileReader(f);
             BufferedReader bfr = new BufferedReader(fr);
+            //Skip first line
             String firstline = bfr.readLine();
             String line = bfr.readLine();
             while (line != null) {

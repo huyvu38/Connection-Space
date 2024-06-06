@@ -16,13 +16,13 @@ import java.util.concurrent.Executors;
  *
  * Server.java
  *
- * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Huy Vu, Yanxin Yu - CS180 - L22
  * @version 28 March 2024
  */
 
 
 public class Server implements ServerInterface {
-    private static final int PORT = 5050;
+    private static final int PORT = 5052;
     private Socket socket;
     private static ExecutorService threadPool = Executors.newCachedThreadPool();
     // Using thread pool for better performance
@@ -377,47 +377,57 @@ public class Server implements ServerInterface {
                                         writer.println();
                                         writer.flush();
                                     } else {
-                                        writer.write("the User exist");
-                                        writer.println();
-                                        writer.flush();
-                                        while (true) {
-                                            String messageAction = reader.readLine();
-                                            if (messageAction.equals("Send Message")) {
-                                                String messageContent = reader.readLine();
-                                                String receiver1 = reader.readLine();
-                                                boolean isBlocked = false;
-                                                for (UserAccount userAccount : allUserAccount) {
-                                                    if (userAccount.getUserProfile().getUsername().equals(receiver1)) {
-                                                        isBlocked = userAccount.getBlockList().contains(username);
-                                                    }
+                                        boolean isBlocked = false;
+                                        //user1 blocks user2
+                                        if (inBlockList(username, receiver)) {
+                                            isBlocked = true;
+                                        }
+                                        //user2 blocks user1
+                                        if (inBlockList(receiver, username)) {
+                                            isBlocked = true;
+                                        }
+                                        if (isBlocked) {
+                                            writer.write("the User not exist");
+                                            writer.println();
+                                            writer.flush();
+                                        } else {
+                                            writer.write("the User exist");
+                                            writer.println();
+                                            writer.write(printHistoryMessage(username, receiver));
+                                            writer.println();
+                                            writer.write("END_OF_MESSAGE");
+                                            writer.println();
+                                            writer.flush();
+                                            while (true) {
+                                                String messageAction = reader.readLine();
+                                                if (messageAction.equals("Send Message")) {
+                                                    String messageContent = reader.readLine();
+                                                    sendMessage(username, receiver, messageContent);
+                                                    writer.write(printHistoryMessage(username, receiver));
+                                                    writer.println();
+                                                    writer.write("END_OF_MESSAGE");
+                                                    writer.println();
+                                                    writer.flush();
                                                 }
-                                                if (!isBlocked) {
-                                                    for (UserAccount userAccount : allUserAccount) {
-                                                        Profile profile = userAccount.getUserProfile();
-                                                        if (profile.getUsername().equals(username)) {
-                                                            isBlocked = userAccount.getBlockList().contains(receiver1);
-                                                        }
+                                                if (messageAction.equals("Delete Message")) {
+                                                    String conversationID = reader.readLine();
+                                                    boolean deleteMessageResult = deleteMessage(username, receiver, conversationID);
+                                                    if (deleteMessageResult) {
+                                                        writer.write("Delete message successfully");
+                                                        writer.println();
+                                                        writer.write(printHistoryMessage(username, receiver));
+                                                        writer.println();
+                                                        writer.write("END_OF_MESSAGE");
+                                                        writer.println();
+                                                    } else {
+                                                        writer.write("Delete message failure");
+                                                        writer.println();
                                                     }
+                                                    writer.flush();
                                                 }
-                                                sendMessage(username, receiver1, messageContent, isBlocked);
-                                                writer.write(printHistoryMessage(username, receiver1));
-                                                writer.println();
-                                                writer.write("END_OF_MESSAGE");
-                                                writer.println();
-                                                writer.flush();
-
-                                            }
-                                            if (messageAction.equals("Delete Message")) {
-                                                String conversationID = reader.readLine();
-                                                String receiver1 = reader.readLine();
-                                                deleteMessage(Integer.parseInt(conversationID));
-                                                writer.write(printHistoryMessage(username, receiver1));
-                                                writer.write("END_OF_MESSAGE");
-                                                writer.println();
-                                                writer.flush();
-                                            }
-                                            if (messageAction.equals("Message Frame is closing")) {
-                                                break;
+                                                if (messageAction.equals("Message Frame is closing")) {
+                                                    break;
+                                                }
                                             }
                                         }
                                     }
@@ -665,21 +675,17 @@ public class Server implements ServerInterface {
         return findUserName;
     }
 
-    public synchronized boolean sendMessage(String sendUserName, String receiverUserName,
-                                            String content, boolean isBlocked) {
+    public synchronized boolean sendMessage(String senderUserName, String receiverUserName, String content) {
         // Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = currentDateTime.format(formatter);
-        //
         String lastLine = null;
-        BufferedReader reader = null;
         boolean isGetId = false;
         int id = 0;
         try {
             // Create a BufferedReader to read from a file
-            reader = new BufferedReader(new FileReader("Messages.txt"));
-
+            BufferedReader reader = new BufferedReader(new FileReader("Messages.txt"));
             // Read each line from the file
             String line;
             while ((line = reader.readLine()) != null) {
@@ -693,25 +699,11 @@ public class Server implements ServerInterface {
             isGetId = true;
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // Close the BufferedReader
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         if (isGetId) {
             // Create a message row
-            String messageRow = id + ",1," + formattedDateTime + "," + sendUserName + "," + receiverUserName;
-            if (isBlocked) {
-                //messageRow += ",blocked," + content;
-                return false;
-            } else {
-                messageRow += ",notBlocked," + content;
-            }
+            String messageRow = id + "," + formattedDateTime + "," + senderUserName +
+                    "," + receiverUserName + "," + content;
             //Write the message to the bottom of the Message.txt
             BufferedWriter wr = null;
             try {
@@ -723,102 +715,69 @@ public class Server implements ServerInterface {
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    // Close the BufferedWriter
-                    if (wr != null) {
-                        wr.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
+        //Can not send message
         return false;
     }
-    public synchronized boolean deleteMessage(int messageID) {
+    public synchronized boolean deleteMessage(String sender, String receiver, String messageID) {
         Path path = Paths.get("Messages.txt");
-
-
+        boolean deleteMessageResult = false;
         try {
             // Read all lines into a List
             List<String> lines = Files.readAllLines(path);
 
             // Stream through the lines, replace the string, and collect the results
             List<String> replaced = new ArrayList<>();
+            int count = 0;
             for (String line : lines) {
-                if (line.startsWith(messageID + ",1,")) {
-                    String[] row = line.split(",");
-                    row[1] = String.valueOf(0);
-                    line = String.join(",", row);
+                String[] element = line.split(",");
+                if (!element[0].equals(messageID)) {
+                    replaced.add(line);
+                    count++;
+                } else {
+                    if ((!element[2].equals(sender)) || (!element[3].equals(receiver))) {
+                        replaced.add(line);
+                        count++;
+                    }
                 }
-                replaced.add(line);
             }
-
             // Write the lines back to the file
             Files.write(path, replaced);
-            return true;
+            if (count != lines.size()) {
+                deleteMessageResult = true;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        return deleteMessageResult;
     }
-
-
-    // Only send message to members in friendList
-    // (before use this method, make sure all input should in Users friendList.
-    // Only send message when otherUserName is in friendList
-    // return empty string if all success, otherwirse indicate which one failed.
-    public synchronized String restrictMessage(String userName, ArrayList<String> friendListList, String content) {
-        List<String> failedUser = new ArrayList<>();
-        for (String friend: friendListList) {
-            if (!this.sendMessage(userName, friend, content, false)) {
-                failedUser.add(friend);
-            }
-        }
-
-        if (!failedUser.isEmpty()) {
-            return "Failed to send to " + failedUser.toString();
-
-        } else {
-            return null;
-        }
-
-    }
-
     // printHistoryMessage()
     // Take sender's name and receiver's name as parameters to filter the message in the Messages.txt
     // that should be print out
     // The message that already deleted will not be printed in this method, but it still exist in the database
     // For the blocked message, the sender still can see it, but on the receiver side, it won't be shown
-
     public synchronized String printHistoryMessage(String senderName, String receiverName) {
-        String filePath = "Messages.txt";
-        BufferedReader br = null;
-        boolean isSuccessful = true;
         String result = "";
-
-
         try {
-            br = new BufferedReader(new FileReader(filePath));
+            BufferedReader br = new BufferedReader(new FileReader("Messages.txt"));
             String line;
-            result += "[conversationID] [ConversationTime] [Sender-Message] [if message blocked]\n";
-            //System.out.println("[conversationID] [ConversationTime] [Sender-Message] [if message blocked]");
-            int counter = 0;
+            result += "[ConversationID] [ConversationTime] [Sender] [Message]\n";
             while ((line = br.readLine()) != null) {
                 String[] array = line.split(",");
 
                 // Step1: Merge the message that contain ","
-                ArrayList<String> temp = new ArrayList<String>();
+                ArrayList<String> temp = new ArrayList<>();
                 String mergeText = "";
-                if (array.length > 7) {
+                if (array.length > 5) {
                     for (int i = 0; i < array.length; i++) {
-                        if (i >= 6) {
+                        if (i >= 4) {
                             mergeText += array[i] + ",";
                         } else {
                             temp.add(array[i]);
                         }
                     }
+                    //Delete the last ,
                     mergeText = mergeText.substring(0, mergeText.length() - 1);
                     temp.add(mergeText);
                     temp.toArray(array);
@@ -826,44 +785,17 @@ public class Server implements ServerInterface {
 
                 // Step2: print the message by checking:
                 //    1. if message has deleted
-                //    2. if the message has been blocked
-                //    3. sender and receiver matched
+                //    2. sender and receiver matched
                 // All message should follow the format:
-                // [conversationID] [ConversationTime] [SenderName-MessageContent] [if message blocked]
-                if ((array[1].equals("1")
-                        && array[3].equals(senderName)
-                        && array[4].equals(receiverName)) || (array[1].equals("1")
-                        && array[3].equals(receiverName)
-                        && array[4].equals(senderName))) {
-                    counter++;
-                    result += String.format("%s %s %s: %s %s\n", array[0], array[2], array[3], array[6], array[5]);
-
+                // [ConversationID] [ConversationTime] [SenderName] [Message Content]
+                if ((array[2].equals(senderName) && array[3].equals(receiverName))
+                        || (array[2].equals(receiverName) && array[3].equals(senderName))) {
+                    result += String.format("%s %s %s %s\n", array[0], array[1], array[2], array[4]);
                 }
             }
-            if (senderName.equals(receiverName)) {
-                result = "Don't message yourself";
-            }
-
-            if (counter == 0) {
-                result = "No Message Yet";
-            }
-            //return true;
         } catch (IOException e) {
-            isSuccessful = false;
-            //e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException e) {
-                isSuccessful = false;
-                //e.printStackTrace();
-
-            }
+            e.printStackTrace();
         }
         return result;
-
     }
-
 }

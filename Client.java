@@ -11,7 +11,7 @@ import java.util.List;
  *
  * Client.java
  *
- * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Huy Vu, Yanxin Yu - CS180 - L22
  * @version 28 March 2024
  */
 public class Client extends JComponent implements Runnable {
@@ -21,7 +21,7 @@ public class Client extends JComponent implements Runnable {
     }
 
     //Connect to the server
-    Socket socket = new Socket("localhost", 5050);
+    Socket socket = new Socket("localhost", 5052);
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     PrintWriter writer = new PrintWriter(socket.getOutputStream());
@@ -556,9 +556,7 @@ public class Client extends JComponent implements Runnable {
             recipientPanel.add(recipientField, BorderLayout.CENTER);
             // Message display area
             messageDisplayArea = new JTextArea();
-            //messageDisplayArea.setEditable(false);
             recipientPanel.add(new JScrollPane(messageDisplayArea), BorderLayout.CENTER);
-            //highlighter = messageDisplayArea.getHighlighter();
             messageFrame.add(recipientPanel, BorderLayout.CENTER);
 
             // Buttons
@@ -589,7 +587,6 @@ public class Client extends JComponent implements Runnable {
 
             // Action Listeners
             sendButton.addActionListener(actionListener);
-            //cancelButton.addActionListener(e -> cancelMessage());
             deleteButton.addActionListener(actionListener);
 
 
@@ -803,7 +800,7 @@ public class Client extends JComponent implements Runnable {
                     writer.flush();
                     String checkReceiver = reader.readLine();
                     if (checkReceiver.equals("the User not exist")) {
-                        JOptionPane.showMessageDialog(null, "Please enter a valid user name.",
+                        JOptionPane.showMessageDialog(null, "Can not send message to that user",
                                 "User Not Exist", JOptionPane.ERROR_MESSAGE);
                         actionFrame.setVisible(false);
                         userFrame.setVisible(true);
@@ -813,10 +810,21 @@ public class Client extends JComponent implements Runnable {
                         messageFrame.setTitle(receiver);
                         messageFrame.setVisible(true);
                         actionFrame.setVisible(false);
+                        messageTextArea.setText("");
+                        // Read all lines until the end-of-message marker
+                        StringBuilder history = new StringBuilder();
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            if (line.equals("END_OF_MESSAGE")) {
+                                break;
+                            }
+                            history.append(line).append("\n");
+                        }
+                        messageDisplayArea.setText("");
+                        messageDisplayArea.append(history.toString());
                     }
                 }
                 if (e.getSource() == addFriendButton) {
-
                     writer.write("Add friend");
                     writer.println();
                     writer.write(otherUsernameText.getText());
@@ -986,8 +994,6 @@ public class Client extends JComponent implements Runnable {
                     writer.println();
                     writer.write(messageTextArea.getText());
                     writer.println();
-                    writer.write(messageFrame.getTitle());
-                    writer.println();
                     writer.flush();
                     messageTextArea.setText("");
                     // Read all lines until the end-of-message marker
@@ -999,31 +1005,19 @@ public class Client extends JComponent implements Runnable {
                         }
                         history.append(line).append("\n");
                     }
-
                     messageDisplayArea.setText("");
                     messageDisplayArea.append(history.toString());
                 }
                 if (e.getSource() == deleteButton) {
                     writer.write("Delete Message");
                     writer.println();
-                    writer.flush();
                     String id = conversationID.getText();
-                    if (id.isEmpty()) {
-                        JOptionPane.showMessageDialog(null,
-                                "Error: ID cannot be empty. Please enter a valid ID.",
-                                "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                    try {
-                        int conversaID = Integer.parseInt(id);
-                        writer.write(String.valueOf(conversaID));
-                        writer.println();
-                        writer.flush();
-                        writer.write(messageFrame.getTitle());
-                        writer.println();
-                        writer.flush();
-                        conversationID.setText("");
-
+                    writer.write(id);
+                    writer.println();
+                    writer.flush();
+                    conversationID.setText("");
+                    String deleteMessageResult = reader.readLine();
+                    if (deleteMessageResult.equals("Delete message successfully")) {
                         // Read all lines until the end-of-message marker
                         StringBuilder history = new StringBuilder();
                         String line;
@@ -1035,11 +1029,8 @@ public class Client extends JComponent implements Runnable {
                         }
                         messageDisplayArea.setText("");
                         messageDisplayArea.append(history.toString());
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null,
-                                "Error: ID must be number. Please enter a valid ID.",
-                                "Error",
-                                JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please enter a valid ID.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             } catch (Exception ex) {

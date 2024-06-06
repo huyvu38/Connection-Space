@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *
  * ServerInterface.java
  *
- * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Huy Vu, Yanxin Yu - CS180 - L22
  * @version 28 March 2024
  */
 
@@ -22,8 +22,7 @@ public interface ServerInterface extends Runnable {
     boolean blockUser(String userNameOne, String userNameTwo);
     boolean unblockUser(String userNameOne, String userNameTwo);
     ArrayList<String> searchUser(String userNameOne, String word);
-    boolean sendMessage(String sendUserName, String receiverUserName, String content, boolean isBlocked);
-    boolean deleteMessage(int messageID);
-    String restrictMessage(String userName, ArrayList<String> friendList, String content);
+    boolean sendMessage(String senderUserName, String receiverUserName, String content);
+    boolean deleteMessage(String sender, String receiver, String messageID);
     String printHistoryMessage(String senderName, String receiverName);
 }

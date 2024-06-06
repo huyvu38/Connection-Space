@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *
  * UserAccountInterface.java
  *
- * @author Gabe Turner, Huy Vu, Yanxin Yu, Zander Unger, L22
+ * @author Huy Vu, Yanxin Yu - CS180 - L22
  * @version 28 March 2024
  */
 public interface UserAccountInterface {
