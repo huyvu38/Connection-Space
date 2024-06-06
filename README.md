@@ -1,10 +1,6 @@
 # CS180-L22-Team 3
 
-Huy Vu <Submitted Vocareum Work Phase 3>
-
-Yanxin Yu <Submitted Presentation Phase 3>
-
-Huy Vu <Submitted Report Phase 3>
+This project is made by Huy Vu and Yanxin Yu.
 
 ### Instruction on how to compile and run the program
 
