@@ -132,9 +132,6 @@ Persistent Logging: Use a buffered reader to timestamp and store messages, ensur
 ### Client.java <br> 
 Acts as the user interface for the social media platform. Utilizes java socket for client-server connections and invokes the Main Menu Frame when the client connects to the server.
 
-### RunLocalTest.java <br>
-Tests each file's methods utilizing junit 4. Tests include: Decleration test, Profile test, User account test, Database test and functions in Server.
-
 ### AllUserAccount.txt <br/>
 The file that store profile, friendlist, blocklist of each user.
 
@@ -154,4 +151,4 @@ Every information in the Profile of the user can not contain any spaces or semic
 
 The file that store every message between each user.
 
-Format: [conversationID],[DeletedMessage],[ConversationTime],[Sender username],[Receiver username],[if message blocked],[message content]
+Format: [conversationID],[ConversationTime],[Sender username],[Receiver username],[message content]
