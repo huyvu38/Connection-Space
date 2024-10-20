@@ -1,7 +1,5 @@
 # CS180-L22-Team 3
 
-This project is made by Huy Vu and Yanxin Yu.
-
 ### Instruction on how to compile and run the program
 
 The server in Server.java needs to be run first so that the client can connect to the server and use the app.
